@@ -12,39 +12,32 @@
     },
     "list": [
     {
-      "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\" -noLogo -WorkingDirectory C:\\dev",
-      "elevate": false,
-      "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-      "hidden": false,
       "name": "PowerShell",
-      "source": "Windows.Terminal.PowershellCore"
+      "icon": "C:\\dev\\dotfiles\\icons\\powershell.png",
+      "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\" -noLogo -WorkingDirectory C:\\dev",
+      "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
     },
     {
+      "name": "k9s",
+      "icon": "C:\\dev\\dotfiles\\icons\\kubernetes.png",
       "commandline": "k9s --all-namespaces --headless",
       "guid": "{6253060c-fffc-4b2c-99ac-ef5da91c30f1}",
-      "hidden": false,
-      "icon": "ms-appx:///ProfileIcons/pwsh.png",
-      "name": "k9s",
-      "startingDirectory": "%USERPROFILE%"
     },
     {
       "name": "server dev",
+      "icon": "C:\\dev\\dotfiles\\icons\\server.png",
       "commandline": "ssh mp281x@dev.mp281x.xyz",
       "guid": "{c4f7e0d0-e4c1-49e4-9f75-d42761f3ad31}",
-      "hidden": false,
-      "icon": "ms-appx:///ProfileIcons/pwsh.png",
-      "startingDirectory": "%USERPROFILE%"
     },
     {
-      "elevate": false,
+      "name": "Windows PowerShell",
       "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
       "hidden": true,
-      "name": "Windows PowerShell"
     },
     {
+      "name": "Command Prompt",
       "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
       "hidden": true,
-      "name": "Command Prompt"
     },
   ]},
   "schemes": [{

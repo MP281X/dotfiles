@@ -1,0 +1,73 @@
+{
+  "$help": "https://aka.ms/terminal-documentation",
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "copyFormatting": "none",
+  "copyOnSelect": false,
+  "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+  "profiles": {
+    "defaults": {
+      "colorScheme": "Catppuccin Mocha",
+      "font": {"face": "JetBrainsMono NFM"},
+      "scrollbarState": "hidden"
+    },
+    "list": [
+    {
+      "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\" -noLogo -WorkingDirectory C:\\dev",
+      "elevate": false,
+      "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+      "hidden": false,
+      "name": "PowerShell",
+      "source": "Windows.Terminal.PowershellCore"
+    },
+    {
+      "commandline": "k9s --all-namespaces --headless",
+      "guid": "{6253060c-fffc-4b2c-99ac-ef5da91c30f1}",
+      "hidden": false,
+      "icon": "ms-appx:///ProfileIcons/pwsh.png",
+      "name": "k9s",
+      "startingDirectory": "%USERPROFILE%"
+    },
+    {
+      "name": "server dev",
+      "commandline": "ssh mp281x@dev.mp281x.xyz",
+      "guid": "{c4f7e0d0-e4c1-49e4-9f75-d42761f3ad31}",
+      "hidden": false,
+      "icon": "ms-appx:///ProfileIcons/pwsh.png",
+      "startingDirectory": "%USERPROFILE%"
+    },
+    {
+      "elevate": false,
+      "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+      "hidden": true,
+      "name": "Windows PowerShell"
+    },
+    {
+      "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+      "hidden": true,
+      "name": "Command Prompt"
+    },
+  ]},
+  "schemes": [{
+    "name": "Catppuccin Mocha",
+    "cursorColor": "#F5E0DC",
+    "selectionBackground": "#585B70",
+    "background": "#1E1E2E",
+    "foreground": "#CDD6F4",
+    "black": "#45475A",
+    "red": "#F38BA8",
+    "green": "#A6E3A1",
+    "yellow": "#F9E2AF",
+    "blue": "#89B4FA",
+    "purple": "#F5C2E7",
+    "cyan": "#94E2D5",
+    "white": "#BAC2DE",
+    "brightBlack": "#585B70",
+    "brightRed": "#F38BA8",
+    "brightGreen": "#A6E3A1",
+    "brightYellow": "#F9E2AF",
+    "brightBlue": "#89B4FA",
+    "brightPurple": "#F5C2E7",
+    "brightCyan": "#94E2D5",
+    "brightWhite": "#A6ADC8"
+  }]
+}

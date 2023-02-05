@@ -30,7 +30,7 @@ vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.opt.signcolumn = "yes"
 
--- backspace 
+-- backspace
 vim.opt.backspace = "indent,eol,start"
 
 -- clipboard

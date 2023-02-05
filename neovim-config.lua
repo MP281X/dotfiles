@@ -1,4 +1,5 @@
 require("plugin")
 require("plugin-config")
+require("lsp-config")
 require("config")
 require("keymaps")

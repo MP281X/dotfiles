@@ -1,47 +1,57 @@
--- packer installation
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-local is_bootstrap = false
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  is_bootstrap = true
-  vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
-  vim.cmd [[packadd packer.nvim]]
+-- lazy nvim configuration
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-
-require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
+require("lazy").setup({
 
   -- plugins (start)
-  use { 'catppuccin/nvim', as = 'catppuccin' } -- color scheme
+  { 'catppuccin/nvim', as = 'catppuccin' }, -- color scheme
 
-  use { 'nvim-telescope/telescope.nvim', tag = '0.1.1', requires = { { 'nvim-lua/plenary.nvim' } } } -- file search
+  { 'nvim-telescope/telescope.nvim', tag = '0.1.1', dependencies = { { 'nvim-lua/plenary.nvim' } } }, -- file search
 
-  use 'numToStr/Comment.nvim' -- comment code
+  { 'numToStr/Comment.nvim' }, -- comment code
 
-  use { 'nvim-lualine/lualine.nvim' } -- statusline
+  { 'nvim-lualine/lualine.nvim' }, -- statusline
 
-  use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' }, tag = 'nightly' } -- file explorer
+  { 'nvim-tree/nvim-tree.lua', dependencies = { 'nvim-tree/nvim-web-devicons' }, tag = 'nightly' }, -- file explorer
 
-  use { 'numToStr/FTerm.nvim' } -- floating terminal
+  { 'numToStr/FTerm.nvim' }, -- floating terminal
 
-  use { 'windwp/nvim-autopairs' } -- auto close ()
+  { 'windwp/nvim-autopairs' }, -- auto close ()
 
-  use { 'nvim-treesitter/nvim-treesitter' } -- syntax hilight
-
-  use { 'onsails/lspkind-nvim' } -- autocomplete icon
+  { 'nvim-treesitter/nvim-treesitter' }, -- syntax hilight
 
   -- lsp
-  use { 'williamboman/mason.nvim' }
-  use { 'williamboman/mason-lspconfig.nvim' }
-  use { 'neovim/nvim-lspconfig' }
+  {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v1.x',
+    dependencies = {
+      -- LSP Support
+      { 'neovim/nvim-lspconfig' }, -- Required
+      { 'williamboman/mason.nvim' }, -- Optional
+      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
-  -- auto complete
-  use { 'hrsh7th/cmp-nvim-lsp' }
-  use { 'hrsh7th/nvim-cmp' }
+      -- Autocompletion
+      { 'hrsh7th/nvim-cmp' }, -- Required
+      { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+      { 'hrsh7th/cmp-buffer' }, -- Optional
+      { 'hrsh7th/cmp-path' }, -- Optional
+      { 'saadparwaiz1/cmp_luasnip' }, -- Optional
+      { 'hrsh7th/cmp-nvim-lua' }, -- Optional
 
-  -- formatter 
-  use{ 'jose-elias-alvarez/null-ls.nvim' }
-  use{ 'MunifTanjim/prettier.nvim' }
-
-  -- plugins (end)
-end)
+      -- Snippets
+      { 'L3MON4D3/LuaSnip' }, -- Required
+      { 'rafamadriz/friendly-snippets' }, -- Optional
+    }
+  }
+})

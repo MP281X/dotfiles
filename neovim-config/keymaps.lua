@@ -5,7 +5,7 @@ vim.keymap.set("n", "d", '"_d') -- delete a single letter without coping it
 vim.keymap.set("v", "d", '"_d') -- delete a single letter without coping it
 
 -- split window
-vim.keymap.set("n", "<leader>sv", '<C-w>v') -- vertical 
+vim.keymap.set("n", "<leader>sv", '<C-w>v') -- vertical
 vim.keymap.set("n", "<leader>se", '<C-w>=') -- reset size
 vim.keymap.set("n", "<leader>sx", ':close<CR>') -- close
 
@@ -25,5 +25,8 @@ vim.keymap.set('t', '<leader>t', require('FTerm').toggle)
 -- movement
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
-vim.keymap.set('n', 'n', 'nzzzv') 
-vim.keymap.set('n', 'N', 'Nzzzv') 
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
+
+-- lsp
+vim.keymap.set('n', '<leader>ff', ':LspZeroFormat<CR>') -- format document

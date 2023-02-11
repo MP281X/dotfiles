@@ -22,7 +22,7 @@
     {
       "name": "k9s",
       "icon": "C:\\dev\\dotfiles\\icons\\kubernetes.png",
-      "commandline": "k9s --all-namespaces --headless",
+      "commandline": "k9s --headless -c ns",
       "guid": "{6253060c-fffc-4b2c-99ac-ef5da91c30f1}",
     },
     {

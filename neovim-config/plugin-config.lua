@@ -9,7 +9,13 @@ vim.cmd.colorscheme "catppuccin"
 -- telescope (fuzzy finder)
 require("telescope").setup({
   defaults = { file_ignore_patterns = { "node_modules/" } },
-  extensions = { file_browser = { theme = "ivy", hijack_netrw = true } }
+  extensions = { file_browser = { 
+    hijack_netrw = true,
+    git_status = false,
+    grouped = true,
+    hidden = true,
+    collapse_dirs = true,
+  } }
 })
 require("telescope").load_extension "file_browser"
 

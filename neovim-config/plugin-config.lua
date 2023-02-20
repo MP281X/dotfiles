@@ -8,8 +8,8 @@ vim.cmd.colorscheme "catppuccin"
 
 -- telescope (fuzzy finder)
 require("telescope").setup({
-  defaults = { file_ignore_patterns = { "node_modules/" } },
-  extensions = { file_browser = { 
+  defaults = { file_ignore_patterns = { "node_modules/", ".git/" } },
+  extensions = { file_browser = {
     hijack_netrw = true,
     git_status = false,
     grouped = true,

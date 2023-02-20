@@ -1,6 +1,6 @@
 -- treesitter (syntax hilight)
 require("nvim-treesitter.configs").setup({
-  ensure_installed = { 'lua', 'svelte', 'prisma', 'html', 'typescript', 'bash', 'yaml' },
+  ensure_installed = { 'lua', 'svelte', 'prisma', 'html', 'typescript', 'bash', 'yaml', 'json' },
   sync_install = false,
   auto_install = true,
   highlight = { enable = true }
@@ -9,7 +9,7 @@ require("nvim-treesitter.configs").setup({
 -- lsp
 require('mason').setup()
 require('mason-lspconfig').setup({
-  ensure_installed = { 'sumneko_lua', 'svelte', 'prismals', 'tsserver', 'bashls', 'yamlls', 'tailwindcss', 'eslint' }
+  ensure_installed = { 'sumneko_lua', 'svelte', 'prismals', 'tsserver', 'bashls', 'yamlls', 'tailwindcss', 'eslint', 'jsonls' }
 })
 
 require('lsp-zero').extend_lspconfig()

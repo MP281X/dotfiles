@@ -15,15 +15,18 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 
   -- plugins (start)
-  { 'catppuccin/nvim', as = 'catppuccin' }, -- color scheme
+  { 'catppuccin/nvim', as = 'catppuccin', lazy = false, priority = 1000 }, -- color scheme
 
   { 'nvim-telescope/telescope.nvim', tag = '0.1.1', dependencies = { { 'nvim-lua/plenary.nvim' } } }, -- file search
+
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  }, -- file browser
 
   { 'numToStr/Comment.nvim' }, -- comment code
 
   { 'nvim-lualine/lualine.nvim' }, -- statusline
-
-  { 'nvim-tree/nvim-tree.lua', dependencies = { 'nvim-tree/nvim-web-devicons' }, tag = 'nightly' }, -- file explorer
 
   { 'numToStr/FTerm.nvim' }, -- floating terminal
 
@@ -54,4 +57,6 @@ require("lazy").setup({
       { 'rafamadriz/friendly-snippets' }, -- Optional
     }
   }
+}, {
+  install = { colorscheme = { "catppuccin" }, missing = true }
 })

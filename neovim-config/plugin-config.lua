@@ -1,17 +1,23 @@
--- nvim-tree (file explorer)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.opt.termguicolors = true
-require("nvim-tree").setup({ view = { side = "right" } })
+-- theme
+require("catppuccin").setup({
+  flavour = "mocha",
+  no_italic = false,
+})
+
+vim.cmd.colorscheme "catppuccin"
+
+-- telescope (fuzzy finder)
+require("telescope").setup({
+  defaults = { file_ignore_patterns = { "node_modules/" } },
+  extensions = { file_browser = { theme = "ivy", hijack_netrw = true } }
+})
+require("telescope").load_extension "file_browser"
 
 -- auto close ()
 require("nvim-autopairs").setup()
 
 -- floating terminal
 require("FTerm").setup({ cmd = "pwsh -noLogo" })
-
--- telescope (fuzzy finder)
-require("telescope").setup()
 
 -- comment
 require("Comment").setup()

@@ -40,8 +40,5 @@ vim.opt.clipboard:append("unnamedplus")
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- theme
-vim.cmd.colorscheme "catppuccin-mocha"
-
 -- save undo history
 vim.o.undofile = true

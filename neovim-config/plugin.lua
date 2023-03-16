@@ -19,10 +19,7 @@ require("lazy").setup({
 
   { 'nvim-telescope/telescope.nvim', tag = '0.1.1', dependencies = { { 'nvim-lua/plenary.nvim' } } }, -- file search
 
-  {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-  }, -- file browser
+  {'nvim-tree/nvim-tree.lua', version = '*', dependencies = { 'nvim-tree/nvim-web-devicons' } },
 
   { 'numToStr/Comment.nvim' }, -- comment code
 
@@ -43,7 +40,7 @@ require("lazy").setup({
       {'neovim/nvim-lspconfig'},
       {'williamboman/mason.nvim'},
       {'williamboman/mason-lspconfig.nvim'},
-  
+
       -- Autocompletion
       {'hrsh7th/nvim-cmp'},
       {'hrsh7th/cmp-nvim-lsp'},

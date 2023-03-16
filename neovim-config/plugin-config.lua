@@ -1,3 +1,13 @@
+-- nvim-tree (file explorer)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+require("nvim-tree").setup({
+  prefer_startup_root = true,
+  view = { side = "right", hide_root_folder = true, signcolumn = "no" },
+  renderer = { icons = { glyphs = { git = { unstaged = "󰤌", untracked = "" } } } }
+})
+
 -- theme
 require("catppuccin").setup({
   flavour = "mocha",
@@ -7,17 +17,7 @@ require("catppuccin").setup({
 vim.cmd.colorscheme "catppuccin"
 
 -- telescope (fuzzy finder)
-require("telescope").setup({
-  defaults = { file_ignore_patterns = { "node_modules/", ".git/" } },
-  extensions = { file_browser = {
-    hijack_netrw = true,
-    git_status = false,
-    grouped = true,
-    hidden = true,
-    collapse_dirs = true,
-  } }
-})
-require("telescope").load_extension "file_browser"
+require("telescope").setup({ defaults = { file_ignore_patterns = { "node_modules/", ".git/" } } })
 
 -- auto close ()
 require("nvim-autopairs").setup()

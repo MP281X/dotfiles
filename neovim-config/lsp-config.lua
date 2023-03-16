@@ -7,11 +7,19 @@ require("nvim-treesitter.configs").setup({
 })
 
 -- lsp
-local lsp = require('lsp-zero').preset({})
+local lsp = require('lsp-zero').preset({
+  name = 'minimal',
+  set_lsp_keymaps = true,
+  manage_nvim_cmp = true,
+  suggest_lsp_servers = false,
+})
 
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
+lsp.ensure_installed({ 'lua_ls', 'svelte', 'prismals', 'tsserver', 'bashls', 'yamlls', 'tailwindcss', 'eslint' })
+
+lsp.on_attach(function(_, bufnr)
+  lsp.default_keymaps({ buffer = bufnr })
 end)
+
 
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 

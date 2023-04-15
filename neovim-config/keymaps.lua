@@ -14,10 +14,10 @@ vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, {})
 vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, {})
 vim.keymap.set('n', '<leader>se', require('telescope.builtin').diagnostics, {})
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').git_status, {})
-vim.keymap.set('n', '<leader>fb', ":Telescope file_browser<CR>")
 
--- nvim-tree
-vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
+-- telescope file browser
+vim.keymap.set('n', '<leader>fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>')
+vim.keymap.set('n', '<leader>e', ':Telescope file_browser<CR>')
 
 -- FTerm
 vim.keymap.set('n', '<leader>t', require('FTerm').toggle)

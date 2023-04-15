@@ -1,3 +1,5 @@
+# powershell
+# Copy-Item -Path "powershell.ps1" -Destination "C:\Program Files\PowerShell\7\profile.ps1"
 
 # scoop
 # scoop install argocd
@@ -15,9 +17,6 @@ Copy-Item -Path "k9s-theme.yaml" -Destination "~\AppData\Local\k9s\skin.yml"
 
 # windows terminal configuration
 Copy-Item -Path "windows-terminal.json" -Destination "~\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
-
-# powershell
-# Copy-Item -Path "powershell.ps1" -Destination "C:\Program Files\PowerShell\7\profile.ps1"
 
 # neovim
 New-Item -ItemType Directory -Force "~\AppData\Local\nvim\lua"

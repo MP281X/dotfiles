@@ -13,13 +13,12 @@ require("telescope").setup({
     file_browser = {
       hijack_netrw = true,
       git_status = false,
-      grouped = true,
-      hidden = true,
-      collapse_dirs = true,
     }
   }
 })
+
 require("telescope").load_extension "file_browser"
+--autocmd User TelescopePreviewerLoaded setlocal wrap
 
 -- auto close ()
 require("nvim-autopairs").setup()

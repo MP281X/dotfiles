@@ -4,7 +4,6 @@ Clear-Host
 # import the extension
 Import-Module posh-git
 Import-Module PSReadLine
-Import-Module -Name Terminal-Icons
 Set-PSReadLineOption -PredictionSource History
 
 # alias

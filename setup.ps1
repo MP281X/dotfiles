@@ -1,8 +1,3 @@
-set-ExecutionPolicy Unrestricted
-
-# pnpm 
-iwr https://get.pnpm.io/install.ps1 -useb | iex
-
 # powershell
 PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
 Copy-Item -Path "powershell.ps1" -Destination "C:\Program Files\PowerShell\7\profile.ps1"
@@ -16,7 +11,7 @@ Copy-Item -Path "windows-terminal.json" -Destination "~\AppData\Local\Packages\M
 
 # ssh and kubectl config file
 New-Item -ItemType Directory -Force "C:\Users\mp281x\.ssh"
-Copy-Item -Force -Path "E:\secrets\.ssh\*" -Destination "C:\Users\mp281x\.ssh\"
+Copy-Item -Force -Path "D:\secrets\.ssh\*" -Destination "C:\Users\mp281x\.ssh\"
 
 New-Item -ItemType Directory -Force "C:\Users\mp281x\.kube"
-Copy-Item -Force -Path "E:\secrets\config" -Destination "C:\Users\mp281x\.kube\config"
+Copy-Item -Force -Path "D:\secrets\config" -Destination "C:\Users\mp281x\.kube\config"

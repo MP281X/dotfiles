@@ -1,7 +1,7 @@
 -- theme
 require("catppuccin").setup({
   flavour = "mocha",
-  no_italic = false,
+  no_italic = true,
 })
 
 vim.cmd.colorscheme "catppuccin"
@@ -13,6 +13,9 @@ require("telescope").setup({
     file_browser = {
       hijack_netrw = true,
       git_status = false,
+      grouped = true,
+      hidden = true,
+      collapse_dirs = true,
     }
   }
 })
@@ -24,7 +27,7 @@ require("telescope").load_extension "file_browser"
 require("nvim-autopairs").setup()
 
 -- floating terminal
-require("FTerm").setup({ cmd = "pwsh -noLogo" })
+require("FTerm").setup({ cmd = "bash" })
 
 -- comment
 require("Comment").setup()

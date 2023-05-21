@@ -1,0 +1,20 @@
+format = """\
+  $rust\
+  $nodejs\
+  $directory\
+  $git_branch\
+  [❯ ](bold red)\
+  """
+
+
+[git_branch]
+format = '[\($branch(:$remote_branch)\)](bold red)'
+
+[directory]
+style = 'bold blue'
+
+[rust]
+format = '[\[🦀 $version\]](bold black) '
+
+[nodejs]
+format = '[\[ $version\]](bold black) '

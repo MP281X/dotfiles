@@ -26,16 +26,26 @@ initial-setup:
 	@apk update
 
 	@echo "setup basic tools"
-	@apk add neovim zsh make exa github-cli
+	@apk add neovim zsh make exa github-cli starship
 	@make dotfiles
 	
 	@echo "setup other tools"
-	@apk add k9s kubectl atlas 
+	@apk add atlas 
 
 	@echo "nodejs setup"
 	@apk add nodejs npm
 	@npm i -g pnpm
 	
 	@echo "rust setup"
-	@apk add curl gcc musl-dev
+	@apk add curl gcc g++ musl-dev
 	@curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	@source "$HOME/.cargo/env"
+
+	@echo "tailscale setup"
+	@apk add tailscale
+	@rc-update add tailscale
+	@rc-service tailscale start
+	@tailscale up --advertise-tags=tag:dev
+	
+	@echo "git / github cli setup"
+	@gh auth login

@@ -13,9 +13,7 @@ require("telescope").setup({
     file_browser = {
       hijack_netrw = true,
       git_status = false,
-      grouped = true,
       hidden = true,
-      collapse_dirs = true,
     }
   }
 })
@@ -27,7 +25,7 @@ require("telescope").load_extension "file_browser"
 require("nvim-autopairs").setup()
 
 -- floating terminal
-require("FTerm").setup({ cmd = "bash" })
+require("FTerm").setup({ cmd = "zsh" })
 
 -- comment
 require("Comment").setup()

@@ -33,6 +33,12 @@
         "guid": "{c4f7e0d0-e4c1-49e4-9f75-d42761f3ad31}"
       },
       {
+        "name": "alpine-dev",
+        "icon": "C:\\dev\\dotfiles\\icons\\server.png"
+        "commandline": "ssh root@100.108.210.62 -t zsh",
+        "guid": "{71c321a8-5b6b-4ab9-95e6-5285f39dd83c}",
+      },
+      {
         "name": "Windows PowerShell",
         "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
         "hidden": true

@@ -49,3 +49,5 @@ initial-setup:
 	
 	@echo "git / github cli setup"
 	@gh auth login
+	@git config --global user.name = mp281x
+	@git config --global user.email = paludgnachmatteo.dev@gmail.com

@@ -35,6 +35,7 @@ cmp.setup({
   --   { name = 'luasnip', keyword_length = 2 },
   -- },
   mapping = {
-    ['<Tab>'] = cmp_action.tab_complete(),
+    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-\\>'] = cmp.mapping.complete(),
   }
 })

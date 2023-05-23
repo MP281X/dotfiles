@@ -16,6 +16,18 @@ neovim-reset:
 	@echo "neovim reset"
 	@rm -f ~/.local/share/nvim/*
 
+sway:
+    @echo "font"
+    @cp assets/font.ttf /usr/share/fonts/
+    @fc-cache -f -v
+
+    # @echo "sway"
+    # setup-devd udev
+    # adduser $USER input
+    # adduser $USER video
+
+    # apk add sway sway-doc
+
 initial-setup:
 	@echo "setup apk repo"
 	@echo "https://dl-cdn.alpinelinux.org/alpine/latest-stable/main" > /etc/apk/repositories
@@ -40,6 +52,9 @@ initial-setup:
 	@apk add curl gcc g++ musl-dev
 	@curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	@source "$HOME/.cargo/env"
+
+	@echo "sway"
+	@make sway
 
 	@echo "tailscale setup"
 	@apk add tailscale

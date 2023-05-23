@@ -4,7 +4,7 @@ eval "$(starship init zsh)"
 # case insensitive autocomplete
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-
+path+=('/home/mp281x/.local/share/pnpm')
 path+=('/home/mp281x/.local/share/bob/nvim-bin')
 
 # alias

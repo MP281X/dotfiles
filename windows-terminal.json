@@ -3,7 +3,7 @@
   "$schema": "https://aka.ms/terminal-profiles-schema",
   "copyFormatting": "none",
   "copyOnSelect": false,
-  "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+  "defaultProfile": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
   "launchMode": "maximized",
   "actions": [{ "command": "paste", "keys": "ctrl+v" }],
   "profiles": {
@@ -14,29 +14,21 @@
     },
     "list": [
       {
-        "name": "PowerShell",
-        "elevate": true,
-        "icon": "C:\\dev\\dotfiles\\icons\\powershell.png",
-        "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\" -noLogo -WorkingDirectory C:\\dev",
-        "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}"
+        "name": "Debian",
+        "source": "Windows.Terminal.Wsl",
+        "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}"
       },
       {
         "name": "k9s",
-        "icon": "C:\\dev\\dotfiles\\icons\\kubernetes.png",
+        "icon": "🔎",
         "commandline": "k9s --headless -c ns",
         "guid": "{6253060c-fffc-4b2c-99ac-ef5da91c30f1}"
       },
       {
         "name": "server dev",
-        "icon": "C:\\dev\\dotfiles\\icons\\server.png",
+        "icon": "💻",
         "commandline": "ssh mp281x@dev.mp281x.xyz",
         "guid": "{c4f7e0d0-e4c1-49e4-9f75-d42761f3ad31}"
-      },
-      {
-        "name": "alpine-dev",
-        "icon": "C:\\dev\\dotfiles\\icons\\server.png"
-        "commandline": "ssh root@100.108.210.62 -t zsh",
-        "guid": "{71c321a8-5b6b-4ab9-95e6-5285f39dd83c}",
       },
       {
         "name": "Windows PowerShell",

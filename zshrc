@@ -1,6 +1,14 @@
-# load starship
+# load profile
 emulate sh -c 'source ~/.profile'
-emulate sh -c 'source ~/.bashrc'
+
+# load pnpm
+export PNPM_HOME="/home/mp281x/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# load starship
 eval "$(starship init zsh)"
 
 # case insensitive autocomplete

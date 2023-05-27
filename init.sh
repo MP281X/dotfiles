@@ -5,7 +5,7 @@ sudo apt install -y gcc g++ musl-dev
 
 echo "nix"
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
-sudo mkdir -p -m 0755 /nix && sudo chown mp281x /nix
+sudo mkdir -p -m 0755 /nix && sudo chown $USER /nix
 source ~/.profile
 
 echo "cli tools"
@@ -17,7 +17,7 @@ nix-env -iA nixpkgs.gh
 curl -sSf https://atlasgo.sh | sh
 
 echo "git"
-git config --global user.name = mp281x
+git config --global user.name = $USER
 git config --global user.email = paludgnachmatteo.dev@gmail.com
 gh auth login
 

@@ -23,6 +23,10 @@ alias la="exa --icons -a"
 # git alias
 alias gs="git status -s --column"
 alias ga="git add . && gs"
+alias gl="gh repo list"
+gc() {
+  gh repo clone MP281X/$@
+}
 
 # list file when i change directory
 cd() {

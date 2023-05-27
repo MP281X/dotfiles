@@ -21,7 +21,8 @@ require("lazy").setup({
   { 'nvim-treesitter/nvim-treesitter' }, -- syntax hilight
 
   { 'jose-elias-alvarez/null-ls.nvim' }, -- formatter
-
+  
+  { 'jay-babu/mason-null-ls.nvim' }, -- auto install tools
   -- lsp zero
   {
     'VonHeikemen/lsp-zero.nvim',

@@ -15,4 +15,3 @@ dotfiles:
 neovim-reset:
 	@echo "neovim reset"
 	@rm -r -f ~/.local/share/nvim/*
-	@rm -r -f ~/.local/state/*

@@ -6,6 +6,7 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 path+=('~/.local/share/pnpm')
 path+=('~/.local/share/bob/nvim-bin')
+path+=('~/.nix-profile/bin/')
 
 # alias
 alias vi="nvim"

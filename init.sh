@@ -1,10 +1,12 @@
 echo "packages"
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y curl git wget xz-utils make
+sudo apt install -y curl git wget xz-utils make 
+sudo apt install -y gcc g++ musl-dev
 
 echo "nix"
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
-source .bashrc
+sudo mkdir -p -m 0755 /nix && sudo chown mp281x /nix
+source ~/.profile
 
 echo "cli tools"
 nix-env -iA nixpkgs.neovim
@@ -25,6 +27,5 @@ source .bashrc
 pnpm env use --global lts
 
 echo "rust"
-sudo apt install gcc g++ musl-dev
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source .bashrc

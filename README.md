@@ -8,7 +8,7 @@ wsl --install -d Debian
 ## Reset wsl (run as admin)
 
 ```bash
- winget uninstall --id Debian.Debian \
+winget uninstall --id Debian.Debian \
 wsl --unregister Debian \
 wsl --install -d Debian
 ```
@@ -16,8 +16,9 @@ wsl --install -d Debian
 ## Debian setup
 
 ```bash
-vi init.sh # <- init script
-bash init.sh && rm init.sh
+vi init.sh && \
+bash init.sh && \
+rm init.sh
 ```
 
 ### Init script
@@ -34,11 +35,14 @@ sh <(curl -L https://nixos.org/nix/install) --no-daemon
 source ~/.profile && source ~/.bashrc
 . ~/.nix-profile/etc/profile.d/nix.sh
 
-echo "cli tools"
+echo "shell tools"
 nix-env -iA nixpkgs.neovim
-nix-env -iA nixpkgs.exa
 nix-env -iA nixpkgs.zsh
+nix-env -iA nixpkgs.exa
 nix-env -iA nixpkgs.starship
+sudo chsh -s "$(command -v zsh)" "${USER}"
+
+echo "tools"
 nix-env -iA nixpkgs.gh
 curl -sSf https://atlasgo.sh | sh
 
@@ -47,6 +51,7 @@ git config --global user.name = $USER
 git config --global user.email = paludgnachmatteo.dev@gmail.com
 gh auth login
 git clone https://github.com/MP281X/dotfiles ~/dotfiles
+(cd ~/dotfiles && make dotfiles)
 
 echo "nodejs"
 curl -fsSL https://get.pnpm.io/install.sh | sh -

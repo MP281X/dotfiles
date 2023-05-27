@@ -18,7 +18,6 @@ lsp.ensure_installed({
   'rust_analyzer',
   'svelte',
   'tsserver',
-  'eslint',
 })
 
 lsp.setup()

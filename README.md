@@ -17,7 +17,8 @@ wsl --install -d Debian
 
 ```bash
 vi init.sh && \
-bash init.sh && \
+bash init.sh &&
+source ~/.bashrc && pnpm env use --global lts && \
 rm init.sh
 ```
 
@@ -56,8 +57,6 @@ git clone https://github.com/MP281X/dotfiles ~/dotfiles
 
 echo "nodejs"
 curl -fsSL https://get.pnpm.io/install.sh | sh -
-source ~/.bashrc
-pnpm env use --global lts
 
 echo "rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

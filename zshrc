@@ -1,5 +1,6 @@
 # load starship
 emulate sh -c 'source ~/.profile'
+emulate sh -c 'source ~/.bashrc'
 eval "$(starship init zsh)"
 
 # case insensitive autocomplete

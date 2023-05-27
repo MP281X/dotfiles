@@ -2,7 +2,7 @@
 emulate sh -c 'source ~/.profile'
 
 # load pnpm
-export PNPM_HOME="/home/mp281x/.local/share/pnpm"
+export PNPM_HOME="/home/$USER/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -25,7 +25,10 @@ alias gs="git status -s --column"
 alias ga="git add . && gs"
 alias gl="gh repo list"
 gc() {
-  gh repo clone MP281X/$@
+  git commit -m "$@" && git push
+}
+gclone() {
+  gh repo clone $USER/$@
 }
 
 # list file when i change directory

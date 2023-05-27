@@ -55,7 +55,7 @@ git clone https://github.com/MP281X/dotfiles ~/dotfiles
 (cd ~/dotfiles && make dotfiles)
 
 echo "nodejs"
-nix-env -iA nixpkgs.nodePackages_latest.pnpm
+curl -fsSL https://get.pnpm.io/install.sh | sh -
 pnpm env use --global lts
 
 echo "rust"

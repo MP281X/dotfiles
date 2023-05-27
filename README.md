@@ -5,9 +5,10 @@ wsl --set-default-version 2 \
 wsl --install -d Debian
 ```
 
-## Reset wsl
+## Reset wsl (run as admin)
 
 ```bash
+ winget uninstall --id Debian.Debian \
 wsl --unregister Debian \
 wsl --install -d Debian
 ```

@@ -20,18 +20,18 @@ lsp.ensure_installed({
   'tsserver',
 })
 
-local format_config = {
+local format_cfg = {
   format_opts = {
     async = false,
     timeout_ms = 10000,
   },
   servers = {
-    ['null-ls'] = {'javascript', 'typescript', 'lua'},
+    ['null-ls'] = {'javascript', 'typescript', 'svelte'},
   }
 }
 
-lsp.format_mapping('gq', format_config)
-lsp.format_on_save(format_config)
+lsp.format_on_save(format_cfg)
+lsp.format_mapping('<leader>ff', format_cfg)
 
 lsp.setup()
 
@@ -48,9 +48,19 @@ cmp.setup({
 })
 
 local null_ls = require('null-ls')
-null_ls.setup({})
+
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.prettier.with({
+      filetypes = {'javascript', 'typescript', 'svelte'},
+    }),
+    null_ls.builtins.diagnostics.eslint.with({
+      filetypes = {'javascript', 'typescript', 'svelte'},
+    }),
+  }
+})
 
 require('mason-null-ls').setup({
+  ensure_installed = nil,
   automatic_installation = true,
-  ensure_installed = {'eslint_d', 'prettierd'},
 })

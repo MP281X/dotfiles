@@ -12,7 +12,14 @@ wsl --unregister Debian \
 wsl --install -d Debian
 ```
 
-## Init script
+## Debian setup
+
+```bash
+vi init.sh # <- init script
+bash init.sh && rm init.sh
+```
+
+### Init script
 
 ```bash
 echo "packages"

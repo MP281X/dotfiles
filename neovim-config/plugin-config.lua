@@ -14,12 +14,18 @@ require("telescope").setup({
       hijack_netrw = true,
       git_status = false,
       hidden = true,
+    },
+    undo = {
+      use_delta = true,
+      side_by_side = true,
+      diff_context_lines = 15,
+      mappings = { i = { ["<cr>"] = require("telescope-undo.actions").restore } },
     }
   }
 })
 
 require("telescope").load_extension "file_browser"
---autocmd User TelescopePreviewerLoaded setlocal wrap
+require("telescope").load_extension "undo"
 
 -- auto close ()
 require("nvim-autopairs").setup()

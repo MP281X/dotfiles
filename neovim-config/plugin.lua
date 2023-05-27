@@ -7,6 +7,8 @@ require("lazy").setup({
 
   { 'nvim-telescope/telescope-file-browser.nvim' }, -- file explorer
 
+  { 'debugloop/telescope-undo.nvim' }, -- undo history
+
   { 'numToStr/Comment.nvim' }, -- comment code
 
   { 'nvim-lualine/lualine.nvim' }, -- statusline
@@ -15,11 +17,12 @@ require("lazy").setup({
 
   { 'windwp/nvim-autopairs' }, -- auto close ()
 
+  -- lsp
   { 'nvim-treesitter/nvim-treesitter' }, -- syntax hilight
 
   { 'jose-elias-alvarez/null-ls.nvim' }, -- formatter
 
-  -- lsp
+  -- lsp zero
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',

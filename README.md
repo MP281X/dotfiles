@@ -57,7 +57,6 @@ git clone https://github.com/MP281X/dotfiles ~/dotfiles
 echo "nodejs"
 brew install node
 brew install pnpm
-pnpm env use --global lts
 
 echo "rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

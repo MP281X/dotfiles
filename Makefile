@@ -7,7 +7,7 @@ dotfiles:
 	@cp -r neovim-config/. ~/.config/nvim/lua/
 
 	@echo "starship"
-	@cp shell/starship.toml ~/.config/starship.toml
+	@cp starship.toml ~/.config/starship.toml
 
 	@echo "zsh"
 	@cp zshrc ~/.zshrc

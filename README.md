@@ -17,8 +17,7 @@ wsl --install -d Debian
 
 ```bash
 vi init.sh && \
-bash init.sh &&
-source ~/.bashrc && pnpm env use --global lts && \
+bash init.sh && \
 rm init.sh
 ```
 
@@ -26,25 +25,25 @@ rm init.sh
 
 ```bash
 echo "packages"
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y curl git wget xz-utils make
-sudo apt install -y gcc g++ musl-dev
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get install -y curl git wget xz-utils make
+sudo apt-get install -y gcc g++ musl-dev build-essential
 
-echo "nix"
-sudo mkdir -p -m 0755 /nix && sudo chown $USER /nix
-sh <(curl -L https://nixos.org/nix/install) --no-daemon
-source ~/.profile && source ~/.bashrc
-. ~/.nix-profile/etc/profile.d/nix.sh
+echo "homebrew"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/mp281x/.profile
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 echo "shell tools"
-nix-env -iA nixpkgs.neovim
-nix-env -iA nixpkgs.nushell
-nix-env -iA nixpkgs.starship
-sudo chsh -s "$(command -v nu)" "${USER}"
+brew install neovim
+brew install zsh
+brew install starship
+
+sudo chsh -s "$(command -v zsh)" "${USER}"
 
 echo "tools"
-nix-env -iA nixpkgs.gh
-curl -sSf https://atlasgo.sh | sh
+brew install gh
+brew install atlas
 
 echo "git"
 git config --global user.name = $USER
@@ -55,7 +54,8 @@ git clone https://github.com/MP281X/dotfiles ~/dotfiles
 (cd ~/dotfiles && make dotfiles)
 
 echo "nodejs"
-curl -fsSL https://get.pnpm.io/install.sh | sh -
+brew install pnpm
+pnpm env use --global lts
 
 echo "rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

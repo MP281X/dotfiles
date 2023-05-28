@@ -36,6 +36,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 echo "shell tools"
 brew install neovim
+brew install exa
 brew install zsh
 brew install starship
 
@@ -54,6 +55,7 @@ git clone https://github.com/MP281X/dotfiles ~/dotfiles
 (cd ~/dotfiles && make dotfiles)
 
 echo "nodejs"
+brew install node
 brew install pnpm
 pnpm env use --global lts
 

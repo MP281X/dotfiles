@@ -38,10 +38,9 @@ source ~/.profile && source ~/.bashrc
 
 echo "shell tools"
 nix-env -iA nixpkgs.neovim
-nix-env -iA nixpkgs.zsh
-nix-env -iA nixpkgs.exa
+nix-env -iA nixpkgs.nushell
 nix-env -iA nixpkgs.starship
-sudo chsh -s "$(command -v zsh)" "${USER}"
+sudo chsh -s "$(command -v nu)" "${USER}"
 
 echo "tools"
 nix-env -iA nixpkgs.gh

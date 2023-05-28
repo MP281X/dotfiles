@@ -15,9 +15,12 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.ensure_installed({
-  'rust_analyzer',
-  'svelte',
-  'tsserver',
+  'rust_analyzer', -- rust
+  'svelte', 'tsserver', 'tailwindcss', -- sveltekit
+})
+
+require('lspconfig').tailwindcss.setup({
+  filetypes = { 'svelte' }
 })
 
 local format_cfg = {
@@ -27,6 +30,7 @@ local format_cfg = {
   },
   servers = {
     ['null-ls'] = {'javascript', 'typescript', 'svelte'},
+    ['rust_analyzer'] = {'rust'},
   }
 }
 

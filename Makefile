@@ -7,11 +7,10 @@ dotfiles:
 	@cp -r neovim-config/. ~/.config/nvim/lua/
 
 	@echo "starship"
-	@cp starship.toml ~/.config/starship.toml
+	@cp shell/starship.toml ~/.config/starship.toml
 
-	@echo "nushell"
-	@cp shell/config.nu ~/.config/nushell/config.nu
-	@cp shell/env.nu ~/.config/nushell/env.nu
+	@echo "zsh"
+	@cp zshrc ~/.zshrc
 
 neovim-reset:
 	@echo "neovim reset"

@@ -17,6 +17,8 @@ require("lazy").setup({
 
   { 'windwp/nvim-autopairs' }, -- auto close ()
 
+  { 'rmagatti/auto-session' }, -- session manager
+
   -- lsp
   { 'nvim-treesitter/nvim-treesitter' }, -- syntax hilight
 

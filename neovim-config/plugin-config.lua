@@ -3,17 +3,21 @@ require("catppuccin").setup({
   flavour = "mocha",
   no_italic = true,
 })
-
 vim.cmd.colorscheme "catppuccin"
 
 -- telescope (fuzzy finder)
 require("telescope").setup({
-  defaults = { file_ignore_patterns = { "node_modules/", ".git/" } },
+  defaults = { file_ignore_patterns = { 
+    ".git/", ".gitignore", -- global
+    ".png", ".woff2", ".webp", ".jpg", -- file
+    "node_modules/", ".prettierignore", ".eslintignore", "pnpm-lock.yaml", "tsconfig.json", "postcss.config.js", ".npmrc", -- node
+    "target/", "Cargo.lock" --rust
+  } },
   extensions = {
     file_browser = {
       hijack_netrw = true,
-      git_status = false,
       hidden = true,
+      grouped = true,
     },
     undo = {
       use_delta = true,
@@ -23,7 +27,6 @@ require("telescope").setup({
     }
   }
 })
-
 require("telescope").load_extension "file_browser"
 require("telescope").load_extension "undo"
 
@@ -51,5 +54,16 @@ require("lualine").setup({
     lualine_x = {},
     lualine_y = { "filetype" },
     lualine_z = { "location" },
+  },
+})
+
+-- session manager
+require("auto-session").setup({
+  log_level = "error",
+  auto_session_suppress_dirs = { "~/" },
+  cwd_change_handling = {
+    post_cwd_changed_hook = function()
+      require("lualine").refresh()
+    end,
   },
 })

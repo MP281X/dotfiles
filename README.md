@@ -43,13 +43,21 @@ brew install starship
 sudo chsh -s "$(command -v zsh)" "${USER}"
 
 echo "tools"
-brew install gh
 brew install atlas
+brew install protobuf
+
+echo "git"
+brew install gh
 brew install gitui
+
+echo "kubernetes"
 brew install kubernetes-cli
 brew install k9s
 brew install kubeseal
-mkdir ~/.kube && vi ~/.kube/config
+mkdir -p ~/.kube && cp /mnt/d/secrets/config ~/.kube/config
+
+echo "ssh"
+mkdir -p ~/.ssh && cp /mnt/d/secrets/.ssh/id_rsa ~/.ssh/id_rsa && chmod 0400 ~/.ssh/id_rsa
 
 echo "git"
 git config --global user.name = $USER

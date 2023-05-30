@@ -31,7 +31,6 @@ local format_cfg = {
   },
   servers = {
     ['null-ls'] = {'javascript', 'typescript', 'svelte'},
-    ['rust_analyzer'] = {'rust'},
   }
 }
 
@@ -62,6 +61,7 @@ null_ls.setup({
     null_ls.builtins.diagnostics.eslint.with({
       filetypes = {'javascript', 'typescript', 'svelte'},
     }),
+    null_ls.builtins.diagnostics.buf,
   }
 })
 

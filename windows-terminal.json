@@ -9,36 +9,25 @@
   "profiles": {
     "defaults": {
       "colorScheme": "Catppuccin Mocha",
-      "font": { "face": "JetBrainsMono Nerd Font Mono" },
+      "font": { "face": "JetBrainsMono Nerd Font Mono", "size": 14 },
       "scrollbarState": "hidden"
     },
     "list": [
       {
         "name": "Debian",
         "source": "Windows.Terminal.Wsl",
-        "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}"
-      },
-      {
-        "name": "k9s",
-        "icon": "🔎",
-        "commandline": "k9s --headless -c ns",
-        "guid": "{6253060c-fffc-4b2c-99ac-ef5da91c30f1}"
-      },
-      {
-        "name": "server dev",
-        "icon": "💻",
-        "commandline": "ssh mp281x@dev.mp281x.xyz",
-        "guid": "{c4f7e0d0-e4c1-49e4-9f75-d42761f3ad31}"
+        "commandline": "wsl -d Debian",
+        "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
       },
       {
         "name": "Windows PowerShell",
         "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-        "hidden": true
+        "hidden": true,
       },
       {
         "name": "Command Prompt",
         "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-        "hidden": true
+        "hidden": true,
       }
     ]
   },

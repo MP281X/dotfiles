@@ -1,15 +1,9 @@
 # load profile
 emulate sh -c 'source ~/.profile'
 
-# load pnpm
-export PNPM_HOME="/home/$USER/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-# load starship
+# load themes
 eval "$(starship init zsh)"
+export COLORTERM=truecolor
 
 # case insensitive autocomplete
 autoload -Uz compinit && compinit
@@ -19,6 +13,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 alias vi="nvim"
 alias ls="exa --icons"
 alias la="exa --icons -a"
+alias k9s="k9s --headless -c ns"
 
 # git alias
 alias gs="git status -s --column"
@@ -36,3 +31,10 @@ cd() {
   builtin cd "$@" && exa --icons;
 }
 
+
+# load pnpm
+export PNPM_HOME="/home/$USER/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac

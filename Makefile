@@ -12,6 +12,10 @@ dotfiles:
 	@echo "zsh"
 	@cp zshrc ~/.zshrc
 
+	@echo "k9s"
+	@cp k9s.yaml ~/.config/k9s/skin.yml
+
+
 neovim-reset:
 	@echo "neovim reset"
 	@rm -r -f ~/.local/share/nvim/*

@@ -45,6 +45,9 @@ sudo chsh -s "$(command -v zsh)" "${USER}"
 echo "tools"
 brew install gh
 brew install atlas
+brew install kubernetes-cli
+brew install k9s
+mkdir ~/.kube && vi ~/.kube/config
 
 echo "git"
 git config --global user.name = $USER

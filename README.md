@@ -63,6 +63,11 @@ echo "nodejs"
 brew install node
 brew install pnpm
 
+echo "golang"
+export go_version="1.20.4"
+wget https://go.dev/dl/go$go_version.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go$go_version.linux-amd64.tar.gz && sudo rm -f go$go_version.linux-amd64.tar.gz
+
 echo "rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source ~/.profile && source ~/.bashrc

@@ -1,5 +1,6 @@
 # load profile
 emulate sh -c 'source ~/.profile'
+path+=('/usr/local/go/bin')
 
 # load themes
 eval "$(starship init zsh)"
@@ -10,7 +11,6 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # alias
-alias df="(cd ~/dotfiles && make dotfiles && source ~/.zshrc)"
 alias vi="nvim"
 alias ls="exa --icons"
 alias la="exa --icons -a"

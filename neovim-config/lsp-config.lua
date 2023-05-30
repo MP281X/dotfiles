@@ -1,7 +1,7 @@
 -- treesitter (syntax hilight)
 require('nvim-treesitter.install').compilers = { 'gcc' }
-require("nvim-treesitter.configs").setup({
-  ensure_installed = { 'rust', 'svelte', 'typescript', 'lua', 'toml' },
+require('nvim-treesitter.configs').setup({
+  ensure_installed = { 'rust', 'go', 'svelte', 'typescript', 'lua' },
   sync_install = false,
   auto_install = true,
   highlight = { enable = true }
@@ -16,6 +16,7 @@ end)
 
 lsp.ensure_installed({
   'rust_analyzer', -- rust
+  'gopls', -- golang
   'svelte', 'tsserver', 'tailwindcss', -- sveltekit
 })
 

@@ -45,8 +45,10 @@ sudo chsh -s "$(command -v zsh)" "${USER}"
 echo "tools"
 brew install gh
 brew install atlas
+brew install gitui
 brew install kubernetes-cli
 brew install k9s
+brew install kubeseal
 mkdir ~/.kube && vi ~/.kube/config
 
 echo "git"

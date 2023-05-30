@@ -3,18 +3,20 @@ dotfiles:
 	@mkdir -p ~/.config/nvim/
 	@rm -f ~/.config/nvim/init.lua
 	@rm -r -f ~/.config/nvim/lua/*
-	@cp neovim-config.lua ~/.config/nvim/init.lua
+	@cp neovim-config/neovim-config.lua ~/.config/nvim/init.lua
 	@cp -r neovim-config/. ~/.config/nvim/lua/
 
 	@echo "starship"
-	@cp starship.toml ~/.config/starship.toml
+	@cp themes/starship.toml ~/.config/starship.toml
 
 	@echo "zsh"
 	@cp zshrc ~/.zshrc
 
 	@echo "k9s"
-	@cp k9s.yaml ~/.config/k9s/skin.yml
+	@cp themes/k9s.yaml ~/.config/k9s/skin.yml
 
+	@echo "gitui"
+	@cp themes/gitui.ron ~/.config/gitui/theme.ron
 
 neovim-reset:
 	@echo "neovim reset"

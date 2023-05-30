@@ -10,12 +10,14 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # alias
+alias df="(cd ~/dotfiles && make dotfiles && source ~/.zshrc)"
 alias vi="nvim"
 alias ls="exa --icons"
 alias la="exa --icons -a"
 alias k9s="k9s --headless -c ns"
 
 # git alias
+alias g="gitui"
 alias gs="git status -s --column"
 alias ga="git add . && gs"
 alias gl="gh repo list"

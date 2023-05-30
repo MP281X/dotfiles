@@ -19,6 +19,8 @@ require("lazy").setup({
 
   { 'rmagatti/auto-session' }, -- session manager
 
+  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'}, -- tabs
+
   -- lsp
   { 'nvim-treesitter/nvim-treesitter' }, -- syntax hilight
 

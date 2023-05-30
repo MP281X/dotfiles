@@ -20,7 +20,7 @@ alias ssh-dev="ssh mp281x@dev.mp281x.xyz"
 
 # golang
 export GOPATH="$HOME/.go"
-gonew() {
+goinit() {
   mkdir $1 && cd $1 && go mod init github.com/mp281x/$1 && touch main.go
 }
 pb() {
@@ -31,13 +31,8 @@ pb() {
 
 # git alias
 alias g="gitui"
-alias gs="git status -s --column"
-alias ga="git add . && gs"
 alias gl="gh repo list"
 gc() {
-  git commit -m "$@" && git push
-}
-gclone() {
   gh repo clone $USER/$@
 }
 

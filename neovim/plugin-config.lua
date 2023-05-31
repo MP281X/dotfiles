@@ -1,3 +1,4 @@
+
 -- theme
 require("catppuccin").setup({
   flavour = "mocha",
@@ -38,7 +39,7 @@ require("telescope").load_extension "undo"
 require("nvim-autopairs").setup()
 
 -- floating terminal
-require("FTerm").setup({ cmd = "zsh" })
+require("FTerm").setup({ cmd = os.getenv('SHELL') })
 
 -- comment
 require("Comment").setup()

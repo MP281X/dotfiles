@@ -3,8 +3,8 @@ dotfiles:
 	@mkdir -p ~/.config/nvim/
 	@rm -f ~/.config/nvim/init.lua
 	@rm -r -f ~/.config/nvim/lua/*
-	@cp neovim-config/neovim-config.lua ~/.config/nvim/init.lua
-	@cp -r neovim-config/. ~/.config/nvim/lua/
+	@cp neovim/neovim-config.lua ~/.config/nvim/init.lua
+	@cp -r neovim/. ~/.config/nvim/lua/
 
 	@echo "starship"
 	@cp themes/starship.toml ~/.config/starship.toml
@@ -23,3 +23,4 @@ dotfiles:
 neovim-reset:
 	@echo "neovim reset"
 	@rm -r -f ~/.local/share/nvim/*
+	@make dotfiles

@@ -1,6 +1,7 @@
 format = """\
   $rust\
   $nodejs\
+  $golang\
   $directory\
   $git_branch\
   [❯ ](bold red)\
@@ -18,3 +19,7 @@ format = '[\[🦀 $version\]](bold black) '
 
 [nodejs]
 format = '[\[ $version\]](bold black) '
+
+[golang]
+format = '[\[ $version\]](bold black) '
+

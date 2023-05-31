@@ -55,10 +55,10 @@ local null_ls = require('null-ls')
 
 null_ls.setup({
   sources = {
-    null_ls.builtins.formatting.prettier.with({
+    null_ls.builtins.formatting.prettierd.with({
       filetypes = {'javascript', 'typescript', 'svelte'},
     }),
-    null_ls.builtins.diagnostics.eslint.with({
+    null_ls.builtins.code_actions.eslint_d.with({
       filetypes = {'javascript', 'typescript', 'svelte'},
     }),
     null_ls.builtins.diagnostics.buf,

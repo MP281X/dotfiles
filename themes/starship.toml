@@ -9,17 +9,16 @@ format = """\
 
 
 [git_branch]
-format = '[\($branch(:$remote_branch)\)](bold red)'
+format = '[⚡$branch(:$remote_branch) ](bold red)'
 
 [directory]
 style = 'bold blue'
 
 [rust]
-format = '[\[🦀 $version\]](bold black) '
+format = '[\[ $version\]](bold black) '
 
 [nodejs]
 format = '[\[ $version\]](bold black) '
 
 [golang]
-format = '[\[ $version\]](bold black) '
-
+format = '[\[󰟓 $version\]](bold black) '

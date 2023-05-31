@@ -23,7 +23,7 @@ vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, {})
 vim.keymap.set('n', '<leader>se', require('telescope.builtin').diagnostics, {})
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').git_status, {})
 vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, {})
-vim.keymap.set('n', '<leader>fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>') -- telescope file browser
+vim.keymap.set('n', '<leader>fb', ':Telescope file_browser<CR>') -- telescope file browser
 vim.keymap.set('n', '<leader>u', ':Telescope undo<CR>') -- telescope undo
 
 -- FTerm

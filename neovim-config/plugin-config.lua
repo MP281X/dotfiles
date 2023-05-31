@@ -19,11 +19,14 @@ require("telescope").setup({
       hijack_netrw = true,
       hidden = true,
       grouped = true,
+      auto_depth = true,
+      git_status = false,
     },
     undo = {
       use_delta = true,
       side_by_side = true,
       diff_context_lines = 15,
+      entry_format = "[$ID]: $TIME",
       mappings = { i = { ["<cr>"] = require("telescope-undo.actions").restore } },
     }
   }

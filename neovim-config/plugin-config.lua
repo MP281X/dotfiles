@@ -11,7 +11,8 @@ require("telescope").setup({
     ".git/", ".gitignore", -- global
     ".png", ".woff2", ".webp", ".jpg", -- file
     "node_modules/", ".prettierignore", ".eslintignore", "pnpm-lock.yaml", "tsconfig.json", "postcss.config.js", ".npmrc", -- node
-    "target/", "Cargo.lock" --rust
+    "target/", "Cargo.lock", -- rust
+    "go.sum", ".pb", -- golang
   } },
   extensions = {
     file_browser = {

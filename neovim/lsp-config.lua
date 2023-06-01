@@ -44,6 +44,12 @@ local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 
 cmp.setup({
+  sources = {
+    {name = 'path'},
+    {name = 'nvim_lsp'},
+    {name = 'buffer', keyword_length = 3},
+    {name = 'luasnip', keyword_length = 2},
+  },
   mapping = {
     ['<Tab>'] = cmp_action.tab_complete(),
     ['<Enter>'] = cmp.mapping.confirm({ select = true }),

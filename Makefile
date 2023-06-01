@@ -22,5 +22,6 @@ dotfiles:
 
 neovim-reset:
 	@echo "neovim reset"
-	@rm -r -f ~/.local/share/nvim/*
+	@sudo rm -rf ~/.local/share/nvim
+	@sudo rm -rf ~/.local/state/nvim
 	@make dotfiles

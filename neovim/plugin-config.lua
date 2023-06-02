@@ -39,7 +39,27 @@ require("telescope").load_extension "undo"
 require("nvim-autopairs").setup()
 
 -- floating terminal
-require("FTerm").setup({ cmd = os.getenv('SHELL') })
+
+local projectType = (function()
+  if vim.fn.findfile("package.json") == "package.json" then
+    return { 'zsh', '-c', 'pnpm run dev'}
+  end
+
+  if vim.fn.findfile("go.mod") == "go.mod" then
+    return { 'zsh', '-c', 'go run main.go'}
+  end
+
+  if vim.fn.findfile("Cargo.lock") == "Cargo.lock" then
+    return { 'zsh', '-c', 'cargo run'} 
+  end
+
+  return { 'zsh' }
+end)()
+
+require("FTerm").setup({ 
+  auto_close = false,
+  cmd = projectType  
+})
 
 -- comment
 require("Comment").setup()

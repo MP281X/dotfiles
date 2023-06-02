@@ -10,9 +10,7 @@ require('nvim-treesitter.configs').setup({
 -- lsp
 local lsp = require('lsp-zero').preset({})
 
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
-end)
+lsp.on_attach(function(client, bufnr) lsp.default_keymaps({buffer = bufnr}) end)
 
 lsp.ensure_installed({
   'rust_analyzer', -- rust
@@ -20,23 +18,15 @@ lsp.ensure_installed({
   'svelte', 'tsserver', 'tailwindcss', -- sveltekit
 })
 
-require('lspconfig').tailwindcss.setup({
-  filetypes = { 'svelte' }
-})
+require('lspconfig').tailwindcss.setup({ filetypes = { 'svelte' } })
 
 local format_cfg = {
-  format_opts = {
-    async = false,
-    timeout_ms = 10000,
-  },
-  servers = {
-    ['null-ls'] = {'javascript', 'typescript', 'svelte'},
-  }
+  format_opts = { async = false, timeout_ms = 10000 },
+  servers = { ['null-ls'] = {'javascript', 'typescript', 'svelte'} }
 }
 
 lsp.format_on_save(format_cfg)
 lsp.format_mapping('<leader>ff', format_cfg)
-
 lsp.setup()
 
 -- autocomplete
@@ -52,20 +42,12 @@ cmp.setup({
 })
 
 local null_ls = require('null-ls')
-
 null_ls.setup({
   sources = {
-    null_ls.builtins.formatting.prettierd.with({
-      filetypes = {'javascript', 'typescript', 'svelte'},
-    }),
-    null_ls.builtins.code_actions.eslint_d.with({
-      filetypes = {'javascript', 'typescript', 'svelte'},
-    }),
+    null_ls.builtins.formatting.prettierd.with({ filetypes = {'javascript', 'typescript', 'svelte'} }),
+    null_ls.builtins.code_actions.eslint_d.with({ filetypes = {'javascript', 'typescript', 'svelte'} }),
     null_ls.builtins.diagnostics.buf,
   }
 })
 
-require('mason-null-ls').setup({
-  ensure_installed = nil,
-  automatic_installation = true,
-})
+require('mason-null-ls').setup({ ensure_installed = nil, automatic_installation = true })

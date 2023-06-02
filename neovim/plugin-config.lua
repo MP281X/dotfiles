@@ -1,4 +1,3 @@
-
 -- theme
 require("catppuccin").setup({
   flavour = "mocha",
@@ -35,34 +34,16 @@ require("telescope").setup({
 require("telescope").load_extension "file_browser"
 require("telescope").load_extension "undo"
 
--- auto close ()
-require("nvim-autopairs").setup()
-
 -- floating terminal
-
-local projectType = (function()
-  if vim.fn.findfile("package.json") == "package.json" then
-    return { 'zsh', '-c', 'pnpm run dev'}
-  end
-
-  if vim.fn.findfile("go.mod") == "go.mod" then
-    return { 'zsh', '-c', 'go run main.go'}
-  end
-
-  if vim.fn.findfile("Cargo.lock") == "Cargo.lock" then
-    return { 'zsh', '-c', 'cargo run'} 
-  end
-
-  return { 'zsh' }
-end)()
-
 require("FTerm").setup({ 
   auto_close = false,
-  cmd = projectType  
+  cmd = (function()
+    if vim.fn.findfile("package.json") == "package.json" then return { 'zsh', '-c', 'pnpm run dev'} end
+    if vim.fn.findfile("go.mod") == "go.mod" then return { 'zsh', '-c', 'go run main.go'} end
+    if vim.fn.findfile("Cargo.lock") == "Cargo.lock" then return { 'zsh', '-c', 'cargo run'} end
+    return { 'zsh' }
+  end)()  
 })
-
--- comment
-require("Comment").setup()
 
 -- lua line (statusline)
 require("lualine").setup({
@@ -86,9 +67,5 @@ require("lualine").setup({
 require("auto-session").setup({
   log_level = "error",
   auto_session_suppress_dirs = { "~/" },
-  cwd_change_handling = {
-    post_cwd_changed_hook = function()
-      require("lualine").refresh()
-    end,
-  },
+  cwd_change_handling = { post_cwd_changed_hook = function() require("lualine").refresh() end },
 })

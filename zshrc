@@ -5,6 +5,7 @@ path+=('/home/mp281x/.go/bin')
 
 # alias
 alias vi="nvim"
+alias c="clear"
 alias ls="exa --icons"
 alias la="exa --icons -a"
 alias k9s="k9s --headless -c ns"

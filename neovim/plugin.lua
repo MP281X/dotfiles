@@ -1,31 +1,32 @@
 require("lazy").setup({
 
   -- plugins (start)
-  { 'catppuccin/nvim',as = 'catppuccin', lazy = false, priority = 1000 }, -- color scheme
-
   { 'nvim-telescope/telescope.nvim',  tag = '0.1.1', dependencies = { { 'nvim-lua/plenary.nvim' } } },  -- file search
 
-  { 'nvim-telescope/telescope-file-browser.nvim' }, -- file explorer
+  { 'windwp/nvim-autopairs', config = function() require("nvim-autopairs").setup() end }, -- auto close ()
 
-  { 'debugloop/telescope-undo.nvim' }, -- undo history
-
-  { 'numToStr/Comment.nvim' }, -- comment code
+  { 'numToStr/Comment.nvim', config = function() require("Comment").setup() end }, -- comment code
 
   { 'nvim-lualine/lualine.nvim', dependencies = 'nvim-tree/nvim-web-devicons' }, -- statusline
 
-  { 'numToStr/FTerm.nvim' }, -- floating terminal
+  { 'nvim-telescope/telescope-file-browser.nvim' }, -- file explorer
 
-  { 'windwp/nvim-autopairs' }, -- auto close ()
+  { 'catppuccin/nvim', as = 'catppuccin' }, -- color scheme
+
+  { 'debugloop/telescope-undo.nvim' }, -- undo history
 
   { 'rmagatti/auto-session' }, -- session manager
+
+  { 'numToStr/FTerm.nvim' }, -- floating terminal
 
 
   -- lsp
   { 'nvim-treesitter/nvim-treesitter' }, -- syntax hilight
 
-  { 'jose-elias-alvarez/null-ls.nvim' }, -- formatter
-  
+  { 'jose-elias-alvarez/null-ls.nvim' }, -- non-lsp tools
+
   { 'jay-babu/mason-null-ls.nvim' }, -- auto install tools
+
   -- lsp zero
   {
     'VonHeikemen/lsp-zero.nvim',

@@ -1,3 +1,4 @@
+add_newline = false 
 format = """\
   $rust\
   $nodejs\
@@ -6,7 +7,6 @@ format = """\
   $git_branch\
   [❯ ](bold red)\
   """
-
 
 [git_branch]
 format = '[⚡$branch(:$remote_branch) ](bold red)'

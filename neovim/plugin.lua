@@ -11,7 +11,7 @@ require("lazy").setup({
 
   { 'numToStr/Comment.nvim' }, -- comment code
 
-  { 'nvim-lualine/lualine.nvim' }, -- statusline
+  { 'nvim-lualine/lualine.nvim', dependencies = 'nvim-tree/nvim-web-devicons' }, -- statusline
 
   { 'numToStr/FTerm.nvim' }, -- floating terminal
 
@@ -19,7 +19,6 @@ require("lazy").setup({
 
   { 'rmagatti/auto-session' }, -- session manager
 
-  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'}, -- tabs
 
   -- lsp
   { 'nvim-treesitter/nvim-treesitter' }, -- syntax hilight
@@ -33,12 +32,7 @@ require("lazy").setup({
     branch = 'v2.x',
     dependencies = {
       {'neovim/nvim-lspconfig'},
-      {
-        'williamboman/mason.nvim',
-        build = function()
-          pcall(vim.cmd, 'MasonUpdate')
-        end,
-      },
+      {'williamboman/mason.nvim', build = function() pcall(vim.cmd, 'MasonUpdate') end },
       {'williamboman/mason-lspconfig.nvim'},
   
       -- Autocompletion

@@ -30,6 +30,9 @@ pb() {
 eval "$(starship init zsh)"
 export COLORTERM=truecolor
 
+# show file in current directory on start
+ls
+
 # case insensitive autocomplete
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'

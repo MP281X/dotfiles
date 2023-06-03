@@ -14,15 +14,13 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- buffer 
 vim.keymap.set('n', '<C-\\>', ':bd<CR>')
-vim.keymap.set('n', '>>', ':bp<CR>')
-vim.keymap.set('n', '<<', ':bn<CR>')
+vim.keymap.set('n', '<<', ':bp<CR>')
+vim.keymap.set('n', '>>', ':bn<CR>')
 
 -- telescope
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, {})
-vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, {})
+vim.keymap.set('n', '<leader>sc', require('telescope.builtin').live_grep, {})
 vim.keymap.set('n', '<leader>se', require('telescope.builtin').diagnostics, {})
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').git_status, {})
-vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, {})
 vim.keymap.set('n', '<leader>fb', ':Telescope file_browser<CR>') -- telescope file browser
 vim.keymap.set('n', '<leader>u', ':Telescope undo<CR>') -- telescope undo
 

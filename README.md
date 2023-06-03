@@ -36,6 +36,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 echo "shell tools"
 brew install neovim
+brew install ripgrep
 brew install exa
 brew install zsh
 brew install starship

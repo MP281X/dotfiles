@@ -49,7 +49,7 @@ cmp.setup({
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
-  },
+  }
 })
 
 local null_ls = require('null-ls')

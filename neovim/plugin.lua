@@ -19,6 +19,7 @@ require("lazy").setup({
 
   { 'numToStr/FTerm.nvim' }, -- floating terminal
 
+  { 'iamcco/markdown-preview.nvim', build = function() vim.fn["mkdp#util#install"]() end, ft = "markdown" },
 
   -- lsp
   { 'nvim-treesitter/nvim-treesitter' }, -- syntax hilight

@@ -12,6 +12,7 @@ local lsp = require('lsp-zero').preset({})
 
 lsp.on_attach(function(client, bufnr) 
   lsp.default_keymaps({buffer = bufnr}) 
+  lsp.buffer_autoformat()
   require("twoslash-queries").attach(client, bufnr)
 end)
 
@@ -24,16 +25,6 @@ lsp.ensure_installed({
 
 require('lspconfig').tailwindcss.setup({ filetypes = { 'svelte', 'html' } })
 
-local null_ls_languages = { 'javascript', 'typescript', 'svelte', 'html', 'css', 'json' }
-local format_cfg = {
-  format_opts = { async = false, timeout_ms = 10000 },
-  servers = { 
-    ['null-ls'] = null_ls_languages, 
-  }
-}
-
-lsp.format_on_save(format_cfg)
-lsp.format_mapping('<leader>ff', format_cfg)
 lsp.setup()
 
 -- autocomplete
@@ -60,6 +51,7 @@ cmp.setup({
 })
 
 local null_ls = require('null-ls')
+local null_ls_languages = { 'javascript', 'typescript', 'svelte', 'html', 'css', 'json' }
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.prettierd.with({ filetypes = null_ls_languages }),

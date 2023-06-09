@@ -28,3 +28,5 @@ vim.keymap.set('n', '<leader>u', ':Telescope undo<CR>') -- telescope undo
 vim.keymap.set('n', '<leader>t', require('FTerm').toggle)
 vim.keymap.set('t', '<leader>t', require('FTerm').toggle)
 
+-- lsp 
+vim.keymap.set('n', '<leader>ff', ':LspZeroFormat<CR>')

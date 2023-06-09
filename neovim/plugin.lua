@@ -21,6 +21,8 @@ require("lazy").setup({
 
   { 'iamcco/markdown-preview.nvim', build = function() vim.fn["mkdp#util#install"]() end, ft = "markdown" },
 
+  { 'marilari88/twoslash-queries.nvim' }, -- show type definition inline (for typescript)
+
   -- lsp
   { 'nvim-treesitter/nvim-treesitter' }, -- syntax hilight
 

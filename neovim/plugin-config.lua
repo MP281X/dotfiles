@@ -8,10 +8,10 @@ vim.cmd.colorscheme "catppuccin"
 -- telescope (fuzzy finder)
 require("telescope").setup({
   defaults = { file_ignore_patterns = { 
-    ".git/", ".gitignore", -- global
+    ".git", ".gitignore", -- global
     ".png", ".woff2", ".webp", ".jpg", -- file
-    "node_modules/", ".prettierignore", ".eslintignore", "pnpm-lock.yaml", "tsconfig.json", "postcss.config.js", ".npmrc", -- node
-    "target/", "Cargo.lock", -- rust
+    "node_modules", ".prettierignore", ".eslintignore", "pnpm-lock.yaml", "tsconfig.json", "postcss.config.js", ".npmrc", -- node
+    "target", "Cargo.lock", -- rust
     "go.sum", ".pb", -- golang
   } },
   extensions = {
@@ -38,6 +38,7 @@ require("telescope").load_extension "undo"
 require("FTerm").setup({ 
   auto_close = false,
   cmd = (function()
+    if vim.fn.findfile("angular.json") == "angular.json" then return { 'zsh', '-c', 'npm run start'} end
     if vim.fn.findfile("package.json") == "package.json" then return { 'zsh', '-c', 'pnpm run dev'} end
     if vim.fn.findfile("go.mod") == "go.mod" then return { 'zsh', '-c', 'go run main.go'} end
     if vim.fn.findfile("Cargo.lock") == "Cargo.lock" then return { 'zsh', '-c', 'cargo run'} end

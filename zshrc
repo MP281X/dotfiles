@@ -6,11 +6,13 @@ path+=('/home/mp281x/.go/bin')
 # alias
 alias vi="nvim"
 alias c="clear"
-alias ls="exa --icons"
+alias ls="exa --icons --git-ignore"
 alias la="exa --icons -a"
 alias k9s="k9s --headless -c ns"
 alias ssh-dev="ssh mp281x@dev.mp281x.xyz"
-cd() { builtin cd "$@" && exa --icons }
+img() { explorer.exe "$@"}
+cd() { builtin cd "$@" && exa --git-ignore --icons }
+t() { exa --tree --git-ignore "$@" }
 
 # git alias
 alias g="gitui"

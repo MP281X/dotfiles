@@ -26,7 +26,7 @@ rm init.sh
 ```bash
 echo "packages"
 sudo apt-get update && sudo apt-get upgrade -y
-sudo apt-get install -y curl git wget xz-utils make
+sudo apt-get install -y curl git wget xz-utils
 sudo apt-get install -y gcc g++ musl-dev build-essential
 
 echo "homebrew"
@@ -66,7 +66,7 @@ git config --global user.email = paludgnachmatteo.dev@gmail.com
 git config --global pull.rebase true
 gh auth login
 git clone https://github.com/MP281X/dotfiles ~/dotfiles
-(cd ~/dotfiles && make dotfiles)
+(cd ~/dotfiles && bash ./script/dotfiles.sh)
 
 echo "nodejs"
 curl -fsSL https://get.pnpm.io/install.sh | sh -

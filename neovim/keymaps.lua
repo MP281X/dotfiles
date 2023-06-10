@@ -30,3 +30,7 @@ vim.keymap.set('t', '<Esc>', require('FTerm').toggle)
 
 -- lsp 
 vim.keymap.set('n', '<leader>ff', ':LspZeroFormat<CR>')
+
+-- script runner
+vim.o.wildcharm = "<C-z>"
+vim.keymap.set('n', '<leader>ss', ':RUN <C-z>')

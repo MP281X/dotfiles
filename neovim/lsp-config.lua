@@ -4,7 +4,8 @@ require('nvim-treesitter.configs').setup({
   ensure_installed = { 'rust', 'go', 'svelte', 'typescript', 'lua' },
   sync_install = false,
   auto_install = true,
-  highlight = { enable = true }
+  highlight = { enable = true },
+  autotag = { enable = true },
 })
 
 -- lsp
@@ -25,6 +26,7 @@ lsp.ensure_installed({
 })
 
 require('lspconfig').tailwindcss.setup({ filetypes = { 'svelte', 'html' } })
+require('lspconfig').lua_ls.setup({ settings = { Lua = { diagnostics = { globals = { 'vim' } } } } })
 
 lsp.setup()
 
@@ -36,12 +38,11 @@ cmp.setup({
   sources = {
     { name = 'path' },
     { name = 'nvim_lsp' },
-    { name = 'buffer',  keyword_length = 3 },
+    -- { name = 'buffer',  keyword_length = 3 },
     { name = 'luasnip', keyword_length = 2 },
   },
   sorting = {
     comparators = {
-      cmp.config.kind,
       cmp.config.compare.exact,
       cmp.config.compare.recently_used,
       cmp.config.compare.locality

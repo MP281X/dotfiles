@@ -8,7 +8,7 @@ alias vi="nvim"
 alias c="clear"
 alias ls="exa --icons --git-ignore"
 alias la="exa --icons -a"
-alias k9s="k9s --headless -c ns"
+alias k="k9s --headless -c ns"
 alias ssh-dev="ssh mp281x@dev.mp281x.xyz"
 img() { explorer.exe "$@"}
 cd() { builtin cd "$@" && exa --git-ignore --icons }

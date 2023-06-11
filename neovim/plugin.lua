@@ -9,6 +9,8 @@ require("lazy").setup({
 
   { 'windwp/nvim-autopairs',           config = function() require("nvim-autopairs").setup() end },                 -- auto close ()
 
+  { 'windwp/nvim-ts-autotag' },                                                                                     -- auto close <div></div>
+
   { 'numToStr/Comment.nvim',           config = function() require("Comment").setup() end },                        -- comment code
 
   { 'nvim-lualine/lualine.nvim',       dependencies = 'nvim-tree/nvim-web-devicons' },                              -- statusline

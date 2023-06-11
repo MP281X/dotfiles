@@ -12,21 +12,11 @@ alias k9s="k9s --headless -c ns"
 alias ssh-dev="ssh mp281x@dev.mp281x.xyz"
 img() { explorer.exe "$@"}
 cd() { builtin cd "$@" && exa --git-ignore --icons }
-t() { exa --tree --git-ignore "$@" }
 
 # git alias
 alias g="gitui"
 alias gl="gh repo list"
 gc() { gh repo clone $USER/$@ }
-
-# golang
-# export GOPATH="$HOME/.go"
-# goinit() { mkdir $1 && cd $1 && go mod init github.com/mp281x/$1 && touch main.go }
-# pb() {
-#   f_name=$(echo "$1" | cut -d'.' -f1) && echo $f_name \
-#   rm -rf $f_name && mkdir -p $f_name && \
-#   protoc --go_out=$f_name --go_opt=paths=source_relative --go-grpc_out=$f_name --go-grpc_opt=paths=source_relative $f_name.proto
-# }
 
 # show file in current directory on start
 ls

@@ -8,7 +8,7 @@
   "actions": [{ "command": "paste", "keys": "ctrl+v" }],
   "profiles": {
     "defaults": {
-      "colorScheme": "Catppuccin Mocha",
+      "colorScheme": "Kanagawa",
       "font": { "face": "JetBrainsMono Nerd Font Mono", "size": 14 },
       "scrollbarState": "hidden"
     },
@@ -17,42 +17,42 @@
         "name": "Debian",
         "source": "Windows.Terminal.Wsl",
         "commandline": "wsl -d Debian",
-        "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+        "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}"
       },
       {
         "name": "Windows PowerShell",
-        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}"
       },
       {
         "name": "Command Prompt",
         "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-        "hidden": true,
+        "hidden": true
       }
     ]
   },
   "schemes": [
     {
-      "name": "Catppuccin Mocha",
-      "cursorColor": "#F5E0DC",
-      "selectionBackground": "#585B70",
-      "background": "#1E1E2E",
-      "foreground": "#CDD6F4",
-      "black": "#45475A",
-      "red": "#F38BA8",
-      "green": "#A6E3A1",
-      "yellow": "#F9E2AF",
-      "blue": "#89B4FA",
-      "purple": "#F5C2E7",
-      "cyan": "#94E2D5",
-      "white": "#BAC2DE",
-      "brightBlack": "#585B70",
-      "brightRed": "#F38BA8",
-      "brightGreen": "#A6E3A1",
-      "brightYellow": "#F9E2AF",
-      "brightBlue": "#89B4FA",
-      "brightPurple": "#F5C2E7",
-      "brightCyan": "#94E2D5",
-      "brightWhite": "#A6ADC8"
+      "name": "Kanagawa",
+      "background": "#1F1F28",
+      "black": "#090618",
+      "blue": "#7E9CD8",
+      "brightBlack": "#727169",
+      "brightBlue": "#7FB4CA",
+      "brightCyan": "#7AA89F",
+      "brightGreen": "#98BB6C",
+      "brightPurple": "#938AA9",
+      "brightRed": "#E82424",
+      "brightWhite": "#DCD7BA",
+      "brightYellow": "#E6C384",
+      "cursorColor": "#C8C093",
+      "cyan": "#6A9589",
+      "foreground": "#DCD7BA",
+      "green": "#76946A",
+      "purple": "#957FB8",
+      "red": "#C34043",
+      "selectionBackground": "#2D4F67",
+      "white": "#C8C093",
+      "yellow": "#C0A36E"
     }
   ]
 }

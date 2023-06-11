@@ -10,17 +10,18 @@ require('nvim-treesitter.configs').setup({
 -- lsp
 local lsp = require('lsp-zero').preset({})
 
-lsp.on_attach(function(client, bufnr) 
-  lsp.default_keymaps({buffer = bufnr}) 
+lsp.on_attach(function(client, bufnr)
+  lsp.default_keymaps({ buffer = bufnr })
   lsp.buffer_autoformat()
   require("twoslash-queries").attach(client, bufnr)
 end)
 
 lsp.ensure_installed({
-  'rust_analyzer', -- rust
-  'gopls', -- golang
+  'lua_ls',                            -- lua
+  'rust_analyzer',                     -- rust
+  'gopls',                             -- golang
   'svelte', 'tsserver', 'tailwindcss', -- sveltekit
-  'angularls', 'html', -- angular
+  'angularls', 'html',                 -- angular
 })
 
 require('lspconfig').tailwindcss.setup({ filetypes = { 'svelte', 'html' } })
@@ -33,12 +34,19 @@ local cmp_action = require('lsp-zero').cmp_action()
 
 cmp.setup({
   sources = {
-    {name = 'path'},
-    {name = 'nvim_lsp'},
-    {name = 'buffer', keyword_length = 3},
-    {name = 'luasnip', keyword_length = 2},
+    { name = 'path' },
+    { name = 'nvim_lsp' },
+    { name = 'buffer',  keyword_length = 3 },
+    { name = 'luasnip', keyword_length = 2 },
   },
-  sorting = { comparators = { cmp.config.kind, cmp.config.compare.exact, cmp.config.compare.recently_used, cmp.config.compare.locality } },
+  sorting = {
+    comparators = {
+      cmp.config.kind,
+      cmp.config.compare.exact,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.locality
+    }
+  },
   mapping = {
     ['<Tab>'] = cmp_action.tab_complete(),
     ['<Enter>'] = cmp.mapping.confirm({ select = true }),

@@ -46,3 +46,6 @@ vim.opt.splitbelow = true
 
 -- save undo history
 vim.o.undofile = true
+
+-- global statusline
+vim.opt.laststatus = 3

@@ -5,7 +5,7 @@ vim.keymap.set('n', '<Space>', '<NOP>')
 vim.keymap.set('n', '<leader>nh', ':nohl<CR>') -- delete search result
 vim.keymap.set('n', 'd', '"_d')                -- delete a single letter without coping it
 vim.keymap.set('v', 'd', '"_d')                -- delete a single letter without coping it
-vim.keymap.set('n', 'vs', ':vnew<CR>')         -- vertical split
+vim.keymap.set('n', 'c', '"_c')
 
 -- movement
 vim.keymap.set('n', '<C-d>', '<C-d>zz')

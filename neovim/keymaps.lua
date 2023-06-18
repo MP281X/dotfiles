@@ -22,6 +22,7 @@ vim.keymap.set('n', '>>', ':bn<CR>')
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, {})
 vim.keymap.set('n', '<leader>sc', require('telescope.builtin').live_grep, {})
 vim.keymap.set('n', '<leader>se', require('telescope.builtin').diagnostics, {})
+vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches, {})
 vim.keymap.set('n', '<leader>u', ':Telescope undo<CR>') -- telescope undo
 
 -- file
@@ -37,3 +38,4 @@ vim.keymap.set('n', '<leader>ff', ':LspZeroFormat<CR>')
 -- script runner
 vim.o.wildcharm = "<C-z>"
 vim.keymap.set('n', '<leader>ss', ':RUN <C-z>')
+vim.keymap.set('n', '<leader>sn', ':NPMRUN <C-z>')

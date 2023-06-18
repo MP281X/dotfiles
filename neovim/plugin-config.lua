@@ -4,15 +4,27 @@ vim.api.nvim_create_user_command("RUN", function(params)
   require('FTerm').scratch({ cmd = "bash ./script/" .. args .. ".sh" })
 end, {
   nargs = 1,
-  complete = function(A, L, P)
-    local i, t, popen = 0, {}, io.popen
-    local pfile = popen("ls ./script/ | sed -e 's/\\..*$//'")
-    for filename in pfile:lines() do
-      i = i + 1
-      t[i] = filename
+  complete = function(_, _, _)
+    local scriptNames = {}
+    for fileName in io.popen("ls ./script"):lines() do
+      table.insert(scriptNames, fileName:match("^(.+)%..+$"))
     end
-    pfile:close()
-    return t
+    return scriptNames
+  end
+})
+
+-- script runner
+vim.api.nvim_create_user_command("NPMRUN", function(params)
+  local args = params.args
+  require('FTerm').scratch({ cmd = "pnpm run " .. args })
+end, {
+  nargs = 1,
+  complete = function(_, _, _)
+    local scriptNames = {}
+    for fileName in io.popen("cat package.json | jq -r '.scripts | keys[]'"):lines() do
+      table.insert(scriptNames, fileName)
+    end
+    return scriptNames
   end
 })
 
@@ -63,7 +75,7 @@ require("telescope").setup({
       "target", "Cargo.lock",
       -- golang
       "go.sum", ".pb",
-    }
+    },
   },
   extensions = {
     undo = {

@@ -1,33 +1,3 @@
--- script runner
-vim.api.nvim_create_user_command("RUN", function(params)
-  local args = params.args
-  require('FTerm').scratch({ cmd = "bash ./script/" .. args .. ".sh" })
-end, {
-  nargs = 1,
-  complete = function(_, _, _)
-    local scriptNames = {}
-    for fileName in io.popen("ls ./script"):lines() do
-      table.insert(scriptNames, fileName:match("^(.+)%..+$"))
-    end
-    return scriptNames
-  end
-})
-
--- script runner
-vim.api.nvim_create_user_command("NPMRUN", function(params)
-  local args = params.args
-  require('FTerm').scratch({ cmd = "pnpm run " .. args })
-end, {
-  nargs = 1,
-  complete = function(_, _, _)
-    local scriptNames = {}
-    for fileName in io.popen("cat package.json | jq -r '.scripts | keys[]'"):lines() do
-      table.insert(scriptNames, fileName)
-    end
-    return scriptNames
-  end
-})
-
 -- color scheme
 require("kanagawa").setup({
   keywordStyle = { italic = false },
@@ -51,9 +21,19 @@ require("kanagawa").setup({
 })
 vim.cmd.colorscheme "kanagawa"
 
+local file_filters = {
+  ".git", ".gitignore",                      --global
+  "node_modules", ".npm*", "pnpm-lock.yaml", -- node
+  ".eslint*", ".prettier*", ".config.js",    -- js config file
+  ".svelte-kit", "build",                    -- sveltekit
+}
+
 -- file explorer
 require("nvim-tree").setup({
-  view = { side = "right" },
+  view = { side = "right", width = 60 },
+  filters = { custom = file_filters },
+  git = { enable = true, ignore = false, timeout = 500 },
+  update_focused_file = { enable = true },
   renderer = {
     root_folder_label = false,
     icons = { show = { git = false } },
@@ -62,21 +42,7 @@ require("nvim-tree").setup({
 
 -- telescope (fuzzy finder)
 require("telescope").setup({
-  defaults = {
-    file_ignore_patterns = {
-      -- global
-      ".git", ".gitignore",
-      -- file
-      ".png", ".woff2", ".webp", ".jpg",
-      -- node
-      "node_modules", ".prettierignore", ".eslintignore", "pnpm-lock.yaml",
-      "tsconfig.json", "postcss.config.js", ".npmrc",
-      -- rust
-      "target", "Cargo.lock",
-      -- golang
-      "go.sum", ".pb",
-    },
-  },
+  defaults = { file_ignore_patterns = file_filters },
   extensions = {
     undo = {
       use_delta = true,
@@ -99,10 +65,7 @@ require("telescope").load_extension "undo"
 require("FTerm").setup({
   auto_close = false,
   cmd = (function()
-    if vim.fn.findfile("angular.json") == "angular.json" then return { 'zsh', '-c', 'npm run start' } end
-    if vim.fn.findfile("package.json") == "package.json" then return { 'zsh', '-c', 'pnpm run dev' } end
-    if vim.fn.findfile("go.mod") == "go.mod" then return { 'zsh', '-c', 'go run main.go' } end
-    if vim.fn.findfile("Cargo.lock") == "Cargo.lock" then return { 'zsh', '-c', 'cargo run' } end
+    if vim.fn.findfile("pnpm-lock.yaml") == "pnpm-lock.yaml" then return { 'zsh', '-c', 'pnpm run dev' } end
     return { 'zsh' }
   end)()
 })
@@ -117,7 +80,19 @@ require("lualine").setup({
   },
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { { "branch", icon = "󰊢" } },
+    lualine_b = { {
+      "branch",
+      icon = "󰊢",
+      fmt = function(str)
+        if string.find(str, "/") then
+          local branch = vim.split(str, "/")[2]
+          branch = vim.split(branch, "-")
+          return branch[1] .. "-" .. branch[2]
+        else
+          return str
+        end
+      end
+    } },
     lualine_c = { { "buffers", symbols = { modified = ' 󱇨', alternate_file = '' } } },
     lualine_x = { "diagnostics" },
     lualine_y = { "filetype" },

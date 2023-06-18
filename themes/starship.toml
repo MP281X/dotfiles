@@ -9,6 +9,7 @@ format = """\
   """
 
 [git_branch]
+only_attached = false
 format = '[⚡$branch(:$remote_branch) ](bold red)'
 
 [directory]

@@ -21,8 +21,7 @@ bash init.sh && \
 rm init.sh
 ```
 
-### Init script
-
+### Init script 
 ```bash
 echo "packages"
 sudo apt-get update && sudo apt-get upgrade -y
@@ -46,7 +45,6 @@ sudo chsh -s "$(command -v zsh)" "${USER}"
 
 echo "tools"
 brew install atlas
-# brew install protobuf
 
 echo "git"
 brew install gh
@@ -79,12 +77,4 @@ case ":$PATH:" in
 esac
 pnpm env use --global lts
 
-echo "golang"
-export go_version="1.20.4"
-wget https://go.dev/dl/go$go_version.linux-amd64.tar.gz
-sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go$go_version.linux-amd64.tar.gz && sudo rm -f go$go_version.linux-amd64.tar.gz
-
-echo "rust"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source ~/.profile && source ~/.bashrc
 ```

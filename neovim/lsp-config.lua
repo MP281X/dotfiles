@@ -1,7 +1,7 @@
 -- treesitter (syntax hilight)
 require('nvim-treesitter.install').compilers = { 'gcc' }
 require('nvim-treesitter.configs').setup({
-  ensure_installed = { 'rust', 'go', 'svelte', 'typescript', 'lua' },
+  ensure_installed = { 'svelte', 'typescript', 'javascript', 'lua' },
   sync_install = false,
   auto_install = true,
   highlight = { enable = true },
@@ -13,14 +13,12 @@ local lsp = require('lsp-zero').preset({})
 
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({ buffer = bufnr })
-  lsp.buffer_autoformat()
+  if vim.fn.findfile("yarn.lock") ~= "yarn.lock" then lsp.buffer_autoformat() end
   require("twoslash-queries").attach(client, bufnr)
 end)
 
 lsp.ensure_installed({
   'lua_ls',                            -- lua
-  'rust_analyzer',                     -- rust
-  'gopls',                             -- golang
   'svelte', 'tsserver', 'tailwindcss', -- sveltekit
   'angularls', 'html',                 -- angular
 })
@@ -38,7 +36,7 @@ cmp.setup({
   sources = {
     { name = 'path' },
     { name = 'nvim_lsp' },
-    -- { name = 'buffer',  keyword_length = 3 },
+    { name = 'buffer',  keyword_length = 5 },
     { name = 'luasnip', keyword_length = 2 },
   },
   sorting = {
@@ -62,11 +60,14 @@ cmp.setup({
 local null_ls = require('null-ls')
 local null_ls_languages = { 'javascript', 'typescript', 'svelte', 'html', 'css', 'json' }
 null_ls.setup({
-  sources = {
-    null_ls.builtins.formatting.prettierd.with({ filetypes = null_ls_languages }),
-    null_ls.builtins.code_actions.eslint_d.with({ filetypes = null_ls_languages }),
-    null_ls.builtins.diagnostics.buf,
-  }
-})
+  sources = (function()
+    local ls = { null_ls.builtins.code_actions.eslint_d.with({ filetypes = null_ls_languages }) }
 
+    if vim.fn.findfile("yarn.lock") ~= "yarn.lock" then
+      table.insert(ls, null_ls.builtins.formatting.prettierd.with({ filetypes = null_ls_languages }))
+    end
+
+    return ls
+  end)()
+})
 require('mason-null-ls').setup({ ensure_installed = nil, automatic_installation = true })

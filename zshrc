@@ -43,6 +43,7 @@ cd() { builtin cd "$@" && exa --git-ignore --icons }
 
 # git alias
 alias g="gitui"
+alias gb="git rev-parse --abbrev-ref HEAD"
 alias gl="gh repo list"
 gc() { gh repo clone $USER/$@ }
 

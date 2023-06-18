@@ -4,13 +4,15 @@ format = """\
   $nodejs\
   $golang\
   $directory\
-  $git_branch\
+  ${custom.branch}\
   [❯ ](bold red)\
   """
 
-[git_branch]
-only_attached = false
-format = '[⚡$branch(:$remote_branch) ](bold red)'
+[custom.branch]
+command = 'git rev-parse --abbrev-ref HEAD | sed -E "s/.*\/([A-Z]+-[0-9]+)-.*/\1/"; [[ "$output" == "$input" ]] && output="$input"; printf "%s" "$output"'
+detect_folders = ['.git']
+format = '[⚡$output ](bold red)'
+
 
 [directory]
 style = 'bold blue'

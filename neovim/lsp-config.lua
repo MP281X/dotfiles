@@ -36,7 +36,7 @@ cmp.setup({
   sources = {
     { name = 'path' },
     { name = 'nvim_lsp' },
-    { name = 'buffer',  keyword_length = 5 },
+    -- { name = 'buffer',  keyword_length = 5 },
     { name = 'luasnip', keyword_length = 2 },
   },
   sorting = {

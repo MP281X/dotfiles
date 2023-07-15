@@ -61,11 +61,11 @@ local null_ls = require('null-ls')
 local null_ls_languages = { 'javascript', 'typescript', 'svelte', 'html', 'css', 'json' }
 null_ls.setup({
   sources = (function()
-    local ls = { }
+    local ls = {}
 
-    if vim.fn.findfile(".eslintrc.js") ~= ".eslintrc.js" or vim.fn.findfile(".eslintrc.cjs") ~= ".eslintrc.cjs" then
-      table.insert(ls, null_ls.builtins.diagnostics.eslint_d.with({ filetypes = null_ls_languages }))
-    end
+    -- if vim.fn.findfile(".eslintrc.js") ~= ".eslintrc.js" or vim.fn.findfile(".eslintrc.cjs") ~= ".eslintrc.cjs" then
+    --   table.insert(ls, null_ls.builtins.diagnostics.eslint_d.with({ filetypes = null_ls_languages }))
+    -- end
 
     if vim.fn.findfile("yarn.lock") ~= "yarn.lock" then
       table.insert(ls, null_ls.builtins.formatting.prettierd.with({ filetypes = null_ls_languages }))

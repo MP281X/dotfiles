@@ -66,6 +66,7 @@ require("FTerm").setup({
   auto_close = false,
   cmd = (function()
     if vim.fn.findfile("pnpm-lock.yaml") == "pnpm-lock.yaml" then return { 'zsh', '-c', 'pnpm run dev' } end
+    if vim.fn.findfile("bun.lockb") == "bun.lockb" then return { 'zsh', '-c', 'bun run dev' } end
     return { 'zsh' }
   end)()
 })

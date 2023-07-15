@@ -5,7 +5,10 @@
   "copyOnSelect": false,
   "defaultProfile": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
   "launchMode": "maximized",
-  "actions": [{ "command": "paste", "keys": "ctrl+v" }],
+  "actions": [
+    { "command": "paste", "keys": "ctrl+v" },
+    { "command": { "action": "clearBuffer", "clear": "all" }, "keys": "ctrl+k" }
+  ],
   "profiles": {
     "defaults": {
       "colorScheme": "Kanagawa",
@@ -21,7 +24,8 @@
       },
       {
         "name": "Windows PowerShell",
-        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}"
+        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+        "hidden": true
       },
       {
         "name": "Command Prompt",

@@ -13,14 +13,13 @@ local lsp = require('lsp-zero').preset({})
 
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({ buffer = bufnr })
-  if vim.fn.findfile("yarn.lock") ~= "yarn.lock" then lsp.buffer_autoformat() end
+  lsp.buffer_autoformat()
   require("twoslash-queries").attach(client, bufnr)
 end)
 
 lsp.ensure_installed({
   'lua_ls',                            -- lua
   'svelte', 'tsserver', 'tailwindcss', -- sveltekit
-  'angularls', 'html',                 -- angular
 })
 
 require('lspconfig').tailwindcss.setup({ filetypes = { 'svelte', 'html' } })
@@ -63,13 +62,11 @@ null_ls.setup({
   sources = (function()
     local ls = {}
 
-    -- if vim.fn.findfile(".eslintrc.js") ~= ".eslintrc.js" or vim.fn.findfile(".eslintrc.cjs") ~= ".eslintrc.cjs" then
-    --   table.insert(ls, null_ls.builtins.diagnostics.eslint_d.with({ filetypes = null_ls_languages }))
-    -- end
-
-    if vim.fn.findfile("yarn.lock") ~= "yarn.lock" then
-      table.insert(ls, null_ls.builtins.formatting.prettierd.with({ filetypes = null_ls_languages }))
+    if vim.fn.findfile(".eslintrc.js") == ".eslintrc.js" or vim.fn.findfile(".eslintrc.cjs") == ".eslintrc.cjs" then
+      table.insert(ls, null_ls.builtins.diagnostics.eslint_d.with({ filetypes = null_ls_languages }))
     end
+
+    table.insert(ls, null_ls.builtins.formatting.prettierd.with({ filetypes = null_ls_languages }))
 
     return ls
   end)()

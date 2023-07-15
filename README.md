@@ -1,7 +1,6 @@
 ## Setup wsl
 
 ```bash
-wsl --set-default-version 2 \
 wsl --install -d Debian
 ```
 
@@ -26,7 +25,7 @@ rm init.sh
 echo "packages"
 sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get install -y curl git wget xz-utils
-sudo apt-get install -y gcc g++ musl-dev build-essential
+sudo apt-get install -y gcc g++
 
 echo "homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -76,5 +75,9 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 pnpm env use --global lts
+
+echo "bun"
+brew tap oven-sh/bun
+brew install bun
 
 ```

@@ -35,7 +35,6 @@ fi
 alias vi="nvim"
 alias ls="exa --icons --git-ignore"
 alias la="exa --icons -a"
-alias c="clear && ls"
 alias k="k9s --headless -c ns"
 alias ssh-dev="ssh mp281x@dev.mp281x.xyz"
 img() { explorer.exe "$@"}

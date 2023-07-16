@@ -58,6 +58,9 @@ mkdir -p ~/.kube && cp /mnt/d/secrets/config ~/.kube/config
 echo "ssh"
 mkdir -p ~/.ssh && cp /mnt/d/secrets/.ssh/id_rsa ~/.ssh/id_rsa && chmod 0400 ~/.ssh/id_rsa
 
+echo "contabo"
+cp /mnt/d/secrets/contabo.yaml ~/.cntb.yaml
+
 echo "git"
 git config --global user.name = $USER
 git config --global user.email = paludgnachmatteo.dev@gmail.com

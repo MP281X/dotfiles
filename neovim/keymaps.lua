@@ -32,6 +32,11 @@ vim.keymap.set('n', '<leader>fb', ':NvimTreeToggle<CR>') -- file browser
 -- FTerm
 vim.keymap.set('n', '<leader>t', require('FTerm').toggle)
 vim.keymap.set('t', '<Esc>', require('FTerm').toggle)
+-- Remap key so ctrl-D and ctr-B work in the terminal mode
+vim.api.nvim_exec([[
+  tnoremap <C-D> <C-\><C-N>:execute "normal! \<C-W>\<C-D>"<CR>
+  tnoremap <C-B> <C-\><C-N>:execute "normal! \<C-W>\<C-B>"<CR>
+]], false)
 
 -- lsp
 vim.keymap.set('n', '<leader>ff', ':LspZeroFormat<CR>')

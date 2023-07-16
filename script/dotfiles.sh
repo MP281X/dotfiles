@@ -18,3 +18,7 @@ cp themes/k9s.yaml ~/.config/k9s/skin.yml
 echo "gitui"
 mkdir -p ~/.config/gitui	
 cp themes/gitui.ron ~/.config/gitui/theme.ron
+
+[ -d /mnt/c ] && echo "win32yank"
+[ -d /mnt/c ] && mkdir -p /mnt/c/tools/
+[ -d /mnt/c ] && cp script/win32yank.exe /mnt/c/tools/win32yank.exe

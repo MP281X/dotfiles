@@ -10,6 +10,7 @@ export COLORTERM=truecolor
 plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-syntax-highlighting"
+plug "jeffreytse/zsh-vi-mode"
 
 # case insensitive autocomplete
 autoload -Uz compinit && compinit

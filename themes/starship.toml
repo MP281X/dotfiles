@@ -11,7 +11,7 @@ format = """\
 [custom.branch]
 command = 'git rev-parse --abbrev-ref HEAD | sed -E "s/.*\/([A-Z]+-[0-9]+)-.*/\1/"; [[ "$output" == "$input" ]] && output="$input"; printf "%s" "$output"'
 detect_folders = ['.git']
-format = '[⚡$output ](bold red)'
+format = '[⚡ $output ](bold red)'
 
 
 [directory]

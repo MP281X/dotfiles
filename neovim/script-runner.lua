@@ -23,7 +23,7 @@ end, {
 -- node
 vim.api.nvim_create_user_command("NPMRUN", function(params)
   local packet_manager = ""
-  if vim.fn.findfile("pnpm-lock.yaml") == "package.json" then packet_manager = "pnpm" end
+  if vim.fn.findfile("pnpm-lock.yaml") == "pnpm-lock.yaml" then packet_manager = "pnpm" end
   if vim.fn.findfile("yarn.lock") == "yarn.lock" then packet_manager = "yarn" end
   if vim.fn.findfile("bun.lockb") == "bun.lockb" then packet_manager = "bun" end
   if vim.fn.findfile("package-lock.json") == "package-lock.json" then packet_manager = "npm" end

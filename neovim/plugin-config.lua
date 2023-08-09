@@ -22,10 +22,10 @@ require("kanagawa").setup({
 vim.cmd.colorscheme "kanagawa"
 
 local file_filters = {
-  ".git", ".gitignore", ".dockerignore",     --global
-  "node_modules", ".npm*", "pnpm-lock.yaml", -- node
-  ".eslint*", ".prettier*", ".config.js",    -- js config file
-  ".svelte-kit", "build",                    -- sveltekit
+  ".git", ".gitignore", ".dockerignore",  --global
+  "node_modules", "pnpm-lock.yaml",       -- node
+  ".eslint*", ".prettier*", ".config.js", -- js config file
+  ".svelte-kit", "build",                 -- sveltekit
   ".g.ts", ".g.d.ts", "docs.json",
 }
 

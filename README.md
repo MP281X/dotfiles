@@ -79,8 +79,4 @@ case ":$PATH:" in
 esac
 pnpm env use --global lts
 
-echo "bun"
-brew tap oven-sh/bun
-brew install bun
-
 ```

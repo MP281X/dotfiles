@@ -40,6 +40,7 @@ vim.api.nvim_exec([[
 
 -- lsp
 vim.keymap.set('n', '<leader>ff', ':LspZeroFormat<CR>')
+vim.keymap.set('n', '<leader>sa', ':lua vim.lsp.buf.code_action()<CR>')
 
 -- script runner
 vim.o.wildcharm = "<C-z>"

@@ -17,20 +17,12 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # load pnpm
-if [ -d "/home/$USER/.local/share/pnpm" ]; then
-  export PNPM_HOME="/home/$USER/.local/share/pnpm"
-  case ":$PATH:" in
-    *":$PNPM_HOME:"*) ;;
-    *) export PATH="$PNPM_HOME:$PATH" ;;
-  esac
-fi
+export PNPM_HOME="/home/$USER/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
-# nvm
-if [ -d "$HOME/.nvm" ]; then
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-fi
 
 # alias
 alias vi="nvim"
@@ -38,6 +30,7 @@ alias ls="exa --icons --git-ignore"
 alias la="exa --icons -a"
 alias k="k9s --headless -c ns"
 alias ssh-dev="ssh mp281x@dev.mp281x.xyz"
+alias restart="powershell.exe 'wsl --shutdown'"
 img() { explorer.exe "$@"}
 cd() { builtin cd "$@" && exa --git-ignore --icons }
 
@@ -48,4 +41,5 @@ alias gl="gh repo list"
 gc() { gh repo clone $USER/$@ }
 
 # show file in current directory on start
+rm -f ~/.local/state/nvim/shada/main.shada
 ls

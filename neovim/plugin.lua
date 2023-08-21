@@ -29,6 +29,8 @@ require("lazy").setup({
 
   { 'numToStr/FTerm.nvim' },                                                                                        -- floating terminal
 
+  { 'axelvc/template-string.nvim' },                                                                                -- convert js/ts string to string template
+
 
   -- lsp
   { 'nvim-treesitter/nvim-treesitter' }, -- syntax hilight

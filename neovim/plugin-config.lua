@@ -22,11 +22,13 @@ require("kanagawa").setup({
 vim.cmd.colorscheme "kanagawa"
 
 local file_filters = {
-  ".git", ".gitignore", ".dockerignore",  --global
-  "node_modules", "pnpm-lock.yaml",       -- node
-  ".eslint*", ".prettier*", ".config.js", -- js config file
-  ".svelte-kit", "build",                 -- sveltekit
-  ".g.ts", ".g.d.ts", "docs.json",
+  ".git", ".gitignore", ".dockerignore",                               --global
+  "node_modules", "pnpm-lock.yaml", "tsconfig.json", ".npmrc", "dist", -- node
+  ".turbo", "pnpm-workspace.yaml", "turbo.json",                       -- monorepo (ts)
+  ".eslintignore", ".eslintrc.cjs", ".prettierignore", ".prettierrc",  -- js/ts (others)
+  ".svelte-kit", "svelte.config.js", "build", "vite.config.js",        -- sveltekit
+  "tailwind.config.js", "postcss.config.js",                           -- tailwind
+  ".g.ts", ".g.d.ts",
 }
 
 -- file explorer
@@ -107,4 +109,16 @@ require("auto-session").setup({
   log_level = "error",
   auto_session_suppress_dirs = { "~/" },
   cwd_change_handling = { post_cwd_changed_hook = function() require("lualine").refresh() end },
+})
+
+
+-- convert js/ts string to string template
+require('template-string').setup({
+  filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
+  jsx_brackets = true,
+  remove_template_string = true,
+  restore_quotes = {
+    normal = [[']],
+    jsx = [["]],
+  },
 })

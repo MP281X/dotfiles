@@ -23,6 +23,9 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 # alias
 alias vi="nvim"
@@ -39,6 +42,7 @@ alias g="gitui"
 alias gb="git rev-parse --abbrev-ref HEAD"
 alias gl="gh repo list"
 gc() { gh repo clone $USER/$@ }
+gnb() { git checkout main && git pull && git checkout -b "$@"}
 
 # show file in current directory on start
 rm -f ~/.local/state/nvim/shada/main.shada

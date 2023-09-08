@@ -44,6 +44,7 @@ sudo chsh -s "$(command -v zsh)" "${USER}"
 
 echo "tools"
 brew install atlas
+brew install ffmpeg
 
 echo "git"
 brew install gh

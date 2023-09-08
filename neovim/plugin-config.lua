@@ -22,12 +22,12 @@ require("kanagawa").setup({
 vim.cmd.colorscheme "kanagawa"
 
 local file_filters = {
-  ".git", ".gitignore", ".dockerignore",                               --global
-  "node_modules", "pnpm-lock.yaml", "tsconfig.json", ".npmrc", "dist", -- node
-  ".turbo", "pnpm-workspace.yaml", "turbo.json",                       -- monorepo (ts)
-  ".eslintignore", ".eslintrc.cjs", ".prettierignore", ".prettierrc",  -- js/ts (others)
-  ".svelte-kit", "svelte.config.js", "build", "vite.config.js",        -- sveltekit
-  "tailwind.config.js", "postcss.config.js",                           -- tailwind
+  ".git", ".gitignore", ".dockerignore",                                           --global
+  "node_modules", "pnpm-lock.yaml", "tsconfig.json", ".npmrc", "dist",             -- node
+  ".turbo", "pnpm-workspace.yaml", "turbo.json",                                   -- monorepo (ts)
+  ".eslintignore", ".eslintrc.cjs", ".prettierignore", ".prettierrc", "bun.lockb", -- js/ts (others)
+  ".svelte-kit", "svelte.config.js", "build", "vite.config.js",                    -- sveltekit
+  "tailwind.config.js", "postcss.config.js",                                       -- tailwind
   ".g.ts", ".g.d.ts",
 }
 
@@ -69,7 +69,7 @@ require("FTerm").setup({
   auto_close = false,
   cmd = (function()
     if vim.fn.findfile("pnpm-lock.yaml") == "pnpm-lock.yaml" then return { 'zsh', '-c', 'pnpm run dev' } end
-    if vim.fn.findfile("bun.lockb") == "bun.lockb" then return { 'zsh', '-c', 'bun run dev' } end
+    if vim.fn.findfile("bun.lockb") == "bun.lockb" then return { 'bun', 'run', '--silent', 'dev' } end
     return { 'zsh' }
   end)()
 })
@@ -114,7 +114,7 @@ require("auto-session").setup({
 
 -- convert js/ts string to string template
 require('template-string').setup({
-  filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
+  filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'svelte' },
   jsx_brackets = true,
   remove_template_string = true,
   restore_quotes = {

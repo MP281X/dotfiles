@@ -18,11 +18,12 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.ensure_installed({
-  'lua_ls',                            -- lua
-  'svelte', 'tsserver', 'tailwindcss', -- sveltekit
+  'lua_ls',                  -- lua
+  'tsserver', 'tailwindcss', -- node
+  'svelte', 'astro',         -- framework
 })
 
-require('lspconfig').tailwindcss.setup({ filetypes = { 'svelte', 'html' } })
+require('lspconfig').tailwindcss.setup({ filetypes = { 'svelte' } })
 require('lspconfig').lua_ls.setup({ settings = { Lua = { diagnostics = { globals = { 'vim' } } } } })
 
 lsp.setup()
@@ -40,9 +41,10 @@ cmp.setup({
   },
   sorting = {
     comparators = {
+      cmp.config.compare.kind,
       cmp.config.compare.exact,
       cmp.config.compare.recently_used,
-      cmp.config.compare.locality
+      cmp.config.compare.locality,
     }
   },
   mapping = {
@@ -57,11 +59,10 @@ cmp.setup({
 })
 
 local null_ls = require('null-ls')
-local null_ls_languages = { 'javascript', 'typescript', 'svelte', 'json' }
 null_ls.setup({
   sources = {
-    null_ls.builtins.diagnostics.eslint.with({ filetypes = null_ls_languages }),
-    null_ls.builtins.formatting.prettierd.with({ filetypes = null_ls_languages })
+    -- null_ls.builtins.diagnostics.eslint,
+    null_ls.builtins.formatting.prettier
   }
 })
 require('mason-null-ls').setup({ ensure_installed = nil, automatic_installation = true })

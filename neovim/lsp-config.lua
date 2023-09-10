@@ -20,7 +20,7 @@ end)
 lsp.ensure_installed({
   'lua_ls',                  -- lua
   'tsserver', 'tailwindcss', -- node
-  'svelte', 'astro',         -- framework
+  'svelte',                  -- framework
 })
 
 require('lspconfig').tailwindcss.setup({ filetypes = { 'svelte' } })
@@ -59,10 +59,11 @@ cmp.setup({
 })
 
 local null_ls = require('null-ls')
+local null_ls_languages = { 'javascript', 'typescript', 'svelte', 'html', 'css', 'json' }
 null_ls.setup({
   sources = {
     -- null_ls.builtins.diagnostics.eslint,
-    null_ls.builtins.formatting.prettier
+    null_ls.builtins.formatting.prettierd.with({ filetypes = null_ls_languages })
   }
 })
 require('mason-null-ls').setup({ ensure_installed = nil, automatic_installation = true })

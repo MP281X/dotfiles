@@ -24,8 +24,8 @@ rm init.sh
 ```bash
 echo "packages"
 sudo apt-get update && sudo apt-get upgrade -y
-sudo apt-get install -y curl git wget xz-utils
-sudo apt-get install -y gcc g++
+sudo apt-get install -y curl git wget xz-utils unzip
+sudo apt-get install -y gcc g++ # neovim
 
 echo "homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -44,7 +44,6 @@ sudo chsh -s "$(command -v zsh)" "${USER}"
 
 echo "tools"
 brew install atlas
-brew install ffmpeg
 
 echo "git"
 brew install gh
@@ -59,11 +58,8 @@ mkdir -p ~/.kube && cp /mnt/d/secrets/config ~/.kube/config
 echo "ssh"
 mkdir -p ~/.ssh && cp /mnt/d/secrets/.ssh/id_rsa ~/.ssh/id_rsa && chmod 0400 ~/.ssh/id_rsa
 
-echo "contabo"
-cp /mnt/d/secrets/contabo.yaml ~/.cntb.yaml
-
 echo "git"
-git config --global user.name = $USER
+git config --global user.name = mp281x
 git config --global user.email = paludgnachmatteo.dev@gmail.com
 git config --global --replace-all core.editor nvim
 git config --global pull.rebase true
@@ -79,5 +75,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 pnpm env use --global lts
+
+echo "bun"
+curl -fsSL https://bun.sh/install | bash
 
 ```

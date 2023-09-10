@@ -20,7 +20,7 @@ end, {
   end
 })
 
--- node
+-- js/ts
 vim.api.nvim_create_user_command("NPMRUN", function(params)
   local packet_manager = ""
   if vim.fn.findfile("pnpm-lock.yaml") == "pnpm-lock.yaml" then packet_manager = "pnpm" end
@@ -44,3 +44,21 @@ end, {
     return scriptNames
   end
 })
+
+-- bun test
+vim.api.nvim_create_user_command("BUNTEST", function(params)
+  local file_path = vim.fn.expand('%')
+
+  if string.match(file_path, "%.test%.ts$") then
+    require('FTerm').scratch({ cmd = "bun run test " .. file_path })
+  else
+    local current_path = string.sub(vim.fn.expand('%:p:h'), #vim.fn.getcwd() + 2)
+    local test_file = current_path .. "/" .. vim.fn.expand('%:t:r') .. ".test.ts"
+
+    if vim.fn.filereadable(test_file) == 1 then
+      require('FTerm').scratch({ cmd = "bun run test " .. test_file })
+    else
+      print("test file not found")
+    end
+  end
+end, { nargs = 0 })

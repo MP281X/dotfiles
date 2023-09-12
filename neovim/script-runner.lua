@@ -47,18 +47,34 @@ end, {
 
 -- bun test
 vim.api.nvim_create_user_command("BUNTEST", function(params)
-  local file_path = vim.fn.expand('%')
+  local file_name
+  local file_path
 
-  if string.match(file_path, "%.test%.ts$") then
-    require('FTerm').scratch({ cmd = "bun run test " .. file_path })
+  if string.match(vim.fn.expand('%'), "%.test%.ts$") then
+    local current_file = vim.fn.expand("%:p")
+    file_path = vim.fn.fnamemodify(current_file, ":h")
+    file_name = vim.fn.fnamemodify(current_file, ":t")
   else
-    local current_path = string.sub(vim.fn.expand('%:p:h'), #vim.fn.getcwd() + 2)
-    local test_file = current_path .. "/" .. vim.fn.expand('%:t:r') .. ".test.ts"
-
-    if vim.fn.filereadable(test_file) == 1 then
-      require('FTerm').scratch({ cmd = "bun run test " .. test_file })
-    else
-      print("test file not found")
+    local current_path = vim.fn.expand('%:p:h')
+    if vim.fn.filereadable(current_path .. "/" .. vim.fn.expand('%:t:r') .. ".test.ts") == 1 then
+      file_path = current_path
+      file_name = vim.fn.expand('%:t:r') .. ".test.ts"
     end
   end
+
+  if file_path == nil or file_name == nil then
+    print("*.test.ts not found")
+    return
+  end
+
+  local root_path = file_path
+  repeat
+    if vim.fn.filereadable(root_path .. "/package.json") == 1 then return end
+    root_path = vim.fn.fnamemodify(root_path, ':h')
+    file_path = string.sub(file_path, #root_path + 2) .. "/" .. file_name
+
+    require('FTerm').scratch({ cmd = "bun run test " .. root_path .. " " .. file_path })
+  until root_path == ""
+
+  print("package.json not found")
 end, { nargs = 0 })

@@ -22,7 +22,7 @@ require("kanagawa").setup({
 vim.cmd.colorscheme "kanagawa"
 
 local file_filters = {
-  ".git", ".gitignore", ".dockerignore", ".cache",                                 --global
+  ".git", ".gitignore", ".dockerignore",                                           --global
   "node_modules", "pnpm-lock.yaml", "tsconfig.json", ".npmrc", "dist",             -- node
   ".turbo", "pnpm-workspace.yaml", "turbo.json",                                   -- monorepo (ts)
   ".eslintignore", ".eslintrc.cjs", ".prettierignore", ".prettierrc", "bun.lockb", -- js/ts (others)

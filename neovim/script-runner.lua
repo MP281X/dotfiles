@@ -69,11 +69,15 @@ vim.api.nvim_create_user_command("BUNTEST", function(params)
 
   local root_path = file_path
   repeat
-    if vim.fn.filereadable(root_path .. "/package.json") == 1 then return end
-    root_path = vim.fn.fnamemodify(root_path, ':h')
-    file_path = string.sub(file_path, #root_path + 2) .. "/" .. file_name
+    if vim.fn.filereadable(root_path .. "/package.json") == 1 then
+      file_path = string.sub(file_path, #root_path + 2) .. "/" .. file_name
+      if file_path.sub(file_path, 1, 1) == "/" then file_path = string.sub(file_path, 2) end
 
-    require('FTerm').scratch({ cmd = "bun run test " .. root_path .. " " .. file_path })
+      require('FTerm').scratch({ cmd = "bun run test " .. root_path .. " " .. file_path })
+      return
+    end
+
+    root_path = vim.fn.fnamemodify(root_path, ':h')
   until root_path == ""
 
   print("package.json not found")

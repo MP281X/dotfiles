@@ -71,7 +71,6 @@ require("FTerm").setup({
   cmd = (function()
     if vim.fn.findfile("pnpm-lock.yaml") == "pnpm-lock.yaml" then return { 'zsh', '-c', 'pnpm run dev' } end
     if vim.fn.findfile("bun.lockb") == "bun.lockb" then return { 'bun', 'run', '--silent', 'dev' } end
-    if vim.fn.findfile("Prometeo.sln") == "Prometeo.sln" then return { 'dotnet', 'watch', '--project', 'ITS.Prometeo.API' } end
     return { 'zsh' }
   end)()
 })

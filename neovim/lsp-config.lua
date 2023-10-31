@@ -21,7 +21,6 @@ lsp.ensure_installed({
   'lua_ls',                  -- lua
   'tsserver', 'tailwindcss', -- node
   'svelte',                  -- framework
-  'csharp_ls',               -- dotnet
 })
 
 require('lspconfig').tailwindcss.setup({ filetypes = { 'svelte' } })

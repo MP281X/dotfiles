@@ -49,3 +49,6 @@ vim.o.undofile = true
 
 -- global statusline
 vim.opt.laststatus = 3
+
+-- fix for file watcher
+vim.opt.writebackup = false

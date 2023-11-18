@@ -23,7 +23,7 @@ lsp.ensure_installed({
   'svelte',                  -- framework
 })
 
-require('lspconfig').tailwindcss.setup({ filetypes = { 'svelte' } })
+require('lspconfig').tailwindcss.setup({ filetypes = { 'svelte', 'typescriptreact' } })
 require('lspconfig').lua_ls.setup({ settings = { Lua = { diagnostics = { globals = { 'vim' } } } } })
 
 lsp.setup()

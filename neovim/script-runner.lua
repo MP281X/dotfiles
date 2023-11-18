@@ -73,7 +73,7 @@ vim.api.nvim_create_user_command("BUNTEST", function(params)
       file_path = string.sub(file_path, #root_path + 2) .. "/" .. file_name
       if file_path.sub(file_path, 1, 1) == "/" then file_path = string.sub(file_path, 2) end
 
-      require('FTerm').scratch({ cmd = "bun run test " .. root_path .. " " .. file_path })
+      require('FTerm').scratch({ cmd = "(cd " .. root_path .. " && bun test " .. file_path .. ")" })
       return
     end
 

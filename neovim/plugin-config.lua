@@ -29,7 +29,7 @@ local file_filters = {
   ".svelte-kit", "svelte.config.js", "build", "vite.config.js",                    -- sveltekit
   "tailwind.config.js", "postcss.config.js",                                       -- tailwind
   ".g.ts", ".g.d.ts",                                                              -- typescript (codegen)
-  ".csproj", "LICENSE", ".sln", "obj", "bin", "Properties", "appsettings"          -- c#
+  ".test.ts",
 }
 
 -- file explorer
@@ -63,7 +63,7 @@ require("telescope").setup({
     },
   },
 })
-require("telescope").load_extension "undo"
+require("telescope").load_extension("undo")
 
 -- floating terminal
 require("FTerm").setup({

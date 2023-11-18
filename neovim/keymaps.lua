@@ -47,3 +47,6 @@ vim.o.wildcharm = "<C-z>"
 vim.keymap.set('n', '<leader>ss', ':RUN <C-z>')
 vim.keymap.set('n', '<leader>sn', ':NPMRUN <C-z>')
 vim.keymap.set('n', '<A-t>', ':BUNTEST<CR>')
+
+-- open test file
+vim.keymap.set('n', '<leader>st', ':edit %:r.test.%:e<CR>')

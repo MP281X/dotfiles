@@ -75,6 +75,9 @@ require("FTerm").setup({
   end)()
 })
 
+-- floating terminal for ollama
+FTermOllama = require("FTerm"):new({ ft = 'test_v1', cmd = "ollama run mistral:instruct" })
+
 -- lua line (statusline)
 require("lualine").setup({
   options = {

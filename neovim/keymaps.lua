@@ -30,8 +30,13 @@ vim.keymap.set('n', '<leader>u', ':Telescope undo<CR>') -- telescope undo
 vim.keymap.set('n', '<leader>fb', ':NvimTreeToggle<CR>') -- file browser
 
 -- FTerm
-vim.keymap.set('n', '<leader>t', require('FTerm').toggle)
-vim.keymap.set('t', '<Esc>', require('FTerm').toggle)
+vim.keymap.set('n', '<leader>t', require('FTerm').open)
+vim.keymap.set('n', '<leader>lm', function() FTermOllama:open() end)
+vim.keymap.set('t', '<Esc>', function()
+  require('FTerm').close()
+  FTermOllama:close()
+end)
+
 -- Remap key so ctrl-D and ctr-B work in the terminal mode
 vim.api.nvim_exec([[
   tnoremap <C-D> <C-\><C-N>:execute "normal! \<C-W>\<C-D>"<CR>

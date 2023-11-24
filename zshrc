@@ -26,6 +26,7 @@ esac
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="/home/mp281x/.local/share/bob/nvim-bin:$PATH"
 
 # alias
 alias vi="nvim"

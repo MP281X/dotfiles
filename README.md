@@ -33,7 +33,7 @@ echo "homebrew"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 echo "shell tools"
-brew install neovim
+brew install bob
 brew install ripgrep
 brew install jq
 brew install exa
@@ -54,6 +54,9 @@ brew install kubernetes-cli
 brew install k9s
 brew install kubeseal
 mkdir -p ~/.kube && cp /mnt/d/secrets/config ~/.kube/config
+
+echo "neovim"
+bob use latest
 
 echo "ssh"
 mkdir -p ~/.ssh && cp /mnt/d/secrets/.ssh/id_rsa ~/.ssh/id_rsa && chmod 0400 ~/.ssh/id_rsa

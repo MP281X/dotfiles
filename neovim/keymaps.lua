@@ -48,7 +48,6 @@ vim.keymap.set('n', '<leader>ff', ':LspZeroFormat<CR>')
 vim.keymap.set('n', '<leader>sa', ':lua vim.lsp.buf.code_action()<CR>')
 
 -- script runner
-vim.o.wildcharm = "<C-z>"
 vim.keymap.set('n', '<leader>ss', ':RUN <C-z>')
 vim.keymap.set('n', '<leader>sn', ':NPMRUN <C-z>')
 vim.keymap.set('n', '<A-t>', ':BUNTEST<CR>')

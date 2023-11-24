@@ -14,7 +14,12 @@ local lsp = require('lsp-zero').preset({})
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({ buffer = bufnr })
   lsp.buffer_autoformat()
+
+  -- typescript type viewer // ^?
   require("twoslash-queries").attach(client, bufnr)
+
+  -- inlay hint
+  pcall(function() vim.lsp.inlay_hint.enable() end)
 end)
 
 lsp.ensure_installed({
@@ -25,6 +30,24 @@ lsp.ensure_installed({
 
 require('lspconfig').tailwindcss.setup({ filetypes = { 'svelte', 'typescriptreact' } })
 require('lspconfig').lua_ls.setup({ settings = { Lua = { diagnostics = { globals = { 'vim' } } } } })
+require('lspconfig').tsserver.setup({
+  settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        -- includeInlayFunctionParameterTypeHints = true,
+        -- includeInlayFunctionLikeReturnTypeHints = true,
+      }
+    },
+    javascript = {
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        -- includeInlayFunctionParameterTypeHints = true,
+        -- includeInlayFunctionLikeReturnTypeHints = true,
+      }
+    }
+  }
+})
 
 lsp.setup()
 

@@ -56,7 +56,7 @@ brew install kubeseal
 mkdir -p ~/.kube && cp /mnt/d/secrets/config ~/.kube/config
 
 echo "neovim"
-bob use latest
+bob use nightly
 
 echo "ssh"
 mkdir -p ~/.ssh && cp /mnt/d/secrets/.ssh/id_rsa ~/.ssh/id_rsa && chmod 0400 ~/.ssh/id_rsa

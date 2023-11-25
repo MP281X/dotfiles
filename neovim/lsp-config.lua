@@ -1,7 +1,7 @@
 -- treesitter (syntax hilight)
 require('nvim-treesitter.install').compilers = { 'gcc' }
 require('nvim-treesitter.configs').setup({
-  ensure_installed = { 'svelte', 'typescript', 'javascript', 'lua' },
+  ensure_installed = { 'svelte', 'typescript', 'javascript', 'lua', 'bash', 'markdown' },
   sync_install = false,
   auto_install = true,
   highlight = { enable = true },

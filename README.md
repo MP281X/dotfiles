@@ -20,7 +20,8 @@ bash init.sh && \
 rm init.sh
 ```
 
-### Init script 
+### Init script
+
 ```bash
 echo "packages"
 sudo apt-get update && sudo apt-get upgrade -y
@@ -81,5 +82,31 @@ pnpm env use --global lts
 
 echo "bun"
 curl -fsSL https://bun.sh/install | bash
+
+```
+
+### Windows
+
+```ps1
+echo "scoop";
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser;
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression;
+
+echo "terminal";
+scoop install starship;
+scoop install sudo;
+
+echo "git";
+scoop install git;
+scoop install gh;
+scoop install gitui;
+
+echo "neovim";
+scoop install neovim;
+
+gh auth login;
+git clone https://github.com/MP281X/dotfiles "$HOME\dev\dotfiles";
+cd "$HOME\dev\dotfiles" && pwsh .\script\dotfiles.ps1;
+cd "$HOME\dev";
 
 ```

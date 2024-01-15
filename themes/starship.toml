@@ -9,7 +9,7 @@ format = """\
   """
 
 [custom.branch]
-command = 'git rev-parse --abbrev-ref HEAD | sed -E "s/.*\/([A-Z]+-[0-9]+)-.*/\1/"; [[ "$output" == "$input" ]] && output="$input"; printf "%s" "$output"'
+command = 'git rev-parse --abbrev-ref HEAD'
 detect_folders = ['.git']
 format = '[⚡ $output ](bold red)'
 

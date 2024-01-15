@@ -92,7 +92,7 @@ echo "scoop";
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser;
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression;
 
-echo "terminal";
+echo "tools";
 scoop install starship;
 scoop install sudo;
 
@@ -104,6 +104,11 @@ scoop install gitui;
 echo "neovim";
 scoop install neovim;
 
+echo "pnpm";
+iwr https://get.pnpm.io/install.ps1 -useb | iex;
+pnpm env use --global lts;
+
+echo "download and setup dotfiles";
 gh auth login;
 git clone https://github.com/MP281X/dotfiles "$HOME\dev\dotfiles";
 cd "$HOME\dev\dotfiles" && pwsh .\script\dotfiles.ps1;

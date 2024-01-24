@@ -17,3 +17,6 @@ Remove-Item -Path Alias:ls -Force;
 function ls {
     Get-ChildItem | ForEach-Object { $_.Name }
 }
+
+New-Alias -Name vi -Value "nvim";
+New-Alias -Name g -Value "gitui";

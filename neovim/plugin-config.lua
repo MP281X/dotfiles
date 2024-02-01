@@ -51,13 +51,13 @@ local file_filters = {
 
 -- file explorer
 require("nvim-tree").setup({
-	view = { side = "right", width = 60 },
 	filters = { custom = file_filters },
-	git = { enable = true, ignore = false, timeout = 500 },
+	view = { side = "right", width = 60 },
 	update_focused_file = { enable = true },
+	git = { enable = true, ignore = false, timeout = 500 },
 	renderer = {
 		root_folder_label = false,
-		icons = { show = { git = false } },
+		icons = { show = { git = true } },
 	},
 })
 

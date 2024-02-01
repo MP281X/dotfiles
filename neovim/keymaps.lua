@@ -19,7 +19,7 @@ vim.keymap.set("n", "<<", ":bp<CR>")
 vim.keymap.set("n", ">>", ":bn<CR>")
 
 -- search and replace
-vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- telescope
 vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, {})
@@ -27,12 +27,7 @@ vim.keymap.set("n", "<leader>sc", require("telescope.builtin").live_grep, {})
 vim.keymap.set("n", "<leader>se", require("telescope.builtin").diagnostics, {})
 vim.keymap.set("n", "<leader>sb", require("telescope.builtin").buffers, {})
 vim.keymap.set("n", "<leader>u", ":Telescope undo<CR>") -- telescope undo
-
--- file
 vim.keymap.set("n", "<leader>fb", ":NvimTreeToggle<CR>") -- file browser
-
--- FTerm
-vim.keymap.set("n", "<leader>t", require("FTerm").open)
 
 -- Remap key so ctrl-D and ctr-B work in the terminal mode
 vim.api.nvim_exec(
@@ -43,8 +38,8 @@ vim.api.nvim_exec(
 	false
 )
 
+-- floating terminal
+vim.keymap.set("n", "<leader>t", require("FTerm").open)
+
 -- script runner
 vim.keymap.set("n", "<leader>ss", ":RUN <C-z>")
-
--- open test file
-vim.keymap.set("n", "<leader>st", ":edit %:r.test.%:e<CR>")

@@ -3,9 +3,9 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 -- file encoding
-vim.scriptencoding = 'utf-8'
-vim.opt.encoding = 'utf-8'
-vim.opt.fileencoding = 'utf-8'
+vim.scriptencoding = "utf-8"
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
 
 -- disable mouse
 vim.opt.mouse = ""
@@ -21,6 +21,7 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = false
 vim.opt.autoindent = true
+vim.opt.smartindent = true
 
 -- line wrapping
 vim.opt.wrap = false
@@ -28,6 +29,8 @@ vim.opt.wrap = false
 -- search settings
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
 
 -- colors
 vim.opt.termguicolors = true
@@ -45,10 +48,28 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- save undo history
-vim.o.undofile = true
+vim.opt.writebackup = false
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
 
 -- global statusline
 vim.opt.laststatus = 3
 
--- fix for file watcher
-vim.opt.writebackup = false
+-- floating info border style
+local style = {
+	focusable = true,
+	style = "minimal",
+	border = "rounded",
+	source = "always",
+	header = "",
+	prefix = "",
+}
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, style)
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, style)
+vim.diagnostic.config({
+	signs = true,
+	severity_sort = true,
+	float = style,
+})

@@ -19,6 +19,14 @@ echo "gitui"
 mkdir -p ~/.config/gitui	
 cp themes/gitui.ron ~/.config/gitui/theme.ron
 
+echo "windows terminal"
+appdataLocal="$(wslpath "$(cmd.exe /c 'echo %LOCALAPPDATA%' 2>/dev/null | tr -d '\r')")"
+cp ./themes/terminal.json $appdataLocal/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json
+
+echo "powershell"
+profile="$(wslpath "$(pwsh.exe -Command '$PROFILE' 2>/dev/null | tr -d '\r')")"
+cp ./profile.ps1 "$profile";
+
 [ -d /mnt/c ] && echo "win32yank"
 [ -d /mnt/c ] && mkdir -p /mnt/c/tools/
 [ -d /mnt/c ] && cp script/win32yank.exe /mnt/c/tools/win32yank.exe

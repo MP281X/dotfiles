@@ -1,59 +1,45 @@
 require("lazy").setup({
+	{ -- file search
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.5",
+		dependencies = { { "nvim-lua/plenary.nvim" } },
+	},
+	{ -- statusline
+		"nvim-lualine/lualine.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+	},
+	{ -- md preview
+		ft = "markdown",
+		"iamcco/markdown-preview.nvim",
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	},
 
-  -- plugins (start)
-  {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.4',
-    dependencies = { { 'nvim-lua/plenary.nvim' } }
-  },                                                                                                                -- file search
+	{ "marilari88/twoslash-queries.nvim" }, -- show type definition inline (for typescript)
+	{ "debugloop/telescope-undo.nvim" }, -- undo history
+	{ "axelvc/template-string.nvim" }, -- convert js/ts string to string template
+	{ "nvim-tree/nvim-tree.lua" }, -- file explorer
+	{ "windwp/nvim-ts-autotag" }, -- auto close <div></div>
+	{ "windwp/nvim-autopairs" }, -- auto close ()
+	{ "numToStr/Comment.nvim" }, -- comment code
+	{ "rmagatti/auto-session" }, -- session manager
+	{ "rebelot/kanagawa.nvim" }, -- color scheme
+	{ "numToStr/FTerm.nvim" }, -- floating terminal
 
-  { 'iamcco/markdown-preview.nvim',    build = function() vim.fn["mkdp#util#install"]() end,     ft = "markdown" }, -- md preview
+	-- language tools
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- syntax hilight
+	{ "jose-elias-alvarez/null-ls.nvim" }, -- non-lsp tools
+	{ "jay-babu/mason-null-ls.nvim" }, -- auto install null-ls tools
 
-  { 'windwp/nvim-autopairs',           config = function() require("nvim-autopairs").setup() end },                 -- auto close ()
+	-- lsp tools
+	{ "williamboman/mason-lspconfig.nvim" }, -- configure lsp installed by mason
+	{ "williamboman/mason.nvim" }, -- lsp manager
+	{ "neovim/nvim-lspconfig" }, -- lsp server
 
-  { 'numToStr/Comment.nvim',           config = function() require("Comment").setup() end },                        -- comment code
-
-  { 'nvim-lualine/lualine.nvim',       dependencies = 'nvim-tree/nvim-web-devicons' },                              -- statusline
-
-  { 'marilari88/twoslash-queries.nvim' },                                                                           -- show type definition inline (for typescript)
-
-  { 'debugloop/telescope-undo.nvim' },                                                                              -- undo history
-
-  { 'nvim-tree/nvim-tree.lua' },                                                                                    -- file explorer
-
-  { 'windwp/nvim-ts-autotag' },                                                                                     -- auto close <div></div>
-
-  { 'rmagatti/auto-session' },                                                                                      -- session manager
-
-  { 'rebelot/kanagawa.nvim' },                                                                                      -- color scheme
-
-  { 'numToStr/FTerm.nvim' },                                                                                        -- floating terminal
-
-  { 'axelvc/template-string.nvim' },                                                                                -- convert js/ts string to string template
-
-
-  -- lsp
-  { 'nvim-treesitter/nvim-treesitter' }, -- syntax hilight
-
-  { 'jose-elias-alvarez/null-ls.nvim' }, -- non-lsp tools
-
-  { 'jay-babu/mason-null-ls.nvim' },     -- auto install tools
-
-  -- lsp zero
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
-    dependencies = {
-      { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim',          build = function() pcall(vim.cmd, 'MasonUpdate') end },
-      { 'williamboman/mason-lspconfig.nvim' },
-
-      -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'L3MON4D3/LuaSnip' },
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
-    }
-  },
+	-- Autocompletion
+	{ "hrsh7th/cmp-nvim-lsp" },
+	{ "hrsh7th/nvim-cmp" },
+	{ "L3MON4D3/LuaSnip" },
+	{ "hrsh7th/cmp-path" },
 }, {})

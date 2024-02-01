@@ -84,39 +84,3 @@ echo "bun"
 curl -fsSL https://bun.sh/install | bash
 
 ```
-
-### Windows
-
-```ps1
-echo "scoop";
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser;
-Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression;
-
-echo "shell tools";
-scoop install gcc;
-scoop install ripgrep;
-scoop install jq;
-
-echo "git";
-scoop install git;
-scoop install gh;
-scoop install gitui;
-
-echo "neovim";
-scoop install neovim;
-
-echo "git";
-git config --global --replace-all core.editor nvim;
-
-gh auth login;
-git clone https://github.com/MP281X/dotfiles "$HOME\dev\dotfiles";
-cd "$HOME\dev\dotfiles";
-git checkout windows;
-pwsh .\script\dotfiles.ps1;
-cd "$HOME\dev";
-
-echo "pnpm";
-iwr https://get.pnpm.io/install.ps1 -useb | iex;
-pnpm env use --global lts;
-
-```

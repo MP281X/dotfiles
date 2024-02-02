@@ -1,7 +1,7 @@
 echo "neovim"
-mkdir -p ~/.config/nvim/
-rm -f ~/.config/nvim/init.lua
-rm -r -f ~/.config/nvim/lua/*
+mkdir -p ~/.config/nvim/lua
+rm -r -f ~/.config/nvim/*
+
 cp neovim/neovim-config.lua ~/.config/nvim/init.lua
 cp -r neovim/. ~/.config/nvim/lua/
 

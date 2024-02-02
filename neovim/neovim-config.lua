@@ -15,10 +15,12 @@ vim.opt.rtp:prepend(lazypath)
 require("keymaps")
 require("config")
 
--- load the custom script runner
-require("script-runner")
-
 -- load plugins
 require("plugin")
+
+-- load plugin config
 require("plugin-config")
 require("lsp-config")
+
+-- load the custom script runner
+require("script-runner")

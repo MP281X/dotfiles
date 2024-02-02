@@ -47,7 +47,15 @@ require("nvim-tree").setup({
 
 -- telescope (fuzzy finder)
 require("telescope").setup({
-	defaults = { file_ignore_patterns = file_filters },
+	defaults = {
+		file_ignore_patterns = file_filters,
+		mappings = {
+			i = {
+				["<Tab>"] = require('telescope.actions').move_selection_next,
+				["<S-Tab>"] = require('telescope.actions').move_selection_previous,
+			}
+		}
+	},
 	extensions = {
 		["ui-select"] = { require("telescope.themes").get_dropdown({}) },
 		undo = {

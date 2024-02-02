@@ -37,3 +37,10 @@ vim.api.nvim_exec(
 ]],
 	false
 )
+
+-- toggle deleted and added lines
+vim.keymap.set("n", "<leader>g", [[:Gitsigns toggle_deleted<CR>:Gitsigns toggle_linehl<CR>]], {})
+
+-- toggle terminal
+vim.keymap.set("n", "<leader>t", function() require("FTerm").open() end)
+vim.keymap.set("t", "<Esc>", function() require("FTerm").close() end)

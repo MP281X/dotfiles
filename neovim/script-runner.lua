@@ -1,17 +1,3 @@
--- floating terminal
-require("FTerm").setup({
-	auto_close = false,
-	cmd = (function()
-		if vim.fn.findfile("pnpm-lock.yaml") ~= "" then return { "zsh", "-c", "pnpm run dev" } end
-		if vim.fn.findfile("bun.lockb") ~= "" then return { "bun", "run", "--silent", "dev" } end
-
-		return { "zsh" }
-	end)(),
-})
-
--- floating terminal
-vim.keymap.set("n", "<leader>t", function() require("FTerm").open() end)
-
 local getScriptNames = function()
 	local scriptNames = {}
 

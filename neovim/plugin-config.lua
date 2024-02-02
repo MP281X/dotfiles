@@ -109,6 +109,17 @@ require("lualine").setup({
 	},
 })
 
+-- floating terminal
+require("FTerm").setup({
+	auto_close = false,
+	cmd = (function()
+		if vim.fn.findfile("pnpm-lock.yaml") ~= "" then return { "zsh", "-c", "pnpm run dev" } end
+		if vim.fn.findfile("bun.lockb") ~= "" then return { "bun", "run", "--silent", "dev" } end
+
+		return { "zsh" }
+	end)(),
+})
+
 -- session manager
 require("auto-session").setup({
 	log_level = "error",
@@ -122,6 +133,14 @@ require("template-string").setup({
 	jsx_brackets = true,
 	remove_template_string = true,
 	restore_quotes = { normal = [[']], jsx = [["]] },
+})
+
+-- git integration
+require('gitsigns').setup({
+	signcolumn = false,
+	numhl = true,
+	current_line_blame = true,
+	preview_config = { border = 'rounded' }
 })
 
 require("Comment").setup()        -- comment code

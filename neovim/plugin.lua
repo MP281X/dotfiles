@@ -16,21 +16,24 @@ require("lazy").setup({
 		end,
 	},
 
-	{ "marilari88/twoslash-queries.nvim" }, -- show type definition inline (for typescript)
-	{ "debugloop/telescope-undo.nvim" },   -- undo history
-	{ "axelvc/template-string.nvim" },     -- convert js/ts string to string template
-	{ "nvim-tree/nvim-tree.lua" },         -- file explorer
-	{ "windwp/nvim-ts-autotag" },          -- auto close <div></div>
-	{ "windwp/nvim-autopairs" },           -- auto close ()
-	{ "numToStr/Comment.nvim" },           -- comment code
-	{ "rmagatti/auto-session" },           -- session manager
-	{ "rebelot/kanagawa.nvim" },           -- color scheme
-	{ "numToStr/FTerm.nvim" },             -- floating terminal
+	{ "marilari88/twoslash-queries.nvim" },       -- show type definition inline (for typescript)
+	{ "debugloop/telescope-undo.nvim" },          -- undo history
+	{ "axelvc/template-string.nvim" },            -- convert js/ts string to string template
+	{ "nvim-tree/nvim-tree.lua" },                -- file explorer
+	{ "windwp/nvim-ts-autotag" },                 -- auto close <div></div>
+	{ "windwp/nvim-autopairs" },                  -- auto close ()
+	{ "numToStr/Comment.nvim" },                  -- comment code
+	{ "rmagatti/auto-session" },                  -- session manager
+	{ "rebelot/kanagawa.nvim" },                  -- color scheme
+	{ "numToStr/FTerm.nvim" },                    -- floating terminal
+	{ "nvim-telescope/telescope-ui-select.nvim" }, -- use telescope for the vim.ui.select ui
+	{ "lewis6991/gitsigns.nvim" },                -- git integration
+
 
 	-- language tools
 	{ "nvim-treesitter/nvim-treesitter",        build = ":TSUpdate" }, -- syntax hilight
-	{ "nvimtools/none-ls.nvim" },                              -- non-lsp tools
-	{ "jay-babu/mason-null-ls.nvim" },                         -- auto install null-ls tools
+	{ "nvimtools/none-ls.nvim" },                                     -- non-lsp tools
+	{ "jay-babu/mason-null-ls.nvim" },                                -- auto install null-ls tools
 
 	-- lsp tools
 	{ "williamboman/mason-lspconfig.nvim" }, -- configure lsp installed by mason
@@ -42,6 +45,4 @@ require("lazy").setup({
 	{ "hrsh7th/nvim-cmp" },
 	{ "L3MON4D3/LuaSnip" },
 	{ "hrsh7th/cmp-path" },
-
-	{ "nvim-telescope/telescope-ui-select.nvim" },
 }, {})

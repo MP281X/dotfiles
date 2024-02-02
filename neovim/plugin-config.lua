@@ -22,31 +22,18 @@ require("kanagawa").setup({
 vim.cmd.colorscheme("kanagawa")
 
 local file_filters = {
-	".git",
-	".gitignore",
-	".dockerignore", --global
-	"node_modules",
-	"pnpm-lock.yaml",
-	"tsconfig.json",
-	".npmrc",
-	"dist", -- node
-	".turbo",
-	"pnpm-workspace.yaml",
-	"turbo.json", -- monorepo (ts)
-	".eslintignore",
-	".eslintrc.cjs",
-	".prettierignore",
-	".prettierrc",
-	"bun.lockb", -- js/ts (others)
-	".svelte-kit",
-	"svelte.config.js",
-	"build",
-	"vite.config.js", -- sveltekit
-	"tailwind.config.js",
-	"postcss.config.js", -- tailwind
-	".g.ts",
-	".g.d.ts", -- typescript (codegen)
-	".test.ts",
+	--global
+	".git", ".gitignore", ".dockerignore",
+	-- node
+	"node_modules", "pnpm-lock.yaml", "tsconfig.json", ".npmrc", "dist",
+	-- js/ts (others)
+	".eslintignore", ".eslintrc.cjs", ".prettierignore", ".prettierrc", ".test.ts", "bun.lockb",
+	-- sveltekit
+	".svelte-kit", "svelte.config.js", "build", "vite.config.js",
+	-- tailwind
+	"tailwind.config.js", "postcss.config.js",
+	-- typescript (codegen)
+	".g.ts", ".g.d.ts",
 }
 
 -- file explorer
@@ -55,16 +42,14 @@ require("nvim-tree").setup({
 	view = { side = "right", width = 60 },
 	update_focused_file = { enable = true },
 	git = { enable = true, ignore = false, timeout = 500 },
-	renderer = {
-		root_folder_label = false,
-		icons = { show = { git = true } },
-	},
+	renderer = { root_folder_label = false, icons = { show = { git = false } } },
 })
 
 -- telescope (fuzzy finder)
 require("telescope").setup({
 	defaults = { file_ignore_patterns = file_filters },
 	extensions = {
+		["ui-select"] = { require("telescope.themes").get_dropdown({}) },
 		undo = {
 			use_delta = true,
 			side_by_side = true,
@@ -81,8 +66,8 @@ require("telescope").setup({
 	},
 })
 
--- undo tree
-require("telescope").load_extension("undo")
+require("telescope").load_extension("undo")      -- undo tree
+require("telescope").load_extension("ui-select") -- replace select panel with telescope
 
 -- lua line (statusline)
 require("lualine").setup({
@@ -120,11 +105,7 @@ require("lualine").setup({
 require("auto-session").setup({
 	log_level = "error",
 	auto_session_suppress_dirs = { "~/" },
-	cwd_change_handling = {
-		post_cwd_changed_hook = function()
-			require("lualine").refresh()
-		end,
-	},
+	cwd_change_handling = { post_cwd_changed_hook = function() require("lualine").refresh() end },
 })
 
 -- convert js/ts string to string template
@@ -132,11 +113,8 @@ require("template-string").setup({
 	filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "svelte" },
 	jsx_brackets = true,
 	remove_template_string = true,
-	restore_quotes = {
-		normal = [[']],
-		jsx = [["]],
-	},
+	restore_quotes = { normal = [[']], jsx = [["]] },
 })
 
-require("Comment").setup() -- comment code
+require("Comment").setup()        -- comment code
 require("nvim-autopairs").setup() -- auto close ()

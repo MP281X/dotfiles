@@ -68,8 +68,4 @@ local style = {
 }
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, style)
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, style)
-vim.diagnostic.config({
-	signs = true,
-	severity_sort = true,
-	float = style,
-})
+vim.diagnostic.config({ signs = true, severity_sort = true, float = style })

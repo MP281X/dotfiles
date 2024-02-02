@@ -37,7 +37,7 @@ require("mason-lspconfig").setup({
 					require("cmp_nvim_lsp").default_capabilities()
 				),
 				on_attach = function(client, bufnr)
-					pcall(vim.lsp.inlay_hint.enable) -- inlay hint
+					pcall(vim.lsp.inlay_hint.enable)             -- inlay hint
 					require("twoslash-queries").attach(client, bufnr) -- typescript type viewer // ^?
 				end,
 			})
@@ -84,11 +84,7 @@ cmp.setup({
 			cmp.config.compare.locality,
 		},
 	},
-	snippet = {
-		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
-		end,
-	},
+	snippet = { expand = function(args) require("luasnip").lsp_expand(args.body) end },
 	mapping = {
 		["<Tab>"] = cmp.mapping.select_next_item(),
 		["<up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
@@ -118,10 +114,12 @@ local null_ls_languages = {
 
 null_ls.setup({
 	sources = {
-		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.prettier.with({ filetypes = null_ls_languages }),
 		null_ls.builtins.diagnostics.eslint.with({ filetypes = null_ls_languages, only_local = "node_modules/.bin" }),
 	},
 })
 
-require("mason-null-ls").setup({ ensure_installed = nil, automatic_installation = true })
+require("mason-null-ls").setup({
+	ensure_installed = { "prettier", "eslint-lsp" },
+	automatic_installation = true,
+})

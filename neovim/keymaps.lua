@@ -3,8 +3,8 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<Space>", "<NOP>")
 
 vim.keymap.set("n", "<leader>nh", ":nohl<CR>") -- delete search result
-vim.keymap.set("n", "d", '"_d') -- delete a single letter without coping it
-vim.keymap.set("v", "d", '"_d') -- delete a single letter without coping it
+vim.keymap.set("n", "d", '"_d')                -- delete a single letter without coping it
+vim.keymap.set("v", "d", '"_d')                -- delete a single letter without coping it
 vim.keymap.set("n", "c", '"_c')
 
 -- movement
@@ -22,11 +22,11 @@ vim.keymap.set("n", ">>", ":bn<CR>")
 vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- telescope
-vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, {})
-vim.keymap.set("n", "<leader>sc", require("telescope.builtin").live_grep, {})
-vim.keymap.set("n", "<leader>se", require("telescope.builtin").diagnostics, {})
-vim.keymap.set("n", "<leader>sb", require("telescope.builtin").buffers, {})
-vim.keymap.set("n", "<leader>u", ":Telescope undo<CR>") -- telescope undo
+vim.keymap.set("n", "<leader>sf", function() require("telescope.builtin").find_files() end, {})
+vim.keymap.set("n", "<leader>sc", function() require("telescope.builtin").live_grep() end, {})
+vim.keymap.set("n", "<leader>se", function() require("telescope.builtin").diagnostics() end, {})
+vim.keymap.set("n", "<leader>sb", function() require("telescope.builtin").buffers() end, {})
+vim.keymap.set("n", "<leader>u", ":Telescope undo<CR>")  -- telescope undo
 vim.keymap.set("n", "<leader>fb", ":NvimTreeToggle<CR>") -- file browser
 
 -- Remap key so ctrl-D and ctr-B work in the terminal mode
@@ -37,9 +37,3 @@ vim.api.nvim_exec(
 ]],
 	false
 )
-
--- floating terminal
-vim.keymap.set("n", "<leader>t", require("FTerm").open)
-
--- script runner
-vim.keymap.set("n", "<leader>ss", ":RUN <C-z>")

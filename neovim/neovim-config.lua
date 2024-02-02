@@ -11,9 +11,14 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- load default config
+require("keymaps")
+require("config")
+
+-- load the custom script runner
+require("script-runner")
+
+-- load plugins
 require("plugin")
 require("plugin-config")
 require("lsp-config")
-require("config")
-require("script-runner")
-require("keymaps")

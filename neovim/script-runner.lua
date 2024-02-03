@@ -88,13 +88,40 @@ local branchNames = function()
 	local current_branch = vim.fn.systemlist("git rev-parse --abbrev-ref HEAD")[1]
 
 	local branch_names = {}
-	for branch in io.popen("git branch --format='%(refname:short)'"):lines() do
-		if branch ~= "" and branch ~= current_branch then
-			table.insert(branch_names, branch)
-		end
+	for branch in io.popen("git branch -a --format='%(refname:short)'"):lines() do
+		if branch == "" then goto continue end
+		if branch == "origin/HEAD" then goto continue end
+		if branch:match("^origin/dependabot") then goto continue end
+
+		table.insert(branch_names, branch)
+		::continue::
 	end
 
-	return branch_names
+
+	local output = {}
+	for _, value in ipairs(branch_names) do
+		if value == current_branch then goto continue end
+
+		if not value:match("^origin/") then
+			table.insert(output, value)
+			goto continue
+		end
+
+		local duplicate = false
+		for _, x in ipairs(branch_names) do
+			if not x:match("^origin/") then
+				if x == value:gsub("origin/", "") then
+					duplicate = true
+					break
+				end
+			end
+		end
+
+		if duplicate == false then table.insert(output, value) end
+		::continue::
+	end
+
+	return output
 end
 
 local stashIdByName = function(stash_name)
@@ -109,6 +136,8 @@ local stashIdByName = function(stash_name)
 end
 
 local stash = function(current_branch)
+	if (current_branch:match("^origin/")) then return true end
+
 	if vim.fn.systemlist("git status --porcelain")[1] == nil then return true end
 
 	local result = vim.fn.systemlist("git stash -q -u -m 'nvim_" .. current_branch .. "'")[1]
@@ -118,7 +147,13 @@ local stash = function(current_branch)
 end
 
 local checkout = function(branch_name)
-	local result = vim.fn.systemlist("git checkout -q " .. branch_name)[1]
+	local result
+	if branch_name:match("^origin/") then
+		local local_name = string.gsub(branch_name, "origin/", "")
+		result = vim.fn.systemlist("git checkout -q -b '" .. local_name .. "' '" .. branch_name .. "'")[1]
+	else
+		result = vim.fn.systemlist("git checkout -q '" .. branch_name .. "'")[1]
+	end
 
 	if result == nil then return true end
 	if result == "fatal: The current branch a has no upstream branch." then return true end

@@ -81,3 +81,94 @@ end
 vim.keymap.set("n", "<leader>ss", function()
 	vim.ui.select(getScriptNames(), { prompt = "Select script" }, runScript)
 end, {})
+
+-- git
+local branchNames = function()
+	if vim.fn.systemlist("git fetch")[1] ~= nil then return {} end
+
+	local branch_names = {}
+	for branch in io.popen("git branch --format='%(refname:short)'"):lines() do
+		if branch ~= "" then table.insert(branch_names, branch) end
+	end
+
+	return branch_names
+end
+
+local stashIdByName = function(stash_name)
+	for stash_info in io.popen("git stash list"):lines() do
+		local stash_id = stash_info:match("{(%d+)}")
+		local stash_message = stash_info:match(".*:.*: (.*)$")
+
+		if stash_message:match("^nvim_" .. stash_name .. "$") then
+			return stash_id
+		end
+	end
+end
+
+local stash = function(current_branch)
+	local result = vim.fn.systemlist("git diff -q --exit-code || git stash -q -u -m '" .. current_branch .. "'")[1]
+
+	-- if  ~= nil then
+	-- 		print("git diff -q --exit-code || git stash -q -u -m '" .. current_branch .. "'")
+	-- 		error("git stash failed")
+	-- 		return
+	-- 	end
+	-- -- diff --git
+end
+
+local checkout = function(branch_name)
+	local result = vim.fn.systemlist("git checkout -q " .. branch_name)[1]
+
+	if result == nil then return true end
+	if result == "fatal: The current branch a has no upstream branch." then return true end
+
+	return false
+end
+
+local pull = function()
+	local result = vim.fn.systemlist("git pull -q")[1]
+	if result == nil then return true end
+	if result == "There is no tracking information for the current branch." then return true end
+
+	return false
+end
+
+local popStash = function(id)
+	if id == nil or id == "" then return true end
+
+	local output = vim.fn.systemlist("git stash pop stash@{" .. id .. "} -q")
+	if output == nil then return true end
+	if output[1]:match("^fatal:") then return true end
+	if output:match("not a valid reference$") then return true end
+
+	return false
+end
+
+-- git
+vim.keymap.set("n", "<leader>gb", function()
+	vim.ui.select(branchNames(), { prompt = "Select branch" }, function(branch_name)
+		local current_branch = vim.fn.systemlist("git rev-parse --abbrev-ref HEAD")[1]
+		if current_branch == nil then
+			error("branch not found")
+			return
+		end
+
+		if stash(current_branch) == false then
+			error("git stash failed")
+			return
+		end
+
+		if checkout(branch_name) == false then
+			error("git checkout failed")
+			return
+		end
+
+		if pull() == false then
+			error("git pull failed")
+			return
+		end
+
+		local id = stashIdByName(branch_name)
+		if popStash(id) == false then print("git stash pop failed") end
+	end)
+end, {})

@@ -39,7 +39,7 @@ vim.api.nvim_exec(
 )
 
 -- toggle deleted and added lines
-vim.keymap.set("n", "<leader>g", ":Gitsigns preview_hunk_inline<CR>", {})
+vim.keymap.set("n", "<leader>g", ":Gitsigns preview_hunk<CR>", {})
 
 -- toggle terminal
 vim.keymap.set("n", "<leader>t", function() require("FTerm").open() end)

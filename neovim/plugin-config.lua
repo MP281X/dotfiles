@@ -140,7 +140,8 @@ require('gitsigns').setup({
 	signcolumn = false,
 	numhl = true,
 	current_line_blame = true,
-	preview_config = { border = 'rounded' }
+	preview_config = { border = 'rounded' },
+	yadm = { enable = false }
 })
 
 require("Comment").setup()        -- comment code

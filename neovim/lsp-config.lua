@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-		vim.keymap.set("n", "D", vim.diagnostic.open_float, opts)
+		vim.keymap.set("n", "E", vim.diagnostic.open_float, opts)
 		vim.keymap.set("n", "A", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("n", "R", vim.lsp.buf.rename, opts)
 		vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, opts)
@@ -114,12 +114,12 @@ local null_ls_languages = {
 
 null_ls.setup({
 	sources = {
-		null_ls.builtins.formatting.prettier.with({ filetypes = null_ls_languages }),
-		null_ls.builtins.diagnostics.eslint.with({ filetypes = null_ls_languages, only_local = "node_modules/.bin" }),
+		null_ls.builtins.formatting.prettierd.with({ filetypes = null_ls_languages }),
+		null_ls.builtins.diagnostics.eslint_d.with({ filetypes = null_ls_languages }),
 	},
 })
 
 require("mason-null-ls").setup({
-	ensure_installed = { "prettier", "eslint-lsp" },
+	ensure_installed = { "prettierd", "eslint_d" },
 	automatic_installation = true,
 })

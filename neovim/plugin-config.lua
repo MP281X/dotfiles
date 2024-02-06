@@ -27,7 +27,7 @@ local file_filters = {
 	-- node
 	"node_modules", "pnpm-lock.yaml", "tsconfig.json", ".npmrc", "dist",
 	-- js/ts (others)
-	".eslintignore", ".eslintrc.cjs", ".prettierignore", ".prettierrc", ".test.ts", "bun.lockb",
+	".prettierrc.yml", ".eslintrc.yml", ".test.ts", "bun.lockb",
 	-- sveltekit
 	".svelte-kit", "svelte.config.js", "build", "vite.config.js",
 	-- tailwind

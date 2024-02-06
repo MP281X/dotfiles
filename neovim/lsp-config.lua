@@ -9,7 +9,6 @@ require("nvim-treesitter.configs").setup({
 })
 
 -- format on save and keybinds
-vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(e)
 		local opts = { buffer = e.buf, silent = true }
@@ -19,23 +18,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "E", vim.diagnostic.open_float, opts)
 		vim.keymap.set("n", "A", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("n", "R", vim.lsp.buf.rename, opts)
-		vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, opts)
 	end,
 })
 
+local capabilities = vim.tbl_deep_extend(
+	"force",
+	{},
+	vim.lsp.protocol.make_client_capabilities(),
+	require("cmp_nvim_lsp").default_capabilities()
+)
+
 require("mason").setup()
 require("mason-lspconfig").setup({
-	ensure_installed = { "lua_ls", "tsserver", "svelte", "tailwindcss" },
+	ensure_installed = { "lua_ls", "tsserver", "svelte", "tailwindcss", "eslint" },
 	-- setup default settings for every lsp
 	handlers = {
 		function(server_name)
 			require("lspconfig")[server_name].setup({
-				capabilities = vim.tbl_deep_extend(
-					"force",
-					{},
-					vim.lsp.protocol.make_client_capabilities(),
-					require("cmp_nvim_lsp").default_capabilities()
-				),
+				capabilities = capabilities,
 				on_attach = function(client, bufnr)
 					pcall(vim.lsp.inlay_hint.enable)             -- inlay hint
 					require("twoslash-queries").attach(client, bufnr) -- typescript type viewer // ^?
@@ -47,16 +47,19 @@ require("mason-lspconfig").setup({
 
 require("lspconfig").lua_ls.setup({ settings = { Lua = { diagnostics = { globals = { "vim" } } } } })
 
-require("lspconfig").tailwindcss.setup({ filetypes = { "svelte", "typescriptreact", "astro" } })
+require("lspconfig").tailwindcss.setup({ filetypes = { "svelte", "typescriptreact" } })
 
 require("lspconfig").svelte.setup({
 	settings = {
 		svelte = {
 			plugin = {
+				typescript = { enable = true },
 				svelte = {
-					typescript = { enable = true },
-					config = { svelteStrictMode = true },
-				},
+					format = {
+						enable = false,
+						config = { svelteStrictMode = true }
+					}
+				}
 			},
 		},
 	},
@@ -67,6 +70,11 @@ require("lspconfig").tsserver.setup({
 		typescript = { inlayHints = { includeInlayParameterNameHints = "all" } },
 		javascript = { inlayHints = { includeInlayParameterNameHints = "all" } },
 	},
+})
+
+require 'lspconfig'.eslint.setup({
+	filetypes = { "svelte", "typescriptreact", "javascript", "typescript" },
+	settings = { packageManager = 'bun' },
 })
 
 local cmp = require("cmp")
@@ -98,28 +106,17 @@ cmp.setup({
 	},
 })
 
--- null ls
-local null_ls = require("null-ls")
-local null_ls_languages = {
-	"javascript",
-	"typescript",
-	"typescriptreact",
-	"astro",
-	"svelte",
-	"html",
-	"css",
-	"json",
-	"yaml",
-}
-
-null_ls.setup({
-	sources = {
-		null_ls.builtins.formatting.prettierd.with({ filetypes = null_ls_languages }),
-		null_ls.builtins.diagnostics.eslint_d.with({ filetypes = null_ls_languages }),
+-- prettier
+require("conform").setup({
+	formatters_by_ft = {
+		typescript = { { "prettierd", "prettier" } },
+		javascript = { { "prettierd", "prettier" } },
+		typescriptreact = { { "prettierd", "prettier" } },
+		svelte = { { "prettierd", "prettier" } },
 	},
-})
-
-require("mason-null-ls").setup({
-	ensure_installed = { "prettierd", "eslint_d" },
-	automatic_installation = true,
+	format_on_save = {
+		timeout_ms = 1000,
+		lsp_fallback = true,
+		async = false,
+	},
 })

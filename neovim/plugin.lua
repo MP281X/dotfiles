@@ -32,8 +32,7 @@ require("lazy").setup({
 
 	-- language tools
 	{ "nvim-treesitter/nvim-treesitter",        build = ":TSUpdate" }, -- syntax hilight
-	{ "nvimtools/none-ls.nvim" },                                     -- non-lsp tools
-	{ "jay-babu/mason-null-ls.nvim" },                                -- auto install null-ls tools
+	{ 'stevearc/conform.nvim' },                                      -- formatter
 
 	-- lsp tools
 	{ "williamboman/mason-lspconfig.nvim" }, -- configure lsp installed by mason

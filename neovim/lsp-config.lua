@@ -113,6 +113,7 @@ require("conform").setup({
 		javascript = { { "prettierd", "prettier" } },
 		typescriptreact = { { "prettierd", "prettier" } },
 		svelte = { { "prettierd", "prettier" } },
+		yaml = { "prettierd", "prettier" }
 	},
 	format_on_save = {
 		timeout_ms = 1000,

@@ -29,4 +29,4 @@ cp ./profile.ps1 "$profile";
 
 [ -d /mnt/c ] && echo "win32yank"
 [ -d /mnt/c ] && mkdir -p /mnt/c/tools/
-[ -d /mnt/c ] && cp script/win32yank.exe /mnt/c/tools/win32yank.exe
+[ -d /mnt/c ] && cp scripts/win32yank.exe /mnt/c/tools/win32yank.exe

@@ -44,3 +44,9 @@ vim.keymap.set("n", "<leader>g", ":Gitsigns preview_hunk<CR>", {})
 -- toggle terminal
 vim.keymap.set("n", "<leader>t", function() require("FTerm").open() end)
 vim.keymap.set("t", "<Esc>", function() require("FTerm").close() end)
+
+vim.keymap.set("n", "<leader>st", function()
+	if string.match(vim.fn.expand('%:t'), "%.test%.ts$") then return end
+
+	vim.cmd(":e " .. vim.fn.expand('%:p'):gsub("%.ts$", ".test.ts"))
+end)

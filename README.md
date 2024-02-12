@@ -44,7 +44,7 @@ zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) 
 sudo chsh -s "$(command -v zsh)" "${USER}"
 
 echo "tools"
-brew install atlas
+curl -sSf https://atlasgo.sh | sh
 
 echo "git"
 brew install gh
@@ -69,7 +69,7 @@ git config --global --replace-all core.editor nvim
 git config --global pull.rebase true
 gh auth login
 git clone https://github.com/MP281X/dotfiles ~/dotfiles
-(cd ~/dotfiles && bash ./script/dotfiles.sh)
+(cd ~/dotfiles && bash ./scripts/dotfiles.sh)
 
 echo "nodejs"
 curl -fsSL https://get.pnpm.io/install.sh | sh -

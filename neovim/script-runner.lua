@@ -2,10 +2,10 @@ local getScriptNames = function()
 	local scriptNames = {}
 
 	-- find all the bash script
-	local stat = vim.loop.fs_stat("./script")
+	local stat = vim.loop.fs_stat("./scripts")
 
 	if stat and stat.type == "directory" then
-		for _, fileName in ipairs(vim.fn.readdir("./script")) do
+		for _, fileName in ipairs(vim.fn.readdir("./scripts")) do
 			if fileName:match("%.sh$") then
 				table.insert(scriptNames, "bash:" .. fileName:match("^(.+)%.sh$"))
 			end
@@ -44,7 +44,7 @@ local runScript = function(selected)
 	local script = selected:match(":(.+)")
 
 	-- run the bash script
-	if type == "bash" then require("FTerm").scratch({ cmd = "bash ./script/" .. script .. ".sh" }) end
+	if type == "bash" then require("FTerm").scratch({ cmd = "bash ./scripts/" .. script .. ".sh" }) end
 
 	-- find the correct node package manager and run the script
 	if type == "node" then

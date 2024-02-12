@@ -1,17 +1,6 @@
 local getScriptNames = function()
 	local scriptNames = {}
 
-	-- find all the bash script
-	local stat = vim.loop.fs_stat("./scripts")
-
-	if stat and stat.type == "directory" then
-		for _, fileName in ipairs(vim.fn.readdir("./scripts")) do
-			if fileName:match("%.sh$") then
-				table.insert(scriptNames, "bash:" .. fileName:match("^(.+)%.sh$"))
-			end
-		end
-	end
-
 	-- find all the package json scripts
 	if vim.fn.findfile("package.json") ~= "" then
 		local extract_key = '.scripts | keys[] | select(test("^[^_].*"))'
@@ -19,6 +8,22 @@ local getScriptNames = function()
 		for nodeScript in io.popen("cat package.json | jq -r '" .. extract_key .. "'"):lines() do
 			if nodeScript ~= "dev" then
 				table.insert(scriptNames, "node:" .. nodeScript)
+			end
+		end
+	end
+
+	-- find all the bash script
+	local stat = vim.loop.fs_stat("./scripts")
+
+	if stat and stat.type == "directory" then
+		for _, fileName in ipairs(vim.fn.readdir("./scripts")) do
+			if fileName:match("%.sh$") then
+				local name = fileName:match("^(.+)%.sh$")
+				local exists = table.concat(scriptNames, ','):find("node:" .. name) and true or false
+
+				if exists == false then
+					table.insert(scriptNames, "bash:" .. name)
+				end
 			end
 		end
 	end

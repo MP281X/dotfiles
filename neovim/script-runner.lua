@@ -16,8 +16,10 @@ local getScriptNames = function()
 	if vim.fn.findfile("package.json") ~= "" then
 		local extract_key = '.scripts | keys[] | select(test("^[^_].*"))'
 
-		for fileName in io.popen("cat package.json | jq -r '" .. extract_key .. "'"):lines() do
-			table.insert(scriptNames, "node:" .. fileName)
+		for nodeScript in io.popen("cat package.json | jq -r '" .. extract_key .. "'"):lines() do
+			if nodeScript ~= "dev" then
+				table.insert(scriptNames, "node:" .. nodeScript)
+			end
 		end
 	end
 

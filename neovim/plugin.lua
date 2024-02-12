@@ -16,7 +16,6 @@ require("lazy").setup({
 		end,
 	},
 
-	{ "marilari88/twoslash-queries.nvim" },       -- show type definition inline (for typescript)
 	{ "debugloop/telescope-undo.nvim" },          -- undo history
 	{ "axelvc/template-string.nvim" },            -- convert js/ts string to string template
 	{ "nvim-tree/nvim-tree.lua" },                -- file explorer

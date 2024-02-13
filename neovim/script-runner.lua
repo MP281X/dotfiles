@@ -49,7 +49,7 @@ local runScript = function(selected)
 	local script = selected:match(":(.+)")
 
 	-- run the bash script
-	if type == "bash" then require("FTerm").scratch({ cmd = "bash ./scripts/" .. script .. ".sh" }) end
+	if type == "bash" then require("FTerm").scratch({ cmd = "sh ./scripts/" .. script .. ".sh" }) end
 
 	-- find the correct node package manager and run the script
 	if type == "node" then

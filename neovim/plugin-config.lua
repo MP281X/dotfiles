@@ -38,7 +38,7 @@ local file_filters = {
 
 -- file explorer
 require("nvim-tree").setup({
-	filters = { custom = file_filters },
+	filters = { custom = file_filters, exclude = { ".github" } },
 	view = { side = "right", width = 60 },
 	update_focused_file = { enable = true },
 	git = { enable = true, ignore = false, timeout = 500 },

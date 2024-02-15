@@ -31,21 +31,21 @@ local capabilities = vim.tbl_deep_extend(
 )
 
 require("mason").setup()
-require("mason-lspconfig").setup({
-	ensure_installed = { "lua_ls", "tsserver", "svelte", "tailwindcss", "eslint" },
-	-- setup default settings for every lsp
-	handlers = {
-		function(server_name)
-			require("lspconfig")[server_name].setup({ capabilities = capabilities })
-		end,
-	},
+require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "tsserver", "svelte", "tailwindcss", "eslint" } })
+
+require("lspconfig").lua_ls.setup({
+	capabilities = capabilities,
+	settings = { Lua = { diagnostics = { globals = { "vim" } } } }
 })
 
-require("lspconfig").lua_ls.setup({ settings = { Lua = { diagnostics = { globals = { "vim" } } } } })
-
-require("lspconfig").tailwindcss.setup({ filetypes = { "svelte", "typescriptreact" } })
+require("lspconfig").tailwindcss.setup({
+	capabilities = capabilities,
+	filetypes = { "svelte", "typescriptreact"
+	}
+})
 
 require("lspconfig").svelte.setup({
+	capabilities = capabilities,
 	settings = {
 		svelte = {
 			plugin = {
@@ -62,24 +62,26 @@ require("lspconfig").svelte.setup({
 })
 
 require("lspconfig").tsserver.setup({
+	capabilities = capabilities,
 	settings = {
 		typescript = { inlayHints = { includeInlayParameterNameHints = "all" } },
 		javascript = { inlayHints = { includeInlayParameterNameHints = "all" } },
 	},
 })
 
-require 'lspconfig'.eslint.setup({
+require("lspconfig").eslint.setup({
+	capabilities = capabilities,
 	filetypes = { "svelte", "typescriptreact", "javascript", "typescript" },
 	settings = { packageManager = 'bun' },
 })
 
 local cmp = require("cmp")
 cmp.setup({
-	sources = {
+	sources = cmp.config.sources({
 		{ name = "path" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip", keyword_length = 2 },
-	},
+	}),
 	sorting = {
 		comparators = {
 			cmp.config.compare.kind,

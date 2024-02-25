@@ -32,6 +32,7 @@ require("lazy").setup({
 	-- language tools
 	{ "nvim-treesitter/nvim-treesitter",        build = ":TSUpdate" }, -- syntax hilight
 	{ 'stevearc/conform.nvim' },                                      -- formatter
+	{ 'marilari88/twoslash-queries.nvim' },                           -- // visualize typescript types with // ^?
 
 	-- lsp tools
 	{ "williamboman/mason-lspconfig.nvim" }, -- configure lsp installed by mason

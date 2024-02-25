@@ -60,7 +60,7 @@ local runScript = function(selected)
 		if vim.fn.findfile("package-lock.json") ~= "" then packet_manager = "npm" end
 		if packet_manager == "" then return end
 
-		require("FTerm").scratch({ cmd = packet_manager .. " run " .. script })
+		require("FTerm").scratch({ cmd = packet_manager .. " run --silent " .. script })
 	end
 
 	-- find the correct package.json (the project root) and run the test

@@ -25,15 +25,19 @@ local file_filters = {
 	--global
 	".git", ".gitignore", ".dockerignore",
 	-- node
-	"node_modules", "pnpm-lock.yaml", "tsconfig.json", ".npmrc", "dist",
+	"node_modules", "tsconfig.json", "dist",
+	-- package managers
+	"pnpm-workspace.yaml", "pnpm-lock.yaml", ".npmrc", "bun.lockb",
 	-- js/ts (others)
-	".prettierrc.yml", ".eslintrc.yml", ".test.ts", "bun.lockb",
+	".prettierrc.yml", ".eslintrc.yml", ".test.ts",
+	-- nextjs
+	".next", "next.config.js", "postcss.config.cjs",
 	-- sveltekit
 	".svelte-kit", "svelte.config.js", "build", "vite.config.js",
 	-- tailwind
 	"tailwind.config.js", "postcss.config.js",
 	-- typescript (codegen)
-	".g.ts", ".g.d.ts",
+	".g.ts", ".g.d.ts", "tsconfig.tsbuildinfo"
 }
 
 -- file explorer
@@ -113,7 +117,7 @@ require("lualine").setup({
 require("FTerm").setup({
 	auto_close = false,
 	cmd = (function()
-		if vim.fn.findfile("pnpm-lock.yaml") ~= "" then return { "zsh", "-c", "pnpm run dev" } end
+		if vim.fn.findfile("pnpm-lock.yaml") ~= "" then return { "zsh", "-c", "pnpm --silent dev" } end
 		if vim.fn.findfile("bun.lockb") ~= "" then return { "bun", "run", "--silent", "dev" } end
 
 		return { "zsh" }

@@ -13,10 +13,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local opts = { buffer = args.buf, silent = true }
 
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+		vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 		vim.keymap.set("n", "E", vim.diagnostic.open_float, opts)
-		vim.keymap.set("n", "A", vim.lsp.buf.code_action, opts)
+		vim.keymap.set("n", "<leader>sa", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("n", "R", vim.lsp.buf.rename, opts)
 
 		pcall(function() vim.lsp.inlay_hint.enable(args.buf, true) end) -- inlay hint
@@ -63,6 +63,9 @@ require("lspconfig").svelte.setup({
 
 require("lspconfig").tsserver.setup({
 	capabilities = capabilities,
+	on_attach = function(client, bufnr)
+		require("twoslash-queries").attach(client, bufnr)
+	end,
 	settings = {
 		typescript = { inlayHints = { includeInlayParameterNameHints = "all" } },
 		javascript = { inlayHints = { includeInlayParameterNameHints = "all" } },
@@ -112,7 +115,7 @@ require("conform").setup({
 		typescriptreact = { { "prettierd", "prettier" } },
 		svelte = { { "prettierd", "prettier" } },
 		json = { { "prettierd", "prettier" } },
-		yaml = { "prettierd", "prettier" }
+		yaml = { { "prettierd", "prettier" } }
 	},
 	format_on_save = {
 		timeout_ms = 1000,

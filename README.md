@@ -24,9 +24,9 @@ rm init.sh
 
 ```bash
 echo "packages"
-sudo apt-get update && sudo apt-get upgrade -y
-sudo apt-get install -y curl git wget xz-utils unzip
-sudo apt-get install -y gcc g++ # neovim
+sudo apt-get update > /dev/null && sudo apt-get upgrade -y > /dev/null
+sudo apt-get install -y curl git wget xz-utils unzip  > /dev/null
+sudo apt-get install -y gcc g++  > /dev/null # neovim
 
 echo "nix"
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
@@ -40,7 +40,7 @@ sudo chmod +x /usr/local/bin/bob
 rm bob-linux-x86_64-openssl.zip
 
 echo "shell tools"
-sudo apt install -y exa jq ripgrep
+sudo apt install -y exa jq ripgrep > /dev/null
 nix-env -iA nixpkgs.zsh --quiet
 nix-env -iA nixpkgs.starship --quiet
 

@@ -30,7 +30,7 @@ sudo apt-get install -y gcc g++ # neovim
 
 echo "nix"
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
-. /home/mp281x/.nix-profile/etc/profile.d/nix.sh
+source /home/mp281x/.nix-profile/etc/profile.d/nix.sh
 
 echo "bob"
 wget --quiet https://github.com/MordechaiHadad/bob/releases/download/v2.8.1/bob-linux-x86_64-openssl.zip

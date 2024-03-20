@@ -31,15 +31,16 @@ require("lazy").setup({
 
 	-- language tools
 	{ "nvim-treesitter/nvim-treesitter",        build = ":TSUpdate" }, -- syntax hilight
-	{ 'stevearc/conform.nvim' },                                      -- formatter
-	{ 'marilari88/twoslash-queries.nvim' },                           -- // visualize typescript types with // ^?
+	{ "stevearc/conform.nvim" },                                      -- formatter
+	{ "marilari88/twoslash-queries.nvim" },                           -- // visualize typescript types with // ^?
+	{ "b0o/schemastore.nvim" },                                       -- download schema for json/yaml config file
 
 	-- lsp tools
 	{ "williamboman/mason-lspconfig.nvim" }, -- configure lsp installed by mason
 	{ "williamboman/mason.nvim" },          -- lsp manager
 	{ "neovim/nvim-lspconfig" },            -- lsp server
 
-	-- Autocompletion
+	-- Autocomplete
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/nvim-cmp" },
 	{ "L3MON4D3/LuaSnip" },

@@ -5,7 +5,7 @@ require("nvim-treesitter.configs").setup({
 	sync_install = false,
 	autotag = { enable = true },
 	highlight = { enable = true },
-	ensure_installed = { "svelte", "typescript", "lua", "bash", "markdown" },
+	ensure_installed = { "svelte", "typescript", "lua", "bash", "markdown", "json" },
 })
 
 -- format on save and keybinds
@@ -31,17 +31,43 @@ local capabilities = vim.tbl_deep_extend(
 )
 
 require("mason").setup()
-require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "tsserver", "svelte", "tailwindcss", "eslint" } })
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		"lua_ls",
+		"yamlls", "jsonls",
+		"tsserver", "svelte", "tailwindcss", "eslint",
+	}
+})
 
 require("lspconfig").lua_ls.setup({
 	capabilities = capabilities,
 	settings = { Lua = { diagnostics = { globals = { "vim" } } } }
 })
 
+require('lspconfig').jsonls.setup {
+	capabilities = capabilities,
+	settings = {
+		json = {
+			validate = { enable = true },
+			format = { enable = false },
+			schemas = require('schemastore').json.schemas(),
+		},
+	},
+}
+require('lspconfig').yamlls.setup {
+	capabilities = capabilities,
+	settings = {
+		yaml = {
+			format = { enable = false },
+			schemaStore = { enable = false, url = "" },
+			schemas = require('schemastore').yaml.schemas(),
+		},
+	},
+}
+
 require("lspconfig").tailwindcss.setup({
 	capabilities = capabilities,
-	filetypes = { "svelte", "typescriptreact"
-	}
+	filetypes = { "svelte", "typescriptreact" }
 })
 
 require("lspconfig").svelte.setup({

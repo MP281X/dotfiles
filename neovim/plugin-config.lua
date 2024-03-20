@@ -37,7 +37,7 @@ local file_filters = {
 	-- tailwind
 	"tailwind.config.js", "postcss.config.js",
 	-- typescript (codegen)
-	".g.ts", ".g.d.ts", "tsconfig.tsbuildinfo"
+	".g.ts", ".g.d.ts", "tsconfig.tsbuildinfo", ".eslintcache"
 }
 
 -- file explorer

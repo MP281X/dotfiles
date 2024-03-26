@@ -19,6 +19,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>sa", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("n", "R", vim.lsp.buf.rename, opts)
 
+		vim.cmd [[autocmd BufWritePre * lua pcall(function() vim.cmd("EslintFixAll") end)]]
 		pcall(function() vim.lsp.inlay_hint.enable(args.buf, true) end) -- inlay hint
 	end,
 })
@@ -101,7 +102,6 @@ require("lspconfig").tsserver.setup({
 require("lspconfig").eslint.setup({
 	capabilities = capabilities,
 	filetypes = { "svelte", "typescriptreact", "javascript", "typescript" },
-	settings = { packageManager = 'bun' },
 })
 
 local cmp = require("cmp")

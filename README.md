@@ -68,8 +68,8 @@ mkdir -p ~/.ssh && cp /mnt/d/secrets/.ssh/id_rsa ~/.ssh/id_rsa && chmod 0400 ~/.
 
 echo "git"
 gh auth login
-git config --global user.name = mp281x
-git config --global user.email = paludgnachmatteo.dev@gmail.com
+git config --global user.name mp281x
+git config --global user.email paludgnachmatteo.dev@gmail.com
 git config --global --replace-all core.editor nvim
 git config --global pull.rebase true
 git clone https://github.com/MP281X/dotfiles ~/dotfiles

@@ -67,8 +67,10 @@ git clone https://github.com/MP281X/dotfiles ~/dotfiles
 (cd ~/dotfiles && bash ./scripts/dotfiles.sh)
 #----------------------------------------------------------------------------------------------------------------
 
-log "pnpm"
+log "nodejs"
 curl -fsSL https://get.pnpm.io/install.sh | sh -
+export PNPM_HOME="/home/mp281x/.local/share/pnpm"
+case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac
 pnpm env use --global lts
 #----------------------------------------------------------------------------------------------------------------
 

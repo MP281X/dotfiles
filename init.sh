@@ -67,5 +67,10 @@ git clone https://github.com/MP281X/dotfiles ~/dotfiles
 (cd ~/dotfiles && bash ./scripts/dotfiles.sh)
 #----------------------------------------------------------------------------------------------------------------
 
+log "pnpm"
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+pnpm env use --global lts
+#----------------------------------------------------------------------------------------------------------------
+
 log "bun"
 curl -fsSL https://bun.sh/install | bash

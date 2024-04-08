@@ -13,7 +13,7 @@ sudo apt-get install -y gcc g++  > /dev/null # neovim
 #----------------------------------------------------------------------------------------------------------------
 
 log "nix"
-sh <(curl -L https://nixos.org/nix/install) --no-daemon > /dev/null
+sh <(curl -s -L https://nixos.org/nix/install) --no-daemon > /dev/null
 source /home/mp281x/.nix-profile/etc/profile.d/nix.sh
 #----------------------------------------------------------------------------------------------------------------
 

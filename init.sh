@@ -29,7 +29,7 @@ log "shell"
 nix-env -iA nixpkgs.zsh --quiet
 nix-env -iA nixpkgs.eza --quiet
 nix-env -iA nixpkgs.starship --quiet
-sudo chsh -s "$(command -v zsh)" "${USER}"
+sudo chsh -s "$(command -v zsh)" $USER
 zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 > /dev/null
 #----------------------------------------------------------------------------------------------------------------
 
@@ -58,8 +58,7 @@ log "git"
 nix-env -iA nixpkgs.gh --quiet
 nix-env -iA nixpkgs.gitui --quiet
 
-git config --global user.name mp281x
-git config --global user.email paludgnachmatteo.dev@gmail.com
+git config --global user.name $USER
 git config --global --replace-all core.editor nvim
 git config --global pull.rebase true
 
@@ -69,10 +68,20 @@ git clone https://github.com/MP281X/dotfiles ~/dotfiles
 
 log "nodejs"
 curl -fsSL https://get.pnpm.io/install.sh | sh -
-export PNPM_HOME="/home/mp281x/.local/share/pnpm"
+export PNPM_HOME="~/.local/share/pnpm"
 case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac
 pnpm env use --global lts
 #----------------------------------------------------------------------------------------------------------------
 
 log "bun"
 curl -fsSL https://bun.sh/install | bash
+#----------------------------------------------------------------------------------------------------------------
+
+log "docker"
+echo "[boot]\nsystemd=true" > /etc/wsl.conf
+curl -fsSL https://get.docker.com | sh
+sudo usermod -aG docker $USER
+
+#----------------------------------------------------------------------------------------------------------------
+log "reboot"
+wsl.exe --shutdown

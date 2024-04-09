@@ -59,6 +59,7 @@ nix-env -iA nixpkgs.gh --quiet
 nix-env -iA nixpkgs.gitui --quiet
 
 git config --global user.name $USER
+git config --global user.email paludgnachmatteo.dev@gmail.com
 git config --global --replace-all core.editor nvim
 git config --global pull.rebase true
 
@@ -68,7 +69,7 @@ git clone https://github.com/MP281X/dotfiles ~/dotfiles
 
 log "nodejs"
 curl -fsSL https://get.pnpm.io/install.sh | sh -
-export PNPM_HOME="~/.local/share/pnpm"
+export PNPM_HOME="/home/$USER/.local/share/pnpm"
 case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac
 pnpm env use --global lts
 #----------------------------------------------------------------------------------------------------------------
@@ -78,7 +79,7 @@ curl -fsSL https://bun.sh/install | bash
 #----------------------------------------------------------------------------------------------------------------
 
 log "docker"
-echo "[boot]\nsystemd=true" > /etc/wsl.conf
+sudo sh -c 'echo "[boot]\nsystemd=true" > /etc/wsl.conf'
 curl -fsSL https://get.docker.com | sh
 sudo usermod -aG docker $USER
 

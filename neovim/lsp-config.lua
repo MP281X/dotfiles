@@ -35,7 +35,6 @@ require("mason").setup()
 require("mason-lspconfig").setup({
 	ensure_installed = {
 		"lua_ls",
-		"yamlls", "jsonls",
 		"tsserver", "svelte", "tailwindcss", "eslint",
 	}
 })
@@ -44,27 +43,6 @@ require("lspconfig").lua_ls.setup({
 	capabilities = capabilities,
 	settings = { Lua = { diagnostics = { globals = { "vim" } } } }
 })
-
-require('lspconfig').jsonls.setup {
-	capabilities = capabilities,
-	settings = {
-		json = {
-			validate = { enable = true },
-			format = { enable = false },
-			schemas = require('schemastore').json.schemas(),
-		},
-	},
-}
-require('lspconfig').yamlls.setup {
-	capabilities = capabilities,
-	settings = {
-		yaml = {
-			format = { enable = false },
-			schemaStore = { enable = false, url = "" },
-			schemas = require('schemastore').yaml.schemas(),
-		},
-	},
-}
 
 require("lspconfig").tailwindcss.setup({
 	capabilities = capabilities,

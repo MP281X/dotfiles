@@ -1,7 +1,7 @@
 function prompt {
 	$folder = (Get-Location).Path | Split-Path -Leaf
     Write-Host -NoNewline -ForegroundColor Blue "$folder "
-    Write-Host -NoNewline -ForegroundColor Red "❯ "
+    Write-Host -NoNewline -ForegroundColor Red ">"
     return " "
    }
 

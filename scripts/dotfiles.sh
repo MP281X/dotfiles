@@ -24,7 +24,7 @@ appdataLocal="$(wslpath "$(cmd.exe /c 'echo %LOCALAPPDATA%' 2>/dev/null | tr -d 
 cp ./themes/terminal.json $appdataLocal/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json
 
 echo "powershell"
-profile="$(wslpath "$(pwsh.exe -Command '$PROFILE' 2>/dev/null | tr -d '\r')")"
+profile="$(wslpath "$(powershell.exe -command '$profile' 2>/dev/null | tr -d '\r')")"
 cp ./profile.ps1 "$profile";
 
 [ -d /mnt/c ] && echo "win32yank"

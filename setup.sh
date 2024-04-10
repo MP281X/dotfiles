@@ -19,12 +19,6 @@ sh <(curl -s -L https://nixos.org/nix/install) --no-daemon > /dev/null
 source /home/mp281x/.nix-profile/etc/profile.d/nix.sh
 #----------------------------------------------------------------------------------------------------------------
 
-log "tools"
-nix-env -iA nixpkgs.ripgrep --quiet
-nix-env -iA nixpkgs.jq --quiet
-nix-env -iA nixpkgs.atlas --quiet
-#----------------------------------------------------------------------------------------------------------------
-
 log "shell"
 nix-env -iA nixpkgs.zsh --quiet
 nix-env -iA nixpkgs.eza --quiet
@@ -40,6 +34,8 @@ sudo mv bob /usr/local/bin/bob && sudo chmod +x /usr/local/bin/bob
 #----------------------------------------------------------------------------------------------------------------
 
 log "neovim"
+nix-env -iA nixpkgs.ripgrep --quiet
+nix-env -iA nixpkgs.jq --quiet
 bob use nightly
 #----------------------------------------------------------------------------------------------------------------
 

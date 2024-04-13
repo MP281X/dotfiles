@@ -1,6 +1,7 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
+vim.g.have_nerd_font = true
 
 -- file encoding
 vim.scriptencoding = "utf-8"
@@ -29,7 +30,7 @@ vim.opt.wrap = false
 -- search settings
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 -- colors
@@ -54,6 +55,14 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
+-- Decrease update time
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+
+-- Show ending spaces
+vim.opt.list = true
+vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
+
 -- global statusline
 vim.opt.laststatus = 3
 
@@ -69,3 +78,9 @@ local style = {
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, style)
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, style)
 vim.diagnostic.config({ signs = true, severity_sort = true, float = style })
+
+-- highlight selected text
+vim.api.nvim_create_autocmd('TextYankPost', {
+	group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+	callback = function() vim.highlight.on_yank() end,
+})

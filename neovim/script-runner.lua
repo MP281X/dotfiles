@@ -73,7 +73,7 @@ local runScript = function(selected)
 				file_path = string.sub(file_path, #root_path + 2) .. "/" .. script
 				if file_path.sub(file_path, 1, 1) == "/" then file_path = string.sub(file_path, 2) end
 
-				require("FTerm").scratch({ cmd = "(cd " .. root_path .. " && bun test --only " .. file_path .. ")" })
+				require("FTerm").scratch({ cmd = "(cd " .. root_path .. " && bun test " .. file_path .. ")" })
 				return
 			end
 
@@ -88,3 +88,36 @@ end
 vim.keymap.set("n", "<leader>ss", function()
 	vim.ui.select(getScriptNames(), { prompt = "Select script" }, runScript)
 end, {})
+
+local runTest = function()
+	-- check if the test file is open
+	if string.match(vim.fn.expand('%:t'), "%.test%.ts$") == nil then
+		local testFile = vim.fn.expand('%:p'):gsub("%.ts$", ".test.ts")
+
+		-- open test file
+		vim.cmd(":e " .. testFile)
+
+		-- don't run the test if the file didn't existed
+		if vim.fn.filereadable(testFile) == 0 then return end
+	end
+
+	local file_path = vim.fn.expand("%:p:h")
+	local root_path = file_path
+
+	repeat
+		if vim.fn.filereadable(root_path .. "/package.json") == 1 then
+			file_path = string.sub(file_path, #root_path + 2) .. "/" .. vim.fn.fnamemodify(vim.fn.expand("%:p"), ":t")
+			if file_path.sub(file_path, 1, 1) == "/" then file_path = string.sub(file_path, 2) end
+
+			require("FTerm").scratch({ cmd = "(cd " .. root_path .. " && bun test --only " .. file_path .. ")" })
+			return
+		end
+
+		root_path = vim.fn.fnamemodify(root_path, ":h")
+	until root_path == ""
+
+	print("package.json not found")
+end
+
+-- test runner
+vim.keymap.set("n", "<A-t>", function() runTest() end, {})

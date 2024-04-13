@@ -72,8 +72,15 @@ require("lspconfig").tsserver.setup({
 		require("twoslash-queries").attach(client, bufnr)
 	end,
 	settings = {
-		typescript = { inlayHints = { includeInlayParameterNameHints = "all" } },
-		javascript = { inlayHints = { includeInlayParameterNameHints = "all" } },
+		typescript = {
+			validate = { enable = true },
+			inlayHints = { includeInlayParameterNameHints = "all" },
+			tsserver = { experimental = { enableProjectDiagnostics = true } }
+		},
+		javascript = {
+			validate = { enable = true },
+			inlayHints = { includeInlayParameterNameHints = "all" }
+		},
 	},
 })
 

@@ -66,6 +66,9 @@ vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 -- global statusline
 vim.opt.laststatus = 3
 
+-- preview sobstitution
+vim.opt.inccommand = 'split'
+
 -- floating info border style
 local style = {
 	focusable = true,

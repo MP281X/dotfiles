@@ -18,9 +18,6 @@ vim.keymap.set("n", "<C-\\>", ":bd<CR>")
 vim.keymap.set("n", "<<", ":bp<CR>")
 vim.keymap.set("n", ">>", ":bn<CR>")
 
--- search and replace
-vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
 -- telescope
 vim.keymap.set("n", "<leader>sf", function() require("telescope.builtin").find_files() end, {})
 vim.keymap.set("n", "<leader>sc", function() require("telescope.builtin").live_grep() end, {})

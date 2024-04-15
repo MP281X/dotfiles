@@ -41,6 +41,9 @@ cd() { builtin cd "$@" && exa --git-ignore --icons }
 # git alias
 alias g="gitui"
 
+# vscode 
+code() { cmd.exe /c start "http://localhost:8080/?folder=$PWD" }
+
 # show file in current directory on start
 rm -f ~/.local/state/nvim/shada/main.shada
 ls

@@ -36,3 +36,4 @@ debian run "bash <(curl -s -L https://raw.githubusercontent.com/MP281X/dotfiles/
 - TwoSlash Query Comments
 - Pretty Typescript Errors
 - Template String Converter
+- Package Json Upgrade

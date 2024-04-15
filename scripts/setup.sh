@@ -68,7 +68,7 @@ git config --global --replace-all core.editor nvim
 eval `ssh-agent -s`
 ssh-add ~/.ssh/id_rsa
 
-git clone -o git@github.com:MP281X/dotfiles.git ~/dotfiles
+GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git clone git@github.com:MP281X/dotfiles.git ~/dotfiles
 (cd ~/dotfiles && bash ./scripts/dotfiles.sh)
 #----------------------------------------------------------------------------------------------------------------
 

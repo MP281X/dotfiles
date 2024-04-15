@@ -63,6 +63,7 @@ git config --global user.name $USER
 git config --global user.email paludgnachmatteo.dev@gmail.com
 
 git config --global pull.rebase true
+git config --global credential.helper cache
 git config --global --replace-all core.editor nvim
 
 eval `ssh-agent -s`

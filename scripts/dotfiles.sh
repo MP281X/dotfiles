@@ -24,9 +24,9 @@ profile="$(wslpath "$(powershell.exe -command '$profile' 2>/dev/null | tr -d '\r
 cp configs/profile.ps1 "$profile";
 
 echo "vscode"
-cp configs/vscode.jsonc ~/.local/share/code-server/User/settings.json
-cp configs/code-server.yaml ~/.config/code-server/config.yaml
-sudo systemctl restart code-server@$USER
+cp -p configs/vscode.jsonc ~/.local/share/code-server/User/settings.json
+cp -p configs/code-server.yaml ~/.config/code-server/config.yaml
+sudo systemctl restart code-server@$USER 2>/dev/null
 
 [ -d /mnt/c ] && echo "win32yank"
 [ -d /mnt/c ] && mkdir -p /mnt/c/tools/ && cp configs/win32yank.exe /mnt/c/tools/win32yank.exe

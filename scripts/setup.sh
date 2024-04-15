@@ -39,6 +39,12 @@ nix-env -iA nixpkgs.jq --quiet
 bob use nightly
 #----------------------------------------------------------------------------------------------------------------
 
+log "code-server"
+curl -fsSL https://code-server.dev/install.sh | sh
+sudo systemctl enable --now code-server@$USER 2>/dev/null
+sudo systemctl start --now code-server@$USER 2>/dev/null
+#----------------------------------------------------------------------------------------------------------------
+
 log "kubernetes"
 nix-env -iA nixpkgs.kubectl --quiet
 nix-env -iA nixpkgs.k9s --quiet
@@ -60,7 +66,7 @@ git config --global pull.rebase true
 git config --global credential.helper cache
 git config --global --replace-all core.editor nvim
 
-git clone git@github.com:MP281X/dotfiles.git ~/dotfiles
+git clone -o git@github.com:MP281X/dotfiles.git ~/dotfiles
 (cd ~/dotfiles && bash ./scripts/dotfiles.sh)
 #----------------------------------------------------------------------------------------------------------------
 
@@ -73,12 +79,6 @@ pnpm env use --global lts
 
 log "bun"
 curl -fsSL https://bun.sh/install | bash
-#----------------------------------------------------------------------------------------------------------------
-
-log "code-server"
-curl -fsSL https://code-server.dev/install.sh | sh
-sudo systemctl enable --now code-server@$USER
-sudo systemctl start --now code-server@$USER
 #----------------------------------------------------------------------------------------------------------------
 
 log "docker"

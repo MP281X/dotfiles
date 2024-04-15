@@ -1,7 +1,7 @@
 ## Setup wsl (run as admin)
 
 ```bash
-iwr -useb https://raw.githubusercontent.com/MP281X/dotfiles/main/scripts/setup/setup.ps1 | iex
+iwr https://raw.githubusercontent.com/MP281X/dotfiles/main/scripts/setup.ps1 | iex
 ```
 
 ## Vscode extensions

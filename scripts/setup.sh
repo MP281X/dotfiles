@@ -46,7 +46,9 @@ sudo systemctl start --now code-server@$USER 2>/dev/null
 #----------------------------------------------------------------------------------------------------------------
 
 log "code-server extensions"
-code() { code-server --force --install-extension "$1" >/dev/null }
+code() { 
+	code-server --force --install-extension "$1" >/dev/null 
+}
 
 code "usernamehw.errorlens"
 code "dbaeumer.vscode-eslint"

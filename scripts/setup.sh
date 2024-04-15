@@ -45,6 +45,24 @@ sudo systemctl enable --now code-server@$USER 2>/dev/null
 sudo systemctl start --now code-server@$USER 2>/dev/null
 #----------------------------------------------------------------------------------------------------------------
 
+log "code-server extensions"
+code() { code-server --force --install-extension "$1" >/dev/null }
+
+code "usernamehw.errorlens"
+code "dbaeumer.vscode-eslint"
+code "jolaleye.horizon-theme-vscode"
+code "PKief.material-icon-theme"
+code "codeandstuff.package-json-upgrade"
+code "esbenp.prettier-vscode"
+code "YoavBls.pretty-ts-errors"
+code "cmoog.sqlnotebook"
+code "svelte.svelte-vscode"
+code "bradlc.vscode-tailwindcss"
+code "meganrogge.template-string-converter"
+code "Orta.vscode-twoslash-queries"
+code "pomdtr.excalidraw-editor"
+#----------------------------------------------------------------------------------------------------------------
+
 log "kubernetes"
 nix-env -iA nixpkgs.kubectl --quiet
 nix-env -iA nixpkgs.k9s --quiet

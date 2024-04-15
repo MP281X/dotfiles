@@ -23,15 +23,13 @@ vim.cmd.colorscheme("kanagawa")
 
 local file_filters = {
 	--global
-	".git", ".gitignore", ".dockerignore",
+	".git", ".gitignore",
 	-- node
 	"node_modules", "tsconfig.json", "dist",
 	-- package managers
 	"pnpm-workspace.yaml", "pnpm-lock.yaml", ".npmrc", "bun.lockb",
 	-- js/ts (others)
 	".prettierrc.yml", ".eslintrc.yml", ".test.ts",
-	-- nextjs
-	".next", "next.config.js", "postcss.config.cjs",
 	-- sveltekit
 	".svelte-kit", "svelte.config.js", "build", "vite.config.js",
 	-- tailwind

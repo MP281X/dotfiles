@@ -6,23 +6,27 @@ cp neovim/neovim-config.lua ~/.config/nvim/init.lua
 cp -r neovim/. ~/.config/nvim/lua/
 
 echo "starship"
-cp themes/starship.toml ~/.config/starship.toml
+cp configs/starship.toml ~/.config/starship.toml
 
 echo "zsh"
-cp zshrc ~/.zshrc
+cp configs/zshrc ~/.zshrc
 
 echo "gitui"
 mkdir -p ~/.config/gitui	
-cp themes/gitui.ron ~/.config/gitui/theme.ron
+cp configs/gitui.ron ~/.config/gitui/theme.ron
 
 echo "windows terminal"
 appdataLocal="$(wslpath "$(cmd.exe /c 'echo %LOCALAPPDATA%' 2>/dev/null | tr -d '\r')")"
-cp ./themes/terminal.json $appdataLocal/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json
+cp configs/terminal.json $appdataLocal/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json
 
 echo "powershell"
 profile="$(wslpath "$(powershell.exe -command '$profile' 2>/dev/null | tr -d '\r')")"
-cp ./profile.ps1 "$profile";
+cp configs/profile.ps1 "$profile";
+
+echo "vscode"
+cp configs/vscode.jsonc ~/.local/share/code-server/User/settings.json
+cp configs/code-server.yaml ~/.config/code-server/config.yaml
+sudo systemctl restart code-server@$USER
 
 [ -d /mnt/c ] && echo "win32yank"
-[ -d /mnt/c ] && mkdir -p /mnt/c/tools/
-[ -d /mnt/c ] && cp scripts/win32yank.exe /mnt/c/tools/win32yank.exe
+[ -d /mnt/c ] && mkdir -p /mnt/c/tools/ && cp configs/win32yank.exe /mnt/c/tools/win32yank.exe

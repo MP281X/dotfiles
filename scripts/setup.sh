@@ -74,6 +74,12 @@ log "bun"
 curl -fsSL https://bun.sh/install | bash
 #----------------------------------------------------------------------------------------------------------------
 
+log "code-server"
+curl -fsSL https://code-server.dev/install.sh | sh
+sudo systemctl enable --now code-server@$USER
+sudo systemctl start --now code-server@$USER
+#----------------------------------------------------------------------------------------------------------------
+
 log "docker"
 sudo sh -c 'echo "[boot]\nsystemd=true" > /etc/wsl.conf'
 curl -fsSL https://get.docker.com | sh

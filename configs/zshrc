@@ -46,4 +46,5 @@ code() { cmd.exe /c start "http://localhost:8080/?folder=$PWD" }
 
 # show file in current directory on start
 rm -f ~/.local/state/nvim/shada/main.shada
+eval $(ssh-agent) >/dev/null && ssh-add ~/.ssh/id_rsa 2>/dev/null
 ls

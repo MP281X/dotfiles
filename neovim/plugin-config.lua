@@ -23,7 +23,7 @@ vim.cmd.colorscheme("kanagawa")
 
 local file_filters = {
 	--global
-	".git", ".gitignore",
+	".git", ".gitignore", ".vscode",
 	-- node
 	"node_modules", "tsconfig.json", "dist",
 	-- package managers

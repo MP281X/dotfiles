@@ -90,6 +90,7 @@
   "editor.fontSize": 13,
   "editor.folding": false,
   "editor.fontLigatures": true,
+	"breadcrumbs.enabled": false,
 	"window.commandCenter": false,
   "editor.matchBrackets": "near",
   "workbench.tips.enabled": false,

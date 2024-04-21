@@ -29,7 +29,7 @@ local file_filters = {
 	-- package managers
 	"pnpm-workspace.yaml", "pnpm-lock.yaml", ".npmrc", "bun.lockb",
 	-- js/ts (others)
-	".prettierrc.yml", ".eslintrc.yml", ".test.ts",
+	".prettierrc.yml", ".eslintrc.yml",
 	-- sveltekit
 	".svelte-kit", "svelte.config.js", "build", "vite.config.js",
 	-- tailwind

@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "R", vim.lsp.buf.rename, opts)
 
 		vim.cmd [[autocmd BufWritePre * lua pcall(function() vim.cmd("EslintFixAll") end)]]
-		pcall(function() vim.lsp.inlay_hint.enable(args.buf, true) end) -- inlay hint
+		pcall(function() vim.lsp.inlay_hint.enable(true, args.buf) end) -- inlay hint
 	end,
 })
 

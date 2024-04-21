@@ -41,3 +41,23 @@ vim.keymap.set("n", "<leader>g", ":Gitsigns preview_hunk<CR>", {})
 -- toggle terminal
 vim.keymap.set("n", "<leader>t", function() require("FTerm").open() end)
 vim.keymap.set("t", "<Esc>", function() require("FTerm").close() end)
+
+-- reload typescript lsp
+vim.keymap.set("n", "<leader>r", function()
+	local clients = vim.lsp.get_active_clients()
+	local currentBuffer = vim.api.nvim_get_current_buf()
+
+	for _, client in ipairs(clients) do
+		-- check if the client is the typescript lsp
+		if client.name ~= "tsserver" then goto continue end
+
+		-- check if the lsp client is connected to the current buffer
+		local clientBuffers = vim.lsp.get_buffers_by_client_id(client.id)
+		if not table.concat(clientBuffers, ","):find(currentBuffer) then goto continue end
+
+		vim.lsp.stop_client(client.id)
+		vim.defer_fn(function() vim.api.nvim_command("LspStart tsserver") end, 100)
+
+		::continue::
+	end
+end)

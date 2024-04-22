@@ -25,7 +25,7 @@ local file_filters = {
 	--global
 	".git", ".gitignore", ".vscode",
 	-- node
-	"node_modules", "tsconfig.json", "dist",
+	"node_modules", "dist",
 	-- package managers
 	"pnpm-workspace.yaml", "pnpm-lock.yaml", ".npmrc", "bun.lockb",
 	-- js/ts (others)

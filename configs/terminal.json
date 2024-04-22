@@ -2,6 +2,7 @@
 	"copyOnSelect": false,
 	"copyFormatting": "none",
 	"launchMode": "maximized",
+	"confirmCloseAllTabs": false,
 	"defaultProfile": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
 	"actions": [
 		{ "keys": "ctrl+v", "command": "paste" },
@@ -10,6 +11,7 @@
 	"profiles": {
 		"defaults": {
 			"elevate": true,
+			"closeOnExit": "always",
 			"colorScheme": "Kanagawa",
 			"scrollbarState": "hidden",
 			"font": { "face": "JetBrainsMono Nerd Font Mono", "size": 14 },

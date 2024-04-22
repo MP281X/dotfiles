@@ -55,8 +55,17 @@ vim.keymap.set("n", "<leader>r", function()
 		local clientBuffers = vim.lsp.get_buffers_by_client_id(client.id)
 		if not table.concat(clientBuffers, ","):find(currentBuffer) then goto continue end
 
+		-- stop the lsp server
 		vim.lsp.stop_client(client.id)
-		vim.defer_fn(function() vim.api.nvim_command("LspStart tsserver") end, 100)
+		vim.defer_fn(function()
+			-- start a new lsp client with the same config of the previous
+			local clientId = vim.lsp.start_client(client.config)
+
+			-- attach the new lsp client to the buffers the previous client was connected to
+			vim.defer_fn(function()
+				for _, bufnr in ipairs(clientBuffers) do vim.lsp.buf_attach_client(bufnr, clientId) end
+			end, 100)
+		end, 100)
 
 		::continue::
 	end

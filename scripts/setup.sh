@@ -63,6 +63,7 @@ code "bradlc.vscode-tailwindcss"
 code "meganrogge.template-string-converter"
 code "Orta.vscode-twoslash-queries"
 code "pomdtr.excalidraw-editor"
+code "biomejs.biome"
 #----------------------------------------------------------------------------------------------------------------
 
 log "kubernetes"

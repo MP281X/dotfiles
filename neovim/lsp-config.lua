@@ -35,7 +35,8 @@ require("mason").setup()
 require("mason-lspconfig").setup({
 	ensure_installed = {
 		"lua_ls",
-		"tsserver", "svelte", "tailwindcss", "eslint",
+		"tsserver", "svelte", "tailwindcss",
+		"eslint", "biome",
 	}
 })
 
@@ -68,9 +69,7 @@ require("lspconfig").svelte.setup({
 
 require("lspconfig").tsserver.setup({
 	capabilities = capabilities,
-	on_attach = function(client, bufnr)
-		require("twoslash-queries").attach(client, bufnr)
-	end,
+	on_attach = function(client, bufnr) require("twoslash-queries").attach(client, bufnr) end,
 	settings = {
 		typescript = {
 			validate = { enable = true },
@@ -84,10 +83,9 @@ require("lspconfig").tsserver.setup({
 	},
 })
 
-require("lspconfig").eslint.setup({
-	capabilities = capabilities,
-	filetypes = { "svelte", "typescriptreact", "javascript", "typescript" },
-})
+require("lspconfig").eslint.setup({ capabilities = capabilities })
+
+require("lspconfig").biome.setup({ capabilities = capabilities })
 
 local cmp = require("cmp")
 cmp.setup({
@@ -118,7 +116,7 @@ cmp.setup({
 	},
 })
 
--- prettier
+-- formatters
 require("conform").setup({
 	formatters_by_ft = {
 		typescript = { { "prettierd", "prettier" } },

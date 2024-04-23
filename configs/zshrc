@@ -40,6 +40,7 @@ cd() { builtin cd "$@" && exa --git-ignore --icons }
 # git alias
 alias g="gitui"
 
+alias close_wsl="wsl.exe --shutdown"
 # vscode 
 code() { cmd.exe /c start "http://localhost:8080/?folder=$PWD" }
 

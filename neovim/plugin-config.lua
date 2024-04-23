@@ -25,11 +25,11 @@ local file_filters = {
 	--global
 	".git", ".gitignore", ".vscode",
 	-- node
-	"node_modules", "dist",
+	"node_modules", "dist", "tsconfig.json",
 	-- package managers
 	"pnpm-workspace.yaml", "pnpm-lock.yaml", ".npmrc", "bun.lockb",
 	-- js/ts (others)
-	".prettierrc.yml", ".eslintrc.yml",
+	".prettierrc.yml", ".eslintrc.yml", ".prettierrc.yaml", ".eslintrc.yaml",
 	-- sveltekit
 	".svelte-kit", "svelte.config.js", "build", "vite.config.js",
 	-- tailwind

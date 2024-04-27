@@ -12,13 +12,11 @@ case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac
 # nix
 if  [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile/etc/profile.d/nix.sh"; fi
 
-# disable the rest of the configuration for non interactive scripts
-[[ $- == *i* ]] || return
-
 # navigation
-alias ls="exa --icons --git-ignore"
-alias la="exa --icons -a"
-alias tree="exa --tree --git-ignore"
+ignore_pattern="~/.bun|~/.cache|~/.nix-defexpr|~/.nix-profile|~/.npm|node_modules"
+alias ls="exa --icons --git-ignore --ignore-glob='$ignore_pattern'"
+alias la="exa --icons --all"
+alias tree="exa --tree --git-ignore --ignore-glob='$ignore_pattern'"
 cd() {
     builtin cd "$@" && exa --git-ignore --icons
 }
@@ -36,6 +34,9 @@ alias ssh-dev="ssh $USER@dev.mp281x.xyz"
 
 # wsl
 alias restart="wsl.exe --shutdown"
+
+# disable the rest of the configuration for non interactive scripts
+[[ $- == *i* ]] || return
 
 # clean files
 rm -f ~/.local/state/nvim/shada/main.shada

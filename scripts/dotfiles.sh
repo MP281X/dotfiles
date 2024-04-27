@@ -9,7 +9,7 @@ echo "starship"
 cp configs/starship.toml ~/.config/starship.toml
 
 echo "bash"
-cp configs/bashrc ~/.bashrc
+cp configs/bashrc ~/.bash_profile
 
 echo "gitui"
 mkdir -p ~/.config/gitui	

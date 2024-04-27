@@ -8,8 +8,8 @@ cp -r neovim/. ~/.config/nvim/lua/
 echo "starship"
 cp configs/starship.toml ~/.config/starship.toml
 
-echo "zsh"
-cp configs/zshrc ~/.zshrc
+echo "bash"
+cp configs/bashrc ~/.bashrc
 
 echo "gitui"
 mkdir -p ~/.config/gitui	

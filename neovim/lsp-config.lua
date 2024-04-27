@@ -36,7 +36,7 @@ require("mason-lspconfig").setup({
 	ensure_installed = {
 		"lua_ls",
 		"tsserver", "svelte", "tailwindcss",
-		"eslint", "biome",
+		"eslint",
 	}
 })
 
@@ -84,8 +84,6 @@ require("lspconfig").tsserver.setup({
 })
 
 require("lspconfig").eslint.setup({ capabilities = capabilities })
-
-require("lspconfig").biome.setup({ capabilities = capabilities })
 
 local cmp = require("cmp")
 cmp.setup({

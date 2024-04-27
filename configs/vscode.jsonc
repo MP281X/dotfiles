@@ -70,19 +70,14 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
 
-  // svelte
-  "svelte.enable-ts-plugin": true,
-
   // bun
-  "npm.packageManager": "bun",
+  "npm.packageManager": "pnpm",
 
 	// formatter and linter
-  "editor.defaultFormatter": "biomejs.biome",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",
-		"quickfix.biome": "always",
-    "source.fixAll.stylelint": "always",
-		"source.organizeImports.biome": "always"
+    "source.fixAll.stylelint": "always"
   },
 
   //! -------- ui --------

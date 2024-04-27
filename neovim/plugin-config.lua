@@ -35,7 +35,9 @@ local file_filters = {
 	-- tailwind
 	"tailwind.config.js", "postcss.config.js",
 	-- typescript (codegen)
-	".g.ts", ".g.d.ts", "tsconfig.tsbuildinfo", ".eslintcache"
+	".g.ts", ".g.d.ts", "tsconfig.tsbuildinfo",
+	-- others
+	".eslintcache", ".attest"
 }
 
 -- file explorer
@@ -115,7 +117,7 @@ require("lualine").setup({
 require("FTerm").setup({
 	auto_close = false,
 	cmd = (function()
-		if vim.fn.findfile("pnpm-lock.yaml") ~= "" then return { "zsh", "-c", "pnpm --silent dev" } end
+		if vim.fn.findfile("pnpm-workspace.yaml") ~= "" then return { "zsh", "-c", "pnpm --silent dev" } end
 		if vim.fn.findfile("bun.lockb") ~= "" then return { "bun", "run", "--silent", "dev" } end
 
 		return { "zsh" }

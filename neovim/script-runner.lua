@@ -54,10 +54,8 @@ local runScript = function(selected)
 	-- find the correct node package manager and run the script
 	if type == "node" then
 		local packet_manager = ""
-		if vim.fn.findfile("pnpm-lock.yaml") ~= "" then packet_manager = "pnpm" end
-		if vim.fn.findfile("yarn.lock") ~= "" then packet_manager = "yarn" end
+		if vim.fn.findfile("pnpm-workspace.yaml") ~= "" then packet_manager = "pnpm" end
 		if vim.fn.findfile("bun.lockb") ~= "" then packet_manager = "bun" end
-		if vim.fn.findfile("package-lock.json") ~= "" then packet_manager = "npm" end
 		if packet_manager == "" then return end
 
 		require("FTerm").scratch({ cmd = packet_manager .. " run --silent " .. script })

@@ -20,10 +20,8 @@ source /home/mp281x/.nix-profile/etc/profile.d/nix.sh
 #----------------------------------------------------------------------------------------------------------------
 
 log "shell"
-nix-env -iA nixpkgs.zsh --quiet
 nix-env -iA nixpkgs.eza --quiet
 nix-env -iA nixpkgs.starship --quiet
-sudo chsh -s "$(command -v zsh)" $USER
 zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 > /dev/null
 #----------------------------------------------------------------------------------------------------------------
 
@@ -58,12 +56,8 @@ code "codeandstuff.package-json-upgrade"
 code "esbenp.prettier-vscode"
 code "YoavBls.pretty-ts-errors"
 code "cmoog.sqlnotebook"
-code "svelte.svelte-vscode"
-code "bradlc.vscode-tailwindcss"
-code "meganrogge.template-string-converter"
 code "Orta.vscode-twoslash-queries"
 code "pomdtr.excalidraw-editor"
-code "biomejs.biome"
 #----------------------------------------------------------------------------------------------------------------
 
 log "kubernetes"

@@ -67,6 +67,23 @@ nix-env -iA nixpkgs.kubeseal --quiet
 mkdir -p ~/.kube && cp /mnt/d/secrets/config ~/.kube/config
 #----------------------------------------------------------------------------------------------------------------
 
+log "nodejs"
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+export PNPM_HOME="/home/$USER/.local/share/pnpm"
+case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac
+pnpm env use --global lts
+#----------------------------------------------------------------------------------------------------------------
+
+log "bun"
+curl -fsSL https://bun.sh/install | bash
+#----------------------------------------------------------------------------------------------------------------
+
+log "docker"
+sudo sh -c 'echo "[boot]\nsystemd=true" > /etc/wsl.conf'
+curl -fsSL https://get.docker.com | sh
+sudo usermod -aG docker $USER
+#----------------------------------------------------------------------------------------------------------------
+
 log "ssh"
 mkdir -p ~/.ssh && cp /mnt/d/secrets/.ssh/id_rsa ~/.ssh/id_rsa && chmod 0400 ~/.ssh/id_rsa
 #----------------------------------------------------------------------------------------------------------------
@@ -85,22 +102,5 @@ GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git clone git@github.com:MP281
 (cd ~/dotfiles && bash ./scripts/dotfiles.sh)
 #----------------------------------------------------------------------------------------------------------------
 
-log "nodejs"
-curl -fsSL https://get.pnpm.io/install.sh | sh -
-export PNPM_HOME="/home/$USER/.local/share/pnpm"
-case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac
-pnpm env use --global lts
-#----------------------------------------------------------------------------------------------------------------
-
-log "bun"
-curl -fsSL https://bun.sh/install | bash
-#----------------------------------------------------------------------------------------------------------------
-
-log "docker"
-sudo sh -c 'echo "[boot]\nsystemd=true" > /etc/wsl.conf'
-curl -fsSL https://get.docker.com | sh
-sudo usermod -aG docker $USER
-
-#----------------------------------------------------------------------------------------------------------------
 log "reboot"
 wsl.exe --shutdown

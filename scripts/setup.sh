@@ -16,7 +16,7 @@ sudo apt-get install -y gcc g++  > /dev/null # neovim
 
 log "nix"
 sh <(curl -s -L https://nixos.org/nix/install) --no-daemon > /dev/null
-source /home/mp281x/.nix-profile/etc/profile.d/nix.sh
+source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 #----------------------------------------------------------------------------------------------------------------
 
 log "shell"
@@ -89,16 +89,18 @@ mkdir -p ~/.ssh && cp /mnt/d/secrets/.ssh/id_rsa ~/.ssh/id_rsa && chmod 0400 ~/.
 #----------------------------------------------------------------------------------------------------------------
 
 log "git"
+nix-env -iA nixpkgs.gh --quiet
 nix-env -iA nixpkgs.gitui --quiet
 
-git config --global user.name $USER
-git config --global user.email paludgnachmatteo.dev@gmail.com
+gh auth login --git-protocol https --hostname github.com --web
+git config --global user.name $(gh api user | jq -r '.name')
+git config --global user.email $(gh api user | jq -r '.email')
 
 git config --global pull.rebase true
 git config --global credential.helper cache
 git config --global --replace-all core.editor nvim
 
-GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git clone git@github.com:MP281X/dotfiles.git ~/dotfiles
+git clone https://github.com/MP281X/dotfiles.git ~/dotfiles
 (cd ~/dotfiles && bash ./scripts/dotfiles.sh)
 #----------------------------------------------------------------------------------------------------------------
 

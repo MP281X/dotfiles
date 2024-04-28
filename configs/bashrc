@@ -12,25 +12,39 @@ case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac
 # nix
 if  [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile/etc/profile.d/nix.sh"; fi
 
-# navigation
+# ls
 ignore_pattern="~/.bun|~/.cache|~/.nix-defexpr|~/.nix-profile|~/.npm|node_modules"
-alias ls="exa --icons --git-ignore --ignore-glob='$ignore_pattern'"
-alias la="exa --icons --all"
-alias tree="exa --tree --git-ignore --ignore-glob='$ignore_pattern'"
+exa_args="--icons --git-ignore --group-directories-first"
+alias la="exa $exa_args --all"
+alias ls="exa $exa_args --ignore-glob='$ignore_pattern'"
+alias tree="exa $exa_args --tree --ignore-glob='$ignore_pattern'"
+
+# navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias rm='rm -rf'
 cd() {
     builtin cd "$@" && exa --git-ignore --icons
 }
 
 # tools
 alias vi="nvim"
-alias g="gitui"
+alias k="k9s --headless -c ns"
+alias ssh-dev="ssh $USER@dev.mp281x.xyz"
 code() {
     cmd.exe /c start "http://localhost:8080/?folder=$PWD"
 }
 
-# kubernetes / ssh
-alias k="k9s --headless -c ns"
-alias ssh-dev="ssh $USER@dev.mp281x.xyz"
+# git
+alias g="gitui"
+gl() {
+	if [ $# -eq 0 ]; then gh repo list --json name,owner | jq -r '[.[] | "\(.owner.login)/\(.name)"]';
+  else gh repo list "$1" --json name,owner | jq -r '[.[] | "\(.owner.login)/\(.name)"]'; fi
+}
+gc() {
+	if [[ $1 == *"/"* ]]; then git clone --quiet "https://github.com/$1.git";
+  else git clone --quiet "https://github.com/$(git config --get user.name)/$1.git"; fi
+}
 
 # wsl
 alias restart="wsl.exe --shutdown"
@@ -46,8 +60,13 @@ rm -f ~/.bash_logout
 rm -f ~/.wget-hsts
 rm -f ~/.profile
 
-# git ssh fix
-eval "$(ssh-agent)" >/dev/null && ssh-add ~/.ssh/id_rsa 2>/dev/null
+# tab autocomplete
+bind 'TAB:menu-complete'
 
-# run starship
+# case insensitive autocomplete
+bind "set completion-ignore-case on";
+
+# disable the fat cursor
+echo -ne '\e[6 q'
+
 eval "$(starship init bash)"; ls

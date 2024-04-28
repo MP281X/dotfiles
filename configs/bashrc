@@ -46,6 +46,10 @@ gc() {
   else git clone --quiet "https://github.com/$(git config --get user.name)/$1.git"; fi
 }
 
+# llm
+alias coding-llm="ollama run custom-coding-model"
+alias communications-llm="ollama run custom-communications-model"
+
 # wsl
 alias restart="wsl.exe --shutdown"
 
@@ -55,6 +59,7 @@ alias restart="wsl.exe --shutdown"
 # clean files
 rm -f ~/.local/state/nvim/shada/main.shada
 rm -f ~/.sudo_as_admin_successful
+rm -r ~/.ollama/history
 rm -f ~/.bash_history
 rm -f ~/.bash_logout
 rm -f ~/.wget-hsts
@@ -69,4 +74,5 @@ bind "set completion-ignore-case on";
 # use the | cursor instead of the ▉ cursor
 export PROMPT_COMMAND='echo -ne "\033[5 q"'
 
+export OLLAMA_HOST=0.0.0.0
 eval "$(starship init bash)"; ls

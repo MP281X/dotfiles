@@ -14,10 +14,10 @@ if  [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile
 
 # ls
 ignore_pattern="~/.bun|~/.cache|~/.nix-defexpr|~/.nix-profile|~/.npm|node_modules"
-exa_args="--icons --git-ignore --group-directories-first"
+exa_args="--icons --group-directories-first"
 alias la="exa $exa_args --all"
-alias ls="exa $exa_args --ignore-glob='$ignore_pattern'"
-alias tree="exa $exa_args --tree --ignore-glob='$ignore_pattern'"
+alias ls="exa $exa_args --git-ignore --ignore-glob='$ignore_pattern'"
+alias tree="exa $exa_args --tree --git-ignore --ignore-glob='$ignore_pattern'"
 
 # navigation
 alias ..='cd ..'

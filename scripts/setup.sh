@@ -23,7 +23,6 @@ source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 log "shell"
 nix-env -iA nixpkgs.eza --quiet
 nix-env -iA nixpkgs.starship --quiet
-zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 > /dev/null
 #----------------------------------------------------------------------------------------------------------------
 
 log "bob"

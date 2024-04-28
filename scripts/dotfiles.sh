@@ -10,6 +10,7 @@ cp configs/starship.toml ~/.config/starship.toml
 
 echo "bash"
 cp configs/bashrc ~/.bash_profile
+cp configs/bashrc ~/.bashrc
 
 echo "gitui"
 mkdir -p ~/.config/gitui	

@@ -117,10 +117,10 @@ require("lualine").setup({
 require("FTerm").setup({
 	auto_close = false,
 	cmd = (function()
-		if vim.fn.findfile("pnpm-workspace.yaml") ~= "" then return { "zsh", "-c", "pnpm --silent dev" } end
+		if vim.fn.findfile("pnpm-workspace.yaml") ~= "" then return { "pnpm", "--silent", "dev" } end
 		if vim.fn.findfile("bun.lockb") ~= "" then return { "bun", "run", "--silent", "dev" } end
 
-		return { "zsh" }
+		return { "sh", "-c", "$SHELL" }
 	end)(),
 })
 

@@ -51,6 +51,7 @@ alias coding-llm="ollama run custom-coding-model"
 alias communications-llm="ollama run custom-communications-model"
 
 # wsl
+alias reboot="wsl.exe --shutdown"
 alias restart="wsl.exe --shutdown"
 
 # disable the rest of the configuration for non interactive scripts
@@ -60,10 +61,16 @@ alias restart="wsl.exe --shutdown"
 rm -f ~/.local/state/nvim/shada/main.shada
 rm -f ~/.sudo_as_admin_successful
 rm -r ~/.ollama/history
-rm -f ~/.bash_history
 rm -f ~/.bash_logout
 rm -f ~/.wget-hsts
 rm -f ~/.profile
+
+# shell history
+shopt -s histappend
+export HISTSIZE=500
+export HISTFILESIZE=10000
+PROMPT_COMMAND='history -a'
+export HISTCONTROL=erasedups:ignoredups:ignorespace
 
 # tab autocomplete
 bind 'TAB:menu-complete'

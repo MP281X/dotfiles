@@ -55,6 +55,7 @@ local runScript = function(selected)
 	if type == "node" then
 		local packet_manager = ""
 		if vim.fn.findfile("pnpm-workspace.yaml") ~= "" then packet_manager = "pnpm" end
+		if vim.fn.findfile("pnpm-lock.yaml") ~= "" then packet_manager = "pnpm" end
 		if vim.fn.findfile("bun.lockb") ~= "" then packet_manager = "bun" end
 		if packet_manager == "" then return end
 

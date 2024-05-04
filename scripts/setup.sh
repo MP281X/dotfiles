@@ -12,7 +12,6 @@ log "packages"
 sudo apt-get update > /dev/null && sudo apt-get upgrade -y > /dev/null
 sudo apt-get install -y git curl wget xz-utils unzip  > /dev/null
 sudo apt-get install -y gcc g++  > /dev/null # neovim
-sudo apt-get install -y lshw  > /dev/null # ollama
 #----------------------------------------------------------------------------------------------------------------
 
 log "nix"
@@ -55,6 +54,7 @@ code "PKief.material-icon-theme"
 code "codeandstuff.package-json-upgrade"
 code "esbenp.prettier-vscode"
 code "YoavBls.pretty-ts-errors"
+code "svelte.svelte-vscode"
 code "cmoog.sqlnotebook"
 code "Orta.vscode-twoslash-queries"
 code "pomdtr.excalidraw-editor"
@@ -82,10 +82,6 @@ log "docker"
 sudo sh -c 'echo "[boot]\nsystemd=true" > /etc/wsl.conf'
 curl -fsSL https://get.docker.com | sh
 sudo usermod -aG docker $USER
-#----------------------------------------------------------------------------------------------------------------
-
-log "ollama"
-curl -fsSL https://ollama.com/install.sh | sh
 #----------------------------------------------------------------------------------------------------------------
 
 log "ssh"

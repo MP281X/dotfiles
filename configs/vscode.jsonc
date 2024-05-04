@@ -6,28 +6,14 @@
     "**/.gitignore": true,
     // node
     "**/node_modules": true,
-    "**/tsconfig.json": true,
     "**/dist": true,
 		// package managers
-		"**/pnpm-workspace.yaml": true,
 		"**/pnpm-lock.yaml": true,
-		"**/npmrc": true,
 		"**/bun.lockb": true,
-		// js/ts (others)
-		"**/.prettierrc.yml": true,
-		"**/.eslintrc.yml": true,
-		"**/.test.ts": true,
 		// sveltekit
 		"**/.svelte-kit": true,
-		"**/svelte.config.js": true,
 		"**/build": true,
-		"**/vite.config.js": true,
-		// tailwind
-		"**/tailwind.config.js": true,
-		"**/postcss.config.js": true,
 		// typescript (codegen)
-		"**/.g.ts": true,
-		"**/.g.d.ts": true,
 		"**/tsconfig.tsbuildinfo": true,
 		"**/.eslintcache": true,
   },

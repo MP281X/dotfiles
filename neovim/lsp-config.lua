@@ -5,7 +5,7 @@ require("nvim-treesitter.configs").setup({
 	sync_install = false,
 	autotag = { enable = true },
 	highlight = { enable = true },
-	ensure_installed = { "svelte", "typescript", "lua", "bash", "markdown", "json" },
+	ensure_installed = { "astro", "svelte", "typescript", "lua", "bash", "markdown", "json" },
 })
 
 -- format on save and keybinds
@@ -35,7 +35,7 @@ require("mason").setup()
 require("mason-lspconfig").setup({
 	ensure_installed = {
 		"lua_ls",
-		"tsserver", "svelte", "tailwindcss",
+		"tsserver", "svelte", "astro", "tailwindcss",
 		"eslint",
 	}
 })
@@ -47,8 +47,10 @@ require("lspconfig").lua_ls.setup({
 
 require("lspconfig").tailwindcss.setup({
 	capabilities = capabilities,
-	filetypes = { "svelte", "typescriptreact" }
+	filetypes = { "svelte", "typescriptreact", "astro" }
 })
+
+require("lspconfig").astro.setup({ capabilities = capabilities })
 
 require("lspconfig").svelte.setup({
 	capabilities = capabilities,
@@ -122,7 +124,8 @@ require("conform").setup({
 		typescriptreact = { { "prettierd", "prettier" } },
 		svelte = { { "prettierd", "prettier" } },
 		json = { { "prettierd", "prettier" } },
-		yaml = { { "prettierd", "prettier" } }
+		yaml = { { "prettierd", "prettier" } },
+		markdown = { { "prettierd", "prettier" } }
 	},
 	format_on_save = {
 		timeout_ms = 1000,

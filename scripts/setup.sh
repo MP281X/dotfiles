@@ -33,6 +33,7 @@ sudo mv bob /usr/local/bin/bob && sudo chmod +x /usr/local/bin/bob
 log "neovim"
 nix-env -iA nixpkgs.ripgrep --quiet
 nix-env -iA nixpkgs.jq --quiet
+nix-env -iA nixpkgs.prettierd --quiet
 bob use nightly
 #----------------------------------------------------------------------------------------------------------------
 
@@ -92,7 +93,7 @@ log "git"
 nix-env -iA nixpkgs.gh --quiet
 nix-env -iA nixpkgs.gitui --quiet
 
-gh auth login --git-protocol https --hostname github.com --web
+gh auth login --git-protocol https --hostname github.com --web --scopes read:packages
 git config --global user.name $(gh api user | jq -r '.name')
 git config --global user.email $(gh api user | jq -r '.email')
 

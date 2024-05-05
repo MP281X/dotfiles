@@ -25,7 +25,7 @@ local file_filters = {
 	--global
 	".git", ".gitignore", ".vscode",
 	-- node
-	"node_modules", "dist", "tsconfig.json",
+	"node_modules", "dist",
 	-- package managers
 	"pnpm-workspace.yaml", "pnpm-lock.yaml", ".npmrc", "bun.lockb",
 	-- js/ts (others)
@@ -117,9 +117,8 @@ require("lualine").setup({
 require("FTerm").setup({
 	auto_close = false,
 	cmd = (function()
-		if vim.fn.findfile("pnpm-workspace.yaml") ~= "" then return { "pnpm", "--silent", "dev" } end
-		if vim.fn.findfile("pnpm-lock.yaml") ~= "" then return { "pnpm", "--silent", "dev" } end
 		if vim.fn.findfile("bun.lockb") ~= "" then return { "bun", "run", "--silent", "dev" } end
+		if vim.fn.findfile("package.json") ~= "" then return { "pnpm", "--silent", "dev" } end
 
 		return { "sh", "-c", "$SHELL" }
 	end)(),

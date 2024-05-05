@@ -37,6 +37,7 @@ code() {
 
 # git
 alias g="gitui"
+export REGISTRY_TOKEN=$(gh auth token)
 gl() {
 	if [ $# -eq 0 ]; then gh repo list --json name,owner | jq -r '[.[] | "\(.owner.login)/\(.name)"]';
   else gh repo list "$1" --json name,owner | jq -r '[.[] | "\(.owner.login)/\(.name)"]'; fi

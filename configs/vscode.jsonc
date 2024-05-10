@@ -21,6 +21,7 @@
   //! -------- editor --------
 
   // undo stack
+	"files.hotExit": "off",
   "explorer.enableUndo": true,
   "files.restoreUndoStack": true,
   "workbench.localHistory.enabled": true,
@@ -56,7 +57,7 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
 
-  // bun
+  // pnpm
   "npm.packageManager": "pnpm",
 
 	// formatter and linter

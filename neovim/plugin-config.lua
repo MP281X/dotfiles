@@ -30,19 +30,28 @@ local file_filters = {
 	"pnpm-workspace.yaml", "pnpm-lock.yaml", ".npmrc", "bun.lockb",
 	-- js/ts (others)
 	".prettierrc.yml", ".eslintrc.yml", ".prettierrc.yaml", ".eslintrc.yaml",
+	"prettier.config.js", "eslint.config.js",
 	-- sveltekit
-	".svelte-kit", "svelte.config.js", "build", "vite.config.js",
+	".svelte-kit", "svelte.config.js", "build", "vite.config.js", "vite.config.ts",
 	-- tailwind
 	"tailwind.config.js", "postcss.config.js",
 	-- typescript (codegen)
-	".g.ts", ".g.d.ts", "tsconfig.tsbuildinfo",
+	"tsconfig.tsbuildinfo",
 	-- others
 	".eslintcache", ".attest"
 }
 
+local regexify_array = function(arr)
+	local regex_arr = {}
+	for _, item in ipairs(arr) do
+		table.insert(regex_arr, "^" .. item .. "$")
+	end
+	return regex_arr
+end
+
 -- file explorer
 require("nvim-tree").setup({
-	filters = { custom = file_filters, exclude = { ".github" } },
+	filters = { custom = regexify_array(file_filters), exclude = { ".github" } },
 	view = { side = "right", width = 60 },
 	update_focused_file = { enable = true },
 	git = { enable = true, ignore = false, timeout = 500 },
@@ -60,6 +69,7 @@ require("telescope").setup({
 			}
 		}
 	},
+	pickers = { find_files = { hidden = true }, live_grep = { hidden = true } },
 	extensions = {
 		["ui-select"] = { require("telescope.themes").get_dropdown({}) },
 		undo = {

@@ -125,7 +125,8 @@ require("conform").setup({
 		svelte = { { "prettierd", "prettier" } },
 		json = { { "prettierd", "prettier" } },
 		yaml = { { "prettierd", "prettier" } },
-		markdown = { { "prettierd", "prettier" } }
+		markdown = { { "prettierd", "prettier" } },
+		css = { { "prettierd", "prettier" } }
 	},
 	format_on_save = {
 		timeout_ms = 1000,

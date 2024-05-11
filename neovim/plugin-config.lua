@@ -25,14 +25,13 @@ local file_filters = {
 	--global
 	".git", ".gitignore", ".vscode",
 	-- node
-	"node_modules", "dist",
+	"node_modules", "dist", "build",
 	-- package managers
-	"pnpm-workspace.yaml", "pnpm-lock.yaml", ".npmrc", "bun.lockb",
+	"pnpm-workspace.yaml", "pnpm-lock.yaml", "bun.lockb", ".npmrc",
 	-- js/ts (others)
-	".prettierrc.yml", ".eslintrc.yml", ".prettierrc.yaml", ".eslintrc.yaml",
 	"prettier.config.js", "eslint.config.js",
 	-- sveltekit
-	".svelte-kit", "svelte.config.js", "build", "vite.config.js", "vite.config.ts",
+	".svelte-kit", "svelte.config.js", "vite.config.ts",
 	-- tailwind
 	"tailwind.config.js", "postcss.config.js",
 	-- typescript (codegen)
@@ -128,7 +127,7 @@ require("FTerm").setup({
 	auto_close = false,
 	cmd = (function()
 		if vim.fn.findfile("bun.lockb") ~= "" then return { "bun", "run", "--silent", "dev" } end
-		if vim.fn.findfile("package.json") ~= "" then return { "pnpm", "--silent", "dev" } end
+		if vim.fn.findfile("package.json") ~= "" then return { "node", "--run", "dev" } end
 
 		return { "sh", "-c", "$SHELL" }
 	end)(),

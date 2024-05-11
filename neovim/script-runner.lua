@@ -54,31 +54,10 @@ local runScript = function(selected)
 	-- find the correct node package manager and run the script
 	if type == "node" then
 		local packet_manager = ""
-		if vim.fn.findfile("bun.lockb") ~= "" then packet_manager = "bun" end
-		if vim.fn.findfile("package.json") ~= "" then packet_manager = "pnpm" end
-		if packet_manager == "" then return end
+		if vim.fn.findfile("bun.lockb") ~= "" then packet_manager = "bun run --silent" end
+		if vim.fn.findfile("package.json") ~= "" then packet_manager = "node --run" end
 
-		require("FTerm").scratch({ cmd = packet_manager .. " run --silent " .. script })
-	end
-
-	-- find the correct package.json (the project root) and run the test
-	if type == "test" then
-		local file_path = vim.fn.expand("%:p:h")
-		local root_path = file_path
-
-		repeat
-			if vim.fn.filereadable(root_path .. "/package.json") == 1 then
-				file_path = string.sub(file_path, #root_path + 2) .. "/" .. script
-				if file_path.sub(file_path, 1, 1) == "/" then file_path = string.sub(file_path, 2) end
-
-				require("FTerm").scratch({ cmd = "(cd " .. root_path .. " && bun test " .. file_path .. ")" })
-				return
-			end
-
-			root_path = vim.fn.fnamemodify(root_path, ":h")
-		until root_path == ""
-
-		print("package.json not found")
+		require("FTerm").scratch({ cmd = packet_manager .. " " .. script })
 	end
 end
 
@@ -86,36 +65,3 @@ end
 vim.keymap.set("n", "<leader>ss", function()
 	vim.ui.select(getScriptNames(), { prompt = "Select script" }, runScript)
 end, {})
-
-local runTest = function()
-	-- check if the test file is open
-	if string.match(vim.fn.expand('%:t'), "%.test%.ts$") == nil then
-		local testFile = vim.fn.expand('%:p'):gsub("%.ts$", ".test.ts")
-
-		-- open test file
-		vim.cmd(":e " .. testFile)
-
-		-- don't run the test if the file didn't existed
-		if vim.fn.filereadable(testFile) == 0 then return end
-	end
-
-	local file_path = vim.fn.expand("%:p:h")
-	local root_path = file_path
-
-	repeat
-		if vim.fn.filereadable(root_path .. "/package.json") == 1 then
-			file_path = string.sub(file_path, #root_path + 2) .. "/" .. vim.fn.fnamemodify(vim.fn.expand("%:p"), ":t")
-			if file_path.sub(file_path, 1, 1) == "/" then file_path = string.sub(file_path, 2) end
-
-			require("FTerm").scratch({ cmd = "(cd " .. root_path .. " && bun test --only " .. file_path .. ")" })
-			return
-		end
-
-		root_path = vim.fn.fnamemodify(root_path, ":h")
-	until root_path == ""
-
-	print("package.json not found")
-end
-
--- test runner
-vim.keymap.set("n", "<A-t>", function() runTest() end, {})

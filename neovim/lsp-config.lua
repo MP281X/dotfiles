@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "R", vim.lsp.buf.rename, opts)
 
 		vim.cmd [[autocmd BufWritePre * lua pcall(function() vim.cmd("EslintFixAll") end)]]
-		pcall(function() vim.lsp.inlay_hint.enable(true, args.buf) end) -- inlay hint
+		pcall(function() vim.lsp.inlay_hint.enable(true) end) -- inlay hint
 	end,
 })
 
@@ -75,12 +75,12 @@ require("lspconfig").tsserver.setup({
 	settings = {
 		typescript = {
 			validate = { enable = true },
-			inlayHints = { includeInlayParameterNameHints = "all" },
+			inlayHints = { includeInlayParameterNameHints = "literals" },
 			tsserver = { experimental = { enableProjectDiagnostics = true } }
 		},
 		javascript = {
 			validate = { enable = true },
-			inlayHints = { includeInlayParameterNameHints = "all" }
+			inlayHints = { includeInlayParameterNameHints = "literals" }
 		},
 	},
 })

@@ -34,7 +34,7 @@ cp configs/code-server.yaml ~/.config/code-server/config.yaml
 sudo systemctl restart code-server@$USER 2>/dev/null
 
 echo "tailwind lsp"
-pnpm i -g -q @tailwindcss/language-server@insiders
+bun i --global --silent @tailwindcss/language-server@insiders
 
 echo "neovim clipboard"
 [ -d /mnt/c ] && echo "win32yank"

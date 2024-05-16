@@ -32,8 +32,10 @@ local file_filters = {
 	"prettier.config.js", "eslint.config.js",
 	-- sveltekit
 	".svelte-kit", "svelte.config.js", "vite.config.ts",
+	-- nextjs
+	".next", "next-env.d.ts",
 	-- tailwind
-	"tailwind.config.js", "postcss.config.js",
+	"tailwind.config.js", "postcss.config.js", "postcss.config.cjs",
 	-- typescript (codegen)
 	"tsconfig.tsbuildinfo",
 	-- others

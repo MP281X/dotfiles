@@ -55,7 +55,7 @@ local runScript = function(selected)
 	if type == "node" then
 		local packet_manager = ""
 		if vim.fn.findfile("bun.lockb") ~= "" then packet_manager = "bun run --silent" end
-		if vim.fn.findfile("package.json") ~= "" then packet_manager = "node --run" end
+		if vim.fn.findfile("package.json") ~= "" then packet_manager = "node --no-warnings --run" end
 
 		require("FTerm").scratch({ cmd = packet_manager .. " " .. script })
 	end

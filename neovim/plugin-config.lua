@@ -129,7 +129,7 @@ require("FTerm").setup({
 	auto_close = false,
 	cmd = (function()
 		if vim.fn.findfile("bun.lockb") ~= "" then return { "bun", "run", "--silent", "dev" } end
-		if vim.fn.findfile("package.json") ~= "" then return { "node", "--run", "dev" } end
+		if vim.fn.findfile("package.json") ~= "" then return { "node", "--no-warnings", "--run", "dev" } end
 
 		return { "sh", "-c", "$SHELL" }
 	end)(),

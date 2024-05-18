@@ -33,7 +33,7 @@ sudo mv bob /usr/local/bin/bob && sudo chmod +x /usr/local/bin/bob
 log "neovim"
 nix-env -iA nixpkgs.ripgrep --quiet
 nix-env -iA nixpkgs.jq --quiet
-bob use nightly
+bob use latest
 #----------------------------------------------------------------------------------------------------------------
 
 log "code-server"

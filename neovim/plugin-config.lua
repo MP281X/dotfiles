@@ -33,7 +33,7 @@ local file_filters = {
 	-- sveltekit
 	".svelte-kit", "svelte.config.js", "vite.config.ts",
 	-- nextjs
-	".next", "next-env.d.ts",
+	".next", "next-env.d.ts", "next.config.js",
 	-- tailwind
 	"tailwind.config.js", "postcss.config.js", "postcss.config.cjs",
 	-- typescript (codegen)

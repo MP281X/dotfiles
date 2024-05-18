@@ -21,7 +21,7 @@ local getScriptNames = function()
 				local name = fileName:match("^(.+)%.sh$")
 				local exists = table.concat(scriptNames, ','):find("node:" .. name) and true or false
 
-				if exists == false then
+				if exists == false and not fileName:match("^%+") then
 					table.insert(scriptNames, "bash:" .. name)
 				end
 			end

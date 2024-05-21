@@ -18,6 +18,13 @@ vim.keymap.set("n", "<C-\\>", ":bd<CR>")
 vim.keymap.set("n", "<<", ":bp<CR>")
 vim.keymap.set("n", ">>", ":bn<CR>")
 
+-- enable and disable telescope and nvimTree filters
+Enable_filters = true
+vim.keymap.set("n", "<leader>ff", function()
+	Enable_filters = not Enable_filters
+	vim.api.nvim_command('source ' .. "~/.config/nvim/lua/files-config.lua")
+end, {})
+
 -- telescope
 vim.keymap.set("n", "<leader>sf", function() require("telescope.builtin").find_files() end, {})
 vim.keymap.set("n", "<leader>sc", function() require("telescope.builtin").live_grep() end, {})

@@ -20,6 +20,7 @@ require("plugin")
 
 -- load plugin config
 require("plugin-config")
+require("files-config")
 require("lsp-config")
 
 -- load the custom script runner

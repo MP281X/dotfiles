@@ -4,18 +4,40 @@
     // global
     "**/.git": true,
     "**/.gitignore": true,
+		
     // node
     "**/node_modules": true,
     "**/dist": true,
+		"**/build": true,
+
 		// package managers
 		"**/pnpm-lock.yaml": true,
 		"**/bun.lockb": true,
-		// sveltekit
+
+		// sveltekit/nextjs
 		"**/.svelte-kit": true,
-		"**/build": true,
-		// typescript (codegen)
-		"**/tsconfig.tsbuildinfo": true,
+		"**/.next": true,
+		"**/next-env.d.ts": true,
+
+		// solidjs
+		"**/entry-client.tsx": true,
+		"**/entry-server.tsx": true,
+		"**/global.d.ts": true,
+
+		// js/ts configs
+		"**/postcss.config.js": true,
+		"**/postcss.config.cjs": true,
+
+		// cache
 		"**/.eslintcache": true,
+		"**/.attest": true,
+		"**/*.tsbuildinfo": true,
+
+		// c#
+		"**/obj": true,
+		"**/bin": true,
+		"**/*.sln": true,
+		"**/Properties": true,
   },
 
   //! -------- editor --------
@@ -61,6 +83,7 @@
   "npm.packageManager": "pnpm",
 
 	// formatter and linter
+	"[csharp]": { "editor.defaultFormatter": "ms-dotnettools.csharp" },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",

@@ -14,17 +14,17 @@ if  [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile
 
 # ls
 ignore_pattern="~/.bun|~/.cache|~/.nix-defexpr|~/.nix-profile|~/.npm|node_modules"
-exa_args="--icons --group-directories-first"
+exa_args="--icons --group-directories-first --tree --level 1"
 alias la="exa $exa_args --all"
 alias ls="exa $exa_args --git-ignore --ignore-glob='$ignore_pattern'"
-alias tree="exa $exa_args --tree --git-ignore --ignore-glob='$ignore_pattern'"
+alias tree="exa $exa_args --level 20 --git-ignore --ignore-glob='$ignore_pattern'"
 
 # navigation
 alias ..='cd ..'
 alias ...='cd ../..'
 alias rm='rm -rf'
 cd() {
-    builtin cd "$@" && exa --git-ignore --icons
+    builtin cd "$@" && exa $exa_args
 }
 
 # tools
@@ -102,4 +102,4 @@ export PROMPT_COMMAND='echo -ne "\033[5 q"'
 # disable nodejs experimental warnings
 export NODE_NO_WARNINGS=1
 
-eval "$(starship init bash)"; ls
+eval "$(starship init bash)"; exa $exa_args

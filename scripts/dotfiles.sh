@@ -6,7 +6,7 @@ cp neovim/neovim-config.lua ~/.config/nvim/init.lua
 cp -r neovim/. ~/.config/nvim/lua/
 
 echo "starship"
-cp configs/starship.toml ~/.config/starship.toml
+cp themes/starship.toml ~/.config/starship.toml
 
 echo "bash"
 cp configs/bashrc ~/.bash_profile
@@ -14,7 +14,7 @@ cp configs/bashrc ~/.bashrc
 
 echo "gitui"
 mkdir -p ~/.config/gitui	
-cp configs/gitui.ron ~/.config/gitui/theme.ron
+cp themes/gitui.ron ~/.config/gitui/theme.ron
 
 echo "windows terminal"
 appdataLocal="$(wslpath "$(cmd.exe /c 'echo %LOCALAPPDATA%' 2>/dev/null | tr -d '\r')")"
@@ -38,4 +38,4 @@ bun i --global --silent @tailwindcss/language-server@insiders
 
 echo "neovim clipboard"
 [ -d /mnt/c ] && echo "win32yank"
-[ -d /mnt/c ] && mkdir -p /mnt/c/tools/ && cp configs/win32yank.exe /mnt/c/tools/win32yank.exe
+[ -d /mnt/c ] && mkdir -p /mnt/c/tools/ && cp scripts/win32yank.exe /mnt/c/tools/win32yank.exe

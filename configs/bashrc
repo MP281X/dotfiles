@@ -5,6 +5,9 @@ export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# pulumi
+export PATH="$HOME/.pulumi/bin:$PATH"
+
 # load pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac
@@ -14,10 +17,10 @@ if  [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile
 
 # ls
 ignore_pattern="~/.bun|~/.cache|~/.nix-defexpr|~/.nix-profile|~/.npm|node_modules"
-exa_args="--icons --group-directories-first --tree --level 1"
+exa_args="--icons --group-directories-first --width 120"
 alias la="exa $exa_args --all"
 alias ls="exa $exa_args --git-ignore --ignore-glob='$ignore_pattern'"
-alias tree="exa $exa_args --level 20 --git-ignore --ignore-glob='$ignore_pattern'"
+alias tree="exa $exa_args --tree --git-ignore --ignore-glob='$ignore_pattern'"
 
 # navigation
 alias ..='cd ..'

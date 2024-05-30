@@ -37,6 +37,8 @@
 		"**/obj": true,
 		"**/bin": true,
 		"**/*.sln": true,
+		"**/*.csproj": true,
+		"**/Migrations": true,
 		"**/Properties": true,
   },
 

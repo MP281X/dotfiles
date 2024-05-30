@@ -67,6 +67,10 @@ nix-env -iA nixpkgs.kubeseal --quiet
 mkdir -p ~/.kube && cp /mnt/d/secrets/config ~/.kube/config
 #----------------------------------------------------------------------------------------------------------------
 
+log "pulumi"
+curl -fsSL https://get.pulumi.com | sh
+#----------------------------------------------------------------------------------------------------------------
+
 log "nodejs"
 curl -fsSL https://get.pnpm.io/install.sh | sh -
 export PNPM_HOME="/home/$USER/.local/share/pnpm"

@@ -5,9 +5,6 @@ export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# pulumi
-export PATH="$HOME/.pulumi/bin:$PATH"
-
 # load pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac

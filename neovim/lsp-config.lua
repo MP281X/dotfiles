@@ -73,11 +73,12 @@ require("lspconfig").tsserver.setup({
 	settings = {
 		typescript = {
 			validate = { enable = true },
+			format = { enable = false },
 			inlayHints = { includeInlayParameterNameHints = "literals" },
-			tsserver = { experimental = { enableProjectDiagnostics = true } }
 		},
 		javascript = {
 			validate = { enable = true },
+			format = { enable = false },
 			inlayHints = { includeInlayParameterNameHints = "literals" }
 		},
 	},

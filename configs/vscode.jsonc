@@ -24,6 +24,10 @@
 		"**/entry-server.tsx": true,
 		"**/global.d.ts": true,
 
+		// astro
+		"**/astro.config.mjs": true,
+		"**/env.d.ts": true,
+
 		// js/ts configs
 		"**/postcss.config.js": true,
 		"**/postcss.config.cjs": true,

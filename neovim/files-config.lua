@@ -29,6 +29,8 @@ local conditional_filters = {
 	"vite.config.ts", "next.config.js",
 	-- solidjs
 	"entry-client.tsx", "entry-server.tsx", "global.d.ts",
+	-- astrojs
+	"astro.config.mjs", "env.d.ts",
 	-- codegen
 	"*.g.ts",
 	-- c#

@@ -1,5 +1,6 @@
 # brew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export HOMEBREW_NO_ENV_HINTS=1
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -11,17 +12,17 @@ case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac
 
 # ls
 ignore_pattern="~/.bun|~/.cache|~/.npm|node_modules"
-exa_args="--icons --group-directories-first --width 120"
-alias la="exa $exa_args --all"
-alias ls="exa $exa_args --git-ignore --ignore-glob='$ignore_pattern'"
-alias tree="exa $exa_args --tree --git-ignore --ignore-glob='$ignore_pattern'"
+eza_args="--icons --group-directories-first --width 120"
+alias la="eza $eza_args --all"
+alias ls="eza $eza_args --git-ignore --ignore-glob='$ignore_pattern'"
+alias tree="eza $eza_args --tree --git-ignore --ignore-glob='$ignore_pattern'"
 
 # navigation
 alias ..='cd ..'
 alias ...='cd ../..'
 alias rm='rm -rf'
 cd() {
-    builtin cd "$@" && exa $exa_args
+    builtin cd "$@" && eza $eza_args
 }
 
 # tools
@@ -99,4 +100,4 @@ export PROMPT_COMMAND='echo -ne "\033[5 q"'
 # disable nodejs experimental warnings
 export NODE_NO_WARNINGS=1
 
-eval "$(starship init bash)"; exa $exa_args
+eval "$(starship init bash)"; eza $eza_args

@@ -30,7 +30,7 @@ sudo apt-get install -y gcc g++  > /dev/null # neovim
 
 log "brew"
 
-NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && clear
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 #----------------------------------------------------------------------------------------------------------------
 

@@ -11,21 +11,21 @@ log() {
 brewInstall() {
 	export HOMEBREW_NO_ENV_HINTS=1
 	export HOMEBREW_NO_AUTO_UPDATE=1
-	brew install $1 -q 1>/dev/null
 	echo "[brew] $1"
+	brew install $1 -q 1>/dev/null
 }
 
 code() { 
-	code-server --force --install-extension "$1" >/dev/null 
 	echo "[code-server] $1"
+	code-server --force --install-extension "$1" >/dev/null 
 }
 
 
 log "packages"
 
 sudo apt-get update > /dev/null && sudo apt-get upgrade -y > /dev/null
-sudo apt-get install -y git curl wget xz-utils unzip  > /dev/null
-sudo apt-get install -y gcc g++  > /dev/null # neovim
+sudo apt-get install -y git curl wget xz-utils unzip jq > /dev/null
+sudo apt-get install -y gcc g++ ripgrep > /dev/null # neovim
 #----------------------------------------------------------------------------------------------------------------
 
 log "brew"

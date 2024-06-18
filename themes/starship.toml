@@ -17,11 +17,8 @@ format = '[⚡ $output ](bold red)'
 [directory]
 style = 'bold blue'
 
-[rust]
-format = '[\[ $version\]](bold black) '
-
 [nodejs]
-format = '[\[ $version\]](bold black) '
+format = '[\[ $version\]](bold black) '
 
 [golang]
 format = '[\[󰟓 $version\]](bold black) '

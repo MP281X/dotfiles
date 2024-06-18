@@ -14,32 +14,16 @@ sudo apt-get install -y git curl wget xz-utils unzip  > /dev/null
 sudo apt-get install -y gcc g++  > /dev/null # neovim
 #----------------------------------------------------------------------------------------------------------------
 
-log "nix"
-sh <(curl -s -L https://nixos.org/nix/install) --no-daemon > /dev/null
-source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+log "brew"
+NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 #----------------------------------------------------------------------------------------------------------------
 
 log "shell"
-nix-env -iA nixpkgs.eza --quiet
-nix-env -iA nixpkgs.starship --quiet
-#----------------------------------------------------------------------------------------------------------------
-
-log "bob"
-wget --quiet https://github.com/MordechaiHadad/bob/releases/download/v2.8.1/bob-linux-x86_64-openssl.zip
-unzip -p bob-linux-x86_64-openssl.zip bob-linux-x86_64-openssl/bob > bob && rm bob-linux-x86_64-openssl.zip
-sudo mv bob /usr/local/bin/bob && sudo chmod +x /usr/local/bin/bob
-#----------------------------------------------------------------------------------------------------------------
-
-log "neovim"
-nix-env -iA nixpkgs.ripgrep --quiet
-nix-env -iA nixpkgs.jq --quiet
-bob use latest
-#----------------------------------------------------------------------------------------------------------------
-
-log "code-server"
-curl -fsSL https://code-server.dev/install.sh | sh
-sudo systemctl enable --now code-server@$USER 2>/dev/null
-sudo systemctl start --now code-server@$USER 2>/dev/null
+brew install eza -q
+brew install starship -q
+brew install neovim -q
+brew install code-server -q
 #----------------------------------------------------------------------------------------------------------------
 
 log "code-server extensions"
@@ -61,17 +45,17 @@ code "pomdtr.excalidraw-editor"
 #----------------------------------------------------------------------------------------------------------------
 
 log "kubernetes"
-nix-env -iA nixpkgs.kubectl --quiet
-nix-env -iA nixpkgs.k9s --quiet
-nix-env -iA nixpkgs.kubeseal --quiet
+brew install kubernetes-cli -q
+brew install k9s -q
+brew install kubeseal -q
 mkdir -p ~/.kube && cp /mnt/d/secrets/config ~/.kube/config
 #----------------------------------------------------------------------------------------------------------------
 
-log "nodejs"
-curl -fsSL https://get.pnpm.io/install.sh | sh -
-export PNPM_HOME="/home/$USER/.local/share/pnpm"
-case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac
-pnpm env use --global latest
+# log "nodejs"
+# curl -fsSL https://get.pnpm.io/install.sh | sh -
+# export PNPM_HOME="/home/$USER/.local/share/pnpm"
+# case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac
+# pnpm env use --global latest
 #----------------------------------------------------------------------------------------------------------------
 
 log "bun"
@@ -79,9 +63,9 @@ curl -fsSL https://bun.sh/install | bash
 #----------------------------------------------------------------------------------------------------------------
 
 log "docker"
-sudo sh -c 'echo "[boot]\nsystemd=true" > /etc/wsl.conf'
-curl -fsSL https://get.docker.com | sh
-sudo usermod -aG docker $USER
+brew install docker -q
+# curl -fsSL https://get.docker.com | sh
+# sudo usermod -aG docker $USER
 #----------------------------------------------------------------------------------------------------------------
 
 log "ssh"
@@ -89,8 +73,8 @@ mkdir -p ~/.ssh && cp /mnt/d/secrets/.ssh/id_rsa ~/.ssh/id_rsa && chmod 0400 ~/.
 #----------------------------------------------------------------------------------------------------------------
 
 log "git"
-nix-env -iA nixpkgs.gh --quiet
-nix-env -iA nixpkgs.gitui --quiet
+brew install gh -q
+brew install gitui -q
 
 gh auth login --git-protocol https --hostname github.com --web --scopes read:packages
 git config --global user.name $(gh api user | jq -r '.name')

@@ -10,11 +10,14 @@ log() {
 
 brewInstall() {
 	export HOMEBREW_NO_ENV_HINTS=1
+	export HOMEBREW_NO_AUTO_UPDATE=1
 	brew install $1 -q 1>/dev/null
+	echo "[brew] $1"
 }
 
 code() { 
 	code-server --force --install-extension "$1" >/dev/null 
+	echo "[code-server] $1"
 }
 
 

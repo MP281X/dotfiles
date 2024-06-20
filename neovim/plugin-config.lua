@@ -59,7 +59,7 @@ require("FTerm").setup({
 	cmd = (function()
 		if vim.fn.findfile("bun.lockb") ~= "" then return { "bun", "run", "--silent", "dev" } end
 		if vim.fn.findfile("package.json") ~= "" then return { "node", "--no-warnings", "--run", "dev" } end
-		if vim.fn.findfile("Program.cs") ~= "" then return { "dotnet", "run" } end
+		if vim.fn.findfile("Cargo.toml") ~= "" then return { "cargo", "run", "-q" } end
 
 		return { "sh", "-c", "$SHELL" }
 	end)(),
@@ -89,5 +89,6 @@ require('gitsigns').setup({
 	yadm = { enable = false }
 })
 
-require("Comment").setup()        -- comment code
-require("nvim-autopairs").setup() -- auto close ()
+require("Comment").setup()         -- comment code
+require("nvim-autopairs").setup()  -- auto close ()
+require('nvim-ts-autotag').setup() -- auto close <></>

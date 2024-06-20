@@ -77,6 +77,8 @@ curl -fsSL https://bun.sh/install | bash
 
 log "docker"
 
+sudo sh -c 'echo "[boot]\nsystemd=true" > /etc/wsl.conf'
+
 curl -fsSL https://get.docker.com | sh
 sudo usermod -aG docker $USER
 #----------------------------------------------------------------------------------------------------------------

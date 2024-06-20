@@ -52,7 +52,6 @@ ps() {
 
 # pnpm
 alias i="pnpm update --recursive --no-save"
-alias pnpm="pnpm --silent"
 alias pnpx="pnpm dlx"
 
 # git

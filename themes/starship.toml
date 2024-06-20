@@ -22,3 +22,6 @@ format = '[\[ $version\]](bold black) '
 
 [golang]
 format = '[\[󰟓 $version\]](bold black) '
+
+[rust]
+format = '[\[ $version\]](bold black) '

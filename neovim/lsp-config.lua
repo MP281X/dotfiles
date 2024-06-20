@@ -3,9 +3,7 @@ require("nvim-treesitter.install").compilers = { "gcc" }
 require("nvim-treesitter.configs").setup({
 	auto_install = true,
 	sync_install = false,
-	autotag = { enable = true },
-	highlight = { enable = true },
-	ensure_installed = { "svelte", "astro", "typescript", "lua", "bash", "markdown", "json" },
+	highlight = { enable = true }
 })
 
 -- format on save and keybinds
@@ -37,6 +35,7 @@ require("mason-lspconfig").setup({
 		"lua_ls",
 		"tsserver", "svelte",
 		"eslint",
+		"rust_analyzer"
 	}
 })
 
@@ -45,12 +44,36 @@ require("lspconfig").lua_ls.setup({
 	settings = { Lua = { diagnostics = { globals = { "vim" } } } }
 })
 
-require("lspconfig").tailwindcss.setup({
+require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
+
+require("lspconfig").rust_analyzer.setup({
 	capabilities = capabilities,
-	filetypes = { "svelte", "typescriptreact" }
+	settings = {
+		['rust-analyzer'] = {
+			assist = {
+				importEnforceGranularity = true,
+				importPrefix = 'crate',
+			},
+			cargo = {
+				allFeatures = true,
+			},
+			checkOnSave = {
+				command = 'clippy',
+			},
+			inlayHints = { locationLinks = false },
+			diagnostics = {
+				enable = true,
+				experimental = {
+					enable = true,
+				},
+			},
+		},
+	}
 })
 
 require("lspconfig").astro.setup({ capabilities = capabilities })
+
+require("lspconfig").eslint.setup({ capabilities = capabilities })
 
 require("lspconfig").svelte.setup({
 	capabilities = capabilities,
@@ -85,8 +108,6 @@ require("lspconfig").tsserver.setup({
 		},
 	},
 })
-
-require("lspconfig").eslint.setup({ capabilities = capabilities })
 
 local cmp = require("cmp")
 cmp.setup({

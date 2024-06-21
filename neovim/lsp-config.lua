@@ -17,9 +17,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>sa", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("n", "R", vim.lsp.buf.rename, opts)
 
-		vim.cmd [[autocmd BufWritePre * lua pcall(function() vim.cmd("EslintFixAll") end)]]
 		pcall(function() vim.lsp.inlay_hint.enable(true) end) -- inlay hint
 	end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+	callback = function()
+		vim.lsp.buf.format({
+			filter = function(client)
+				if client.name == "tsserver" then return false end
+
+				return true
+			end
+		})
+	end
 })
 
 local capabilities = vim.tbl_deep_extend(
@@ -30,11 +41,11 @@ local capabilities = vim.tbl_deep_extend(
 )
 
 require("mason").setup()
-require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "tsserver", "svelte", "eslint", "astro" } })
+require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "tsserver", "svelte", "biome", "astro" } })
 
 require("lspconfig").astro.setup({ capabilities = capabilities })
 require("lspconfig").svelte.setup({ capabilities = capabilities })
-require("lspconfig").eslint.setup({ capabilities = capabilities })
+require("lspconfig").biome.setup({ capabilities = capabilities })
 require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
 
 require("lspconfig").lua_ls.setup({ capabilities = capabilities, settings = { Lua = { diagnostics = { globals = { "vim" } } } } })
@@ -43,16 +54,8 @@ require("lspconfig").tsserver.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr) require("twoslash-queries").attach(client, bufnr) end,
 	settings = {
-		typescript = {
-			validate = { enable = true },
-			format = { enable = false },
-			inlayHints = { includeInlayParameterNameHints = "literals" },
-		},
-		javascript = {
-			validate = { enable = true },
-			format = { enable = false },
-			inlayHints = { includeInlayParameterNameHints = "literals" }
-		},
+		typescript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
+		javascript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
 	},
 })
 
@@ -82,19 +85,4 @@ require("cmp").setup({
 		completion = require("cmp").config.window.bordered(),
 		documentation = require("cmp").config.window.bordered(),
 	},
-})
-
--- formatters
-require("conform").setup({
-	format_on_save = { timeout_ms = 1000, lsp_fallback = true, async = false },
-	formatters_by_ft = {
-		typescript = { { "prettierd", "prettier" } },
-		javascript = { { "prettierd", "prettier" } },
-		typescriptreact = { { "prettierd", "prettier" } },
-		svelte = { { "prettierd", "prettier" } },
-		json = { { "prettierd", "prettier" } },
-		yaml = { { "prettierd", "prettier" } },
-		markdown = { { "prettierd", "prettier" } },
-		css = { { "prettierd", "prettier" } }
-	}
 })

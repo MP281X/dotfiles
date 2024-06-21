@@ -31,7 +31,6 @@ require("lazy").setup({
 
 	-- language tools
 	{ "nvim-treesitter/nvim-treesitter",        build = ":TSUpdate" }, -- syntax hilight
-	{ "stevearc/conform.nvim" },                                      -- formatter
 	{ "marilari88/twoslash-queries.nvim" },                           -- // visualize typescript types with // ^?
 	{ "b0o/schemastore.nvim" },                                       -- download schema for json/yaml config file
 

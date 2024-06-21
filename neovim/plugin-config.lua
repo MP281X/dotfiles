@@ -60,6 +60,7 @@ require("FTerm").setup({
 		if vim.fn.findfile("bun.lockb") ~= "" then return { "bun", "run", "--silent", "dev" } end
 		if vim.fn.findfile("package.json") ~= "" then return { "node", "--no-warnings", "--run", "dev" } end
 		if vim.fn.findfile("Cargo.toml") ~= "" then return { "cargo", "run", "-q" } end
+		if vim.fn.findfile("Program.cs") ~= "" then return { "dotnet", "watch" } end
 
 		return { "sh", "-c", "$SHELL" }
 	end)(),

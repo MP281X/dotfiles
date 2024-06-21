@@ -41,13 +41,12 @@ local capabilities = vim.tbl_deep_extend(
 )
 
 require("mason").setup()
-require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "tsserver", "svelte", "biome", "astro", "omnisharp" } })
+require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "tsserver", "svelte", "biome", "astro" } })
 
 require("lspconfig").astro.setup({ capabilities = capabilities })
 require("lspconfig").svelte.setup({ capabilities = capabilities })
 require("lspconfig").biome.setup({ capabilities = capabilities })
 require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
-require("lspconfig").omnisharp.setup({ capabilities = capabilities })
 
 require("lspconfig").lua_ls.setup({ capabilities = capabilities, settings = { Lua = { diagnostics = { globals = { "vim" } } } } })
 

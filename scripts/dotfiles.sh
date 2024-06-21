@@ -28,10 +28,11 @@ echo "vscode"
 mkdir -p ~/.local/share/code-server/User
 cp configs/vscode.jsonc ~/.local/share/code-server/User/settings.json
 
-mkdir -p ~/.config/code-server
-cp configs/code-server.yaml ~/.config/code-server/config.yaml
-
-sudo systemctl restart code-server@$USER 2>/dev/null
+mkdir -p ~/.config/systemd/user
+sudo cp ~/dotfiles/configs/code-server.service ~/.config/systemd/user/code-server.service
+systemctl --user daemon-reload
+systemctl --user enable code-server
+systemctl --user restart code-server@$USER 2>/dev/null
 
 echo "tailwind lsp"
 bun i --global --silent @tailwindcss/language-server@insiders

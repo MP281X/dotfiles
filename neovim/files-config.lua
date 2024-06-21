@@ -21,7 +21,7 @@ local conditional_filters = {
 	-- package managers
 	"pnpm-workspace.yaml", ".npmrc",
 	-- js/ts configs
-	"prettier.config.js", "eslint.config.js", "tsconfig.json",
+	"prettier.config.js", "eslint.config.js", "tsconfig.json", "biome.json", "biome.jsonc",
 	"tailwind.config.js", "app.css", "globals.css",
 	-- sveltekit
 	"svelte.config.js", "app.d.ts", "app.html",

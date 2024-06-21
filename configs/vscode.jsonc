@@ -14,10 +14,11 @@
 		"**/pnpm-lock.yaml": true,
 		"**/bun.lockb": true,
 
-		// sveltekit/nextjs
+		// sveltekit/nextjs/astro
 		"**/.svelte-kit": true,
 		"**/.next": true,
 		"**/next-env.d.ts": true,
+		"**/.astro": true,
 
 		// solidjs
 		"**/entry-client.tsx": true,

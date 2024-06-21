@@ -5,8 +5,8 @@ local permanent_filters = {
 	"node_modules", "dist", "build",
 	-- package managers
 	"pnpm-lock.yaml", "bun.lockb",
-	-- sveltekit/nextjs
-	".svelte-kit", ".next", "next-env.d.ts",
+	-- sveltekit/nextjs/astro
+	".svelte-kit", ".next", "next-env.d.ts", ".astro",
 	-- js/ts configs
 	"postcss.config.js", "postcss.config.cjs",
 	-- cache

@@ -30,67 +30,14 @@ local capabilities = vim.tbl_deep_extend(
 )
 
 require("mason").setup()
-require("mason-lspconfig").setup({
-	ensure_installed = {
-		"lua_ls",
-		"tsserver", "svelte",
-		"eslint",
-		"rust_analyzer"
-	}
-})
-
-require("lspconfig").lua_ls.setup({
-	capabilities = capabilities,
-	settings = { Lua = { diagnostics = { globals = { "vim" } } } }
-})
-
-require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
-
-require("lspconfig").rust_analyzer.setup({
-	capabilities = capabilities,
-	settings = {
-		['rust-analyzer'] = {
-			assist = {
-				importEnforceGranularity = true,
-				importPrefix = 'crate',
-			},
-			cargo = {
-				allFeatures = true,
-			},
-			checkOnSave = {
-				command = 'clippy',
-			},
-			inlayHints = { locationLinks = false },
-			diagnostics = {
-				enable = true,
-				experimental = {
-					enable = true,
-				},
-			},
-		},
-	}
-})
+require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "tsserver", "svelte", "eslint", "astro" } })
 
 require("lspconfig").astro.setup({ capabilities = capabilities })
-
+require("lspconfig").svelte.setup({ capabilities = capabilities })
 require("lspconfig").eslint.setup({ capabilities = capabilities })
+require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
 
-require("lspconfig").svelte.setup({
-	capabilities = capabilities,
-	settings = {
-		svelte = {
-			plugin = {
-				typescript = { enable = true },
-				svelte = {
-					format = {
-						enable = false,
-						config = { svelteStrictMode = true }
-					}
-				}
-			},
-		},
-	},
-})
+require("lspconfig").lua_ls.setup({ capabilities = capabilities, settings = { Lua = { diagnostics = { globals = { "vim" } } } } })
 
 require("lspconfig").tsserver.setup({
 	capabilities = capabilities,
@@ -109,37 +56,37 @@ require("lspconfig").tsserver.setup({
 	},
 })
 
-local cmp = require("cmp")
-cmp.setup({
-	sources = cmp.config.sources({
+require("cmp").setup({
+	sources = require("cmp").config.sources({
 		{ name = "path" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip", keyword_length = 2 },
 	}),
 	sorting = {
 		comparators = {
-			cmp.config.compare.kind,
-			cmp.config.compare.exact,
-			cmp.config.compare.recently_used,
-			cmp.config.compare.locality,
+			require("cmp").config.compare.kind,
+			require("cmp").config.compare.exact,
+			require("cmp").config.compare.recently_used,
+			require("cmp").config.compare.locality,
 		},
 	},
 	snippet = { expand = function(args) require("luasnip").lsp_expand(args.body) end },
 	mapping = {
-		["<Tab>"] = cmp.mapping.select_next_item(),
-		["<up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-		["<down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-		["<Enter>"] = cmp.mapping.confirm({ select = true }),
-		["<C-\\>"] = cmp.mapping.complete(),
+		["<Tab>"] = require("cmp").mapping.select_next_item(),
+		["<up>"] = require("cmp").mapping.select_prev_item({ behavior = require("cmp").SelectBehavior.Select }),
+		["<down>"] = require("cmp").mapping.select_next_item({ behavior = require("cmp").SelectBehavior.Select }),
+		["<Enter>"] = require("cmp").mapping.confirm({ select = true }),
+		["<C-\\>"] = require("cmp").mapping.complete(),
 	},
 	window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered(),
+		completion = require("cmp").config.window.bordered(),
+		documentation = require("cmp").config.window.bordered(),
 	},
 })
 
 -- formatters
 require("conform").setup({
+	format_on_save = { timeout_ms = 1000, lsp_fallback = true, async = false },
 	formatters_by_ft = {
 		typescript = { { "prettierd", "prettier" } },
 		javascript = { { "prettierd", "prettier" } },
@@ -149,10 +96,5 @@ require("conform").setup({
 		yaml = { { "prettierd", "prettier" } },
 		markdown = { { "prettierd", "prettier" } },
 		css = { { "prettierd", "prettier" } }
-	},
-	format_on_save = {
-		timeout_ms = 1000,
-		lsp_fallback = true,
-		async = false,
-	},
+	}
 })

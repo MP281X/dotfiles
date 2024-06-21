@@ -46,15 +46,10 @@ log "code-server"
 brewInstall "code-server"
 
 code "usernamehw.errorlens"
-code "dbaeumer.vscode-eslint"
+code "biomejs.biome"
 code "jolaleye.horizon-theme-vscode"
 code "PKief.material-icon-theme"
-code "codeandstuff.package-json-upgrade"
-code "esbenp.prettier-vscode"
-code "YoavBls.pretty-ts-errors"
-code "svelte.svelte-vscode"
 code "cmoog.sqlnotebook"
-code "Orta.vscode-twoslash-queries"
 code "pomdtr.excalidraw-editor"
 #----------------------------------------------------------------------------------------------------------------
 

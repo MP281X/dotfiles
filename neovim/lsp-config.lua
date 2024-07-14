@@ -23,6 +23,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function()
+		local bufnr = vim.api.nvim_get_current_buf()
+		local filetype = vim.bo[bufnr].filetype
+
+		if (filetype == "svelte") then return end
+
 		vim.lsp.buf.format({
 			filter = function(client)
 				if client.name == "tsserver" then return false end
@@ -84,5 +89,15 @@ require("cmp").setup({
 	window = {
 		completion = require("cmp").config.window.bordered(),
 		documentation = require("cmp").config.window.bordered(),
+	},
+})
+
+-- formatters
+require("conform").setup({
+	formatters_by_ft = { svelte = { { "prettier" } } },
+	format_on_save = {
+		timeout_ms = 1000,
+		lsp_fallback = true,
+		async = false,
 	},
 })

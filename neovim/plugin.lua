@@ -38,6 +38,7 @@ require("lazy").setup({
 	{ "williamboman/mason-lspconfig.nvim" }, -- configure lsp installed by mason
 	{ "williamboman/mason.nvim" },          -- lsp manager
 	{ "neovim/nvim-lspconfig" },            -- lsp server
+	{ "stevearc/conform.nvim" },            -- formatter
 
 	-- Autocomplete
 	{ "hrsh7th/cmp-nvim-lsp" },

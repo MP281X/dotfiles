@@ -24,18 +24,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function()
-		local bufnr = vim.api.nvim_get_current_buf()
-		local filetype = vim.bo[bufnr].filetype
+		-- since biomejs cannot format the "html" section of the svlete and astro files
+		-- that part is formatted by the relative lsp, then biome is runned after that
+		-- to format the script segment so everything is formatted correctly
 
-		print(filetype)
-
+		-- run every formatter except for biome and tsserver
 		vim.lsp.buf.format({
 			filter = function(client)
 				if client.name == "tsserver" then return false end
+				if client.name == "biome" then return false end
 
 				return true
 			end
 		})
+
+		-- run only biome after the other formatters
+		vim.lsp.buf.format({ filter = function(client) return client.name == "biome" end })
 	end
 })
 

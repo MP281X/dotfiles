@@ -35,7 +35,7 @@ systemctl --user enable code-server
 systemctl --user restart code-server@$USER 2>/dev/null
 
 echo "tailwind lsp"
-bun i --global --silent @tailwindcss/language-server@insiders
+pnpm i --global --silent @tailwindcss/language-server@insiders
 
 echo "neovim clipboard"
 [ -d /mnt/c ] && echo "win32yank"

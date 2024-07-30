@@ -35,15 +35,7 @@
 
 		// cache
 		"**/.attest": true,
-		"**/*.tsbuildinfo": true,
-
-		// c#
-		"**/obj": true,
-		"**/bin": true,
-		"**/*.sln": true,
-		"**/*.csproj": true,
-		"**/Migrations": true,
-		"**/Properties": true,
+		"**/*.tsbuildinfo": true
   },
 
   //! -------- editor --------
@@ -89,7 +81,6 @@
   "npm.packageManager": "pnpm",
 
 	// formatter and linter
-	"[csharp]": { "editor.defaultFormatter": "ms-dotnettools.csharp" },
   "editor.defaultFormatter": "biomejs.biome",
   "editor.codeActionsOnSave": { "source.fixAll.stylelint": "always" },
 

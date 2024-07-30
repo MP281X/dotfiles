@@ -10,9 +10,7 @@ local permanent_filters = {
 	-- js/ts configs
 	"postcss.config.js", "postcss.config.cjs", "vite-env.d.ts",
 	-- cache
-	".eslintcache", ".attest", "*.tsbuildinfo",
-	-- c#
-	"obj", "bin"
+	".eslintcache", ".attest", "*.tsbuildinfo"
 }
 
 local conditional_filters = {
@@ -30,9 +28,7 @@ local conditional_filters = {
 	"astro.config.mjs", "env.d.ts",
 	"next.config.js",
 	-- codegen
-	"*.g.ts",
-	-- c#
-	"*.csproj", "*.sln", "appsettings.json", "Properties"
+	"*.g.ts"
 }
 
 local nvimTreeFilters = function()

@@ -28,7 +28,6 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope-ui-select.nvim" }, -- use telescope for the vim.ui.select ui
 	{ "lewis6991/gitsigns.nvim" },                -- git integration
 
-
 	-- language tools
 	{ "nvim-treesitter/nvim-treesitter",        build = ":TSUpdate" }, -- syntax hilight
 	{ "marilari88/twoslash-queries.nvim" },                           -- // visualize typescript types with // ^?
@@ -38,7 +37,6 @@ require("lazy").setup({
 	{ "williamboman/mason-lspconfig.nvim" }, -- configure lsp installed by mason
 	{ "williamboman/mason.nvim" },          -- lsp manager
 	{ "neovim/nvim-lspconfig" },            -- lsp server
-	{ "stevearc/conform.nvim" },            -- formatter
 
 	-- Autocomplete
 	{ "hrsh7th/cmp-nvim-lsp" },

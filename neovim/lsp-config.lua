@@ -6,7 +6,7 @@ require("nvim-treesitter.configs").setup({
 	highlight = { enable = true }
 })
 
--- format on save and keybinds
+-- keybinds
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local opts = { buffer = args.buf, silent = true }
@@ -21,12 +21,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
+-- format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function()
 		local bufnr = vim.api.nvim_get_current_buf()
 		local filetype = vim.bo[bufnr].filetype
 
-		if (filetype == "svelte") then return end
+		print(filetype)
 
 		vim.lsp.buf.format({
 			filter = function(client)
@@ -38,6 +39,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end
 })
 
+-- base lsp config
+require("mason").setup()
+require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "tsserver", "svelte", "biome", "astro" } })
+
 local capabilities = vim.tbl_deep_extend(
 	"force",
 	{},
@@ -45,9 +50,7 @@ local capabilities = vim.tbl_deep_extend(
 	require("cmp_nvim_lsp").default_capabilities()
 )
 
-require("mason").setup()
-require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "tsserver", "svelte", "biome", "astro" } })
-
+-- specific lsp configs
 require("lspconfig").astro.setup({ capabilities = capabilities })
 require("lspconfig").svelte.setup({ capabilities = capabilities })
 require("lspconfig").biome.setup({ capabilities = capabilities })
@@ -64,6 +67,7 @@ require("lspconfig").tsserver.setup({
 	},
 })
 
+-- autocomplete
 require("cmp").setup({
 	sources = require("cmp").config.sources({
 		{ name = "path" },
@@ -89,15 +93,5 @@ require("cmp").setup({
 	window = {
 		completion = require("cmp").config.window.bordered(),
 		documentation = require("cmp").config.window.bordered(),
-	},
-})
-
--- formatters
-require("conform").setup({
-	formatters_by_ft = { svelte = { { "prettier" } } },
-	format_on_save = {
-		timeout_ms = 1000,
-		lsp_fallback = true,
-		async = false,
 	},
 })

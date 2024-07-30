@@ -36,7 +36,7 @@ code() {
 # docker
 alias prune="docker system prune --all --volumes --force"
 ps() {
-	docker ps --format '{{json .}}' | jq -s 'map({
+	docker ps --all --format '{{json .}}' | jq -s 'map({
 		name: .Names,
 		status: .Status,
   	image: .Image,
@@ -84,7 +84,6 @@ rm -f ~/.profile
 shopt -s histappend
 export HISTSIZE=500
 export HISTFILESIZE=10000
-PROMPT_COMMAND='history -a'
 export HISTCONTROL=erasedups:ignoredups:ignorespace
 
 # tab autocomplete
@@ -94,7 +93,7 @@ bind 'TAB:menu-complete'
 bind "set completion-ignore-case on";
 
 # use the | cursor instead of the ▉ cursor
-export PROMPT_COMMAND='echo -ne "\033[5 q"'
+export PROMPT_COMMAND='history -a && echo -ne "\033[5 q"'
 
 # disable nodejs experimental warnings
 export NODE_NO_WARNINGS=1

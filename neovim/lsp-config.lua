@@ -24,28 +24,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function()
-		-- since biomejs cannot format the "html" section of the svlete and astro files
-		-- that part is formatted by the relative lsp, then biome is runned after that
-		-- to format the script segment so everything is formatted correctly
-
-		-- run every formatter except for biome and tsserver
-		vim.lsp.buf.format({
-			filter = function(client)
-				if client.name == "tsserver" then return false end
-				if client.name == "biome" then return false end
-
-				return true
-			end
-		})
-
-		-- run only biome after the other formatters
-		vim.lsp.buf.format({ filter = function(client) return client.name == "biome" end })
+		vim.lsp.buf.format({ filter = function(client) return client.name ~= "tsserver" end })
 	end
 })
 
 -- base lsp config
 require("mason").setup()
-require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "tsserver", "svelte", "biome", "astro" } })
+require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "tsserver", "svelte", "biome" } })
 
 local capabilities = vim.tbl_deep_extend(
 	"force",
@@ -55,13 +40,9 @@ local capabilities = vim.tbl_deep_extend(
 )
 
 -- specific lsp configs
-require("lspconfig").astro.setup({ capabilities = capabilities })
 require("lspconfig").svelte.setup({ capabilities = capabilities })
-require("lspconfig").biome.setup({ capabilities = capabilities })
 require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
-
 require("lspconfig").lua_ls.setup({ capabilities = capabilities, settings = { Lua = { diagnostics = { globals = { "vim" } } } } })
-
 require("lspconfig").tsserver.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr) require("twoslash-queries").attach(client, bufnr) end,
@@ -70,6 +51,13 @@ require("lspconfig").tsserver.setup({
 		javascript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
 	},
 })
+
+-- biome should be the last client to be loaded since the vim.lsp.buf.format
+-- format the file with each client based on the oreder in which they are loaded
+-- since the html part of the svelte files is not formatted by biome
+-- that part is formatted by the svelte lsp and then the script tag is formatted
+-- by biome so each part of the file is formatted correctly
+require("lspconfig").biome.setup({ capabilities = capabilities })
 
 -- autocomplete
 require("cmp").setup({

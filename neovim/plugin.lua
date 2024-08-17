@@ -8,13 +8,6 @@ require("lazy").setup({
 		"nvim-lualine/lualine.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",
 	},
-	{ -- md preview
-		ft = "markdown",
-		"iamcco/markdown-preview.nvim",
-		build = function()
-			vim.fn["mkdp#util#install"]()
-		end,
-	},
 
 	{ "debugloop/telescope-undo.nvim" },          -- undo history
 	{ "axelvc/template-string.nvim" },            -- convert js/ts string to string template

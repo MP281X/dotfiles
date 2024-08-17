@@ -2,16 +2,16 @@
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 export HOMEBREW_NO_ENV_HINTS=1
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac
 
+# go
+export GOPATH="$HOME/.go"
+export PATH="$GOPATH/bin:$PATH"
+
 # ls
-ignore_pattern="~/.bun|~/.cache|~/.npm|node_modules"
+ignore_pattern="~/.cache|~/.npm|node_modules"
 eza_args="--icons --group-directories-first --width 120"
 alias la="eza $eza_args --all"
 alias ls="eza $eza_args --git-ignore --ignore-glob='$ignore_pattern'"

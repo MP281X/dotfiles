@@ -37,6 +37,9 @@ systemctl --user restart code-server@$USER 2>/dev/null
 echo "tailwind lsp"
 pnpm i --global --silent @tailwindcss/language-server@insiders
 
+echo "golang --watch"
+go install github.com/mitranim/gow@latest
+
 echo "neovim clipboard"
 [ -d /mnt/c ] && echo "win32yank"
 [ -d /mnt/c ] && mkdir -p /mnt/c/tools/ && cp scripts/win32yank.exe /mnt/c/tools/win32yank.exe

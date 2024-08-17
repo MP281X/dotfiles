@@ -57,9 +57,11 @@ require("lualine").setup({
 require("FTerm").setup({
 	auto_close = false,
 	cmd = (function()
-		if vim.fn.findfile("bun.lockb") ~= "" then return { "bun", "run", "--silent", "dev" } end
+		-- go
+		if vim.fn.findfile("go.mod") ~= "" then return { "gow", "-c", "-r=false", "run", "." } end
+
+		-- node
 		if vim.fn.findfile("package.json") ~= "" then return { "node", "--no-warnings", "--run", "dev" } end
-		if vim.fn.findfile("Cargo.toml") ~= "" then return { "cargo", "run", "-q" } end
 
 		return { "sh", "-c", "$SHELL" }
 	end)(),

@@ -12,7 +12,6 @@
 
 		// package managers
 		"**/pnpm-lock.yaml": true,
-		"**/bun.lockb": true,
 
 		// sveltekit/nextjs/astro
 		"**/.svelte-kit": true,

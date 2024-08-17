@@ -92,7 +92,7 @@ require("telescope").setup({
 		undo = {
 			use_delta = true,
 			side_by_side = true,
-			diff_context_lines = 15,
+			vim_diff_opts = { ctxlen = 15 },
 			entry_format = "[$ID]: $TIME",
 			mappings = {
 				i = {

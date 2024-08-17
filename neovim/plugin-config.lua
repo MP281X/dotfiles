@@ -57,9 +57,6 @@ require("lualine").setup({
 require("FTerm").setup({
 	auto_close = false,
 	cmd = (function()
-		-- go
-		if vim.fn.findfile("go.mod") ~= "" then return { "gow", "-c", "-r=false", "run", "." } end
-
 		-- node
 		if vim.fn.findfile("package.json") ~= "" then return { "node", "--no-warnings", "--run", "dev" } end
 
@@ -87,8 +84,7 @@ require('gitsigns').setup({
 	signcolumn = false,
 	numhl = true,
 	current_line_blame = true,
-	preview_config = { border = 'rounded' },
-	yadm = { enable = false }
+	preview_config = { border = 'rounded' }
 })
 
 require("Comment").setup()         -- comment code

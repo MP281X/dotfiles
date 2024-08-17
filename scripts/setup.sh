@@ -20,12 +20,17 @@ code() {
 	code-server --force --install-extension "$1" >/dev/null 
 }
 
-
 log "packages"
 
 sudo apt-get update > /dev/null && sudo apt-get upgrade -y > /dev/null
 sudo apt-get install -y git curl wget xz-utils unzip jq > /dev/null
 sudo apt-get install -y gcc g++ ripgrep > /dev/null # neovim
+#----------------------------------------------------------------------------------------------------------------
+
+log "mount usb"
+
+sudo mkdir -p /mnt/d
+sudo mount -t drvfs d: /mnt/d -o uid=$(id -u $USER),gid=$(id -g $USER),metadata
 #----------------------------------------------------------------------------------------------------------------
 
 log "brew"

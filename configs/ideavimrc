@@ -18,20 +18,22 @@ nnoremap N Nzzzv
 
 " buffer
 nnoremap <C-\> :bd<CR>
-nnoremap << :bp<CR>
-nnoremap >> :bn<CR>
+nnoremap >> :bp<CR>
+nnoremap << :bn<CR>
 
 " telescope equivalent
 nnoremap <leader>sf :action GotoFile<CR>
 nnoremap <leader>sc :action FindInPath<CR>
 nnoremap <leader>sb :action RecentFiles<CR>
-nnoremap <leader>fb :action ActivateProjectToolWindow<CR>
+nnoremap <leader>fb :NERDTreeToggle<CR>
 
 " lsp
 nnoremap <leader>gd :action GotoDeclaration<CR>
 nnoremap E :action ShowErrorDescription<CR>
 nnoremap <leader>sa :action ShowIntentionActions<CR>
 nnoremap R :action RenameElement<CR>
+
+nnoremap <Leader>t :action Run<CR>
 
 " disable mouse
 set mouse=
@@ -59,3 +61,6 @@ set clipboard=unnamedplus
 " decrease update time
 set updatetime=50
 set timeoutlen=300
+
+" simplify the configuration of the keybinds for the file browser
+set NERDTree

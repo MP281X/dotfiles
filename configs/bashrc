@@ -76,6 +76,12 @@ rm -f ~/.bash_logout
 rm -f ~/.wget-hsts
 rm -f ~/.profile
 
+# delete every Zone.Identifier file
+find "$HOME" -type f -name '*:Zone.Identifier' \
+    ! -path "$HOME/**/.*/*" \
+    ! -path "$HOME/**/node_modules/*" \
+    -exec rm -f {} +
+
 # shell history
 shopt -s histappend
 export HISTSIZE=500

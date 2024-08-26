@@ -28,17 +28,6 @@ local getScriptNames = function()
 		end
 	end
 
-	-- find if there is a test file for the current file
-	if string.match(vim.fn.expand("%"), "%.test%.ts$") then
-		local current_file = vim.fn.expand("%:p")
-		table.insert(scriptNames, "test:" .. vim.fn.fnamemodify(current_file, ":t"))
-	else
-		local current_path = vim.fn.expand("%:p:h")
-		if vim.fn.filereadable(current_path .. "/" .. vim.fn.expand("%:t:r") .. ".test.ts") == 1 then
-			table.insert(scriptNames, "test:" .. vim.fn.expand("%:t:r") .. ".test.ts")
-		end
-	end
-
 	return scriptNames
 end
 

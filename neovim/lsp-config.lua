@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- base lsp config
 require("mason").setup()
-require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "tsserver", "svelte", "biome" } })
+require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "tsserver", "svelte", "biome", "prismals" } })
 
 local capabilities = vim.tbl_deep_extend(
 	"force",
@@ -41,6 +41,7 @@ local capabilities = vim.tbl_deep_extend(
 
 -- specific lsp configs
 require("lspconfig").svelte.setup({ capabilities = capabilities })
+require("lspconfig").prismals.setup({ capabilities = capabilities })
 require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
 require("lspconfig").lua_ls.setup({ capabilities = capabilities, settings = { Lua = { diagnostics = { globals = { "vim" } } } } })
 require("lspconfig").tsserver.setup({

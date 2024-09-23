@@ -8,9 +8,9 @@ local permanent_filters = {
 	-- sveltekit/nextjs/astro
 	".svelte-kit", ".next", "next-env.d.ts", ".astro",
 	-- js/ts configs
-	"postcss.config.js", "postcss.config.cjs", "vite-env.d.ts",
+	"vite-env.d.ts",
 	-- cache
-	".eslintcache", ".attest", "*.tsbuildinfo"
+	".eslintcache", ".attest", "*.tsbuildinfo", "*-journal"
 }
 
 local conditional_filters = {
@@ -19,16 +19,12 @@ local conditional_filters = {
 	-- package managers
 	"pnpm-workspace.yaml", ".npmrc",
 	-- js/ts configs
-	"prettier.config.js", "eslint.config.js", "tsconfig.json", "tsconfig.base.json",
-	"tailwind.config.js", "app.css", "globals.css", "index.html", "vite.config.ts",
-	"biome.json", "biome.jsonc",
+	"*.config.*", "tsconfig.json", "tsconfig.base.json", "biome.jsonc",
 	-- sveltekit/nextjs/astro
-	"entry-client.tsx", "entry-server.tsx", "global.d.ts",
-	"svelte.config.js", "app.d.ts", "app.html",
-	"astro.config.mjs", "env.d.ts",
-	"next.config.js",
+	"entry-client.tsx", "entry-server.tsx",
+	"app.html", "app.css", "globals.css", "index.html",
 	-- codegen
-	"*.g.ts"
+	".codegen", "*.g.ts", "*.g.d.ts"
 }
 
 local nvimTreeFilters = function()

@@ -3,7 +3,7 @@ local getScriptNames = function()
 
 	-- find all the package json scripts
 	if vim.fn.findfile("package.json") ~= "" then
-		local extract_key = '.scripts | keys[] | select(test("^[^_].*"))'
+		local extract_key = '.scripts | keys[] | select(test(">") | not)'
 
 		for nodeScript in io.popen("cat package.json | jq -r '" .. extract_key .. "'"):lines() do
 			if nodeScript ~= "dev" then

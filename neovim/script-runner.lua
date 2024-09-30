@@ -1,20 +1,23 @@
 local getScriptNames = function()
 	local scriptNames = {}
 
-	-- find all the package json scripts
+	-- find all the node scripts
 	if vim.fn.findfile("package.json") ~= "" then
-		local extract_key = '.scripts | keys[] | select(test(">") | not)'
+		local extract_key = '.scripts | keys[] | select(. != "dev")'
+		for nodeScript in io.popen("jq -r '.scripts | keys[] | select(. != \"dev\")' package.json" .. extract_key .. "'"):lines() do
+			table.insert(scriptNames, "node:" .. nodeScript)
+		end
+	end
 
-		for nodeScript in io.popen("cat package.json | jq -r '" .. extract_key .. "'"):lines() do
-			if nodeScript ~= "dev" then
-				table.insert(scriptNames, "node:" .. nodeScript)
-			end
+	-- find all the deno scripts
+	if vim.fn.findfile("deno.json") ~= "" then
+		for denoScript in io.popen("jq -r '.tasks | keys[] | select(. != \"dev\")' deno.json"):lines() do
+			table.insert(scriptNames, "deno:" .. denoScript)
 		end
 	end
 
 	-- find all the bash script
 	local stat = vim.loop.fs_stat("./scripts")
-
 	if stat and stat.type == "directory" then
 		for _, fileName in ipairs(vim.fn.readdir("./scripts")) do
 			if fileName:match("%.sh$") then
@@ -37,16 +40,19 @@ local runScript = function(selected)
 	local type = selected:match("(.-):")
 	local script = selected:match(":(.+)")
 
-	-- run the bash script
-	if type == "bash" then require("FTerm").scratch({ cmd = "sh ./scripts/" .. script .. ".sh" }) end
+	-- bash script
+	if type == "bash" then
+		require("FTerm").scratch({ cmd = "sh ./scripts/" .. script .. ".sh" })
+	end
 
-	-- find the correct node package manager and run the script
+	-- node script
 	if type == "node" then
-		local packet_manager = ""
+		require("FTerm").scratch({ cmd = "node --no-warnings --run " .. script })
+	end
 
-		if vim.fn.findfile("package.json") ~= "" then packet_manager = "node --no-warnings --run" end
-
-		require("FTerm").scratch({ cmd = packet_manager .. " " .. script })
+	-- deno script
+	if type == "deno" then
+		require("FTerm").scratch({ cmd = "deno task -q " .. " " .. script })
 	end
 end
 

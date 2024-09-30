@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- base lsp config
 require("mason").setup()
-require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "tsserver", "svelte", "biome", "prismals" } })
+require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "svelte", "biome", "prismals", "tsserver" } })
 
 local capabilities = vim.tbl_deep_extend(
 	"force",
@@ -44,21 +44,33 @@ require("lspconfig").svelte.setup({ capabilities = capabilities })
 require("lspconfig").prismals.setup({ capabilities = capabilities })
 require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
 require("lspconfig").lua_ls.setup({ capabilities = capabilities, settings = { Lua = { diagnostics = { globals = { "vim" } } } } })
+require("lspconfig").biome.setup({ capabilities = capabilities })
+
+require("lspconfig").denols.setup({
+	capabilities = capabilities,
+	filetypes = { "typescriptreact", "typescript", "json", "jsonc" },
+	on_attach = function(client, bufnr) require("twoslash-queries").attach(client, bufnr) end,
+	root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
+	settings = {
+		deno = {
+			inlayHints = {
+				parameterTypes = { enabled = true },
+				parameterNames = { enabled = "literals" },
+				propertyDeclarationTypes = { enabled = true },
+			},
+		}
+	}
+})
+
 require("lspconfig").tsserver.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr) require("twoslash-queries").attach(client, bufnr) end,
+	root_dir = require("lspconfig").util.root_pattern("package.json"),
 	settings = {
 		typescript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
 		javascript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
 	},
 })
-
--- biome should be the last client to be loaded since the vim.lsp.buf.format
--- format the file with each client based on the oreder in which they are loaded
--- since the html part of the svelte files is not formatted by biome
--- that part is formatted by the svelte lsp and then the script tag is formatted
--- by biome so each part of the file is formatted correctly
-require("lspconfig").biome.setup({ capabilities = capabilities })
 
 -- autocomplete
 require("cmp").setup({

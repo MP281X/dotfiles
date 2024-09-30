@@ -59,6 +59,7 @@ require("FTerm").setup({
 	cmd = (function()
 		-- node
 		if vim.fn.findfile("package.json") ~= "" then return { "node", "--no-warnings", "--run", "dev" } end
+		if vim.fn.findfile("deno.json") ~= "" then return { "deno", "task", "-q", "dev" } end
 
 		return { "sh", "-c", "$SHELL" }
 	end)(),

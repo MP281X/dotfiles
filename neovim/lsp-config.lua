@@ -3,7 +3,8 @@ require("nvim-treesitter.install").compilers = { "gcc" }
 require("nvim-treesitter.configs").setup({
 	auto_install = true,
 	sync_install = false,
-	highlight = { enable = true }
+	indent = { enable = true },
+	highlight = { enable = true, additional_vim_regex_highlighting = false },
 })
 
 -- keybinds
@@ -28,48 +29,50 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end
 })
 
--- base lsp config
-require("mason").setup()
-require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "svelte", "biome", "prismals", "tsserver" } })
-
 local capabilities = vim.tbl_deep_extend(
 	"force",
-	{},
 	vim.lsp.protocol.make_client_capabilities(),
 	require("cmp_nvim_lsp").default_capabilities()
 )
 
--- specific lsp configs
-require("lspconfig").svelte.setup({ capabilities = capabilities })
-require("lspconfig").prismals.setup({ capabilities = capabilities })
-require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
-require("lspconfig").lua_ls.setup({ capabilities = capabilities, settings = { Lua = { diagnostics = { globals = { "vim" } } } } })
-require("lspconfig").biome.setup({ capabilities = capabilities })
+local languageSettings = {
+	Lua = { diagnostics = { globals = { "vim" } } },
+	deno = { inlayHints = { parameterNames = { enabled = "literals" } } },
+	typescript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
+	javascript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
+}
 
-require("lspconfig").denols.setup({
-	capabilities = capabilities,
-	filetypes = { "typescriptreact", "typescript", "json", "jsonc" },
-	on_attach = function(client, bufnr) require("twoslash-queries").attach(client, bufnr) end,
-	root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
-	settings = {
-		deno = {
-			inlayHints = {
-				parameterTypes = { enabled = true },
-				parameterNames = { enabled = "literals" },
-				propertyDeclarationTypes = { enabled = true },
-			},
-		}
-	}
+local lspSetup = function(server_name, config)
+	config = config or {}
+
+	require("lspconfig")[server_name].setup(
+		vim.tbl_deep_extend("force", config, {
+			capabilities = capabilities,
+			settings = languageSettings
+		})
+	)
+end
+
+-- base lsp config
+require("mason").setup()
+require("mason-lspconfig").setup({
+	handlers = { lspSetup },
+	ensure_installed = {
+		"lua_ls",
+		"jdtls", "kotlin_language_server",
+		"ts_ls", "svelte", "biome", "tailwindcss", "prismals",
+	},
+
 })
 
-require("lspconfig").tsserver.setup({
-	capabilities = capabilities,
-	on_attach = function(client, bufnr) require("twoslash-queries").attach(client, bufnr) end,
+lspSetup("denols", {
+	filetypes = { "typescriptreact", "typescript", "json", "jsonc" },
+	root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
+})
+
+lspSetup("ts_ls", {
+	single_file_support = false,
 	root_dir = require("lspconfig").util.root_pattern("package.json"),
-	settings = {
-		typescript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
-		javascript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
-	},
 })
 
 -- autocomplete

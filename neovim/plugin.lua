@@ -14,17 +14,13 @@ require("lazy").setup({
 	{ "nvim-tree/nvim-tree.lua" },                -- file explorer
 	{ "windwp/nvim-ts-autotag" },                 -- auto close <div></div>
 	{ "windwp/nvim-autopairs" },                  -- auto close ()
-	{ "numToStr/Comment.nvim" },                  -- comment code
 	{ "rmagatti/auto-session" },                  -- session manager
-	{ "rebelot/kanagawa.nvim" },                  -- color scheme
 	{ "numToStr/FTerm.nvim" },                    -- floating terminal
 	{ "nvim-telescope/telescope-ui-select.nvim" }, -- use telescope for the vim.ui.select ui
-	{ "lewis6991/gitsigns.nvim" },                -- git integration
 
-	-- language tools
+	-- theme
+	{ "rebelot/kanagawa.nvim" },                                      -- color scheme
 	{ "nvim-treesitter/nvim-treesitter",        build = ":TSUpdate" }, -- syntax hilight
-	{ "marilari88/twoslash-queries.nvim" },                           -- // visualize typescript types with // ^?
-	{ "b0o/schemastore.nvim" },                                       -- download schema for json/yaml config file
 
 	-- lsp tools
 	{ "williamboman/mason-lspconfig.nvim" }, -- configure lsp installed by mason

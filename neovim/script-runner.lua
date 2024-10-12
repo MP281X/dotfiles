@@ -1,3 +1,16 @@
+-- floating terminal
+require("FTerm").setup({
+	auto_close = false,
+	cmd = (function()
+		-- node
+		if vim.fn.findfile("package.json") ~= "" then return { "node", "--no-warnings", "--run", "dev" } end
+		if vim.fn.findfile("deno.json") ~= "" then return { "deno", "task", "-q", "dev" } end
+		if vim.fn.findfile("mvnw") ~= "" then return { "./mvnw", "spring-boot:run", "--quiet" } end
+
+		return { "sh", "-c", "$SHELL" }
+	end)(),
+})
+
 local getScriptNames = function()
 	local scriptNames = {}
 

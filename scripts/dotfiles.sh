@@ -34,11 +34,5 @@ systemctl --user daemon-reload
 systemctl --user enable code-server
 systemctl --user restart code-server@$USER 2>/dev/null
 
-echo "tailwind lsp"
-pnpm i --global --silent @tailwindcss/language-server@insiders
-
 echo "neovim clipboard (win32yank)"
 mkdir -p /mnt/c/tools && cp scripts/win32yank.exe /mnt/c/tools/win32yank.exe
-
-echo "ideaVim"
-cp configs/ideavimrc /mnt/c/Users/$USER/.ideavimrc

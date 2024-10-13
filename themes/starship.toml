@@ -11,7 +11,7 @@ format = """\
 [custom.branch]
 command = 'git rev-parse --abbrev-ref HEAD'
 detect_folders = ['.git']
-format = '[⚡ $output ](bold red)'
+format = '[⚡$output ](bold red)'
 
 
 [directory]

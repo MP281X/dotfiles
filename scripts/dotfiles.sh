@@ -5,6 +5,9 @@ rm -r -f ~/.config/nvim/*
 cp neovim/neovim-config.lua ~/.config/nvim/init.lua
 cp -r neovim/. ~/.config/nvim/lua/
 
+echo "wezterm"
+cp configs/wezterm.lua /mnt/c/Users/mp281x/.wezterm.lua
+
 echo "starship"
 cp themes/starship.toml ~/.config/starship.toml
 

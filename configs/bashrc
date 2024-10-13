@@ -97,4 +97,15 @@ export PROMPT_COMMAND='history -a && echo -ne "\033[5 q"'
 # disable nodejs experimental warnings
 export NODE_NO_WARNINGS=1
 
+# run starship
 eval "$(starship init bash)"; eza $eza_args
+
+# enable vim mode
+export EDITOR=nvim
+set -o vi
+bind 'set keyseq-timeout 10'
+bind 'set show-mode-in-prompt on'
+
+# change cursor shape based on the current mode
+bind 'set vi-cmd-mode-string \1\e[1 q\2'
+bind 'set vi-ins-mode-string \1\e[5 q\2'

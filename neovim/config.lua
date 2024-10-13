@@ -12,7 +12,7 @@ vim.opt.fileencoding = "utf-8"
 vim.opt.mouse = ""
 
 -- line nunbers
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 vim.opt.number = true
 
 vim.opt.scrolloff = 15

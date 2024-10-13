@@ -18,6 +18,14 @@ vim.keymap.set("n", "<C-\\>", ":bd<CR>")
 vim.keymap.set("n", "<<", ":bp<CR>")
 vim.keymap.set("n", ">>", ":bn<CR>")
 
+-- Move selected line/block down
+vim.keymap.set('n', '<A-Down>', ":m .+1<CR>==")
+vim.keymap.set('v', '<A-Down>', ":m '>+1<CR>gv=gv")
+
+-- Move selected line/block up
+vim.keymap.set('n', '<A-Up>', ":m .-2<CR>==")
+vim.keymap.set('v', '<A-Up>', ":m '<-2<CR>gv=gv")
+
 -- enable and disable telescope and nvimTree filters
 Enable_filters = true
 vim.keymap.set("n", "<leader>ff", function()

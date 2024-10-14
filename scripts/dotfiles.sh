@@ -29,7 +29,7 @@ mkdir -p ~/.local/share/code-server/User
 cp configs/vscode.jsonc ~/.local/share/code-server/User/settings.json
 
 mkdir -p ~/.config/systemd/user
-sudo cp ~/dotfiles/configs/code-server.service ~/.config/systemd/user/code-server.service
+sudo cp configs/code-server ~/.config/systemd/user/code-server.service
 systemctl --user daemon-reload
 systemctl --user enable code-server
 systemctl --user restart code-server@$USER 2>/dev/null

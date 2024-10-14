@@ -50,8 +50,14 @@ log "code-server"
 
 brewInstall "code-server"
 
-code "usernamehw.errorlens"
-code "biomejs.biome"
+# java
+code "redhat.java"
+code "redhat.vscode-xml"
+code "vscjava.vscode-maven"
+code "vscjava.vscode-java-test"
+code "vscjava.vscode-java-debug"
+
+# others
 code "jolaleye.horizon-theme-vscode"
 code "PKief.material-icon-theme"
 code "cmoog.sqlnotebook"

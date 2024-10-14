@@ -59,10 +59,10 @@ require("mason-lspconfig").setup({
 	handlers = { lspSetup },
 	ensure_installed = {
 		"lua_ls",
+		"pyright",
 		"jdtls", "kotlin_language_server",
 		"ts_ls", "svelte", "biome", "tailwindcss", "prismals",
-	},
-
+	}
 })
 
 lspSetup("denols", {

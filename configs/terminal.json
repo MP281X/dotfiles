@@ -11,6 +11,7 @@
 	"profiles": {
 		"defaults": {
 			"elevate": true,
+			"bellStyle": "none",
 			"closeOnExit": "always",
 			"colorScheme": "Kanagawa",
 			"scrollbarState": "hidden",

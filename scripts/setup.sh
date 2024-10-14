@@ -19,6 +19,7 @@ code() {
 	echo "[code-server] $1"
 	code-server --force --install-extension "$1" >/dev/null 
 }
+#----------------------------------------------------------------------------------------------------------------
 
 log "packages"
 
@@ -107,6 +108,12 @@ git config --global --replace-all core.editor nvim
 
 git clone https://github.com/MP281X/dotfiles.git ~/dotfiles
 (cd ~/dotfiles && bash ./scripts/dotfiles.sh)
+#----------------------------------------------------------------------------------------------------------------
+
+log "passwordless sudo"
+
+echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$USER
+
 #----------------------------------------------------------------------------------------------------------------
 
 log "reboot"

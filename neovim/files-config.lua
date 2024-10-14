@@ -1,6 +1,6 @@
 local permanent_filters = {
 	--global
-	".git", ".gitignore", ".vscode",
+	".git", ".gitignore", ".dockerignore", ".vscode",
 	-- node
 	"node_modules", "dist", "build",
 	-- package managers
@@ -12,7 +12,7 @@ local permanent_filters = {
 	-- cache
 	".eslintcache", ".attest", "*.tsbuildinfo", "*-journal",
 	-- java
-	".mvn", "mvnw", "target", ".settings", ".classpath", ".project"
+	".idea", ".mvn", "mvnw", "target", ".settings", ".classpath", ".project"
 }
 
 local conditional_filters = {

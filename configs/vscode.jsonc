@@ -4,37 +4,30 @@
     // global
     "**/.git": true,
     "**/.gitignore": true,
+		"**/.dockerignore": true,
 		
     // node
-    "**/node_modules": true,
     "**/dist": true,
 		"**/build": true,
-
-		// package managers
+		"**/node_modules": true,
 		"**/pnpm-lock.yaml": true,
 
-		// sveltekit/nextjs/astro
+		// sveltekit/nextjs
 		"**/.svelte-kit": true,
 		"**/.next": true,
 		"**/next-env.d.ts": true,
-		"**/.astro": true,
 
-		// solidjs
-		"**/entry-client.tsx": true,
-		"**/entry-server.tsx": true,
-		"**/global.d.ts": true,
+		// js/ts
+		"**/*.config.*": true,
+		"**/*.tsbuildinfo": true,
 
-		// astro
-		"**/astro.config.mjs": true,
-		"**/env.d.ts": true,
-
-		// js/ts configs
-		"**/postcss.config.js": true,
-		"**/postcss.config.cjs": true,
-
-		// cache
-		"**/.attest": true,
-		"**/*.tsbuildinfo": true
+		"**/.idea": true,
+		"**/.mvn": true,
+		"**/mvnw": true,
+		"**/target": true,
+		"**/.settings": true,
+		"**/.classpath": true,
+		"**/.project": true,
   },
 
   //! -------- editor --------

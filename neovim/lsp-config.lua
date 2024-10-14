@@ -18,7 +18,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>sa", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("n", "R", vim.lsp.buf.rename, opts)
 
-		pcall(function() vim.lsp.inlay_hint.enable(true) end) -- inlay hint
+		vim.lsp.inlay_hint.enable(true) -- inlay hint
+
+		-- disable lsp syntax highlight
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		client.server_capabilities.semanticTokensProvider = nil
+		client.server_capabilities.documentHighlightProvider = false
 	end,
 })
 

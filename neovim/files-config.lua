@@ -4,15 +4,13 @@ local permanent_filters = {
 	-- node
 	"node_modules", "dist", "build",
 	-- package managers
-	"pnpm-lock.yaml", "deno.lock",
+	"pnpm-lock.yaml",
 	-- sveltekit/nextjs/astro
 	".svelte-kit", ".next", "next-env.d.ts", ".astro",
 	-- js/ts configs
 	"vite-env.d.ts",
 	-- cache
-	".eslintcache", ".attest", "*.tsbuildinfo", "*-journal",
-	-- java
-	".idea", ".mvn", "mvnw", "target", ".settings", ".classpath", ".project"
+	".attest", "*.tsbuildinfo", "*-journal",
 }
 
 local conditional_filters = {
@@ -22,13 +20,11 @@ local conditional_filters = {
 	"pnpm-workspace.yaml", ".npmrc",
 	-- js/ts configs
 	"*.config.*", "tsconfig.json", "tsconfig.base.json", "biome.jsonc",
-	-- sveltekit/nextjs/astro
+	-- sveltekit/nextjs
 	"entry-client.tsx", "entry-server.tsx",
 	"app.html", "app.css", "globals.css", "index.html",
 	-- codegen
 	".codegen", "*.g.ts", "*.g.d.ts",
-	-- java
-	"pom.xml"
 }
 
 local nvimTreeFilters = function()

@@ -1,3 +1,4 @@
+
 {
   //! -------- hide files --------
   "files.exclude": {
@@ -19,15 +20,7 @@
 
 		// js/ts
 		"**/*.config.*": true,
-		"**/*.tsbuildinfo": true,
-
-		"**/.idea": true,
-		"**/.mvn": true,
-		"**/mvnw": true,
-		"**/target": true,
-		"**/.settings": true,
-		"**/.classpath": true,
-		"**/.project": true,
+		"**/*.tsbuildinfo": true
   },
 
   //! -------- editor --------
@@ -69,9 +62,7 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
 
-	// java
-	"[java]": { "editor.defaultFormatter": "redhat.java" },
-	"[xml]": { "editor.defaultFormatter": "redhat.vscode-xml" },
+	// debugger
 	"testing.openTesting": "neverOpen",
 	"testing.automaticallyOpenPeekView": "never",
 	"testing.alwaysRevealTestOnStateChange": false,
@@ -108,7 +99,6 @@
   "workbench.layoutControl.enabled": false,
   "diffEditor.ignoreTrimWhitespace": false,
   "editor.hideCursorInOverviewRuler": true,
-  "window.newWindowDimensions": "maximized",
 	"diffEditor.hideUnchangedRegions.enabled": true,
   "workbench.editor.tabActionCloseVisibility": true,
   "terminal.integrated.shellIntegration.decorationsEnabled": "never",

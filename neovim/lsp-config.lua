@@ -41,7 +41,6 @@ local capabilities = vim.tbl_deep_extend(
 
 local languageSettings = {
 	Lua = { diagnostics = { globals = { "vim" } } },
-	deno = { inlayHints = { parameterNames = { enabled = "literals" } } },
 	typescript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
 	javascript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
 }
@@ -63,20 +62,8 @@ require("mason-lspconfig").setup({
 	handlers = { lspSetup },
 	ensure_installed = {
 		"lua_ls",
-		"pyright",
-		"jdtls", "kotlin_language_server",
 		"ts_ls", "svelte", "biome", "tailwindcss", "prismals",
 	}
-})
-
-lspSetup("denols", {
-	filetypes = { "typescriptreact", "typescript", "json", "jsonc" },
-	root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
-})
-
-lspSetup("ts_ls", {
-	single_file_support = false,
-	root_dir = require("lspconfig").util.root_pattern("package.json"),
 })
 
 -- autocomplete

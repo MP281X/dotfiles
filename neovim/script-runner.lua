@@ -4,7 +4,6 @@ require("FTerm").setup({
 	cmd = (function()
 		-- node
 		if vim.fn.findfile("package.json") ~= "" then return { "node", "--no-warnings", "--run", "dev" } end
-		if vim.fn.findfile("deno.json") ~= "" then return { "deno", "task", "-q", "dev" } end
 		if vim.fn.findfile("mvnw") ~= "" then return { "./mvnw", "spring-boot:run", "--quiet" } end
 
 		return { "sh", "-c", "$SHELL" }
@@ -16,16 +15,8 @@ local getScriptNames = function()
 
 	-- find all the node scripts
 	if vim.fn.findfile("package.json") ~= "" then
-		local extract_key = '.scripts | keys[] | select(. != "dev")'
-		for nodeScript in io.popen("jq -r '.scripts | keys[] | select(. != \"dev\")' package.json" .. extract_key .. "'"):lines() do
+		for nodeScript in io.popen("jq -r '.scripts | keys[] | select(. != \"dev\")' package.json"):lines() do
 			table.insert(scriptNames, "node:" .. nodeScript)
-		end
-	end
-
-	-- find all the deno scripts
-	if vim.fn.findfile("deno.json") ~= "" then
-		for denoScript in io.popen("jq -r '.tasks | keys[] | select(. != \"dev\")' deno.json"):lines() do
-			table.insert(scriptNames, "deno:" .. denoScript)
 		end
 	end
 
@@ -61,11 +52,6 @@ local runScript = function(selected)
 	-- node script
 	if type == "node" then
 		require("FTerm").scratch({ cmd = "node --no-warnings --run " .. script })
-	end
-
-	-- deno script
-	if type == "deno" then
-		require("FTerm").scratch({ cmd = "deno task -q " .. " " .. script })
 	end
 end
 

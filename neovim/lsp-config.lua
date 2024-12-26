@@ -94,3 +94,49 @@ require("cmp").setup({
 		documentation = require("cmp").config.window.bordered(),
 	},
 })
+
+local dap = require("dap")
+
+-- Set keymaps to control the debugger
+vim.keymap.set('n', '<leader>d', require('dap').continue)
+vim.keymap.set('n', '<leader>dd', require('dap').step_over)
+vim.keymap.set('n', '<leader>b', require('dap').toggle_breakpoint)
+vim.keymap.set('n', 'D', require('dap.ui.widgets').hover)
+vim.keymap.set('v', 'D', require('dap.ui.widgets').hover)
+
+vim.fn.sign_define('DapBreakpoint', { text = '' })
+vim.fn.sign_define('DapBreakpointRejected', { text = '' })
+
+dap.adapters = {
+	["pwa-node"] = {
+		type = "server",
+		host = "127.0.0.1",
+		port = 8123,
+		executable = { command = vim.fn.stdpath("data") .. "/mason/bin/js-debug-adapter" },
+	},
+	["pwa-chrome"] = {
+		type = "server",
+		host = "127.0.0.1",
+		port = 8123,
+		executable = { command = vim.fn.stdpath("data") .. "/mason/bin/js-debug-adapter" },
+	}
+}
+for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
+	require("dap").configurations[language] = {
+		{
+			name = "node",
+			type = "pwa-node",
+			request = "attach",
+			cwd = "${workspaceFolder}",
+		},
+		{
+			name = "vite",
+			type = "pwa-chrome",
+			request = "attach",
+			port = 9222,
+			url = "http://localhost:5173",
+			webRoot = "${workspaceFolder}/src",
+			sourceMaps = true
+		},
+	}
+end

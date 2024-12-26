@@ -27,6 +27,9 @@ require("lazy").setup({
 	{ "williamboman/mason.nvim" },          -- lsp manager
 	{ "neovim/nvim-lspconfig" },            -- lsp server
 
+	-- debugger
+	{ "mfussenegger/nvim-dap" }, -- debugger
+
 	-- Autocomplete
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/nvim-cmp" },

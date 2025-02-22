@@ -19,7 +19,7 @@ local conditional_filters = {
 	-- package managers
 	"pnpm-workspace.yaml", ".npmrc",
 	-- js/ts configs
-	"*.config.*", "tsconfig.json", "tsconfig.base.json", "biome.jsonc",
+	"*.config.*", "tsconfig.json", "tsconfig.base.json", "biome.jsonc", "biome.json",
 	-- sveltekit/nextjs
 	"entry-client.tsx", "entry-server.tsx",
 	"app.html", "app.css", "globals.css", "index.html",

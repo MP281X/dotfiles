@@ -4,7 +4,7 @@ local permanent_filters = {
 	-- node
 	"node_modules", "dist", "build",
 	-- package managers
-	"pnpm-lock.yaml",
+	"pnpm-lock.yaml", "deno.lock",
 	-- sveltekit/nextjs/astro
 	".svelte-kit", ".next", "next-env.d.ts", ".astro",
 	-- js/ts configs

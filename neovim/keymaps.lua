@@ -38,6 +38,7 @@ vim.keymap.set("n", "<leader>sf", function() require("telescope.builtin").find_f
 vim.keymap.set("n", "<leader>sc", function() require("telescope.builtin").live_grep() end, {})
 vim.keymap.set("n", "<leader>se", function() require("telescope.builtin").diagnostics() end, {})
 vim.keymap.set("n", "<leader>sb", function() require("telescope.builtin").buffers() end, {})
+vim.keymap.set("n", "<leader>sr", function() require("telescope.builtin").lsp_references() end, {})
 vim.keymap.set("n", "<leader>u", ":Telescope undo<CR>")  -- telescope undo
 vim.keymap.set("n", "<leader>fb", ":NvimTreeToggle<CR>") -- file browser
 

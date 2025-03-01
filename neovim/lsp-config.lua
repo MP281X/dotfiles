@@ -49,7 +49,7 @@ local languageSettings = {
 	Lua = { diagnostics = { globals = { "vim" } } },
 	typescript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
 	javascript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
-	denols = {}
+	deno = { inlayHints = { parameterNames = { enabled = "literals" } } }
 }
 
 local lspSetup = function(server_name)

@@ -64,6 +64,9 @@ gc() {
 	if [[ $1 == *"/"* ]]; then git clone --quiet "https://github.com/$1.git";
   else git clone --quiet "https://github.com/$(git config --get user.name)/$1.git"; fi
 }
+gr() {
+	git fetch --prune && git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -D
+}
 
 # wsl
 alias reboot="wsl.exe --shutdown"

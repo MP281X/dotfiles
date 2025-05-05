@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function()
-		vim.lsp.buf.format({ filter = function(client) return client.name ~= "tsserver" end })
+		vim.lsp.buf.format({ filter = function(client) return client.name ~= "ts_ls" end })
 	end
 })
 

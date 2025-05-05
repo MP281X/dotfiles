@@ -4,7 +4,6 @@ require("FTerm").setup({
 	cmd = (function()
 		-- node
 		if vim.fn.findfile("package.json") ~= "" then return { "node", "--no-warnings", "--run", "dev" } end
-		if vim.fn.findfile("deno.json") ~= "" then return { "deno", "task", "-q", "dev" } end
 
 		return { "sh", "-c", "$SHELL" }
 	end)(),
@@ -17,12 +16,6 @@ local getScriptNames = function()
 	if vim.fn.findfile("package.json") ~= "" then
 		for nodeScript in io.popen("jq -r '.scripts | keys[] | select(. != \"dev\")' package.json"):lines() do
 			table.insert(scriptNames, "node:" .. nodeScript)
-		end
-	end
-
-	if vim.fn.findfile("deno.json") ~= "" then
-		for nodeScript in io.popen("jq -r '.tasks | keys[] | select(. != \"dev\")' deno.json"):lines() do
-			table.insert(scriptNames, "deno:" .. nodeScript)
 		end
 	end
 
@@ -58,10 +51,6 @@ local runScript = function(selected)
 	-- node script
 	if type == "node" then
 		require("FTerm").scratch({ cmd = "node --no-warnings --run " .. script })
-	end
-
-	if type == "deno" then
-		require("FTerm").scratch({ cmd = "deno task --quiet " .. script })
 	end
 end
 

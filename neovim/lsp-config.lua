@@ -42,14 +42,17 @@ local capabilities = vim.tbl_deep_extend(
 local languageConfig = {
 	ts_ls = { root_dir = require("lspconfig").util.root_pattern("package.json"), single_file_support = false },
 	biome = { root_dir = require("lspconfig").util.root_pattern("biome.json") },
-	denols = { root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc") }
 }
 
 local languageSettings = {
 	Lua = { diagnostics = { globals = { "vim" } } },
+	biome = { rename = true, experimental = { rename = true } },
 	typescript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
 	javascript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
-	deno = { inlayHints = { parameterNames = { enabled = "literals" } } }
+	svelte = {
+		enableTsPlugin = true,
+		plugin = { svelte = { defaultScriptLanguage = "ts" } }
+	}
 }
 
 local lspSetup = function(server_name)
@@ -70,7 +73,6 @@ require("mason-lspconfig").setup({
 	ensure_installed = {
 		"lua_ls",
 		"ts_ls", "svelte", "biome", "tailwindcss", "prismals",
-		"denols"
 	}
 })
 

@@ -78,9 +78,13 @@ local style = {
 	header = "",
 	prefix = "",
 }
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, style)
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, style)
 vim.diagnostic.config({ signs = true, severity_sort = true, float = style })
+
+-- global border style override
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, _, ...)
+	return orig_util_open_floating_preview(contents, syntax, style, ...)
+end
 
 -- highlight selected text
 vim.api.nvim_create_autocmd('TextYankPost', {

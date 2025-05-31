@@ -50,3 +50,7 @@ vim.api.nvim_exec(
 ]],
 	false
 )
+
+-- toggle terminal
+vim.keymap.set("n", "<leader>t", function() require("FTerm").open() end)
+vim.keymap.set("t", "<Esc>", function() require("FTerm").close() end)

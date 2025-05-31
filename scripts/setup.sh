@@ -44,7 +44,6 @@ log "tools"
 
 brewInstall "eza"
 brewInstall "fzf"
-brewInstall "codex"
 brewInstall "neovim"
 brewInstall "starship"
 #----------------------------------------------------------------------------------------------------------------

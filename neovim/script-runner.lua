@@ -9,20 +9,6 @@ require("FTerm").setup({
 	end)(),
 })
 
-local codex = require("FTerm"):new({ ft = "codex", cmd = "codex", dimensions = { height = 0.95, width = 0.95 } })
-vim.api.nvim_create_user_command('Codex', function() codex:toggle() end, {})
-
-local gitui = require("FTerm"):new({ ft = "gitui", cmd = "gitui", dimensions = { height = 0.95, width = 0.95 } })
-vim.api.nvim_create_user_command('Gitui', function() gitui:toggle() end, {})
-
--- toggle terminal
-vim.keymap.set("n", "<leader>t", function() require("FTerm").open() end)
-vim.keymap.set("t", "<Esc>", function()
-	gitui:close()
-	codex:close()
-	require("FTerm").close()
-end)
-
 -- script runner
 
 local getScriptNames = function()

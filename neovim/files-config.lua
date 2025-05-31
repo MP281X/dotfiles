@@ -10,7 +10,7 @@ local permanent_filters = {
 	-- js/ts configs
 	"vite-env.d.ts",
 	-- cache
-	".attest", "*.tsbuildinfo", "*-journal", ".wrangler", ".turbo"
+	".attest", "*.tsbuildinfo", "*-journal", ".wrangler", ".turbo", "_generated", "worker-configuration.d.ts"
 }
 
 local conditional_filters = {

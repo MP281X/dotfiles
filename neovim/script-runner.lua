@@ -9,13 +9,34 @@ require("FTerm").setup({
 	end)(),
 })
 
+local codex = require("FTerm"):new({ ft = "codex", cmd = "codex", dimensions = { height = 0.95, width = 0.95 } })
+vim.api.nvim_create_user_command('Codex', function() codex:toggle() end, {})
+
+local gitui = require("FTerm"):new({ ft = "gitui", cmd = "gitui", dimensions = { height = 0.95, width = 0.95 } })
+vim.api.nvim_create_user_command('Gitui', function() gitui:toggle() end, {})
+
+-- toggle terminal
+vim.keymap.set("n", "<leader>t", function() require("FTerm").open() end)
+vim.keymap.set("t", "<Esc>", function()
+	gitui:close()
+	codex:close()
+	require("FTerm").close()
+end)
+
+-- script runner
+
 local getScriptNames = function()
 	local scriptNames = {}
 
 	-- find all the node scripts
 	if vim.fn.findfile("package.json") ~= "" then
 		for nodeScript in io.popen("jq -r '.scripts | keys[] | select(. != \"dev\")' package.json"):lines() do
+			if nodeScript == "dev" then goto continue end
+			if nodeScript == "turbo" then goto continue end
+			if nodeScript:sub(1, 1) == "_" then goto continue end
+
 			table.insert(scriptNames, "node:" .. nodeScript)
+			::continue::
 		end
 	end
 
@@ -25,11 +46,12 @@ local getScriptNames = function()
 		for _, fileName in ipairs(vim.fn.readdir("./scripts")) do
 			if fileName:match("%.sh$") then
 				local name = fileName:match("^(.+)%.sh$")
-				local exists = table.concat(scriptNames, ','):find("node:" .. name) and true or false
+				if name == "turbo" then goto continue end
+				if name:match("^%+") then goto continue end
+				if table.concat(scriptNames, ','):find("node:" .. name) then goto continue end
 
-				if exists == false and not fileName:match("^%+") then
-					table.insert(scriptNames, "bash:" .. name)
-				end
+				table.insert(scriptNames, "bash:" .. name)
+				::continue::
 			end
 		end
 	end

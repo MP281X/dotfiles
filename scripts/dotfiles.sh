@@ -16,6 +16,10 @@ echo "gitui"
 mkdir -p ~/.config/gitui	
 cp themes/gitui.ron ~/.config/gitui/theme.ron
 
+echo "codex"
+mkdir -p ~/.codex
+cp configs/codex.md ~/.codex/AGENTS.md
+
 echo "vscode"
 mkdir -p ~/.local/share/code-server/User
 cp configs/vscode.jsonc ~/.local/share/code-server/User/settings.json

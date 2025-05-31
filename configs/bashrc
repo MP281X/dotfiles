@@ -3,8 +3,9 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 export HOMEBREW_NO_ENV_HINTS=1
 
 # pnpm
+export NODE_NO_WARNINGS=1
 export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac
+[ -d "$PNPM_HOME" ] && PATH="$PNPM_HOME:$PATH"
 
 # ls
 ignore_pattern="~/.cache|~/.npm|node_modules"
@@ -15,7 +16,6 @@ alias tree="eza $eza_args --tree --git-ignore --ignore-glob='$ignore_pattern'"
 
 # navigation
 alias ..='cd ..'
-alias ...='cd ../..'
 alias rm='rm -rf'
 cd() {
     builtin cd "$@" && eza $eza_args
@@ -33,7 +33,6 @@ code() {
 }
 
 # docker
-alias prune="docker system prune --all --volumes --force"
 ps() {
 	docker ps --all --format '{{json .}}' | jq -s 'map({
 		name: .Names,
@@ -88,27 +87,23 @@ export HISTSIZE=500
 export HISTFILESIZE=10000
 export HISTCONTROL=erasedups:ignoredups:ignorespace
 
-# tab autocomplete
+# autocomplete
 bind 'TAB:menu-complete'
-
-# case insensitive autocomplete
 bind "set completion-ignore-case on";
 
-# use the | cursor instead of the ▉ cursor
-export PROMPT_COMMAND='history -a && echo -ne "\033[5 q"'
-
-# disable nodejs experimental warnings
-export NODE_NO_WARNINGS=1
-
-# run starship
+# starship
 eval "$(starship init bash)"; eza $eza_args
+
+source "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
+export FZF_DEFAULT_OPTS="--no-hscroll --no-mouse --reverse --no-info --border=none"
+
+# change cursor shape based on the current mode
+export PROMPT_COMMAND='history -a && echo -ne "\033[5 q"'
+bind 'set vi-cmd-mode-string \1\e[1 q\2'
+bind 'set vi-ins-mode-string \1\e[5 q\2'
 
 # enable vim mode
 export EDITOR=nvim
 set -o vi
 bind 'set keyseq-timeout 10'
 bind 'set show-mode-in-prompt on'
-
-# change cursor shape based on the current mode
-bind 'set vi-cmd-mode-string \1\e[1 q\2'
-bind 'set vi-ins-mode-string \1\e[5 q\2'

@@ -43,9 +43,10 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 log "tools"
 
 brewInstall "eza"
-brewInstall "starship"
-brewInstall "neovim"
+brewInstall "fzf"
 brewInstall "codex"
+brewInstall "neovim"
+brewInstall "starship"
 #----------------------------------------------------------------------------------------------------------------
 
 log "code-server"

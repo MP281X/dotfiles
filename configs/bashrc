@@ -91,16 +91,17 @@ export HISTCONTROL=erasedups:ignoredups:ignorespace
 bind 'TAB:menu-complete'
 bind "set completion-ignore-case on";
 
-# starship
-eval "$(starship init bash)"; eza $eza_args
-
-source "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
-export FZF_DEFAULT_OPTS="--no-hscroll --no-mouse --reverse --no-info --border=none"
-
 # change cursor shape based on the current mode
 export PROMPT_COMMAND='history -a && echo -ne "\033[5 q"'
 bind 'set vi-cmd-mode-string \1\e[1 q\2'
 bind 'set vi-ins-mode-string \1\e[5 q\2'
+
+# starship
+eval "$(starship init bash)"; eza $eza_args
+
+# fzf
+source "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
+export FZF_DEFAULT_OPTS="--no-hscroll --no-mouse --reverse --no-info --border=none"
 
 # enable vim mode
 export EDITOR=nvim

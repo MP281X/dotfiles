@@ -2,9 +2,9 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<Space>", "<NOP>")
 
-vim.keymap.set("n", "<ESC>", ":nohl<CR>") -- remove search highlight
-vim.keymap.set("n", "d", '"_d')           -- delete a single letter without coping it
-vim.keymap.set("v", "d", '"_d')           -- delete a single letter without coping it
+vim.keymap.set("n", "<ESC>", ":nohlsearch<CR>") -- remove search highlight
+vim.keymap.set("n", "d", '"_d')                 -- delete a single letter without coping it
+vim.keymap.set("v", "d", '"_d')                 -- delete a single letter without coping it
 vim.keymap.set("n", "c", '"_c')
 
 -- movement
@@ -42,6 +42,10 @@ vim.keymap.set("n", "<leader>sr", function() require("telescope.builtin").lsp_re
 vim.keymap.set("n", "<leader>u", ":Telescope undo<CR>")  -- telescope undo
 vim.keymap.set("n", "<leader>fb", ":NvimTreeToggle<CR>") -- file browser
 
+-- toggle terminal
+vim.keymap.set("n", "<leader>t", function() require("FTerm").open() end)
+vim.keymap.set("t", "<Esc>", function() require("FTerm").close() end)
+
 -- Remap key so ctrl-D and ctr-B work in the terminal mode
 vim.api.nvim_exec(
 	[[
@@ -50,7 +54,3 @@ vim.api.nvim_exec(
 ]],
 	false
 )
-
--- toggle terminal
-vim.keymap.set("n", "<leader>t", function() require("FTerm").open() end)
-vim.keymap.set("t", "<Esc>", function() require("FTerm").close() end)

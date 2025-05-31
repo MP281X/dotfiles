@@ -12,9 +12,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local opts = { buffer = args.buf, silent = true }
 
 		vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-		vim.keymap.set("n", "E", vim.diagnostic.open_float, opts)
 		vim.keymap.set("n", "<leader>sa", vim.lsp.buf.code_action, opts)
+		vim.keymap.set("n", "E", vim.diagnostic.open_float, opts)
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 		vim.keymap.set("n", "R", vim.lsp.buf.rename, opts)
 
 		vim.lsp.inlay_hint.enable(true) -- inlay hint
@@ -28,6 +28,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*",
 	callback = function()
 		vim.lsp.buf.format({ filter = function(client) return client.name ~= "ts_ls" end })
 	end
@@ -49,10 +50,6 @@ local languageSettings = {
 	biome = { rename = true, experimental = { rename = true } },
 	typescript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
 	javascript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
-	svelte = {
-		enableTsPlugin = true,
-		plugin = { svelte = { defaultScriptLanguage = "ts" } }
-	}
 }
 
 local lspSetup = function(server_name)
@@ -72,7 +69,7 @@ require("mason-lspconfig").setup({
 
 	ensure_installed = {
 		"lua_ls",
-		"ts_ls", "svelte", "biome", "tailwindcss", "prismals",
+		"ts_ls", "biome", "tailwindcss", "prismals",
 	}
 })
 
@@ -102,51 +99,5 @@ require("cmp").setup({
 	window = {
 		completion = require("cmp").config.window.bordered(),
 		documentation = require("cmp").config.window.bordered(),
-	},
+	}
 })
-
-local dap = require("dap")
-
--- Set keymaps to control the debugger
-vim.keymap.set('n', '<leader>d', require('dap').continue)
-vim.keymap.set('n', '<leader>dd', require('dap').step_over)
-vim.keymap.set('n', '<leader>b', require('dap').toggle_breakpoint)
-vim.keymap.set('n', 'D', require('dap.ui.widgets').hover)
-vim.keymap.set('v', 'D', require('dap.ui.widgets').hover)
-
-vim.fn.sign_define('DapBreakpoint', { text = '' })
-vim.fn.sign_define('DapBreakpointRejected', { text = '' })
-
-dap.adapters = {
-	["pwa-node"] = {
-		type = "server",
-		host = "127.0.0.1",
-		port = 8123,
-		executable = { command = vim.fn.stdpath("data") .. "/mason/bin/js-debug-adapter" },
-	},
-	["pwa-chrome"] = {
-		type = "server",
-		host = "127.0.0.1",
-		port = 8123,
-		executable = { command = vim.fn.stdpath("data") .. "/mason/bin/js-debug-adapter" },
-	}
-}
-for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
-	require("dap").configurations[language] = {
-		{
-			name = "node",
-			type = "pwa-node",
-			request = "attach",
-			cwd = "${workspaceFolder}",
-		},
-		{
-			name = "vite",
-			type = "pwa-chrome",
-			request = "attach",
-			port = 9222,
-			url = "http://localhost:5173",
-			webRoot = "${workspaceFolder}/src",
-			sourceMaps = true
-		},
-	}
-end

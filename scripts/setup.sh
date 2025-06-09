@@ -97,7 +97,7 @@ git config --global user.name $(gh api user | jq -r '.name')
 git config --global user.email $(gh api user | jq -r '.email')
 
 git config --global pull.rebase true
-git config --global credential.helper cache
+git config --global credential.helper store
 git config --global --replace-all core.editor nvim
 
 git clone https://github.com/MP281X/dotfiles.git ~/dotfiles

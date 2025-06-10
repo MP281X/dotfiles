@@ -1,9 +1,8 @@
 Set-ExecutionPolicy RemoteSigned;
 wsl --unregister Debian;
 wsl --install --no-launch -d Debian;
-debian install --root;
-debian run "useradd -m -s /bin/bash $Env:UserName";
-debian run "passwd -d $Env:UserName && usermod -aG sudo $Env:UserName";
-debian config --default-user $Env:UserName;
-debian run "sudo apt-get update > /dev/null && sudo apt-get install curl -y > /dev/null";
-debian run "bash <(curl -s -L https://raw.githubusercontent.com/MP281X/dotfiles/main/scripts/setup.sh)";
+wsl -d Debian -u root -- useradd -m -s /bin/bash "$Env:UserName";
+wsl -d Debian -u root -- bash -c "passwd -d $Env:UserName && usermod -aG sudo $Env:UserName";
+wsl -d Debian -u root -- bash -c "echo -e '[user]\ndefault=$Env:UserName' > /etc/wsl.conf";
+wsl -d Debian -u root -- bash -c "apt-get update > /dev/null && apt-get install -y curl > /dev/null";
+wsl -d Debian -u "$Env:UserName" -- bash -c "bash <(curl -s -L https://raw.githubusercontent.com/MP281X/dotfiles/main/scripts/setup.sh)";

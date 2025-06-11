@@ -3,7 +3,7 @@
 	"copyFormatting": "none",
 	"launchMode": "maximized",
 	"confirmCloseAllTabs": false,
-	"defaultProfile": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+	"defaultProfile": "{dcf2bbfa-3bcc-5744-a4a5-b3f70f21670a}",
 	"actions": [
 		{ "keys": "ctrl+v", "command": "paste" },
 		{ "keys": "ctrl+k", "command": { "action": "clearBuffer", "clear": "all" } }
@@ -15,25 +15,32 @@
 			"closeOnExit": "always",
 			"colorScheme": "Kanagawa",
 			"scrollbarState": "hidden",
-			"font": { "face": "JetBrainsMono Nerd Font Mono", "size": 14 },
+			"font": { "face": "JetBrainsMono Nerd Font Mono", "colorGlyphs": false, "size": 14 },
 		},
 		"list": [
 			{
-				"name": "Debian",
-				"source": "Windows.Terminal.Wsl",
-				"commandline": "wsl -d Debian",
-				"guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}"
-			},
+				"icon": "none",
+        "name": "Debian",
+        "source": "Microsoft.WSL",
+				"guid": "{dcf2bbfa-3bcc-5744-a4a5-b3f70f21670a}"
+      },
 			{
+				"icon": "none",
 				"name": "Windows PowerShell",
 				"commandline": "powershell -noLogo",
 				"guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}"
 			},
 			{
-				"name": "Command Prompt",
-				"guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-				"hidden": true
-			}
+        "hidden": true,
+        "name": "Command Prompt",
+				"guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}"
+      },
+      {
+        "hidden": true,
+        "name": "Azure Cloud Shell",
+        "source": "Windows.Terminal.Azure",
+				"guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}"
+      }
 		]
 	},
 	"schemes": [

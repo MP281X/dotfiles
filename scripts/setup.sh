@@ -48,17 +48,6 @@ brewInstall "neovim"
 brewInstall "starship"
 #----------------------------------------------------------------------------------------------------------------
 
-log "code-server"
-
-brewInstall "code-server"
-
-# others
-code "jolaleye.horizon-theme-vscode"
-code "PKief.material-icon-theme"
-code "cmoog.sqlnotebook"
-code "pomdtr.excalidraw-editor"
-#----------------------------------------------------------------------------------------------------------------
-
 log "kubernetes"
 
 brewInstall "kubernetes-cli"

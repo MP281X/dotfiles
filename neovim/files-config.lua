@@ -59,13 +59,29 @@ local telescopeFilters = function(args)
 	return args
 end
 
+local sortFiles = function(nodes)
+	table.sort(nodes, function(a, b)
+		if a.type ~= b.type then return a.type == "directory" end
+		local a_idx = a.name:match("^index%.") or a.name:match("^+%.")
+		local b_idx = b.name:match("^index%.") or b.name:match("^+%.")
+		if a_idx ~= b_idx then return b_idx end
+		return a.name:lower() < b.name:lower()
+	end)
+	return nodes
+end
+
 -- file explorer
 require("nvim-tree").setup({
 	filters = { custom = nvimTreeFilters() },
 	view = { side = "right", width = 60 },
 	update_focused_file = { enable = true },
 	git = { enable = true, ignore = false, timeout = 500 },
-	renderer = { root_folder_label = false, icons = { show = { git = false } } },
+	sort = { sorter = sortFiles },
+	renderer = {
+		root_folder_label = false,
+		icons = { show = { git = false } },
+		special_files = { "index.ts", "+page.tsx" }
+	},
 })
 
 -- telescope (fuzzy finder)

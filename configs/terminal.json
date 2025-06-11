@@ -3,37 +3,45 @@
 	"copyFormatting": "none",
 	"launchMode": "maximized",
 	"confirmCloseAllTabs": false,
-	"defaultProfile": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+	"defaultProfile": "{381c1959-9f8f-52a6-bc0d-dfcc66b062ac}",
 	"actions": [
 		{ "keys": "ctrl+v", "command": "paste" },
 		{ "keys": "ctrl+k", "command": { "action": "clearBuffer", "clear": "all" } }
 	],
 	"profiles": {
 		"defaults": {
-			"elevate": true,
+			"elevate": false,
 			"bellStyle": "none",
 			"closeOnExit": "always",
 			"colorScheme": "Kanagawa",
 			"scrollbarState": "hidden",
-			"font": { "face": "JetBrainsMono Nerd Font Mono", "size": 14 },
+			"font": { "face": "JetBrainsMono Nerd Font Mono", "colorGlyphs": false, "size": 14 },
 		},
 		"list": [
 			{
-				"name": "Debian",
-				"source": "Windows.Terminal.Wsl",
-				"commandline": "wsl -d Debian",
-				"guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}"
-			},
-			{
+				"icon": "none",
 				"name": "Windows PowerShell",
 				"commandline": "powershell -noLogo",
 				"guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}"
 			},
 			{
-				"name": "Command Prompt",
-				"guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-				"hidden": true
-			}
+				"icon": "none",
+        "name": "Debian",
+				"hidden": false,
+        "source": "Microsoft.WSL",
+				"guid": "{381c1959-9f8f-52a6-bc0d-dfcc66b062ac}",
+      },
+			{
+        "hidden": true,
+        "name": "Command Prompt",
+				"guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}"
+      },
+      {
+        "hidden": true,
+        "name": "Azure Cloud Shell",
+        "source": "Windows.Terminal.Azure",
+				"guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}"
+      }
 		]
 	},
 	"schemes": [

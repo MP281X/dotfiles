@@ -6,7 +6,8 @@
 	"defaultProfile": "{381c1959-9f8f-52a6-bc0d-dfcc66b062ac}",
 	"actions": [
 		{ "keys": "ctrl+v", "command": "paste" },
-		{ "keys": "ctrl+k", "command": { "action": "clearBuffer", "clear": "all" } }
+		{ "keys": "ctrl+k", "command": { "action": "clearBuffer", "clear": "all" } },
+		{ "command": "togglePaneZoom", "keys": "alt+enter" }
 	],
 	"profiles": {
 		"defaults": {

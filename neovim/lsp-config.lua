@@ -40,36 +40,27 @@ local capabilities = vim.tbl_deep_extend(
 	require("cmp_nvim_lsp").default_capabilities()
 )
 
-local languageConfig = {
-	ts_ls = { root_dir = require("lspconfig").util.root_pattern("package.json"), single_file_support = false },
-	biome = { root_dir = require("lspconfig").util.root_pattern("biome.json") },
-}
-
-local languageSettings = {
-	Lua = { diagnostics = { globals = { "vim" } } },
-	biome = { rename = true, experimental = { rename = true } },
-	typescript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
-	javascript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
-}
-
-local lspSetup = function(server_name)
-	local config = languageConfig[server_name] or {}
-	require("lspconfig")[server_name].setup(
-		vim.tbl_deep_extend("force", config, {
-			capabilities = capabilities,
-			settings = languageSettings
-		})
-	)
-end
-
--- base lsp config
 require("mason").setup()
 require("mason-lspconfig").setup({
-	handlers = { lspSetup },
-
 	ensure_installed = {
 		"lua_ls",
-		"ts_ls", "biome", "tailwindcss", "prismals",
+		"ts_ls", "biome", "tailwindcss"
+	},
+})
+
+vim.lsp.config("biome", { capabilities = capabilities })
+vim.lsp.config("tailwindcss", { capabilities = capabilities })
+
+vim.lsp.config("lua_ls", {
+	capabilities = capabilities,
+	settings = { Lua = { diagnostics = { globals = { "vim" } } } }
+})
+
+vim.lsp.config("ts_ls", {
+	capabilities = capabilities,
+	settings = {
+		typescript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
+		javascript = { inlayHints = { includeInlayParameterNameHints = "literals" } }
 	}
 })
 

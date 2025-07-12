@@ -27,7 +27,7 @@ local getScriptNames = function()
 	end
 
 	-- find all the bash script
-	local stat = vim.loop.fs_stat("./scripts")
+	local stat = vim.uv.fs_stat("./scripts")
 	if stat and stat.type == "directory" then
 		for _, fileName in ipairs(vim.fn.readdir("./scripts")) do
 			if fileName:match("%.sh$") then

@@ -25,3 +25,4 @@ mkdir -p /mnt/c/tools && cp scripts/win32yank.exe /mnt/c/tools/win32yank.exe
 echo "windows terminal"
 appdataLocal="$(wslpath "$(cmd.exe /c 'echo %LOCALAPPDATA%' 2>/dev/null | tr -d '\r')")"
 cp configs/terminal.json $appdataLocal/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json
+cp configs/terminal.json $appdataLocal/Packages/Microsoft.WindowsTerminalPreview_*/LocalState/settings.json

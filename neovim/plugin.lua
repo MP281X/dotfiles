@@ -25,6 +25,7 @@ require("lazy").setup({
 	-- lsp tools
 	{ "williamboman/mason-lspconfig.nvim" }, -- configure lsp installed by mason
 	{ "williamboman/mason.nvim" },          -- lsp manager
+	{ "neovim/nvim-lspconfig" },            -- lsp server
 
 	-- Autocomplete
 	{ "hrsh7th/cmp-nvim-lsp" },

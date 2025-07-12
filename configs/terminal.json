@@ -1,14 +1,29 @@
 {
+	"keybindings": [
+		{ "id": "Terminal.ClearBuffer", "keys": "ctrl+k" },
+		{ "id": "Terminal.TogglePaneZoom", "keys": "alt+enter" },
+		{ "id": "Terminal.PasteFromClipboard", "keys": "ctrl+v" }
+	],
+
 	"copyOnSelect": false,
 	"copyFormatting": "none",
+
+	"language": "en-US",
+	"disableAnimations": true,
 	"launchMode": "maximized",
-	"confirmCloseAllTabs": false,
+	"newTabPosition": "afterCurrentTab",
+	"firstWindowPreference": "defaultProfile",
+	"newTabMenu": [{ "type": "remainingProfiles" }],
+
+	"showAdminShield": false,
+	"warning.largePaste": false,
+	"warning.inputService": false,
+	"warning.multiLinePaste": false,
+	"warning.confirmCloseAllTabs": false,
+	"rendering.graphicsAPI": "direct3d11",
+
 	"defaultProfile": "{381c1959-9f8f-52a6-bc0d-dfcc66b062ac}",
-	"actions": [
-		{ "keys": "ctrl+v", "command": "paste" },
-		{ "keys": "ctrl+k", "command": { "action": "clearBuffer", "clear": "all" } },
-		{ "command": "togglePaneZoom", "keys": "alt+enter" }
-	],
+
 	"profiles": {
 		"defaults": {
 			"elevate": false,
@@ -20,54 +35,53 @@
 		},
 		"list": [
 			{
-				"icon": "none",
 				"name": "Windows PowerShell",
 				"commandline": "powershell -noLogo",
 				"guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}"
 			},
 			{
-				"icon": "none",
-        "name": "Debian",
-				"hidden": false,
-        "source": "Microsoft.WSL",
-				"guid": "{381c1959-9f8f-52a6-bc0d-dfcc66b062ac}",
-      },
+				"name": "Debian",
+				"source": "Microsoft.WSL",
+				"guid": "{381c1959-9f8f-52a6-bc0d-dfcc66b062ac}"
+			},
 			{
-        "hidden": true,
-        "name": "Command Prompt",
+				"hidden": true,
+				"name": "Command Prompt",
 				"guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}"
-      },
-      {
-        "hidden": true,
-        "name": "Azure Cloud Shell",
-        "source": "Windows.Terminal.Azure",
+			},
+			{
+				"hidden": true,
+				"name": "Azure Cloud Shell",
+				"source": "Windows.Terminal.Azure",
 				"guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}"
-      }
+			}
 		]
 	},
+
 	"schemes": [
 		{
 			"name": "Kanagawa",
-			"background": "#1F1F28",
-			"black": "#090618",
+
+			"red": "#C34043",
+			"cyan": "#6A9589",
 			"blue": "#7E9CD8",
-			"brightBlack": "#727169",
-			"brightBlue": "#7FB4CA",
+			"black": "#090618",
+			"green": "#76946A",
+			"white": "#C8C093",
+			"purple": "#957FB8",
+			"yellow": "#C0A36E",
+			"brightRed": "#E82424",
+			"foreground": "#DCD7BA",
 			"brightCyan": "#7AA89F",
+			"brightBlue": "#7FB4CA",
+			"background": "#1F1F28",
+			"cursorColor": "#C8C093",
+			"brightBlack": "#727169",
 			"brightGreen": "#98BB6C",
 			"brightPurple": "#938AA9",
-			"brightRed": "#E82424",
 			"brightWhite": "#DCD7BA",
 			"brightYellow": "#E6C384",
-			"cursorColor": "#C8C093",
-			"cyan": "#6A9589",
-			"foreground": "#DCD7BA",
-			"green": "#76946A",
-			"purple": "#957FB8",
-			"red": "#C34043",
 			"selectionBackground": "#2D4F67",
-			"white": "#C8C093",
-			"yellow": "#C0A36E"
 		}
 	]
 }

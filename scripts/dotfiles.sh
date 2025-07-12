@@ -22,7 +22,12 @@ cp themes/gitui.ron ~/.config/gitui/theme.ron
 echo "neovim clipboard (win32yank)"
 mkdir -p /mnt/c/tools && cp scripts/win32yank.exe /mnt/c/tools/win32yank.exe
 
+
+echo "autohotkey scripts"
+windows_home=$(wslpath "C:\Users\mp281x")
+cp configs/paste-wsl-path.ahk $windows_home/Documents/AutoHotkey/paste-wsl-path.ahk
+
 echo "windows terminal"
-appdataLocal="$(wslpath "$(cmd.exe /c 'echo %LOCALAPPDATA%' 2>/dev/null | tr -d '\r')")"
-cp configs/terminal.json $appdataLocal/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json
-cp configs/terminal.json $appdataLocal/Packages/Microsoft.WindowsTerminalPreview_*/LocalState/settings.json
+localappdata="$(wslpath "$(cmd.exe /c 'echo %LOCALAPPDATA%' 2>/dev/null | tr -d '\r')")"
+cp configs/terminal.json $localappdata/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json
+cp configs/terminal.json $localappdata/Packages/Microsoft.WindowsTerminalPreview_*/LocalState/settings.json

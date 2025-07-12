@@ -9,12 +9,15 @@ local permanent_filters = {
 	"vite-env.d.ts", ".next", "next-env.d.ts",
 	-- cache
 	".attest", "*.tsbuildinfo", "*-journal", ".wrangler",
-	".turbo", "_generated", "worker-configuration.d.ts"
+	".turbo", "_generated", "worker-configuration.d.ts",
+	".drizzle",
 }
 
 local conditional_filters = {
 	-- global
 	".github",
+	-- claude
+	".mcp.json", ".claude", "CLAUDE.md", "AGENTS.md",
 	-- package managers
 	"pnpm-workspace.yaml", ".npmrc",
 	-- js/ts configs

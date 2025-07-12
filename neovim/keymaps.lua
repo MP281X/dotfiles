@@ -14,7 +14,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- buffer
-vim.keymap.set("n", "<C-\\>", ":bd<CR>")
+vim.keymap.set("n", "<C-\\>", ":bd!<CR>")
 vim.keymap.set("n", "<<", ":bp<CR>")
 vim.keymap.set("n", ">>", ":bn<CR>")
 

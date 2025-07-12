@@ -15,10 +15,6 @@ brewInstall() {
 	brew install $1 -q 1>/dev/null
 }
 
-code() { 
-	echo "[code-server] $1"
-	code-server --force --install-extension "$1" >/dev/null 
-}
 #----------------------------------------------------------------------------------------------------------------
 
 log "packages"

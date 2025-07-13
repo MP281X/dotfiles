@@ -1,9 +1,8 @@
 echo "neovim"
-mkdir -p ~/.config/nvim/lua
+mkdir -p ~/.config/nvim
 rm -r -f ~/.config/nvim/*
 
-cp nvim/neovim-config.lua ~/.config/nvim/init.lua
-cp -r nvim/. ~/.config/nvim/lua/
+cp -r nvim/* ~/.config/nvim/
 
 echo "starship"
 cp terminal/starship.toml ~/.config/starship.toml
@@ -25,7 +24,7 @@ mkdir -p /mnt/c/tools && cp windows/win32yank.exe /mnt/c/tools/win32yank.exe
 
 echo "autohotkey scripts"
 windows_home=$(wslpath "C:\Users\mp281x")
-cp windows/paste-wsl-path.ahk $windows_home/Documents/AutoHotkey/paste-wsl-path.ahk
+cp windows/paste-wsl-path.ahk "$windows_home/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/paste-wsl-path.ahk"
 
 echo "windows terminal"
 localappdata="$(wslpath "$(cmd.exe /c 'echo %LOCALAPPDATA%' 2>/dev/null | tr -d '\r')")"

@@ -2,6 +2,12 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- disable unused providers for performance
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
+
 -- nerd font indicator
 vim.g.have_nerd_font = true
 
@@ -64,8 +70,10 @@ vim.opt.writebackup = false
 vim.opt.updatetime = 50
 vim.opt.timeoutlen = 300
 vim.opt.inccommand = "split"
+vim.opt.lazyredraw = true
+vim.opt.ttyfast = true
 
--- diagnostic and lsp floating window style
+-- consistent lsp floating window style
 local float_style = {
   focusable = true,
   style = "minimal",
@@ -75,15 +83,6 @@ local float_style = {
   prefix = "",
 }
 
-vim.diagnostic.config({
-  signs = true,
-  underline = true,
-  virtual_text = true,
-  severity_sort = true,
-  float = float_style,
-})
-
--- consistent lsp floating window style
 local orig_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   return orig_open_floating_preview(

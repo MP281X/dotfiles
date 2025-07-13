@@ -18,6 +18,12 @@ vim.keymap.set("n", "<C-\\>", ":bd!<CR>")
 vim.keymap.set("n", "<<", ":bp<CR>")
 vim.keymap.set("n", ">>", ":bn<CR>")
 
+-- split navigation
+vim.keymap.set("n", "<C-Left>", "<C-w>h")
+vim.keymap.set("n", "<C-Down>", "<C-w>j")
+vim.keymap.set("n", "<C-Up>", "<C-w>k")
+vim.keymap.set("n", "<C-Right>", "<C-w>l")
+
 -- move selected line/block down
 vim.keymap.set('n', '<A-Down>', ":m .+1<CR>==")
 vim.keymap.set('v', '<A-Down>', ":m '>+1<CR>gv=gv")

@@ -70,14 +70,23 @@ return {
         update_in_insert = false,
       })
 
+      -- Custom LSP handlers to use Telescope instead of quickfix
+      vim.lsp.handlers['textDocument/definition'] = require('telescope.builtin').lsp_definitions
+      vim.lsp.handlers['textDocument/references'] = require('telescope.builtin').lsp_references
+      vim.lsp.handlers['textDocument/implementation'] = require('telescope.builtin').lsp_implementations
+      vim.lsp.handlers['textDocument/typeDefinition'] = require('telescope.builtin').lsp_type_definitions
+
       -- LSP keybinds
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           local opts = { buffer = args.buf, silent = true }
           local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-          -- Enhanced keymaps
-          vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
+          -- Enhanced keymaps using Telescope
+          vim.keymap.set("n", "<leader>gd", require('telescope.builtin').lsp_definitions, opts)
+          vim.keymap.set("n", "<leader>gr", require('telescope.builtin').lsp_references, opts)
+          vim.keymap.set("n", "<leader>gi", require('telescope.builtin').lsp_implementations, opts)
+          vim.keymap.set("n", "<leader>gt", require('telescope.builtin').lsp_type_definitions, opts)
           vim.keymap.set("n", "<leader>sa", vim.lsp.buf.code_action, opts)
           vim.keymap.set("n", "E", vim.diagnostic.open_float, opts)
           vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)

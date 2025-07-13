@@ -2,7 +2,12 @@
 	"keybindings": [
 		{ "id": "Terminal.ClearBuffer", "keys": "ctrl+k" },
 		{ "id": "Terminal.TogglePaneZoom", "keys": "alt+enter" },
-		{ "id": "Terminal.PasteFromClipboard", "keys": "ctrl+v" }
+		{ "id": "Terminal.PasteFromClipboard", "keys": "ctrl+v" },
+		{ "command": { "action": "splitPane", "split": "right", "splitMode": "duplicate" }, "keys": "alt+shift+right" },
+		{ "command": { "action": "splitPane", "split": "left", "splitMode": "duplicate" }, "keys": "alt+shift+left" },
+		{ "command": { "action": "splitPane", "split": "down", "splitMode": "duplicate" }, "keys": "alt+shift+down" },
+		{ "command": { "action": "splitPane", "split": "up", "splitMode": "duplicate" }, "keys": "alt+shift+up" },
+		{ "command": "closePane", "keys": "alt+\\" }
 	],
 
 	"copyOnSelect": false,

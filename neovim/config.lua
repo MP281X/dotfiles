@@ -67,51 +67,51 @@ vim.opt.inccommand = "split"
 
 -- diagnostic and lsp floating window style
 local float_style = {
-	focusable = true,
-	style = "minimal",
-	border = "rounded",
-	source = "always",
-	header = "",
-	prefix = "",
+  focusable = true,
+  style = "minimal",
+  border = "rounded",
+  source = "always",
+  header = "",
+  prefix = "",
 }
 
 vim.diagnostic.config({
-	signs = true,
-	underline = true,
-	virtual_text = true,
-	severity_sort = true,
-	float = float_style,
+  signs = true,
+  underline = true,
+  virtual_text = true,
+  severity_sort = true,
+  float = float_style,
 })
 
 -- consistent lsp floating window style
 local orig_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-	return orig_open_floating_preview(
-		contents,
-		syntax,
-		vim.tbl_deep_extend("force", {}, float_style, opts or {}),
-		...
-	)
+  return orig_open_floating_preview(
+    contents,
+    syntax,
+    vim.tbl_deep_extend("force", {}, float_style, opts or {}),
+    ...
+  )
 end
 
 -- autocommands
 local augroup_yank = vim.api.nvim_create_augroup("HighlightYank", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-	group = augroup_yank,
-	pattern = "*",
-	callback = function()
-		vim.highlight.on_yank({ timeout = 200 })
-	end,
+  group = augroup_yank,
+  pattern = "*",
+  callback = function()
+    vim.highlight.on_yank({ timeout = 200 })
+  end,
 })
 
 local augroup_terminal_mouse = vim.api.nvim_create_augroup("TerminalMouse", { clear = true })
 vim.api.nvim_create_autocmd("TermEnter", {
-	group = augroup_terminal_mouse,
-	pattern = "*",
-	command = "set mouse=a",
+  group = augroup_terminal_mouse,
+  pattern = "*",
+  command = "set mouse=a",
 })
 vim.api.nvim_create_autocmd("TermLeave", {
-	group = augroup_terminal_mouse,
-	pattern = "*",
-	command = "set mouse=",
+  group = augroup_terminal_mouse,
+  pattern = "*",
+  command = "set mouse=",
 })

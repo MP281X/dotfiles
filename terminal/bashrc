@@ -46,6 +46,9 @@ ps() {
 alias c="claude"
 alias cc="claude --continue"
 
+# update globally installed packages
+alias ii="npm update -g"
+
 # pnpm
 alias i="pnpm update --recursive --no-save"
 alias pnpx="pnpm dlx"

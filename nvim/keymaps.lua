@@ -27,9 +27,9 @@ vim.keymap.set('n', '<A-Up>', ":m .-2<CR>==")
 vim.keymap.set('v', '<A-Up>', ":m '<-2<CR>gv=gv")
 
 -- enable and disable telescope and nvimTree filters
+Enable_filters = true
 vim.keymap.set("n", "<leader>ff", function()
-  local files_config = require("files-config")
-  files_config.enable_filters = not files_config.enable_filters
+  Enable_filters = not Enable_filters
   vim.api.nvim_command('source ' .. vim.fn.stdpath("config") .. "/lua/files-config.lua")
 end, {})
 

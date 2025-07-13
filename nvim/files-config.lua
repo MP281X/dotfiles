@@ -1,32 +1,25 @@
 local permanent_filters = {
   --global
-  ".git", ".gitignore", ".dockerignore", ".vscode",
+  ".git", ".gitignore",
   -- node
   "node_modules", "dist", "build",
   -- package managers
   "pnpm-lock.yaml",
-  -- frameworks js/ts configs
-  "vite-env.d.ts", ".next", "next-env.d.ts",
   -- cache
-  ".attest", "*.tsbuildinfo", "*-journal", ".wrangler",
-  ".turbo", "_generated", "worker-configuration.d.ts",
-  ".drizzle",
+  "*.tsbuildinfo", ".turbo", ".drizzle"
 }
 
 local conditional_filters = {
   -- global
   ".github",
   -- claude
-  ".mcp.json", ".claude", "CLAUDE.md", "AGENTS.md",
+  ".mcp.json", ".claude", "CLAUDE.md",
   -- package managers
-  "pnpm-workspace.yaml", ".npmrc",
+  "pnpm-workspace.yaml",
   -- js/ts configs
-  "*.config.*", "tsconfig.json", "tsconfig.base.json", "biome.jsonc", "biome.json",
-  -- sveltekit/nextjs
-  "entry-client.tsx", "entry-server.tsx",
-  "app.html", "app.css", "index.css", "globals.css", "index.html",
-  -- codegen
-  "*.g.ts", "*.g.d.ts", "env.d.ts", "turbo.json", "wrangler.jsonc"
+  "*.config.ts", "tsconfig.json", "tsconfig.base.json", "biome.json",
+  -- cache
+  "env.d.ts", "turbo.json"
 }
 
 local nvimTreeFilters = function()

@@ -27,10 +27,11 @@ This is a comprehensive dotfiles repository designed for WSL2-based development 
 ## Architecture
 
 ### Configuration Structure
-- **`/configs/`** - Core system configurations (bashrc, terminal settings)
-- **`/neovim/`** - Complete Neovim IDE setup with Lazy.nvim plugin manager
+- **`/shell/`** - Shell and terminal configurations (bashrc, starship, gitui, windows-terminal)
+- **`/nvim/`** - Complete Neovim IDE setup with Lazy.nvim plugin manager
+- **`/windows/`** - Windows-specific files (AutoHotkey, win32yank, fonts)
+- **`/claude/`** - Claude Code MCP global configuration
 - **`/scripts/`** - Installation automation (setup.sh, dotfiles.sh, setup.ps1)
-- **`/themes/`** - Visual customization (starship, gitui, fonts)
 
 ### Key Design Patterns
 - **Modular Neovim Configuration**: Separated into config.lua, plugin.lua, keymaps.lua, lsp-config.lua for maintainability
@@ -55,6 +56,6 @@ This is a comprehensive dotfiles repository designed for WSL2-based development 
 
 - All configurations are designed to be reproducible and version-controlled
 - The system expects access to a Windows D: drive for secrets/configuration during setup
-- Neovim configuration uses Lazy.nvim plugin manager - modify `neovim/plugin.lua` for plugin changes
-- Shell aliases and functions are defined in `configs/bashrc`
+- Neovim configuration uses Lazy.nvim plugin manager - modify `nvim/plugin.lua` for plugin changes
+- Shell aliases and functions are defined in `shell/bashrc`
 - WSL-specific features include clipboard integration (win32yank) and Windows Terminal configuration

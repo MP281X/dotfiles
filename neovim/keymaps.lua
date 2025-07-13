@@ -27,10 +27,10 @@ vim.keymap.set('n', '<A-Up>', ":m .-2<CR>==")
 vim.keymap.set('v', '<A-Up>', ":m '<-2<CR>gv=gv")
 
 -- enable and disable telescope and nvimTree filters
-Enable_filters = true
 vim.keymap.set("n", "<leader>ff", function()
-	Enable_filters = not Enable_filters
-	vim.api.nvim_command('source ' .. "~/.config/nvim/lua/files-config.lua")
+	local files_config = require("files-config")
+	files_config.enable_filters = not files_config.enable_filters
+	vim.api.nvim_command('source ' .. vim.fn.stdpath("config") .. "/lua/files-config.lua")
 end, {})
 
 -- telescope
@@ -46,11 +46,6 @@ vim.keymap.set("n", "<leader>fb", ":NvimTreeToggle<CR>") -- file browser
 vim.keymap.set("n", "<leader>t", function() require("FTerm").open() end)
 vim.keymap.set("t", "<Esc>", function() require("FTerm").close() end)
 
--- Remap key so ctrl-D and ctr-B work in the terminal mode
-vim.api.nvim_exec(
-	[[
-  tnoremap <C-D> <C-\><C-N>:execute 'normal! \<C-W>\<C-D>'<CR>
-  tnoremap <C-B> <C-\><C-N>:execute 'normal! \<C-W>\<C-B>'<CR>
-]],
-	false
-)
+-- Remap key so ctrl-D and ctrl-B work in the terminal mode
+vim.keymap.set("t", "<C-D>", [[<C-\><C-N>:execute 'normal! \<C-W>\<C-D>'<CR>]])
+vim.keymap.set("t", "<C-B>", [[<C-\><C-N>:execute 'normal! \<C-W>\<C-B>'<CR>]])

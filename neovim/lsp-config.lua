@@ -16,6 +16,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "E", vim.diagnostic.open_float, opts)
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 		vim.keymap.set("n", "R", vim.lsp.buf.rename, opts)
+		
+		
 
 		vim.lsp.inlay_hint.enable(true) -- inlay hint
 
@@ -69,7 +71,7 @@ require("cmp").setup({
 	sources = require("cmp").config.sources({
 		{ name = "path" },
 		{ name = "nvim_lsp" },
-		{ name = "luasnip", keyword_length = 2 },
+		{ name = "luasnip", keyword_length = 3 },
 	}),
 	sorting = {
 		comparators = {

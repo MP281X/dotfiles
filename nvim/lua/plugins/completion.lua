@@ -1,3 +1,5 @@
+local winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None"
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -24,37 +26,14 @@ return {
         ["<Enter>"] = { "accept", "fallback" },
         ["<C-\\>"] = { "show", "fallback" },
       },
-      appearance = {
-        use_nvim_cmp_as_default = true,
-        nerd_font_variant = "mono"
-      },
-      sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
-      },
+      sources = { default = { "lsp", "path" } },
+      appearance = { use_nvim_cmp_as_default = true, nerd_font_variant = "mono" },
+      signature = { enabled = true, window = { border = "rounded", winhighlight = winhighlight } },
       completion = {
-        accept = {
-          auto_brackets = {
-            enabled = true,
-          },
-        },
-        menu = {
-          border = "rounded",
-          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-          draw = {
-            treesitter = { "lsp" }
-          }
-        },
-        documentation = {
-          auto_show = true,
-          auto_show_delay_ms = 200,
-          window = {
-            border = "rounded",
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder"
-          }
-        },
+        menu = { border = "rounded", winhighlight = winhighlight, draw = { treesitter = { "lsp" } } },
+        documentation = { window = { border = "rounded", winhighlight = winhighlight } },
       },
     },
-    opts_extend = { "sources.default" }
   },
   {
     "windwp/nvim-autopairs",
@@ -75,4 +54,3 @@ return {
     end,
   },
 }
-

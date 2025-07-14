@@ -1,7 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
-	"theme": "catppuccin",
-  "model": "github-copilot/gpt-4.1",
+	"theme": "kanagawa",
+  "mode": {
+    "build": { "model": "github-copilot/gpt-4.1" },
+    "plan": { "model": "github-copilot/gpt-4.1" }
+  },
   "autoshare": false,
   "autoupdate": true,
   "mcp": {

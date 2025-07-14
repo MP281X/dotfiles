@@ -18,7 +18,7 @@ cp terminal/gitui.ron ~/.config/gitui/theme.ron
 echo "AI"
 cp ai/gemini.md ~/.gemini/GEMINI.md
 cp ai/gemini.json ~/.gemini/settings.json
-cp ai/opencode.json ~/.config/opencode/config.json
+cp ai/opencode.json ~/.config/opencode/opencode.json
 
 # early exit if not inside the wsl
 [ -z "$WSL_INTEROP" ] && exit 0

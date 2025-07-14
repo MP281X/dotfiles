@@ -21,18 +21,18 @@ require("core.keymaps")
 -- Load plugins
 require("lazy").setup({
   { import = "plugins.ui" },
-  { import = "plugins.editor" },
+  { import = "plugins.completion" },
   { import = "plugins.lsp" },
   { import = "plugins.files" },
   { import = "plugins.terminal" },
   { import = "plugins.sessions" },
-}, { 
+}, {
   change_detection = { enabled = false },
   performance = {
     rtp = {
       disabled_plugins = {
         "gzip",
-        "tarPlugin", 
+        "tarPlugin",
         "tohtml",
         "zipPlugin",
         "netrwPlugin",

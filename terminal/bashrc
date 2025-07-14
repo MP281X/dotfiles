@@ -104,6 +104,9 @@ eval "$(starship init bash)"; eza $eza_args
 source "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
 export FZF_DEFAULT_OPTS="--no-hscroll --no-mouse --reverse --no-info --border=none"
 
+# fix terminal colors
+export COLORTERM=truecolor
+
 # enable vim mode
 export EDITOR=nvim
 set -o vi

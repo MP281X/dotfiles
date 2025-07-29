@@ -44,13 +44,13 @@ brewInstall "neovim"
 brewInstall "starship"
 #----------------------------------------------------------------------------------------------------------------
 
-log "kubernetes"
-
-brewInstall "kubernetes-cli"
-brewInstall "k9s"
-brewInstall "kubeseal"
-
-mkdir -p ~/.kube && cp /mnt/d/secrets/config ~/.kube/config
+# log "kubernetes"
+#
+# brewInstall "kubernetes-cli"
+# brewInstall "k9s"
+# brewInstall "kubeseal"
+#
+# mkdir -p ~/.kube && cp /mnt/d/secrets/config ~/.kube/config
 #----------------------------------------------------------------------------------------------------------------
 
 log "nodejs"
@@ -67,9 +67,9 @@ curl -fsSL https://get.docker.com | sh
 sudo usermod -aG docker $USER
 #----------------------------------------------------------------------------------------------------------------
 
-log "ssh"
-
-mkdir -p ~/.ssh && cp /mnt/d/secrets/.ssh/id_rsa ~/.ssh/id_rsa && chmod 0400 ~/.ssh/id_rsa
+# log "ssh"
+#
+# mkdir -p ~/.ssh && cp /mnt/d/secrets/.ssh/id_rsa ~/.ssh/id_rsa && chmod 0400 ~/.ssh/id_rsa
 #----------------------------------------------------------------------------------------------------------------
 
 log "git"

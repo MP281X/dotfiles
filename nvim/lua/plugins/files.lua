@@ -51,10 +51,25 @@ end
 
 local sortFiles = function(nodes)
   table.sort(nodes, function(a, b)
-    if a.type ~= b.type then return a.type == "directory" end
     local a_idx = a.name:match("^index%.") or a.name:match("^+%.")
     local b_idx = b.name:match("^index%.") or b.name:match("^+%.")
-    if a_idx ~= b_idx then return b_idx end
+
+    -- Index files always go last
+    if a_idx and not b_idx then return false end
+    if not a_idx and b_idx then return true end
+    if a_idx and b_idx then return a.name:lower() < b.name:lower() end
+
+    -- Both are non-index files, directories come first
+    if a.type ~= b.type then return a.type == "directory" end
+
+    -- If both are directories, prioritize lib and utils
+    if a.type == "directory" then
+      if a.name == "lib" and b.name ~= "lib" then return true end
+      if b.name == "lib" and a.name ~= "lib" then return false end
+      if a.name == "utils" and b.name ~= "utils" and b.name ~= "lib" then return true end
+      if b.name == "utils" and a.name ~= "utils" and a.name ~= "lib" then return false end
+    end
+
     return a.name:lower() < b.name:lower()
   end)
   return nodes
@@ -89,7 +104,6 @@ return {
       "nvim-lua/plenary.nvim",
       "debugloop/telescope-undo.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     config = function()
       require("telescope").setup({
@@ -125,7 +139,6 @@ return {
 
       -- Load extensions
       require("telescope").load_extension("undo")
-      require("telescope").load_extension('fzf')
       require("telescope").load_extension("ui-select")
 
       -- Telescope keymaps

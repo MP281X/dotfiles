@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-	"theme": "kanagawa",
+	"theme": "catpuccin",
   "mode": {
     "build": { "model": "github-copilot/gpt-4.1" },
     "plan": { "model": "github-copilot/gpt-4.1" }

@@ -42,10 +42,6 @@ ps() {
 	})'
 }
 
-# claude code
-alias c="claude"
-alias cc="claude --continue"
-
 # update globally installed packages
 alias ii="npm update -g"
 

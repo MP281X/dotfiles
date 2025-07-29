@@ -31,7 +31,7 @@ return {
       signature = { enabled = true, window = { border = "rounded", winhighlight = winhighlight } },
       completion = {
         menu = { border = "rounded", winhighlight = winhighlight, draw = { treesitter = { "lsp" } } },
-        documentation = { window = { border = "rounded", winhighlight = winhighlight } },
+        documentation = { auto_show = true, auto_show_delay_ms = 0, window = { border = "rounded", winhighlight = winhighlight } },
       },
     },
   },

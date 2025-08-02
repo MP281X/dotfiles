@@ -13,7 +13,6 @@ return {
         ensure_installed = {
           "lua_ls",
           "ts_ls", "biome", "tailwindcss",
-          "kotlin_lsp"
         },
       })
     end,
@@ -36,11 +35,6 @@ return {
       vim.lsp.config("tailwindcss", { capabilities = capabilities })
 
       vim.lsp.config("lua_ls", {
-        capabilities = capabilities,
-        settings = { Lua = { diagnostics = { globals = { "vim" } } } }
-      })
-
-      vim.lsp.config("kotlin_lsp", {
         capabilities = capabilities,
         settings = { Lua = { diagnostics = { globals = { "vim" } } } }
       })

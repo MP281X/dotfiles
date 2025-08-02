@@ -7,7 +7,9 @@ local permanent_filters = {
   -- package managers
   "pnpm-lock.yaml",
   -- cache
-  "*.tsbuildinfo", ".turbo", ".drizzle", "env.d.ts",
+  "*.tsbuildinfo", ".turbo", ".drizzle", "env.d.ts", ".tanstack", "routeTree.gen.ts",
+  -- java
+  ".idea", ".mvn", "target", "mvnw", ".micronaut"
 }
 
 -- Conditional filters (applied only to nvim-tree)
@@ -19,9 +21,7 @@ local conditional_filters = {
   -- package managers
   "pnpm-workspace.yaml",
   -- js/ts configs
-  "*.config.ts", "tsconfig.json", "biome.json",
-  -- cache
-  "turbo.json"
+  "*.config.ts", "tsconfig.json", "biome.json", "turbo.json"
 }
 
 local nvimTreeFilters = function()
@@ -89,7 +89,7 @@ return {
         renderer = {
           root_folder_label = false,
           icons = { show = { git = false } },
-          special_files = { "index.ts", "+page.tsx" }
+          special_files = { "index.ts", "index.tsx", "+page.tsx" }
         },
       })
 

@@ -1,6 +1,6 @@
 {
 	"$schema": "https://opencode.ai/config.json",
-	"theme": "catpuccin",
+	"theme": "kanagawa",
 	"mode": {
 		"plan": { "model": "github-copilot/gpt-4.1" },
 		"build": { "model": "github-copilot/gpt-4.1" }
@@ -19,15 +19,6 @@
 		"grep": {
 			"type": "remote",
 			"url": "https://mcp.grep.app"
-		},
-		"postgres": {
-			"type": "local",
-			"command": [
-				"npx",
-				"-y",
-				"@modelcontextprotocol/server-postgres",
-				"postgresql://postgres:postgres@localhost:5432/postgres"
-			]
 		}
 	}
 }

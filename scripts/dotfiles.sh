@@ -15,10 +15,12 @@ echo "gitui"
 mkdir -p ~/.config/gitui	
 cp terminal/gitui.ron ~/.config/gitui/theme.ron
 
-echo "AI"
-cp ai/gemini.md ~/.gemini/GEMINI.md
-cp ai/gemini.json ~/.gemini/settings.json
-cp ai/opencode.json ~/.config/opencode/opencode.json
+echo "opencode"
+mkdir -p ~/.config/opencode
+rm -r -f ~/.config/opencode/agent
+mkdir -p ~/.config/opencode/agent
+cp opencode/opencode.json ~/.config/opencode/opencode.json
+cp -r opencode/agents/* ~/.config/opencode/agent
 
 # early exit if not inside the wsl
 [ -z "$WSL_INTEROP" ] && exit 0

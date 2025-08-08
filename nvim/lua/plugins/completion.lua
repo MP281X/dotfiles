@@ -42,7 +42,12 @@ return {
         ["<C-\\>"] = { "show", "fallback" },
       },
       cmdline = {
-        keymap = { preset = "inherit" },
+        enabled = true,
+        keymap = {
+          preset = "none",
+          ["<Tab>"] = { "show", "select_next", "fallback" },
+          ["<S-Tab>"] = { "show", "select_prev", "fallback" },
+        },
         completion = { menu = { auto_show = false } },
       },
       completion = {

@@ -2,8 +2,8 @@
 	"$schema": "https://opencode.ai/config.json",
 	"theme": "kanagawa",
 	"mode": {
-		"plan": { "model": "github-copilot/gpt-5" },
-		"build": { "model": "github-copilot/gpt-5-mini" }
+		"plan": { "model": "anthropic/claude-opus-4-1-20250805" },
+		"build": { "model": "anthropic/claude-sonnet-4-20250514" }
 	},
 	"autoshare": false,
 	"autoupdate": true,

@@ -1,5 +1,4 @@
 local winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None"
-
 return {
   {
     "zbirenbaum/copilot.lua",
@@ -34,7 +33,7 @@ return {
     opts = {
       keymap = {
         preset = "none",
-        ["<Tab>"] = { "select_next", "fallback" },
+        ["<Tab>"] = { "show_and_insert", "select_next", "fallback" },
         ["<S-Tab>"] = { "select_prev", "fallback" },
         ["<Up>"] = { "select_prev", "fallback" },
         ["<Down>"] = { "select_next", "fallback" },
@@ -45,14 +44,15 @@ return {
         enabled = true,
         keymap = {
           preset = "none",
-          ["<Tab>"] = { "show", "select_next", "fallback" },
-          ["<S-Tab>"] = { "show", "select_prev", "fallback" },
+          ["<Tab>"] = { "show_and_insert", "select_next", "fallback" },
+          ["<S-Tab>"] = { "show_and_insert", "select_prev", "fallback" },
         },
         completion = { menu = { auto_show = false } },
       },
       completion = {
         menu = { border = "rounded", winhighlight = winhighlight, auto_show = true, draw = { treesitter = { "lsp" } } },
         documentation = { auto_show = true, auto_show_delay_ms = 0, window = { border = "rounded", winhighlight = winhighlight } },
+        list = { selection = { preselect = true, auto_insert = true } },
       },
       sources = {
         default = { "lsp", "path", "copilot" },

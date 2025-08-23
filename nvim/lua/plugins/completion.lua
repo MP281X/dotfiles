@@ -62,12 +62,7 @@ return {
       signature = { enabled = true, window = { border = "rounded", winhighlight = winhighlight } },
     },
   },
-  {
-    "windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup()
-    end,
-  },
+
   {
     "windwp/nvim-ts-autotag",
     config = function()

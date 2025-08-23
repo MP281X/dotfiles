@@ -26,6 +26,7 @@ require("lazy").setup({
   { import = "plugins.files" },
   { import = "plugins.terminal" },
   { import = "plugins.sessions" },
+  { import = "plugins.mini" },
 }, {
   change_detection = { enabled = false },
   performance = {

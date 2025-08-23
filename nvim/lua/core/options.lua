@@ -6,7 +6,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
-vim.g.loaded_node_provider = 0
 
 -- nerd font indicator
 vim.g.have_nerd_font = true
@@ -70,8 +69,6 @@ vim.opt.writebackup = false
 vim.opt.updatetime = 50
 vim.opt.timeoutlen = 300
 vim.opt.inccommand = "split"
-vim.opt.lazyredraw = true
-vim.opt.ttyfast = true
 
 -- consistent lsp floating window style
 local float_style = {

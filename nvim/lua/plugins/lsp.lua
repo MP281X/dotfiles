@@ -29,6 +29,8 @@ return {
         vim.lsp.protocol.make_client_capabilities(),
         require("blink.cmp").get_lsp_capabilities()
       )
+      capabilities.general = capabilities.general or {}
+      capabilities.general.positionEncodings = { "utf-16" }
 
       -- LSP server configurations
       vim.lsp.config("biome", { capabilities = capabilities })
@@ -70,11 +72,7 @@ return {
         update_in_insert = false,
       })
 
-      -- Custom LSP handlers to use Telescope instead of quickfix
-      vim.lsp.handlers['textDocument/definition'] = require('telescope.builtin').lsp_definitions
-      vim.lsp.handlers['textDocument/references'] = require('telescope.builtin').lsp_references
-      vim.lsp.handlers['textDocument/implementation'] = require('telescope.builtin').lsp_implementations
-      vim.lsp.handlers['textDocument/typeDefinition'] = require('telescope.builtin').lsp_type_definitions
+
 
       -- LSP keybinds
       vim.api.nvim_create_autocmd("LspAttach", {

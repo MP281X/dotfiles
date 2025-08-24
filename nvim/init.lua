@@ -25,7 +25,6 @@ require("lazy").setup({
   { import = "plugins.lsp" },
   { import = "plugins.files" },
   { import = "plugins.terminal" },
-  { import = "plugins.sessions" },
   { import = "plugins.mini" },
 }, {
   change_detection = { enabled = false },

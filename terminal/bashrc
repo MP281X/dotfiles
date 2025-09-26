@@ -42,8 +42,8 @@ ps() {
 	})'
 }
 
-# update globally installed packages
-alias ii="npm update -g"
+export PATH=/home/mp281x/.opencode/bin:$PATH
+alias o="opencode"
 
 # pnpm
 alias i="pnpm update --recursive --no-save"

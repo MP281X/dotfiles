@@ -43,10 +43,10 @@ return {
 
       vim.lsp.config("ts_ls", {
         capabilities = capabilities,
-        settings = {
-          typescript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
-          javascript = { inlayHints = { includeInlayParameterNameHints = "literals" } }
-        }
+        -- settings = {
+        --   typescript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
+        --   javascript = { inlayHints = { includeInlayParameterNameHints = "literals" } }
+        -- }
       })
 
       -- Enhanced diagnostic configuration

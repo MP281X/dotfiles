@@ -55,7 +55,7 @@ return {
         list = { selection = { preselect = true, auto_insert = true } },
       },
       sources = {
-        default = { "lsp", "path", "copilot" },
+        default = { "lsp", "path" },
         providers = { copilot = { name = "copilot", module = "blink-copilot", score_offset = 100, async = true } },
       },
       appearance = { use_nvim_cmp_as_default = true, nerd_font_variant = "mono" },

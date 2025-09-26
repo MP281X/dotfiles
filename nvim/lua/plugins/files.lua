@@ -1,7 +1,7 @@
 -- Permanent filters (applied to telescope and nvim-tree)
 local permanent_filters = {
   --global
-  ".git", ".gitignore",
+  ".git", ".gitignore", ".dockerignore",
   -- node
   "node_modules", "dist", "build",
   -- package managers
@@ -9,15 +9,16 @@ local permanent_filters = {
   -- cache
   "*.tsbuildinfo", ".turbo", ".drizzle", "env.d.ts", ".tanstack", "routeTree.gen.ts",
   -- java
-  ".idea", ".mvn", "target", "mvnw", ".micronaut"
+  ".idea", ".mvn", "target", "mvnw", ".micronaut", ".editorconfig",
+  "Jenkinsfile", "ktlint", "jooq",
 }
 
 -- Conditional filters (applied only to nvim-tree)
 local conditional_filters = {
   -- global
-  ".github",
-  -- claude
-  ".mcp.json", ".claude", "CLAUDE.md",
+  ".github", "Dockerfile", "Dockerfile.*", "docker-compose.yaml",
+  -- opencode
+  "AGENTS.md",
   -- package managers
   "pnpm-workspace.yaml",
   -- js/ts configs

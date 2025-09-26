@@ -2,8 +2,8 @@
 	"$schema": "https://opencode.ai/config.json",
 	"theme": "kanagawa",
 	"mode": {
-		"plan": { "model": "anthropic/claude-opus-4-1-20250805" },
-		"build": { "model": "anthropic/claude-sonnet-4-20250514" }
+		"plan": { "model": "zai-coding-plan/glm-4.5" },
+		"build": { "model": "zai-coding-plan/glm-4.5" }
 	},
 	"autoshare": false,
 	"autoupdate": true,

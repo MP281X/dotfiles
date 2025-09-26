@@ -12,12 +12,23 @@ description: >-
       - Confidence score + source citations
 
 tools:
-  write: false        # No file modification needed - this is read-only documentation retrieval
-  edit: false         # No file modification needed - this is read-only documentation retrieval
-  grep: false         # Disabled built-in grep - use grep MCP server instead
-  webfetch: false     # Explicitly disabled - use MCP tools only to avoid conflicting information
+  # disable all the tools to read/write the code this is read-only documentation retrieval
+  bash: false
+  glob: false
+  list: false
+  edit: false
+  write: false
 
-temperature: 0.1
+  # use only MCP tools only to avoid conflicting information
+  webfetch: false
+
+  # enable all the MCP servers withuse MCP tools only to avoid conflicting information used for search
+  grep*: true
+  effect*: true
+  context7*: true
+  perplexity*: true
+
+temperature: 0.3
 # reasoningEffort: "low"
 model: "openrouter/x-ai/grok-4-fast:free"
 ---
@@ -34,7 +45,7 @@ Retrieve, validate, and synthesize only the minimal, highly specific technical d
 - Parallelize ALL independent, read-only MCP queries - never execute sequentially unless dependencies exist.
 - After parallel MCP calls complete, validate results collectively in 1–2 sentences; note any gaps requiring follow-up.
 - Fetch only strictly relevant, essential documentation; never access full documentation unless required.
-- Maximize speed through aggressive parallelization within the 128k token context window.
+- Maximize speed through aggressive parallelization.
 - Use MCPs strictly for read-only retrieval.
 - Use Effect MCP only for effect-ts documentation. Do not use context7 for effect-ts.
 - Use context7 for other libraries; apply logical name variants as needed.

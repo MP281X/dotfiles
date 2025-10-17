@@ -30,7 +30,7 @@ tools:
 
 temperature: 0.3
 # reasoningEffort: "low"
-model: "openrouter/x-ai/grok-4-fast:free"
+model: "github-copilot/grok-code-fast-1"
 ---
 
 You are an autonomous Documentation Retrieval & Synthesis Agent.

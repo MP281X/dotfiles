@@ -5,8 +5,8 @@
   "autoupdate": true,
 
 	"mode": {
-		"plan": { "model": "zai-coding-plan/glm-4.5" },
-		"build": { "model": "zai-coding-plan/glm-4.5" }
+		"plan": { "model": "zai-coding-plan/glm-4.6" },
+		"build": { "model": "zai-coding-plan/glm-4.6" }
 	},
 
 	"mcp": {
@@ -38,6 +38,7 @@
   "tools": {
     "grep*": false,
     "effect*": false,
+    "webfetch": false,
     "context7*": false,
     "perplexity*": false,
     "chrome-devtools*": false

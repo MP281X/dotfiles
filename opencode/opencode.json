@@ -10,6 +10,10 @@
 	},
 
 	"mcp": {
+    "shadcn": {
+      "type": "local",
+      "command": ["npx", "-y", "shadcn@latest", "mcp"]
+    },
 		"effect": {
 			"type": "local",
 			"command": ["npx", "-y", "effect-mcp@latest"]
@@ -28,19 +32,12 @@
       "environment": {
         "PERPLEXITY_API_KEY": ""
       }
-    },
-    "chrome-devtools": {
-      "type": "local",
-      "command": ["npx", "-y", "chrome-devtools-mcp@latest"]
     }
 	},
 
   "tools": {
     "grep*": false,
-    "effect*": false,
     "webfetch": false,
-    "context7*": false,
-    "perplexity*": false,
-    "chrome-devtools*": false
+    "context7*": false
   }
 }

@@ -33,20 +33,15 @@ return {
       capabilities.general.positionEncodings = { "utf-16" }
 
       -- LSP server configurations
+
+      vim.lsp.config("ts_ls", { capabilities = capabilities })
+
       vim.lsp.config("biome", { capabilities = capabilities })
       vim.lsp.config("tailwindcss", { capabilities = capabilities })
 
       vim.lsp.config("lua_ls", {
         capabilities = capabilities,
         settings = { Lua = { diagnostics = { globals = { "vim" } } } }
-      })
-
-      vim.lsp.config("ts_ls", {
-        capabilities = capabilities,
-        -- settings = {
-        --   typescript = { inlayHints = { includeInlayParameterNameHints = "literals" } },
-        --   javascript = { inlayHints = { includeInlayParameterNameHints = "literals" } }
-        -- }
       })
 
       -- Enhanced diagnostic configuration
@@ -101,6 +96,12 @@ return {
             client.server_capabilities.documentHighlightProvider = false
           end
         end,
+      })
+
+      -- File type configurations
+      vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+        pattern = { ".env*", "*.env" },
+        callback = function() vim.bo.filetype = "sh" end,
       })
 
       -- format on save

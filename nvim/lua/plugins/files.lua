@@ -1,33 +1,22 @@
--- Permanent filters (applied to telescope and nvim-tree)
-local permanent_filters = {
+-- filters (applied to telescope and nvim-tree)
+local filters = {
   --global
   ".git", ".gitignore", ".dockerignore",
   -- node
   "node_modules", "dist", "build",
   -- package managers
-  "pnpm-lock.yaml",
+  "pnpm-lock.yaml", "bun.lock",
   -- cache
-  "*.tsbuildinfo", ".turbo", ".drizzle", "env.d.ts", ".tanstack", "routeTree.gen.ts",
+  "*.tsbuildinfo", ".turbo", ".drizzle",
+  ".next", "*env.d.ts", "app.d.ts", ".output", ".wrangler",
+  ".tanstack", "routeTree.gen.ts", "worker-configuration.d.ts",
+  "pnpm-workspace.yaml",
   -- java
   ".idea", ".mvn", "target", "mvnw", ".micronaut", ".editorconfig",
   "Jenkinsfile", "ktlint", "jooq",
 }
 
--- Conditional filters (applied only to nvim-tree)
-local conditional_filters = {
-  -- global
-  ".github", "Dockerfile", "Dockerfile.*", "docker-compose.yaml",
-  -- opencode
-  "AGENTS.md",
-  -- package managers
-  "pnpm-workspace.yaml",
-  -- js/ts configs
-  "*.config.ts", "tsconfig.json", "biome.json", "turbo.json"
-}
-
 local nvimTreeFilters = function()
-  local filters = vim.list_extend(permanent_filters, conditional_filters)
-
   local regex_arr = {}
   for _, item in ipairs(filters) do
     if item:sub(1, 1) == "*" then item = item:sub(2) else item = "^" .. item end
@@ -40,8 +29,6 @@ local nvimTreeFilters = function()
 end
 
 local telescopeFilters = function(args)
-  local filters = permanent_filters
-
   for _, pattern in ipairs(filters) do
     table.insert(args, '-g')
     table.insert(args, '!' .. pattern)

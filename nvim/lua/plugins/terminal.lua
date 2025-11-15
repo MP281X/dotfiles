@@ -21,7 +21,10 @@ return {
 
         -- find all the node scripts
         if vim.fn.findfile("package.json") ~= "" then
-          local handle = io.popen("jq -r '.scripts | keys[] | select(. != \"dev\")' package.json 2>/dev/null")
+          local handle = io.popen(
+            "jq -r '.scripts | to_entries[] | select(. != \"dev\") | .key' package.json 2>/dev/null"
+          )
+
           if handle then
             for nodeScript in handle:lines() do
               if nodeScript == "dev" then goto continue end
@@ -82,4 +85,3 @@ return {
     end,
   },
 }
-

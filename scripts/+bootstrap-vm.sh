@@ -39,6 +39,7 @@ chown -R mp281x:mp281x /home/mp281x/.ssh
 log "dokploy"
 
 curl -sSL https://dokploy.com/install.sh | sh
+sudo usermod -aG docker mp281x
 
 #----------------------------------------------------------------------------------------------------------------
 

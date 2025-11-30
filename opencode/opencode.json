@@ -5,8 +5,8 @@
   "autoupdate": true,
 
 	"mode": {
-		"plan": { "model": "zai-coding-plan/glm-4.6" },
-		"build": { "model": "zai-coding-plan/glm-4.6" }
+		"plan": { "model": "github-copilot/claude-opus-4.5" },
+		"build": { "model": "github-copilot/claude-opus-4.5" }
 	},
 
 	"mcp": {

@@ -20,9 +20,9 @@ tools:
   webfetch: false
 
   # enable only MCP servers for documentation search
-  grep: true
-  context7: true
-  perplexity: true
+  grep_*: true
+  context7_*: true
+  perplexity_*: true
 
 temperature: 0.3
 model: "zai-coding-plan/glm-4.6"

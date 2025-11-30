@@ -22,7 +22,7 @@ tools:
   read: true
 
   # enable Effect MCP for official documentation
-  effect: true
+  effect_*: true
 
 temperature: 0.3
 model: "zai-coding-plan/glm-4.6"

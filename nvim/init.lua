@@ -26,7 +26,6 @@ require("lazy").setup({
   { import = "plugins.files" },
   { import = "plugins.terminal" },
   { import = "plugins.sessions" },
-  { import = "plugins.mini" },
 }, {
   change_detection = { enabled = false },
   performance = {
@@ -37,6 +36,10 @@ require("lazy").setup({
         "tohtml",
         "zipPlugin",
         "netrwPlugin",
+        "matchit",
+        "matchparen",
+        "2html_plugin",
+        "tutor",
       }
     }
   }

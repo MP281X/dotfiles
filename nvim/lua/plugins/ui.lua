@@ -35,7 +35,7 @@ return {
           theme = "horizon",
           section_separators = "",
           component_separators = "",
-          disabled_filetypes = { "packer", "NvimTree" },
+          disabled_filetypes = { "lazy", "NvimTree" },
         },
         sections = {
           lualine_a = { "mode" },

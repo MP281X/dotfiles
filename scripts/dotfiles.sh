@@ -4,7 +4,7 @@ clear
 
 log() {
 	echo ""
-	echo "\033[1;33m$1\033[0m"
+	printf "\033[1;33m%s\033[0m\n" "$1"
 	echo ""
 }
 

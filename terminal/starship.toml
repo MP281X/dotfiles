@@ -4,14 +4,12 @@ format = """\
   $nodejs\
   $golang\
   $directory\
-  ${custom.branch}\
+  $git_branch\
   [❯ ](bold red)\
   """
 
-[custom.branch]
-command = 'git rev-parse --abbrev-ref HEAD'
-detect_folders = ['.git']
-format = '[⚡$output ](bold red)'
+[git_branch]
+format = '[⚡$branch ](bold red)'
 
 
 [directory]

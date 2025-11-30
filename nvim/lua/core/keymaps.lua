@@ -3,8 +3,8 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<Space>", "<NOP>")
 
 vim.keymap.set("n", "<ESC>", ":nohlsearch<CR>") -- remove search highlight
-vim.keymap.set("n", "d", '"_d')                 -- delete a single letter without coping it
-vim.keymap.set("v", "d", '"_d')                 -- delete a single letter without coping it
+vim.keymap.set("n", "d", '"_d')                 -- delete without copying
+vim.keymap.set("v", "d", '"_d')                 -- delete without copying
 vim.keymap.set("n", "c", '"_c')
 
 -- movement

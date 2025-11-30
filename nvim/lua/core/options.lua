@@ -1,7 +1,3 @@
--- disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- disable unused providers for performance
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
@@ -59,7 +55,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- undo history
-vim.opt.undodir = os.getenv("HOME") .. "/.cache/undodir"
+vim.opt.undodir = vim.fn.stdpath("cache") .. "/undodir"
 vim.opt.undofile = true
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -104,10 +100,10 @@ local augroup_terminal_mouse = vim.api.nvim_create_augroup("TerminalMouse", { cl
 vim.api.nvim_create_autocmd("TermEnter", {
   group = augroup_terminal_mouse,
   pattern = "*",
-  command = "set mouse=a",
+  callback = function() vim.opt.mouse = "a" end,
 })
 vim.api.nvim_create_autocmd("TermLeave", {
   group = augroup_terminal_mouse,
   pattern = "*",
-  command = "set mouse=",
+  callback = function() vim.opt.mouse = "" end,
 })

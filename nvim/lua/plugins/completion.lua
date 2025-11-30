@@ -1,17 +1,6 @@
 local winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None"
 return {
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      })
-    end,
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
@@ -25,10 +14,7 @@ return {
   },
   {
     "saghen/blink.cmp",
-    dependencies = {
-      "rafamadriz/friendly-snippets",
-      "fang2hou/blink-copilot"
-    },
+    dependencies = { "rafamadriz/friendly-snippets" },
     version = "*",
     opts = {
       keymap = {
@@ -54,25 +40,13 @@ return {
         documentation = { auto_show = true, auto_show_delay_ms = 0, window = { border = "rounded", winhighlight = winhighlight } },
         list = { selection = { preselect = true, auto_insert = true } },
       },
-      sources = {
-        default = { "lsp", "path" },
-        providers = { copilot = { name = "copilot", module = "blink-copilot", score_offset = 100, async = true } },
-      },
+      sources = { default = { "lsp", "path" } },
       appearance = { use_nvim_cmp_as_default = true, nerd_font_variant = "mono" },
       signature = { enabled = true, window = { border = "rounded", winhighlight = winhighlight } },
     },
   },
 
-  {
-    "windwp/nvim-ts-autotag",
-    config = function()
-      require('nvim-ts-autotag').setup()
-    end,
-  },
-  {
-    "axelvc/template-string.nvim",
-    config = function()
-      require("template-string").setup()
-    end,
-  },
+  { "windwp/nvim-ts-autotag", opts = {} },
+  { "axelvc/template-string.nvim", opts = {} },
+  { "echasnovski/mini.pairs", opts = {} },
 }

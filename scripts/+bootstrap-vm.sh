@@ -30,7 +30,7 @@ hostnamectl set-hostname dev.mp281x.xyz
 log "ssh key"
 
 mkdir -p /home/mp281x/.ssh
-echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOxArbBf6JivomRmW6pB5OtmGPp1jHJAiAIDMZ/Kh0Hb paludgnachmatteo.dev@gmail.com" >> /home/mp281x/.ssh/authorized_keys
+echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOxArbBf6JivomRmW6pB5OtmGPp1jHJAiAIDMZ/Kh0Hb paludgnachmatteo.dev@gmail.com" > /home/mp281x/.ssh/authorized_keys
 chmod 700 /home/mp281x/.ssh && chmod 600 /home/mp281x/.ssh/authorized_keys
 chown -R mp281x:mp281x /home/mp281x/.ssh
 
@@ -81,4 +81,4 @@ ufw default allow outgoing
 ufw default deny incoming
 ufw allow 6443
 ufw allow 22
-ufw enable
+yes | ufw enable

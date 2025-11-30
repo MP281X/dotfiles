@@ -47,6 +47,18 @@ cp opencode/opencode.json ~/.config/opencode/opencode.json
 cp -r opencode/agents/* ~/.config/opencode/agent
 cp -r opencode/commands/* ~/.config/opencode/command
 
+
+#----------------------------------------------------------------------------------------------------------------
+
+log "codebase for the LLMs"
+
+effect_dir=~/.local/share/repos/effect
+[ -d "$effect_dir" ] && git -C "$effect_dir" pull --depth=1
+[ ! -d "$effect_dir" ] && git clone --depth=1 --single-branch --branch main https://github.com/Effect-TS/effect.git "$effect_dir"
+
+
+#----------------------------------------------------------------------------------------------------------------
+
 # early exit if not inside the wsl
 [ -z "$WSL_INTEROP" ] && exit 0
 

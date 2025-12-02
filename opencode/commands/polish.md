@@ -5,7 +5,7 @@ agent: build
 
 $ARGUMENTS
 
-Activate Refactor mode. Analyze step-by-step using only verified facts. Do not assume or speculate.
+Activate Polish mode. Analyze step-by-step using only verified facts. Do not assume or speculate.
 
 ## Process
 
@@ -29,9 +29,10 @@ For each pass:
 
 **3a. Analyze** (in priority order)
 1. **Correctness** - Bugs, missing error handling, edge cases
-2. **Simplicity** - Dead code, over-abstraction, unnecessary indirection
+2. **Simplicity** - Dead code, over-abstraction, unnecessary indirection, obvious comments
 3. **Readability** - Unclear names, deep nesting, implicit behavior
-4. **Consistency** - Deviations from project patterns
+4. **Consistency** - Deviations from project patterns, defensive try/catch in trusted paths
+5. **Type safety** - `any` casts, missing generics, implicit types
 
 **3b. Apply changes**
 - Remove before adding

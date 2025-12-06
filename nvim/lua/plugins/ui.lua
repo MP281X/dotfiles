@@ -49,25 +49,21 @@ return {
                 inactive = { fg = "#565f89", bg = "#1a1b26" },
               },
               fmt = function(name, context)
-                local full_path = context.bufpath or vim.api.nvim_buf_get_name(context.bufnr)
-                if full_path == "" then return name end
+                local path = context.bufpath or vim.api.nvim_buf_get_name(context.bufnr)
+                if not path:match("^/") then return name end
 
-                local display_name = (name == "index.ts" or name == "index.tsx")
-                    and vim.fn.fnamemodify(full_path, ":h:t") .. "/"
-                    or name
+                local index_files = { ["index.ts"] = 1, ["index.tsx"] = 1, ["handler.ts"] = 1, ["schema.ts"] = 1 }
+                local display = index_files[name] and vim.fn.fnamemodify(path, ":h:t") .. "/" or name
 
-                local cwd = vim.fn.getcwd()
-                local dir = vim.fn.fnamemodify(full_path, ":h")
-
-                while dir ~= "/" do
+                local dir, prev = vim.fn.fnamemodify(path, ":h"), nil
+                while dir ~= "/" and dir ~= prev and dir ~= vim.fn.getcwd() do
                   if vim.fn.filereadable(dir .. "/package.json") == 1 then
-                    if dir == cwd then return display_name end
-                    return vim.fn.fnamemodify(dir, ":t") .. "/" .. display_name
+                    return vim.fn.fnamemodify(dir, ":t") .. "/" .. display
                   end
-                  dir = vim.fn.fnamemodify(dir, ":h")
+                  prev, dir = dir, vim.fn.fnamemodify(dir, ":h")
                 end
 
-                return display_name
+                return display
               end
             }
           },

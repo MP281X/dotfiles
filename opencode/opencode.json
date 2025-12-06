@@ -37,5 +37,8 @@
 		"effect_*": false,
 		"context7_*": false,
 		"perplexity_*": false
+	},
+	"permission": {
+		"external_directory": "allow"
 	}
 }

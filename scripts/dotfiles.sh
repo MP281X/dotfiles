@@ -56,6 +56,10 @@ effect_dir=~/.local/share/repos/effect
 [ -d "$effect_dir" ] && git -C "$effect_dir" pull --depth=1
 [ ! -d "$effect_dir" ] && git clone --depth=1 --single-branch --branch main https://github.com/Effect-TS/effect.git "$effect_dir"
 
+effect_atom_dir=~/.local/share/repos/effect-atom
+[ -d "$effect_atom_dir" ] && git -C "$effect_atom_dir" pull --depth=1
+[ ! -d "$effect_atom_dir" ] && git clone --depth=1 --single-branch --branch main https://github.com/tim-smart/effect-atom.git "$effect_atom_dir"
+
 
 #----------------------------------------------------------------------------------------------------------------
 

@@ -49,12 +49,25 @@ return {
                 inactive = { fg = "#565f89", bg = "#1a1b26" },
               },
               fmt = function(name, context)
-                if name == "index.ts" or name == "index.tsx" then
-                  local full_path = context.bufpath or vim.api.nvim_buf_get_name(context.bufnr)
-                  local parent = vim.fn.fnamemodify(full_path, ":h:t")
-                  return "./" .. parent
+                local full_path = context.bufpath or vim.api.nvim_buf_get_name(context.bufnr)
+                if full_path == "" then return name end
+
+                local display_name = (name == "index.ts" or name == "index.tsx")
+                    and vim.fn.fnamemodify(full_path, ":h:t") .. "/"
+                    or name
+
+                local cwd = vim.fn.getcwd()
+                local dir = vim.fn.fnamemodify(full_path, ":h")
+
+                while dir ~= "/" do
+                  if vim.fn.filereadable(dir .. "/package.json") == 1 then
+                    if dir == cwd then return display_name end
+                    return vim.fn.fnamemodify(dir, ":t") .. "/" .. display_name
+                  end
+                  dir = vim.fn.fnamemodify(dir, ":h")
                 end
-                return name
+
+                return display_name
               end
             }
           },

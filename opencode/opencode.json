@@ -4,11 +4,14 @@
 	"autoshare": false,
 	"autoupdate": true,
 
+	"small_model": "zai-coding-plan/glm-4.6",
 	"mode": {
 		"plan": { "model": "github-copilot/claude-opus-4.5" },
 		"build": { "model": "github-copilot/claude-opus-4.5" }
 	},
-	"small_model": "zai-coding-plan/glm-4.6",
+	"agent": {
+		"explore": { "model": "github-copilot/claude-haiku-4.5" }
+	},
 
 	"mcp": {
 		"effect": {

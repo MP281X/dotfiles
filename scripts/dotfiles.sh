@@ -43,23 +43,15 @@ log "opencode"
 mkdir -p ~/.config/opencode
 rm -r -f ~/.config/opencode/agent && mkdir -p ~/.config/opencode/agent
 rm -r -f ~/.config/opencode/command && mkdir -p ~/.config/opencode/command
+
 cp opencode/opencode.json ~/.config/opencode/opencode.json
 cp -r opencode/agents/* ~/.config/opencode/agent
 cp -r opencode/commands/* ~/.config/opencode/command
 
+log "btca"
 
-#----------------------------------------------------------------------------------------------------------------
-
-log "codebase for the LLMs"
-
-effect_dir=~/.local/share/repos/effect
-[ -d "$effect_dir" ] && git -C "$effect_dir" pull --depth=1
-[ ! -d "$effect_dir" ] && git clone --depth=1 --single-branch --branch main https://github.com/Effect-TS/effect.git "$effect_dir"
-
-effect_atom_dir=~/.local/share/repos/effect-atom
-[ -d "$effect_atom_dir" ] && git -C "$effect_atom_dir" pull --depth=1
-[ ! -d "$effect_atom_dir" ] && git clone --depth=1 --single-branch --branch main https://github.com/tim-smart/effect-atom.git "$effect_atom_dir"
-
+mkdir -p ~/.config/btca
+cp opencode/btca.json ~/.config/btca/btca.json
 
 #----------------------------------------------------------------------------------------------------------------
 

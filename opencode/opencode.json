@@ -7,41 +7,9 @@
 	"small_model": "zai-coding-plan/glm-4.6",
 	"mode": {
 		"plan": { "model": "github-copilot/claude-opus-4.5" },
-		"build": { "model": "github-copilot/claude-opus-4.5" }
+		"build": { "model": "github-copilot/claude-sonnet-4.5" }
 	},
 	"agent": {
 		"explore": { "model": "github-copilot/claude-haiku-4.5" }
-	},
-
-	"mcp": {
-		"effect": {
-			"type": "local",
-			"command": ["npx", "-y", "effect-mcp@latest"]
-		},
-		"context7": {
-			"type": "local",
-			"command": ["npx", "-y", "@upstash/context7-mcp@latest"]
-		},
-		"grep": {
-			"type": "remote",
-			"url": "https://mcp.grep.app"
-		},
-		"perplexity": {
-			"type": "local",
-			"command": ["npx", "-y", "server-perplexity-ask"],
-			"environment": {
-				"PERPLEXITY_API_KEY": "..."
-			}
-		}
-	},
-
-	"tools": {
-		"grep_*": false,
-		"effect_*": false,
-		"context7_*": false,
-		"perplexity_*": false
-	},
-	"permission": {
-		"external_directory": "allow"
 	}
 }

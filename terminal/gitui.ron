@@ -1,4 +1,8 @@
 (
+    // File watching settings for faster change detection
+    poll_interval: Some(500),  // Poll every 500ms (default is 1000ms)
+    auto_update: Some(true),   // Auto-refresh on file changes
+    
     selected_tab: Some("Reset"),
     command_fg: Some("#cdd6f4"),
     selection_bg: Some("#585b70"),

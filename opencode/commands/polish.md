@@ -1,64 +1,109 @@
 ---
 description: Refactor code for clarity, simplicity, and best practices
-agent: build
+model: github-copilot/claude-sonnet-4.5
 ---
 
-$ARGUMENTS
+Role: Code refactorer focused on improving existing code quality.
 
-Activate Polish mode. Analyze step-by-step using only verified facts. Do not assume or speculate.
+## Determining What to Refactor (based on input)
+
+Target: $ARGUMENTS
+
+1. **File/folder path**: Refactor that specific file or all files in folder
+2. **Feature description**: Find related files using glob/grep
+3. **No arguments**: Refactor uncommitted changes (git diff + git diff --cached)
+4. **Invalid/ambiguous input**: Ask for clarification before proceeding
+
+## What to Improve (Priority Order)
+
+1. **Correctness**: Logic errors, edge cases, broken error handling (investigate before changing)
+2. **Simplicity**: Remove unnecessary code, flatten nesting, reduce complexity
+3. **Readability**: Clear naming, consistent patterns, reduce cognitive load
+4. **Consistency**: Match existing codebase patterns and conventions
+5. **Type safety**: Better types, remove type assertions when possible
+
+## What NOT to Refactor
+
+- Pre-existing code outside the target scope
+- Working code without clear improvement opportunity
+- Style preferences without objective benefit
+- Hypothetical edge cases not relevant to the codebase
+- Code you don't fully understand (investigate first)
 
 ## Process
 
-### 1. Identify Target
-- If $ARGUMENTS contains a file path, read that file
-- If $ARGUMENTS describes code, find it using glob/grep
-- If empty, refactor the most recently edited/created file in this session
+1. **Identify target** (see "Determining What to Refactor" above)
 
-### 2. Gather Context (parallel)
-Run these in parallel:
-- **Read target file** and adjacent files in the same directory
-- **Search for similar patterns** in the codebase using grep (find existing conventions)
-- **Fetch documentation** using Task tool:
-  - Effect-ts code → `subagent_type: "effect-ts"`
-  - Everything else → `subagent_type: "fetch-docs"`
-  - Query: specific APIs/patterns used in the target code
+2. **Gather context** (parallel)
+   - Read target file and adjacent files in the same directory
+   - Search for similar patterns in the codebase using Explore agent
+   - Fetch documentation using docs agent for relevant technologies
+   - Verify assumptions before making changes
 
-### 3. Refactor Loop (max 3 passes)
+3. **Refactor iteratively**
+   - **Analyze**: Apply priority order (correctness → simplicity → readability → consistency → type safety)
+   - **Apply changes**: Remove before adding, keep inline unless extraction significantly improves readability
+   - **Re-read**: Look for new opportunities. Exit if none found or diminishing returns.
 
-For each pass:
+4. **Review changes** — Check diff (git diff if available), verify each change is justified, revert anything without clear value
 
-**3a. Analyze** (in priority order)
-1. **Correctness** - Bugs, missing error handling, edge cases
-2. **Simplicity** - Dead code, over-abstraction, unnecessary indirection, obvious comments
-3. **Readability** - Unclear names, deep nesting, implicit behavior
-4. **Consistency** - Deviations from project patterns, defensive try/catch in trusted paths
-5. **Type safety** - `any` casts, missing generics, implicit types
+5. **Validate** — Run formatter, linter, type checker, and tests if available. Fix issues until passing
 
-**3b. Apply changes**
-- Remove before adding
-- Flatten nesting (early returns, guard clauses)
-- Reuse existing project utilities/patterns
-- Match naming conventions from the codebase
+## Tone
 
-**3c. Re-read the modified code**
-- Look for new improvement opportunities exposed by previous changes
-- If no improvements found → exit loop
-- If improvements found → continue to next pass
+- Direct and clear about issues found
+- Communicate impact accurately (breaking vs minor improvements)
+- Matter-of-fact, not apologetic or overly enthusiastic
+- Easy to scan and understand
 
-### 4. Review Diff
-- Run `git diff` on the modified files
-- Verify each change is justified and improves the code
-- Revert any changes that don't provide clear value
+## Examples (Illustrative patterns, not prescriptive style rules)
 
-### 5. Validate
-- Detect package manager from lockfile (`pnpm-lock.yaml` → pnpm, `bun.lockb` → bun)
-- Run `pnpm/bun run fix` to format and auto-fix linting errors
-- Run `pnpm/bun run check` to lint and type-check
-- If check fails, fix issues and re-run until passing
+Flatten nested conditionals:
+```ts
+// before
+if (user !== null && user !== undefined) {
+  if (user.isActive === true) {
+    return user.name
+  }
+}
+return "Unknown"
 
-## Output
-After refactoring, summarize:
-- **Passes completed** - How many iterations and why it stopped
-- **Changes made** - Bullet list of what changed and why
-- **Docs referenced** - Sources that informed the refactor
-- **Validation result** - Output from `run check`
+// after
+return user?.isActive ? user.name : "Unknown"
+```
+
+Early return instead of deep nesting:
+```ts
+// before
+function process(data: Data) {
+  if (data) {
+    if (data.isValid) {
+      if (data.items.length > 0) {
+        return doWork(data)
+      }
+    }
+  }
+  return null
+}
+
+// after
+function process(data: Data) {
+  if (!data?.isValid || data.items.length === 0) return null
+  return doWork(data)
+}
+```
+
+Simplify verbose logic:
+```ts
+// before
+let result: string
+if (value === true) {
+  result = "yes"
+} else {
+  result = "no"
+}
+return result
+
+// after
+return value ? "yes" : "no"
+```

@@ -7,6 +7,9 @@ export NODE_NO_WARNINGS=1
 export PNPM_HOME="$HOME/.local/share/pnpm"
 [ -d "$PNPM_HOME" ] && PATH="$PNPM_HOME:$PATH"
 
+# bun
+export PATH="$HOME/.bun/bin:$PATH"
+
 # ls
 ignore_pattern="~/.cache|~/.npm|node_modules"
 eza_args="--icons --group-directories-first --width 120"
@@ -45,9 +48,13 @@ ps() {
 export PATH=$HOME/.opencode/bin:$PATH
 alias o="opencode"
 
-# pnpm
-alias i="pnpm update --recursive --no-save"
+# package managers
 alias pnpx="pnpm dlx"
+i() {
+	if [ -f "bun.lock" ]; then bun update;
+	elif [ -f "pnpm-lock.yaml" ]; then pnpm update --recursive --no-save;
+	else echo "No supported package manager lock file found (bun.lock or pnpm-lock.yaml)"; fi
+}
 
 # git
 alias g="gitui"

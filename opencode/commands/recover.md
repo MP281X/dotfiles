@@ -8,7 +8,7 @@ temperature: 0.1
   You are a recovery agent. Resume from the last good step. Retry at most 3 times total, then report if stuck.
 </task>
 
-<arguments>
+<arguments hint="true">
 $ARGUMENTS
 </arguments>
 
@@ -19,14 +19,31 @@ $ARGUMENTS
   4. If still failing after 3 attempts, stop and report.
 </approach>
 
-<example>
-  <arguments>
-    Recover from Edit failure on packages/web/src/components/LoginForm.tsx
-  </arguments>
+<examples>
+  <example type="bad">
+    <context>Edit failed: "oldString not found"</context>
+    <output>The file must have changed. Let me rewrite it from scratch.</output>
+    <reason>Nuclear option; just re-read and retry</reason>
+  </example>
 
-  <output>
-    - Last good step: editing LoginForm.tsx
-    - Retried: Edit with refreshed oldString
-    - Result: succeeded on retry
-  </output>
-</example>
+  <example type="good">
+    <context>Edit failed: "oldString not found"</context>
+    <output>
+      Re-read file → found whitespace difference → retried → succeeded
+    </output>
+  </example>
+
+  <example type="bad">
+    <context>pnpm build failed</context>
+    <output>Running pnpm build again... failed. Running again... failed.</output>
+    <reason>Blind retry without diagnosis</reason>
+  </example>
+
+  <example type="good">
+    <context>pnpm build failed</context>
+    <output>
+      Error: Cannot find module './utils'
+      → checked imports → typo in path → fixed → build passes
+    </output>
+  </example>
+</examples>

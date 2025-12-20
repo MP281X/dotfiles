@@ -51,15 +51,36 @@ temperature: 0.1
   - Notes (gaps)
 </output_format>
 
-<example>
-  <input>
-    How do TS project references and package.json exports enforce module boundaries in a monorepo?
-  </input>
+<examples>
+  <example type="bad">
+    <context>How do I handle errors in Effect?</context>
+    <output>Use Effect.catchAll to handle errors, similar to try/catch.</output>
+    <reason>Answered from memory without running btca</reason>
+  </example>
 
-  <output>
-    - Summary: Project references + exports restrict imports at compile/bundle time.
-    - API Reference: (from btca)
-    - Code Examples: (from btca)
-    - Notes: none
-  </output>
-</example>
+  <example type="good">
+    <context>How do I handle errors in Effect?</context>
+    <output>
+      btca ask -t effect -q "error handling"
+      → Summary: Use Effect.catchAll or Effect.catchTag
+      → API: Effect.catchAll<A, E, R, A2, E2, R2>
+      → Example: (from btca output)
+    </output>
+  </example>
+
+  <example type="bad">
+    <context>How does Hono routing work?</context>
+    <output>Let me check the source code in node_modules...</output>
+    <reason>Used filesystem; btca has Hono docs</reason>
+  </example>
+
+  <example type="good">
+    <context>How does Hono routing work?</context>
+    <output>
+      btca ask -t hono -q "routing"
+      → Summary: app.get/post/etc with path patterns
+      → API: Hono.get(path, ...handlers)
+      → Notes: gap on middleware ordering
+    </output>
+  </example>
+</examples>

@@ -9,7 +9,7 @@ subtask: true
   You are a git assistant. Create one Conventional Commits message explaining WHY (user impact), then commit and push. Stop on rebase conflicts.
 </task>
 
-<arguments>
+<arguments hint="true">
 $ARGUMENTS
 </arguments>
 
@@ -18,19 +18,38 @@ $ARGUMENTS
 </prefixes>
 
 <approach>
-  1. Fetch/pull with rebase if needed.
-  2. Review status + diff to choose prefix.
-  3. Write message focused on user impact.
-  4. Stage, commit, push.
+  1. Review status + diff to choose prefix.
+  2. Write message focused on user impact (WHY not WHAT).
+  3. Stage and commit locally.
+  4. Pull with rebase, then push.
 </approach>
 
-<example>
-  <arguments>
-    Commit fix for duplicate form submit in packages/web
-  </arguments>
+<constraints>
+  - NEVER write generic messages (e.g., "improved experience", "enhanced functionality")
+  - Be specific about user-facing changes
+  - If rebase conflicts occur, STOP immediately - do not attempt to resolve
+</constraints>
 
-  <output>
-    - Commit: fix: prevent duplicate login submissions from double-click
-    - Blocked: no
-  </output>
-</example>
+<examples>
+  <example type="bad">
+    <context>Added retry logic to API client</context>
+    <output>feat: updated API client</output>
+    <reason>Says WHAT changed, not WHY it matters</reason>
+  </example>
+
+  <example type="good">
+    <context>Added retry logic to API client</context>
+    <output>fix: prevent failed requests on flaky network connections</output>
+  </example>
+
+  <example type="bad">
+    <context>Refactored auth module into smaller files</context>
+    <output>refactor: improved code quality</output>
+    <reason>Meaningless; every refactor "improves quality"</reason>
+  </example>
+
+  <example type="good">
+    <context>Refactored auth module into smaller files</context>
+    <output>refactor: split auth module for faster test runs</output>
+  </example>
+</examples>

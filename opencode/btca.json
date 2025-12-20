@@ -57,12 +57,18 @@
 			"branch": "main",
 			"specialNotes": "A set of beautifully-designed, accessible components and a code distribution platform. Works with your favorite frameworks. Open Source. Open Code."
 		},
-		{
-			"name": "opencode",
-			"url": "https://github.com/sst/opencode",
-			"branch": "dev",
-			"specialNotes": "The open source AI coding agent. Provider-agnostic, TUI-focused, with client/server architecture and LSP support."
-		}
+	{
+		"name": "opencode",
+		"url": "https://github.com/sst/opencode",
+		"branch": "dev",
+		"specialNotes": "The open source AI coding agent. Provider-agnostic, TUI-focused, with client/server architecture and LSP support."
+	},
+	{
+		"name": "better-auth",
+		"url": "https://github.com/better-auth/better-auth.git",
+		"branch": "main",
+		"specialNotes": "A comprehensive authentication library for TypeScript. Provides framework-agnostic authentication with support for various providers and strategies."
+	}
 	],
 	"model": "glm-4.6",
 	"provider": "zai-coding-plan"

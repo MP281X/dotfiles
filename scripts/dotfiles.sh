@@ -8,6 +8,16 @@ log() {
 	echo ""
 }
 
+clone_repo() {
+	local repo_name=$(basename "$1")
+	local repo_dir=~/.local/share/repos/$repo_name
+	if [ -d "$repo_dir" ]; then
+		git -C "$repo_dir" pull --depth=1
+	else
+		gh repo clone "$1" "$repo_dir" -- --depth=1
+	fi
+}
+
 #----------------------------------------------------------------------------------------------------------------
 
 log "neovim"
@@ -48,13 +58,25 @@ cp opencode/opencode.json ~/.config/opencode/opencode.json
 cp -r opencode/agents/* ~/.config/opencode/agent
 cp -r opencode/commands/* ~/.config/opencode/command
 
-log "btca"
+#----------------------------------------------------------------------------------------------------------------                                                                                                                                                                                                  │
 
-mkdir -p ~/.config/btca
-cp opencode/btca.json ~/.config/btca/btca.json
+log "codebase for the LLMs"
 
-rm -r -f ~/.local/share/btca
-mkdir -p ~/.local/share/btca/repos
+clone_repo sst/opencode
+
+clone_repo Effect-TS/effect
+clone_repo tim-smart/effect-atom
+
+clone_repo shadcn-ui/ui
+clone_repo facebook/react
+clone_repo tailwindlabs/tailwindcss
+
+clone_repo TanStack/form
+clone_repo TanStack/router
+clone_repo TanStack/virtual
+
+clone_repo vercel/ai
+clone_repo better-auth/better-auth
 
 #----------------------------------------------------------------------------------------------------------------
 

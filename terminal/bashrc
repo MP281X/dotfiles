@@ -7,9 +7,6 @@ export NODE_NO_WARNINGS=1
 export PNPM_HOME="$HOME/.local/share/pnpm"
 [ -d "$PNPM_HOME" ] && PATH="$PNPM_HOME:$PATH"
 
-# bun
-export PATH="$HOME/.bun/bin:$PATH"
-
 # ls
 ignore_pattern="~/.cache|~/.npm|node_modules"
 eza_args="--icons --group-directories-first --width 120"

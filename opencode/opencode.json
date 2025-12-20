@@ -10,6 +10,20 @@
 		"build": { "model": "github-copilot/claude-sonnet-4.5" }
 	},
 	"agent": {
-		"explore": { "model": "github-copilot/claude-haiku-4.5" }
+		"explore": {
+			"model": "github-copilot/claude-haiku-4.5",
+			"tools": { "task": false },
+			"permission": {
+				"external_directory": "allow",
+				"bash": {
+					"*": "deny",
+					"ls *": "allow",
+					"rg *": "allow",
+					"tree *": "allow",
+					"find *": "allow",
+					"grep *": "allow"
+				}
+			}
+		}
 	}
 }

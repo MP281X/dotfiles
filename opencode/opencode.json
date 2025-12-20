@@ -11,17 +11,28 @@
 	},
 	"agent": {
 		"explore": {
-			"model": "github-copilot/claude-haiku-4.5",
+			"model": "zai-coding-plan/glm-4.6",
 			"tools": { "task": false },
 			"permission": {
 				"external_directory": "allow",
 				"bash": {
 					"*": "deny",
 					"ls *": "allow",
+					"jq *": "allow",
 					"rg *": "allow",
+					"wc *": "allow",
+					"cp *": "allow",
+					"cat *": "allow",
+					"uniq *": "allow",
+					"head *": "allow",
+					"echo *": "allow",
+					"sort *": "allow",
 					"tree *": "allow",
 					"find *": "allow",
-					"grep *": "allow"
+					"grep *": "allow",
+					"test *": "allow",
+					"xargs *": "allow",
+					"basename *": "allow"
 				}
 			}
 		}

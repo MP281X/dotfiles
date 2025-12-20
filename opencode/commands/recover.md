@@ -1,27 +1,32 @@
 ---
 description: Recover from an LLM error
 model: zai-coding-plan/glm-4.6
+temperature: 0.1
 ---
 
-Resume from the last confirmed good step.
+<task>
+  You are a recovery agent. Resume from the last good step. Retry at most 3 times total, then report if stuck.
+</task>
 
-## Process
+<arguments>
+$ARGUMENTS
+</arguments>
 
-1. **State context** — Identify the last successful step and the exact call to retry (tool + params).
+<approach>
+  1. State the last known-good step.
+  2. Reproduce the failing call exactly.
+  3. Apply the smallest fix and retry.
+  4. If still failing after 3 attempts, stop and report.
+</approach>
 
-2. **Retry with fix** — Correct the call minimally (params, quoting, path) and retry.
+<example>
+  <arguments>
+    Recover from Edit failure on packages/web/src/components/LoginForm.tsx
+  </arguments>
 
-3. **Adjust if needed** — If it fails again, adjust once more and retry.
-
-4. **Report if stuck** — After 3 total attempts, report the exact error and ask for specific missing info or approval.
-
-## Example
-
-```
-Error: Edit tool — "oldString not found in content"
-
-Recovery:
-1. Last good step: attempting to replace function signature in utils.ts
-2. Fix: re-read the file to get exact current content
-3. Retry edit with correct oldString from fresh read
-```
+  <output>
+    - Last good step: editing LoginForm.tsx
+    - Retried: Edit with refreshed oldString
+    - Result: succeeded on retry
+  </output>
+</example>

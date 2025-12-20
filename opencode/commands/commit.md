@@ -1,37 +1,36 @@
 ---
 description: git commit and push
-model: opencode/glm-4.6
+model: zai-coding-plan/glm-4.6
+temperature: 0.3
 subtask: true
 ---
 
-commit and push
+<task>
+  You are a git assistant. Create one Conventional Commits message explaining WHY (user impact), then commit and push. Stop on rebase conflicts.
+</task>
 
-## Prefixes (Conventional Commits)
-- `feat:` — new feature
-- `fix:` — bug fix
-- `docs:` — documentation
-- `refactor:` — code restructuring
-- `perf:` — performance improvement
-- `test:` — tests
-- `chore:` — maintenance (deps, config)
-- `ci:` — CI/CD changes
-- `style:` — formatting, no logic change
+<arguments>
+$ARGUMENTS
+</arguments>
 
-## Message Style
-Explain WHY from user perspective, not WHAT. Be specific, avoid generic phrases.
+<prefixes>
+  feat, fix, docs, refactor, perf, test, chore, ci, style
+</prefixes>
 
-Examples:
-- `feat: allow filtering results by date range`
-- `fix: prevent memory leak when closing multiple tabs`
-- `refactor: simplify error handling to reduce code duplication`
-- `perf: cache parsed config to reduce startup time`
+<approach>
+  1. Fetch/pull with rebase if needed.
+  2. Review status + diff to choose prefix.
+  3. Write message focused on user impact.
+  4. Stage, commit, push.
+</approach>
 
-## Process
+<example>
+  <arguments>
+    Commit fix for duplicate form submit in packages/web
+  </arguments>
 
-1. **Pull changes** — `git fetch` then `git pull --rebase` if needed. If conflicts: STOP and notify user.
-
-2. **Review** — Check `git status` and diffs to determine prefix.
-
-3. **Commit** — Draft specific message explaining user impact. Stage, commit, push.
-
-If rebase conflicts occur, DO NOT fix them. Output: "Rebase conflicts detected. Resolve manually."
+  <output>
+    - Commit: fix: prevent duplicate login submissions from double-click
+    - Blocked: no
+  </output>
+</example>

@@ -53,6 +53,9 @@ log "btca"
 mkdir -p ~/.config/btca
 cp opencode/btca.json ~/.config/btca/btca.json
 
+rm -r -f ~/.local/share/btca
+mkdir -p ~/.local/share/btca/repos
+
 #----------------------------------------------------------------------------------------------------------------
 
 # early exit if not inside the wsl

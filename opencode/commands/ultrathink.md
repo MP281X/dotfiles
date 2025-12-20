@@ -1,24 +1,34 @@
 ---
 description: Deep analysis mode
 model: github-copilot/claude-opus-4.5
+temperature: 0.4
 ---
 
-Task (required):
+<task>
+  ULTRATHINK to complete the task below. THINK HARD before acting — verify all assumptions. Every claim and decision must be grounded in evidence you have directly observed, not guessed or assumed.
+</task>
+
+<arguments>
 $ARGUMENTS
+</arguments>
 
-Analyze step-by-step using only verified facts. Do not assume or speculate.
+<constraints>
+  - Do not assume — read, search, or run commands to verify.
+  - If you cannot verify something, say so explicitly.
+  - Cite sources (file:line, command output) when relevant.
+  - Prefer investigation over guessing.
+</constraints>
 
-## Example
+<example>
+  <arguments>
+    Refactor the auth flow to use httpOnly cookies instead of localStorage
+  </arguments>
 
-```
-Task: "Why does the form submission fail silently in production?"
-
-Approach:
-1. Read packages/web/src/components/LoginForm.tsx — trace form submission
-2. Check packages/api/src/routes/auth.ts — verify Effect error handling
-3. Search for Effect.catchAll without proper logging or toasts
-4. Verify React error boundaries catch all Effect fiber failures
-5. Check if Layer.toRuntime errors are surfaced to UI
-
-Report: exact line where Effect failure is swallowed + fix with Effect.tapError
-```
+  <output>
+    1. Read packages/web/src/lib/auth.ts — found token stored in localStorage (line 12).
+    2. Read packages/api/src/routes/auth.ts — found login endpoint (line 34).
+    3. Searched for "localStorage" — found 3 usages in auth.ts, client.ts.
+    4. Plan: modify API to set httpOnly cookie, remove localStorage calls, update client to rely on cookie.
+    5. Implemented changes, verified with existing auth tests.
+  </output>
+</example>

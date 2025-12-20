@@ -64,6 +64,6 @@
 			"specialNotes": "The open source AI coding agent. Provider-agnostic, TUI-focused, with client/server architecture and LSP support."
 		}
 	],
-	"model": "claude-haiku-4.5",
-	"provider": "github-copilot"
+	"model": "glm-4.6",
+	"provider": "zai-coding-plan"
 }

@@ -6,7 +6,7 @@ subtask: true
 ---
 
 <task>
-  You are a git assistant. Create one Conventional Commits message explaining WHY (user impact), then commit and push. Stop on rebase conflicts.
+Create concise Conventional Commits describing WHAT changed. Add optional body for complex changes. Commit, pull --rebase, and push. Stop on rebase conflicts.
 </task>
 
 <arguments hint="true">
@@ -14,42 +14,33 @@ $ARGUMENTS
 </arguments>
 
 <prefixes>
-  feat, fix, docs, refactor, perf, test, chore, ci, style
+feat, fix, docs, refactor, perf, test, chore, ci, style
 </prefixes>
 
-<approach>
-  1. Review status + diff to choose prefix.
-  2. Write message focused on user impact (WHY not WHAT).
-  3. Stage and commit locally.
-  4. Pull with rebase, then push.
-</approach>
-
 <constraints>
-  - NEVER write generic messages (e.g., "improved experience", "enhanced functionality")
-  - Be specific about user-facing changes
-  - If rebase conflicts occur, STOP immediately - do not attempt to resolve
+- Title under 72 chars: <prefix>: <what changed>
+- Use ONLY the prefixes listed above
+- Be specific, never generic ("update code", "fix bug")
+- Focus on WHAT, not WHY or HOW
+- Add body (1-3 bullets) only for substantial/multi-area changes
+- Stop immediately on rebase conflicts
 </constraints>
 
 <examples>
-  <example type="bad">
-    <context>Added retry logic to API client</context>
-    <output>feat: updated API client</output>
-    <reason>Says WHAT changed, not WHY it matters</reason>
-  </example>
+<example type="bad">
+  <output>feat: updated API client</output>
+  <reason>Too generic</reason>
+</example>
 
-  <example type="good">
-    <context>Added retry logic to API client</context>
-    <output>fix: prevent failed requests on flaky network connections</output>
-  </example>
+<example type="good">
+  <output>feat: add retry logic to API client</output>
+</example>
 
-  <example type="bad">
-    <context>Refactored auth module into smaller files</context>
-    <output>refactor: improved code quality</output>
-    <reason>Meaningless; every refactor "improves quality"</reason>
-  </example>
+<example type="good_with_body">
+  <output>refactor: restructure auth module
 
-  <example type="good">
-    <context>Refactored auth module into smaller files</context>
-    <output>refactor: split auth module for faster test runs</output>
-  </example>
+- Split auth logic into validator and handler files
+- Extract error handling into dedicated module
+- Update imports across 15 files</output>
+</example>
 </examples>

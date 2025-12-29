@@ -4,15 +4,17 @@
 	"autoshare": false,
 	"autoupdate": true,
 
-	"small_model": "zai-coding-plan/glm-4.6",
+	"small_model": "zai-coding-plan/glm-4.7",
 	"mode": {
 		"plan": { "model": "github-copilot/claude-opus-4.5" },
-		"build": { "model": "github-copilot/claude-sonnet-4.5" }
+		"build": { "model": "zai-coding-plan/glm-4.7" }
 	},
 	"agent": {
 		"explore": {
-			"model": "zai-coding-plan/glm-4.6",
-			"tools": { "task": false },
+			"model": "github-copilot/claude-haiku-4.5",
+			"maxSteps": 8,
+			"temperature": 0.1,
+			"tools": { "task": false, "webfetch": false },
 			"permission": {
 				"external_directory": "allow",
 				"bash": {
@@ -36,5 +38,9 @@
 				}
 			}
 		}
+	},
+
+	"lsp": {
+		"eslint": { "disabled": true }
 	}
 }

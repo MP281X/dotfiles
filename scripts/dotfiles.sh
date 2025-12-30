@@ -9,12 +9,13 @@ log() {
 }
 
 clone_repo() {
-	local repo_name=$(basename "$1")
+	local repo_name=$1
+	local repo_url=$2
 	local repo_dir=~/.local/share/repos/$repo_name
 	if [ -d "$repo_dir" ]; then
 		git -C "$repo_dir" pull --depth=1
 	else
-		gh repo clone "$1" "$repo_dir" -- --depth=1
+		gh repo clone "$repo_url" "$repo_dir" -- --depth=1
 	fi
 }
 
@@ -62,21 +63,21 @@ cp -r opencode/commands/* ~/.config/opencode/command
 
 log "codebase for the LLMs"
 
-clone_repo sst/opencode
+clone_repo opencode sst/opencode
 
-clone_repo Effect-TS/effect
-clone_repo tim-smart/effect-atom
+clone_repo effect Effect-TS/effect
+clone_repo effect-atom tim-smart/effect-atom
 
-clone_repo shadcn-ui/ui
-clone_repo facebook/react
-clone_repo tailwindlabs/tailwindcss
+clone_repo shadcn-ui shadcn-ui/ui
+clone_repo react facebook/react
+clone_repo tailwindcss tailwindlabs/tailwindcss
 
-clone_repo TanStack/form
-clone_repo TanStack/router
-clone_repo TanStack/virtual
+clone_repo tanstack-form TanStack/form
+clone_repo tanstack-router TanStack/router
+clone_repo tanstack-virtual TanStack/virtual
 
-clone_repo vercel/ai
-clone_repo better-auth/better-auth
+clone_repo vercel-ai vercel/ai
+clone_repo better-auth better-auth/better-auth
 
 #----------------------------------------------------------------------------------------------------------------
 

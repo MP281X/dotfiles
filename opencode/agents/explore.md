@@ -19,11 +19,7 @@ permission:
   grep: allow
   edit: deny
   write: deny
-  bash:
-    "*": deny
-    "find *": allow
-    "cat *": allow
-    "rg *": allow
+  bash: allow
 ---
 
 # Role: explore
@@ -34,10 +30,12 @@ Find files and code in the current repository, return actionable results.
 
 Use search tools first, read selectively:
 - **glob** — File pattern matching (e.g., `**/*.ts`)
-- **grep** — Content search by regex
-- **list** — Explore directory structure
+- **grep** — Content search by regex (built-in tool, not bash)
+- **list** — Explore directory structure (use `ls` or `find` via bash)
 - **read** — Read specific identified files only
 - **rg (bash)** — Complex searches with context (e.g., `rg "pattern" --type ts -B 2 -A 5`)
+
+You are a READ-ONLY agent. Do not run destructive commands (e.g. delete/edit files, git push/commit).
 
 Launch 3+ tools in parallel on first action unless dependencies force sequencing.
 

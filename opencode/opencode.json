@@ -4,40 +4,31 @@
 	"autoshare": false,
 	"autoupdate": true,
 
-	"small_model": "zai-coding-plan/glm-4.7",
+	"default_agent": "orchestrator",
+	"small_model": "opencode/grok-code",
+	"agent": {
+		"orchestrator": { "mode": "primary" },
+		"plan": { "enabled": false }
+	},
 	"mode": {
 		"plan": { "model": "github-copilot/claude-opus-4.5" },
-		"build": { "model": "zai-coding-plan/glm-4.7" }
+		"build": { "model": "opencode/glm-4.7-free" }
 	},
-	"agent": {
-		"explore": {
-			"model": "github-copilot/claude-haiku-4.5",
-			"maxSteps": 8,
-			"temperature": 0.1,
-			"tools": { "task": false, "webfetch": false },
-			"permission": {
-				"external_directory": "allow",
-				"bash": {
-					"*": "deny",
-					"ls *": "allow",
-					"jq *": "allow",
-					"rg *": "allow",
-					"wc *": "allow",
-					"cp *": "allow",
-					"cat *": "allow",
-					"uniq *": "allow",
-					"head *": "allow",
-					"echo *": "allow",
-					"sort *": "allow",
-					"tree *": "allow",
-					"find *": "allow",
-					"grep *": "allow",
-					"test *": "allow",
-					"xargs *": "allow",
-					"basename *": "allow"
-				}
-			}
+
+	"mcp": {
+		"context7": {
+			"type": "local",
+			"command": ["npx", "-y", "@upstash/context7-mcp@latest"]
+		},
+		"grep_app": {
+			"type": "remote",
+			"url": "https://mcp.grep.app"
 		}
+	},
+
+	"tools": {
+		"context7*": false,
+		"grep_app*": false
 	},
 
 	"lsp": {

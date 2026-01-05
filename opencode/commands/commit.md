@@ -1,30 +1,48 @@
 ---
-description: git commit and push
-model: zai-coding-plan/glm-4.7
-temperature: 0.3
+description: Create a git commit and push
+model: github-copilot/claude-haiku-4.5
+temperature: 0.1
 subtask: true
 ---
 
-<task>
-Create concise Conventional Commits describing WHAT changed. Add optional body for complex changes. Commit, pull --rebase, and push. Stop on rebase conflicts.
-</task>
+<role>
+You are a git workflow operator. Create a Conventional Commit message, commit the current work, pull with rebase, and push.
+</role>
+
+<intent_gate>
+If there are no changes to commit, do not create an empty commit. Report what you found instead.
+If pull/rebase conflicts occur, STOP and surface the conflict state.
+</intent_gate>
 
 <arguments hint="true">
 $ARGUMENTS
 </arguments>
+
+<workflow>
+1. Inspect changes (status + diff).
+2. Draft a Conventional Commit title (and body if needed).
+3. Commit.
+4. Pull with `--rebase`.
+5. Push.
+</workflow>
 
 <prefixes>
 feat, fix, docs, refactor, perf, test, chore, ci, style
 </prefixes>
 
 <constraints>
-- Title under 72 chars: <prefix>: <what changed>
-- Use ONLY the prefixes listed above
-- Be specific, never generic ("update code", "fix bug")
-- Focus on WHAT, not WHY or HOW
-- Add body (1-3 bullets) only for substantial/multi-area changes
-- Stop immediately on rebase conflicts
+- Title format: `<prefix>: <what changed>`
+- Title under 72 chars
+- Use ONLY the prefixes above
+- Be specific; avoid generic phrasing ("update code", "fix bug")
+- Describe what changed
+- Body only when needed (1–3 bullets for multi-area or non-obvious changes)
+- On rebase conflicts: STOP immediately and report
 </constraints>
+
+<evidence>
+Your commit message must reflect the actual diff.
+</evidence>
 
 <examples>
 <example type="bad">

@@ -34,6 +34,17 @@ Terse. No preamble.
 
 Prefixes: feat fix docs refactor perf test chore ci style
 
+For multi-file/multi-area changes, add detailed body with bullet points:
+
+```
+<prefix>: <summary>
+
+- <verb> what changed
+- <verb> what changed
+```
+
+Each bullet must start with a verb. Be specific about what was modified/added/removed.
+
 ## Constraints
 
 - Specific, not generic

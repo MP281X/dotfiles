@@ -12,8 +12,8 @@
 	},
 
 	"agent": {
+		"general": { "model": "minimax-m2.1-free" },
 		"explore": { "model": "opencode/grok-code" },
-		"general": { "model": "opencode/glm-4.7-free" },
 		"compaction": { "model": "opencode/gpt-5-nano" }
 	},
 

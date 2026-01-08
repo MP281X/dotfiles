@@ -1,18 +1,20 @@
 {
 	"$schema": "https://opencode.ai/config.json",
 	"theme": "kanagawa",
-	"autoshare": false,
+	"share": "disabled",
 	"autoupdate": true,
 
-	"default_agent": "orchestrator",
-	"small_model": "opencode/grok-code",
-	"agent": {
-		"orchestrator": { "mode": "primary" },
-		"plan": { "enabled": false }
-	},
+	"small_model": "opencode/big-pickle",
+
 	"mode": {
-		"plan": { "model": "github-copilot/claude-opus-4.5" },
+		"plan": { "model": "github-copilot/claude-opus-4.5", "disable": true },
 		"build": { "model": "opencode/glm-4.7-free" }
+	},
+
+	"agent": {
+		"explore": { "model": "opencode/grok-code" },
+		"general": { "model": "opencode/glm-4.7-free" },
+		"compaction": { "model": "opencode/gpt-5-nano" }
 	},
 
 	"mcp": {
@@ -23,12 +25,17 @@
 		"grep_app": {
 			"type": "remote",
 			"url": "https://mcp.grep.app"
+		},
+		"shadcn": {
+			"type": "local",
+			"command": ["npx", "-y", "shadcn@latest", "mcp"]
 		}
 	},
 
 	"tools": {
 		"context7*": false,
-		"grep_app*": false
+		"grep_app*": false,
+		"shadcn*": false
 	},
 
 	"lsp": {

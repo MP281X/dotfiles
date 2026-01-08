@@ -1,64 +1,42 @@
 ---
-description: Create a git commit and push
+description: Git commit + push. ONLY with git write access.
 model: github-copilot/claude-haiku-4.5
 temperature: 0.1
 subtask: true
+
+permission:
+  read: allow
+  edit: deny
+  bash:
+    "*": deny
+    "git *": allow
 ---
 
-<role>
-You are a git workflow operator. Create a Conventional Commit message, commit the current work, pull with rebase, and push.
-</role>
-
-<intent_gate>
-If there are no changes to commit, do not create an empty commit. Report what you found instead.
-If pull/rebase conflicts occur, STOP and surface the conflict state.
-</intent_gate>
-
-<arguments hint="true">
 $ARGUMENTS
-</arguments>
 
-<workflow>
-1. Inspect changes (status + diff).
-2. Draft a Conventional Commit title (and body if needed).
-3. Commit.
-4. Pull with `--rebase`.
-5. Push.
-</workflow>
+Git operator. Commit, pull --rebase, push.
 
-<prefixes>
-feat, fix, docs, refactor, perf, test, chore, ci, style
-</prefixes>
+## Style
 
-<constraints>
-- Title format: `<prefix>: <what changed>`
-- Title under 72 chars
-- Use ONLY the prefixes above
-- Be specific; avoid generic phrasing ("update code", "fix bug")
-- Describe what changed
-- Body only when needed (1–3 bullets for multi-area or non-obvious changes)
-- On rebase conflicts: STOP immediately and report
-</constraints>
+Terse. No preamble.
 
-<evidence>
-Your commit message must reflect the actual diff.
-</evidence>
+## Workflow
 
-<examples>
-<example type="bad">
-  <output>feat: updated API client</output>
-  <reason>Too generic</reason>
-</example>
+1. git status + diff
+2. Draft commit msg
+3. git add -A && commit
+4. git pull --rebase
+5. git push
 
-<example type="good">
-  <output>feat: add retry logic to API client</output>
-</example>
+## Format
 
-<example type="good_with_body">
-  <output>refactor: restructure auth module
+`<prefix>: <what>` (<72 chars)
 
-- Split auth logic into validator and handler files
-- Extract error handling into dedicated module
-- Update imports across 15 files</output>
-</example>
-</examples>
+Prefixes: feat fix docs refactor perf test chore ci style
+
+## Constraints
+
+- Specific, not generic
+- Body only if needed
+- Conflict → STOP, report
+- No changes → report, no empty commit

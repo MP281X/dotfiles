@@ -3,21 +3,6 @@ description: Git commit + push.
 model: github-copilot/claude-haiku-4.5
 temperature: 0.1
 subtask: true
-
-tools:
-  edit: false
-  write: false
-  webfetch: false
-  task: false
-
-permission:
-  bash:
-    "*": deny
-    "git status": allow
-    "git diff": allow
-    "git commit": allow
-    "git pull": allow
-    "git push": allow
 ---
 
 $ARGUMENTS

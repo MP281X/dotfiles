@@ -3,10 +3,6 @@ description: Refactor for clarity. No behavior change. Validates until clean.
 model: github-copilot/claude-sonnet-4.5
 temperature: 0.2
 subtask: true
-
-tools:
-  task: false
-  webfetch: false
 ---
 
 $ARGUMENTS

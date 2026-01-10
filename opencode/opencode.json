@@ -40,13 +40,16 @@
 
 	"permission": {
 		"bash": {
+			"*": "allow",
 			"gh *": "deny",
-			"git add": "deny",
-			"git push": "deny",
-			"git merge": "deny",
-			"git commit": "deny",
-			"git rebase": "deny",
-			"npm *": "deny"
+			"npm *": "deny",
+			"git *": "deny",
+			"git push*": "ask",
+			"git commit*": "ask",
+			"git ammend*": "ask",
+			"git pull*": "allow",
+			"git diff*": "allow",
+			"git status*": "allow"
 		}
 	},
 

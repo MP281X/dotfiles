@@ -7,14 +7,14 @@
 	"small_model": "opencode/big-pickle",
 
 	"mode": {
-		"plan": { "model": "github-copilot/claude-opus-4.5", "disable": true },
-		"build": { "model": "opencode/glm-4.7-free" }
+		"plan": { "model": "github-copilot/claude-opus-4.5" },
+		"build": { "model": "github-copilot/claude-sonnet-4.5" }
 	},
 
 	"agent": {
-		"general": { "model": "minimax-m2.1-free" },
 		"explore": { "model": "opencode/grok-code" },
-		"compaction": { "model": "opencode/gpt-5-nano" }
+		"compaction": { "model": "opencode/gpt-5-nano" },
+		"general": { "model": "github-copilot/claude-haiku-4.5" }
 	},
 
 	"mcp": {
@@ -33,9 +33,21 @@
 	},
 
 	"tools": {
+		"shadcn*": false,
 		"context7*": false,
-		"grep_app*": false,
-		"shadcn*": false
+		"grep_app*": false
+	},
+
+	"permission": {
+		"bash": {
+			"gh *": "deny",
+			"git add": "deny",
+			"git push": "deny",
+			"git merge": "deny",
+			"git commit": "deny",
+			"git rebase": "deny",
+			"npm *": "deny"
+		}
 	},
 
 	"lsp": {

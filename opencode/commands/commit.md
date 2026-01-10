@@ -13,10 +13,11 @@ tools:
 permission:
   bash:
     "*": deny
-    "git *": allow
-    "git add": allow
-    "git push": allow
+    "git status": allow
+    "git diff": allow
     "git commit": allow
+    "git pull": allow
+    "git push": allow
 ---
 
 $ARGUMENTS
@@ -26,9 +27,9 @@ Git operator. Commit, pull, push. Nothing else.
 </role>
 
 <workflow>
-1. git status + git diff
-2. Draft commit message
-3. git add -A && git commit
+1. git status + git diff --staged
+2. Draft commit message based on staged changes
+3. git commit (staged changes only)
 4. git pull --rebase
 5. git push
 

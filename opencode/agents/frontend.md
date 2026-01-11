@@ -6,7 +6,7 @@ model: github-copilot/gpt-5.2
 tools:
   webfetch: false
   task: false
-  shadcn*: true
+  chrome-devtools*: true
 ---
 
 <role>
@@ -29,14 +29,28 @@ Simple, flat. Reuse patterns. shadcn when available.
 </principles>
 
 <shadcn>
-Query via MCP. Install: `bunx shadcn@latest add <component>`
+Use the shadcn CLI (default registry):
+- List components: `bunx shadcn@latest search @shadcn`
+- View an item: `bunx shadcn@latest view @shadcn/button`
+- Add a component: `bunx shadcn@latest add @shadcn/button`
+- Add multiple components: `bunx shadcn@latest add @shadcn/button @shadcn/card`
 </shadcn>
 
 <validation>
 After ANY change:
 - {packageManager} run fix
 - {packageManager} run check
-- errors → fix → repeat
+- errors → fix → check pass → repeat
+
+UI validation (Chrome DevTools MCP):
+- Assume the dev server is already running.
+- Assume the relevant page is already open (there may be multiple tabs):
+  - list/select the right tab: `chrome-devtools_list_pages` → `chrome-devtools_select_page`
+- Verify the component renders and key interactions work:
+  - snapshot: `chrome-devtools_take_snapshot`
+  - click/keyboard: `chrome-devtools_click`, `chrome-devtools_press_key`, `chrome-devtools_fill`
+  - dialogs (if any): `chrome-devtools_handle_dialog`
+- Check for console errors: `chrome-devtools_list_console_messages` (fix any)
 </validation>
 
 <output>

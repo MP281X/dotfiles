@@ -7,7 +7,7 @@ local filters = {
   -- package managers
   "pnpm-lock.yaml", "bun.lock",
   -- cache
-  "*.tsbuildinfo", ".turbo", ".drizzle",
+  "*.tsbuildinfo", ".turbo", ".drizzle", ".docs",
   ".next", "*env.d.ts", "app.d.ts", ".output", ".wrangler",
   ".tanstack", "routeTree.gen.ts", "worker-configuration.d.ts",
   "pnpm-workspace.yaml", "_generated",

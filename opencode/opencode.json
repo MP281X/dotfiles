@@ -20,22 +20,22 @@
 	"mcp": {
 		"context7": {
 			"type": "local",
-			"command": ["npx", "-y", "@upstash/context7-mcp@latest"]
+			"command": ["bunx", "-y", "@upstash/context7-mcp@latest"]
 		},
 		"grep_app": {
 			"type": "remote",
 			"url": "https://mcp.grep.app"
 		},
-		"shadcn": {
+		"chrome-devtools": {
 			"type": "local",
-			"command": ["npx", "-y", "shadcn@latest", "mcp"]
+			"command": ["bunx", "-y", "chrome-devtools-mcp@latest"]
 		}
 	},
 
 	"tools": {
-		"shadcn*": false,
 		"context7*": false,
-		"grep_app*": false
+		"grep_app*": false,
+		"chrome-devtools*": false
 	},
 
 	"permission": {

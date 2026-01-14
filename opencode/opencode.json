@@ -17,21 +17,6 @@
 		"general": { "model": "github-copilot/claude-haiku-4.5" }
 	},
 
-	"mcp": {
-		"context7": {
-			"type": "local",
-			"command": ["bunx", "-y", "@upstash/context7-mcp@latest"]
-		},
-		"grep_app": {
-			"type": "remote",
-			"url": "https://mcp.grep.app"
-		},
-		"chrome-devtools": {
-			"type": "local",
-			"command": ["bunx", "-y", "chrome-devtools-mcp@latest"]
-		}
-	},
-
 	"tools": {
 		"context7*": false,
 		"grep_app*": false,
@@ -47,6 +32,8 @@
 			"git push*": "ask",
 			"git commit*": "ask",
 			"git ammend*": "ask",
+			"git log*": "allow",
+			"git show*": "allow",
 			"git pull*": "allow",
 			"git diff*": "allow",
 			"git status*": "allow"

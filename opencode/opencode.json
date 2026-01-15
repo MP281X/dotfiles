@@ -7,13 +7,12 @@
 	"small_model": "opencode/big-pickle",
 
 	"mode": {
-		"plan": { "model": "github-copilot/claude-opus-4.5" },
-		"build": { "model": "github-copilot/claude-sonnet-4.5" }
+		"plan": { "model": "github-copilot/gpt-5.2-codex" },
+		"build": { "model": "github-copilot/gpt-5.2-codex" }
 	},
 
 	"agent": {
 		"explore": { "model": "opencode/grok-code" },
-		"compaction": { "model": "opencode/gpt-5-nano" },
 		"general": { "model": "github-copilot/claude-haiku-4.5" }
 	},
 

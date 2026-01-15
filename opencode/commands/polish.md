@@ -15,12 +15,16 @@ Preserve behavior exactly. Never add features.
 
 <skills>
 Load relevant skills based on code type:
-- `skill({ name: "code-style" })` - Naming, control flow, abstraction
-- `skill({ name: "effect-patterns" })` - Effect idioms (if using Effect)
+- `skill({ name: "code-style" })` - TS naming, functions, modules
+- `skill({ name: "effect" })` - Effect Schema/errors/services/data
+- `skill({ name: "architecture" })` - Boundaries and runtime wiring
+- `skill({ name: "performance" })` - React/Effect performance
 
 For UI code:
-- `skill({ name: "tailwind" })` - Tailwind patterns
-- `skill({ name: "react-patterns" })` - React/atoms patterns
+- `skill({ name: "react" })` - Atoms, suspense, hooks
+- `skill({ name: "tailwind" })` - Tailwind styling
+- `skill({ name: "shadcn" })` - shadcn/ui CLI + registry
+- `skill({ name: "ux" })` - States, forms, a11y, copy
 </skills>
 
 <target>

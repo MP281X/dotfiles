@@ -46,7 +46,7 @@ ps() {
 }
 
 export PATH=$HOME/.opencode/bin:$PATH
-alias o="opencode"
+alias o="OPENCODE_EXPERIMENTAL=1 opencode"
 
 # package managers
 alias pnpx="pnpm dlx"

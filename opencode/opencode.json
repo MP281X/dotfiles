@@ -4,7 +4,7 @@
 	"share": "disabled",
 	"autoupdate": true,
 
-	"small_model": "opencode/big-pickle",
+	"small_model": "opencode/gpt-5-nano",
 
 	"mode": {
 		"plan": { "model": "github-copilot/gpt-5.2-codex" },
@@ -13,13 +13,8 @@
 
 	"agent": {
 		"explore": { "model": "opencode/grok-code" },
+		"compaction": { "model": "opencode/gpt-5-nano" },
 		"general": { "model": "github-copilot/claude-haiku-4.5" }
-	},
-
-	"tools": {
-		"context7*": false,
-		"grep_app*": false,
-		"chrome-devtools*": false
 	},
 
 	"permission": {

@@ -13,19 +13,36 @@ metadata:
 
 Rules:
 - Use `clsx` for conditional classes.
-- Group by purpose.
+- Group by purpose (layout, colors, states).
+- Extract variant patterns to const objects.
 
 ```tsx
 import { clsx } from 'clsx'
 
 <button
   className={clsx(
+    // Base
     'px-4 py-2 rounded-md font-medium',
+    // Colors
     'bg-blue-600 text-white hover:bg-blue-700',
+    // States
     loading && 'animate-pulse',
+    disabled && 'opacity-50 cursor-not-allowed',
+    // Props
     className
   )}
 />
+```
+
+```tsx
+// GOOD - variant pattern
+const buttonVariants = {
+  primary: 'bg-blue-600 hover:bg-blue-700 text-white',
+  secondary: 'bg-gray-200 hover:bg-gray-300 text-gray-900',
+  danger: 'bg-red-600 hover:bg-red-700 text-white'
+}
+
+<button className={clsx('px-4 py-2 rounded-md', buttonVariants.primary)} />
 ```
 
 ## Selectors over JS

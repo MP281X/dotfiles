@@ -13,46 +13,79 @@ metadata:
 
 Rules:
 - Full words. No abbreviations.
-- Plural for arrays.
+- Plural for arrays/collections.
 - Boolean starts with is/has/should.
+- Functions are verbs.
 
 ```ts
 // BAD
 const cfg = getConfig()
 const data = fetchAccounts()
 const ok = user.active
+const userList = getUsers()
 
 // GOOD
 const config = getConfig()
 const accounts = fetchAccounts()
 const isActive = user.active
+const users = getUsers()
 ```
 
-## Functions (object args)
+```ts
+// GOOD
+const isLoading = true
+const hasPermission = false
+const shouldRetry = true
+const getUserById = (id: UserId) => {}
+const parseJson = (input: string) => {}
+```
 
-Rule: >1 arg => config object.
+## Functions (single arg)
+
+Rules:
+- Functions take exactly one argument.
+- Use an input object, even for optional fields.
+- Destructure inside the function body.
 
 ```ts
-// BAD
+// BAD - positional args
 function createUser(name: string, email: string, role: Role, orgId: OrgId) {}
 
-// GOOD
+// BAD - destructured in signature
+function updateAccount({ id, name, status }: {
+  id: AccountId
+  name: string
+  status: Status
+}) {}
+
+// GOOD - single input object
 type CreateUserInput = {
   name: string
   email: string
   role: Role
   orgId: OrgId
 }
-
-function createUser(input: CreateUserInput) {}
+function createUser(input: CreateUserInput) {
+  const { name, email, role, orgId } = input
+}
 ```
 
 ```ts
-// BAD
-function updateAccount(id: AccountId, name: string, status: Status) {}
+// BAD - multiple args for options
+function fetchData(url: string, options?: { method?: 'GET' | 'POST'; timeout?: number; retries?: number }) {}
 
-// GOOD
-function updateAccount(input: { id: AccountId; name: string; status: Status }) {}
+// GOOD - single input object
+type FetchDataInput = {
+  url: string
+  options?: {
+    method?: 'GET' | 'POST'
+    timeout?: number
+    retries?: number
+  }
+}
+function fetchData(input: FetchDataInput) {
+  const { url, options } = input
+}
 ```
 
 ## Control Flow

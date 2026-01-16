@@ -16,8 +16,10 @@ Rules:
 - Derived atoms over component work.
 - Avoid inline object/array in hooks.
 - Use `toSorted`, not `sort`.
+- Never manually memoize; rely on React Compiler.
 
 ```ts
+// GOOD - derive once
 export const sortedEntriesAtom = Atom.readable(get => {
   const result = get(entriesAtom)
   const sortBy = get(sortByAtom)
@@ -27,10 +29,24 @@ export const sortedEntriesAtom = Atom.readable(get => {
 ```
 
 ```ts
-// BAD
-const atom = ApiClient.query('items', 'list', { urlParams: { page } })
+// BAD - atom created in render
+function Component({ page }: { page: number }) {
+  const atom = ApiClient.query('items', 'list', { urlParams: { page } })
+  const result = useAtomValue(atom)
+}
 
-// GOOD
+// GOOD - atom at module level with family
+const itemsFamily = Atom.family((page: number) =>
+  ApiClient.query('items', 'list', { urlParams: { page } })
+)
+
+function Component({ page }: { page: number }) {
+  const result = useAtomValue(itemsFamily(page))
+}
+```
+
+```ts
+// GOOD - useMemo only for dependencies
 const atom = useMemo(
   () => ApiClient.query('items', 'list', { urlParams: { page } }),
   [page]

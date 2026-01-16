@@ -77,28 +77,37 @@ function DataList() {
 ## Hooks
 
 Rules:
-- Avoid `useMemo` for sorting. Use `toSorted`.
+- Never manually memoize with `useMemo` or `useCallback`.
 - Lazy init for expensive state.
 - Use functional setState updates.
+- Never use useRef for state.
 
 ```ts
-// BAD
-const sorted = useMemo(() => items.sort(...), [items])
+// BAD - manual memoization
+const sorted = useMemo(() => items.toSorted(sortByName), [items])
+const onAdd = useCallback((item: Item) => {
+  setItems(curr => [...curr, item])
+}, [])
 
-// GOOD
-const sorted = items.toSorted(...)
+// GOOD - inline, compiler handles memoization
+const sorted = items.toSorted(sortByName)
+const onAdd = (item: Item) => {
+  setItems(curr => [...curr, item])
+}
 ```
 
 ```ts
-// GOOD
+// GOOD - runs only once
 const [searchIndex] = useState(() => buildSearchIndex(items))
 ```
 
 ```ts
-// GOOD
-const onAdd = useCallback((item: Item) => {
-  setItems(curr => [...curr, item])
-}, [])
+// BAD - useRef for state
+const countRef = useRef(0)
+countRef.current++
+
+// GOOD - useState for state
+const [count, setCount] = useState(0)
 ```
 
 ## Component Structure

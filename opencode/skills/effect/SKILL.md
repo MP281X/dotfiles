@@ -94,18 +94,36 @@ Rules:
 - Use Context.Tag with readonly methods.
 - Provide once at entry.
 - Layer.effect for normal setup, Layer.scoped for resources.
+- Never use Layer.succeed for production services.
 
 ```ts
 export class AccountService extends Context.Tag('@app/AccountService')<
   AccountService,
-  { readonly findById: (id: AccountId) => Effect.Effect<Account, AccountNotFound> }
+  {
+    readonly findById: (id: AccountId) => Effect.Effect<Account, AccountNotFound>
+    readonly create: (input: CreateAccountInput) => Effect.Effect<Account, ValidationError>
+  }
 >() {}
 
 export const AccountServiceLive = Layer.effect(AccountService, make)
+
+// BAD - not for production
+export const AccountServiceTest = Layer.succeed(AccountService, {
+  findById: () => Effect.succeed(testAccount),
+  create: () => Effect.succeed(testAccount)
+})
 ```
 
 ```ts
-const appLayer = AccountServiceLive.pipe(Layer.provide(DatabaseLive))
+const appLayer = AccountServiceLive.pipe(
+  Layer.provide(DatabaseLive),
+  Layer.provide(LoggerLive)
+)
+
+const program = Effect.gen(function* () {
+  const svc = yield* AccountService
+  return yield* svc.findById(accountId)
+})
 
 Effect.runPromise(program.pipe(Effect.provide(appLayer)))
 ```

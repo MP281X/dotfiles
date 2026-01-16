@@ -12,9 +12,10 @@ metadata:
 ## States
 
 Rules:
-- Design empty, loading, error.
+- Design all states: empty, loading, success, error.
 - Errors explain what + why + next step.
 - Keep labels in loading buttons.
+- Use consistent icon/color per state.
 
 ```tsx
 <EmptyState
@@ -25,12 +26,31 @@ Rules:
 />
 ```
 
-```ts
-// BAD
-'An error occurred'
+```tsx
+// GOOD - complete error info
+<Alert variant="error" icon={AlertCircle}>
+  <AlertTitle>Unable to save changes</AlertTitle>
+  <AlertDescription>
+    Your session expired. <Link to="/login">Sign in again</Link>
+  </AlertDescription>
+</Alert>
 
-// GOOD
-'Unable to save. Check your connection and try again.'
+// BAD - vague
+<Alert variant="error">An error occurred</Alert>
+```
+
+```tsx
+// GOOD - label stays
+<Button disabled={isLoading}>
+  {isLoading ? (
+    <>
+      <Spinner className="mr-2 animate-spin" />
+      Saving...
+    </>
+  ) : (
+    'Save Changes'
+  )}
+</Button>
 ```
 
 ## Forms

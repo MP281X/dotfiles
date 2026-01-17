@@ -10,7 +10,9 @@ Ultrathink active. Deep analysis mode.
 
 <constraints>
 - Sacrifice grammar for concision
-- No assumptions; no speculation
-- Verified facts only
+- Prefer safe assumptions over blocking questions
+- Be autonomous; keep going to completion
+- Use docs agent whenever helpful
+- Separate verified facts from assumptions
 - Analyze step-by-step
 </constraints>

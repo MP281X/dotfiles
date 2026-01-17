@@ -45,10 +45,10 @@ rm -r -f ~/.config/opencode/agent && mkdir -p ~/.config/opencode/agent
 rm -r -f ~/.config/opencode/command && mkdir -p ~/.config/opencode/command
 rm -r -f ~/.config/opencode/skill && mkdir -p ~/.config/opencode/skill
 
-cp opencode/opencode.json ~/.config/opencode/opencode.json
-cp -r opencode/agents/* ~/.config/opencode/agent
-cp -r opencode/commands/* ~/.config/opencode/command
-cp -r opencode/skills/* ~/.config/opencode/skill
+cp .opencode/opencode.json ~/.config/opencode/opencode.json
+cp -r .opencode/agent/* ~/.config/opencode/agent
+cp -r .opencode/command/* ~/.config/opencode/command
+cp -r .opencode/skill/* ~/.config/opencode/skill
 
 #----------------------------------------------------------------------------------------------------------------                                                                                                                                                                                                  │
 

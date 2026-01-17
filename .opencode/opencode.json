@@ -17,6 +17,10 @@
 		"general": { "model": "github-copilot/claude-haiku-4.5" }
 	},
 
+  "tools": {
+    "question": true
+  },
+
 	"permission": {
 		"bash": {
 			"*": "allow",

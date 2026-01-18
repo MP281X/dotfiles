@@ -17,24 +17,27 @@
 		"general": { "model": "github-copilot/claude-haiku-4.5" }
 	},
 
-  "tools": {
-    "question": true
-  },
+	"tools": {
+    "lsp": true,
+		"question": true
+	},
 
 	"permission": {
 		"bash": {
 			"*": "allow",
-			"gh *": "deny",
-			"npm *": "deny",
-			"git *": "deny",
-			"git push*": "ask",
-			"git commit*": "ask",
-			"git ammend*": "ask",
-			"git log*": "allow",
-			"git show*": "allow",
-			"git pull*": "allow",
-			"git diff*": "allow",
-			"git status*": "allow"
+      "gh *": "deny",
+      "npm *": "deny",
+      "git *": "deny",
+			"git *log*": "allow",
+      "git *diff*": "allow",
+			"git *show*": "allow",
+      "git *status*": "allow",
+			"git *rev-parse*": "allow",
+			"git *pull*": "ask",
+      "git *push*": "ask",
+      "git *ammend*": "ask",
+			"git *commit*": "ask",
+			"gh repo clone*": "ask"
 		}
 	},
 

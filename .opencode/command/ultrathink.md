@@ -2,8 +2,6 @@
 description: Ultrathink mode—deep reasoning with verified facts only
 ---
 
-$ARGUMENTS
-
 <mode>
 Ultrathink active. Deep analysis mode.
 </mode>
@@ -16,3 +14,5 @@ Ultrathink active. Deep analysis mode.
 - Separate verified facts from assumptions
 - Analyze step-by-step
 </constraints>
+
+$ARGUMENTS

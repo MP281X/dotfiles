@@ -1,0 +1,40 @@
+{
+  "$schema": "https://btca.dev/btca.schema.json",
+  "resources": [
+    {
+      "type": "git",
+      "branch": "main"
+      "name": "tailwindcss",
+      "searchPath": "src/docs",
+      "specialNotes": "This is the tailwindcss docs website repo, not the actual tailwindcss repo. Use the docs to answer questions about tailwindcss.",
+      "url": "https://github.com/tailwindlabs/tailwindcss.com",
+    },
+    {
+      "type": "git",
+      "branch": "main"
+      "name": "effect",
+      "url": "https://github.com/Effect-TS/effect",
+    },
+    {
+      "type": "git",
+      "branch": "main"
+      "name": "effect-atom",
+      "url": "https://github.com/tim-smart/effect-atom.git",
+    },
+    {
+      "type": "git",
+      "branch": "main"
+      "name": "opencode",
+      "url": "https://github.com/anomalyco/opencode",
+    },
+    {
+      "type": "git",
+      "branch": "main"
+      "name": "tanstack-router",
+      "url": "https://github.com/TanStack/router.git",
+    }
+  ],
+  "model": "big-pickle",
+  "provider": "opencode",
+  "providerTimeoutMs": 300000
+}

@@ -13,7 +13,6 @@
 
 	"agent": {
 		"explore": { "model": "opencode/grok-code" },
-		"compaction": { "model": "opencode/gpt-5-nano" },
 		"general": { "model": "github-copilot/claude-haiku-4.5" }
 	},
 

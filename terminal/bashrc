@@ -2,6 +2,9 @@
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 export HOMEBREW_NO_ENV_HINTS=1
 
+# nix
+. /home/mp281x/.nix-profile/etc/profile.d/nix.sh
+
 # pnpm
 export NODE_NO_WARNINGS=1
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -26,7 +29,6 @@ cd() {
 
 # tools
 alias vi="nvim"
-alias k="k9s --headless -c ns"
 alias ssh-dev="ssh $USER@dev.mp281x.xyz"
 
 # docker

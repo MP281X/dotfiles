@@ -12,7 +12,7 @@
 	},
 
 	"agent": {
-		"explore": { "model": "opencode/grok-code" },
+		"explore": { "model": "opencode/big-pickle" },
 		"general": { "model": "github-copilot/claude-haiku-4.5" }
 	},
 
@@ -20,6 +20,13 @@
     "lsp": true,
 		"question": true
 	},
+
+  "mcp": {
+    "context7": {
+      "type": "local",
+      "command": ["npx", "-y", "@upstash/context7-mcp"],
+    }
+  },
 
 	"permission": {
 		"bash": {

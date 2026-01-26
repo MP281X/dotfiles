@@ -10,7 +10,7 @@ local filters = {
   "*.tsbuildinfo", ".turbo", ".drizzle", ".opencode/repos",
   ".next", "*env.d.ts", "app.d.ts", ".output", ".wrangler",
   ".tanstack", "routeTree.gen.ts", "worker-configuration.d.ts",
-  "pnpm-workspace.yaml", "_generated",
+  "pnpm-workspace.yaml", "_generated", ".expo",
   -- java
   ".idea", ".mvn", "target", "mvnw", ".micronaut", ".editorconfig",
   "Jenkinsfile", "ktlint", "jooq",

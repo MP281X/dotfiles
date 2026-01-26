@@ -72,7 +72,7 @@ local function get_script_names()
   local node_scripts = {}
 
   if vim.fn.findfile("package.json") ~= "" then
-    local handle = io.popen("jq -r '.scripts | to_entries[] | select(. != \"dev\") | .key' package.json 2>/dev/null")
+    local handle = io.popen("jq -r '.scripts | to_entries[] | select(.key != \"dev\" and (.key | startswith(\"dev:\") | not)) | .key' package.json 2>/dev/null")
     if handle then
       for name in handle:lines() do
         if name ~= "dev" and name ~= "turbo" and name:sub(1, 1) ~= "_" then

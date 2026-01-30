@@ -1,50 +1,54 @@
 {
-	"$schema": "https://opencode.ai/config.json",
-	"theme": "kanagawa",
-	"share": "disabled",
-	"autoupdate": true,
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "kanagawa",
+  "share": "disabled",
+  "autoupdate": true,
 
-	"small_model": "opencode/gpt-5-nano",
+  "small_model": "opencode/gpt-5-nano",
 
-	"mode": {
-		"plan": { "model": "github-copilot/gpt-5.2" },
-		"build": { "model": "opencode/kimi-k2.5-free" }
-	},
+  "mode": {
+    "plan": { "model": "github-copilot/gpt-5.2" },
+    "build": { "model": "opencode/kimi-k2.5-free" }
+  },
 
-	"agent": {
-    "compaction": {"model": "opencode/gpt-5-nano"},
+  "agent": {
+    "compaction": { "model": "opencode/gpt-5-nano" },
     "general": { "model": "github-copilot/gpt-5-mini" },
-		"explore": { "model": "github-copilot/grok-code-fast-1" },
-	},
+    "explore": { "model": "github-copilot/grok-code-fast-1" }
+  },
 
-	"tools": {
+  "tools": {
     "lsp": true,
-		"question": true
-	},
+    "question": true
+  },
 
   "mcp": {
     "context7": {
       "type": "local",
-      "command": ["npx", "-y", "@upstash/context7-mcp"],
+      "command": ["npx", "-y", "@upstash/context7-mcp"]
     }
   },
 
-	"permission": {
-		"bash": {
-			"*": "allow",
+  "permission": {
+    "bash": {
+      "*": "allow",
       "npm *": "deny",
-
       "gh *": "ask",
       "git *": "ask",
-			"git *log*": "allow",
+      "git *log*": "allow",
       "git *diff*": "allow",
-			"git *show*": "allow",
+      "git *show*": "allow",
       "git *status*": "allow",
-			"git *rev-parse*": "allow",
-		}
-	},
+      "git *rev-parse*": "allow"
+    }
+  },
 
-	"lsp": {
-		"eslint": { "disabled": true }
-	}
+  "lsp": {
+    "eslint": { "disabled": true },
+    "biome": { "disabled": true },
+    "oxfmt": {
+      "command": ["oxfmt", "--lsp"],
+      "extensions": [".js", ".jsx", ".ts", ".tsx", ".json", ".jsonc", ".md", ".yaml"]
+    }
+  }
 }

@@ -1,2 +1,10 @@
 .opencode/plans
 .opencode/repos
+
+# Nix
+result
+result-*
+.direnv
+.envrc
+cache/
+.pre-commit-config.yaml

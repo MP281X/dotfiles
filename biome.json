@@ -1,9 +1,0 @@
-{
-	"formatter": { "lineWidth": 120, "formatWithErrors": true },
-
-	"vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
-
-	"files": {
-		"includes": ["**/*.json"]
-	}
-}

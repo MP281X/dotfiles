@@ -18,6 +18,13 @@ cp -r nvim/* ~/.config/nvim/
 
 #----------------------------------------------------------------------------------------------------------------
 
+log "lsp servers"
+
+# TypeScript native (Go-based, 10x faster) + oxc for linting/formatting
+bun install -g @typescript/native-preview @biomejs/biome @tailwindcss/language-server oxlint oxfmt
+
+#----------------------------------------------------------------------------------------------------------------
+
 log "starship"
 
 cp terminal/starship.toml ~/.config/starship.toml

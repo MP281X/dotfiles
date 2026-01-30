@@ -7,13 +7,14 @@
 	"small_model": "opencode/gpt-5-nano",
 
 	"mode": {
-		"plan": { "model": "github-copilot/gpt-5.2-codex" },
-		"build": { "model": "github-copilot/gpt-5.2-codex" }
+		"plan": { "model": "github-copilot/gpt-5.2" },
+		"build": { "model": "opencode/kimi-k2.5-free" }
 	},
 
 	"agent": {
-		"explore": { "model": "opencode/big-pickle" },
-		"general": { "model": "github-copilot/claude-haiku-4.5" }
+    "compaction": {"model": "opencode/gpt-5-nano"},
+    "general": { "model": "github-copilot/gpt-5-mini" },
+		"explore": { "model": "github-copilot/grok-code-fast-1" },
 	},
 
 	"tools": {

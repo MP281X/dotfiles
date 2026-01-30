@@ -6,10 +6,12 @@ local filters = {
   "node_modules", "dist", "build",
   -- package managers
   "pnpm-lock.yaml", "bun.lock",
+  -- opencode
+  ".opencode/skills", ".opencode/repos",
   -- cache
-  "*.tsbuildinfo", ".turbo", ".drizzle", ".opencode/repos",
-  ".next", "*env.d.ts", "app.d.ts", ".output", ".wrangler",
-  ".tanstack", "routeTree.gen.ts", "worker-configuration.d.ts",
+  "*.tsbuildinfo", ".turbo",
+  "*env.d.ts", "app.d.ts", ".output", ".wrangler",
+  ".tanstack", "routeTree.gen.ts",
   "pnpm-workspace.yaml", "_generated", ".expo",
   -- java
   ".idea", ".mvn", "target", "mvnw", ".micronaut", ".editorconfig",

@@ -7,8 +7,10 @@ export HOMEBREW_NO_ENV_HINTS=1
 
 # pnpm
 export NODE_NO_WARNINGS=1
-export PNPM_HOME="$HOME/.local/share/pnpm"
-[ -d "$PNPM_HOME" ] && PATH="$PNPM_HOME:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$(brew --prefix nvm)/nvm.sh" ] && \. "$(brew --prefix nvm)/nvm.sh"
+[ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
 
 # bun
 export PATH="/home/mp281x/.bun/bin:$PATH"

@@ -1,25 +1,7 @@
 return {
   {
-    "williamboman/mason.nvim",
-    config = function()
-      require("mason").setup()
-    end,
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim" },
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "ts_ls", "biome", "tailwindcss",
-        },
-      })
-    end,
-  },
-  {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "williamboman/mason-lspconfig.nvim",
       "saghen/blink.cmp",
     },
     config = function()
@@ -31,19 +13,46 @@ return {
       capabilities.general = capabilities.general or {}
       capabilities.general.positionEncodings = { "utf-16" }
 
-      -- LSP server configurations
+      -- tsgo
+      vim.lsp.config("tsgo", {
+        capabilities = capabilities,
+      })
+      vim.lsp.enable("tsgo")
 
-      vim.lsp.config("ts_ls", { capabilities = capabilities })
-
+      -- Biome
       vim.lsp.config("biome", { capabilities = capabilities })
-      vim.lsp.config("tailwindcss", { capabilities = capabilities })
+      vim.lsp.enable("biome")
 
+      -- Tailwind CSS
+      vim.lsp.config("tailwindcss", { capabilities = capabilities })
+      vim.lsp.enable("tailwindcss")
+
+      -- Lua
       vim.lsp.config("lua_ls", {
         capabilities = capabilities,
         settings = { Lua = { diagnostics = { globals = { "vim" } } } }
       })
+      vim.lsp.enable("lua_ls")
 
-      -- Enhanced diagnostic configuration
+      -- Oxc linter
+      vim.lsp.config("oxlint", {
+        capabilities = capabilities,
+        cmd = { "oxlint", "--lsp" },
+        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc" },
+        root_markers = { ".oxlintrc.json", ".oxlint.json", "package.json", ".git" },
+      })
+      vim.lsp.enable("oxlint")
+
+      -- Oxc formatter
+      vim.lsp.config("oxfmt", {
+        capabilities = capabilities,
+        cmd = { "oxfmt", "--lsp" },
+        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc" },
+        root_markers = { ".oxfmtrc.json", ".oxfmt.json", "package.json", ".git" },
+      })
+      vim.lsp.enable("oxfmt")
+
+      -- Diagnostics
       vim.diagnostic.config({
         signs = {
           text = {
@@ -53,28 +62,18 @@ return {
             [vim.diagnostic.severity.INFO] = "»",
           },
         },
-        virtual_text = {
-          spacing = 4,
-          source = "if_many",
-          prefix = "●",
-        },
-        float = {
-          source = "always",
-          border = "rounded",
-        },
+        virtual_text = { spacing = 4, source = "if_many", prefix = "●" },
+        float = { source = "always", border = "rounded" },
         severity_sort = true,
         update_in_insert = false,
       })
 
-
-
-      -- LSP keybinds
+      -- Keybinds
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           local opts = { buffer = args.buf, silent = true }
           local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-          -- Enhanced keymaps using Telescope
           vim.keymap.set("n", "<leader>gd", require('telescope.builtin').lsp_definitions, opts)
           vim.keymap.set("n", "<leader>gr", require('telescope.builtin').lsp_references, opts)
           vim.keymap.set("n", "<leader>gi", require('telescope.builtin').lsp_implementations, opts)
@@ -84,12 +83,11 @@ return {
           vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
           vim.keymap.set("n", "R", vim.lsp.buf.rename, opts)
 
-          -- Enable inlay hints if supported
           if client and client.supports_method("textDocument/inlayHint") then
             vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
           end
 
-          -- disable lsp syntax highlight for better performance
+          -- Disable heavy features for snappiness
           if client then
             client.server_capabilities.semanticTokensProvider = nil
             client.server_capabilities.documentHighlightProvider = false
@@ -97,18 +95,19 @@ return {
         end,
       })
 
-      -- File type configurations
-      vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-        pattern = { ".env*", "*.env" },
-        callback = function() vim.bo.filetype = "sh" end,
+      -- Format on save: oxfmt for TS/JS/JSON, lua_ls for Lua
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.json", "*.jsonc", "*.md", ".yaml", "*.html", "*.css" },
+        callback = function()
+          vim.lsp.buf.format({ filter = function(c) return c.name == "oxfmt" end, timeout_ms = 1000 })
+        end,
       })
 
-      -- format on save
       vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = "*",
+        pattern = "*.lua",
         callback = function()
-          vim.lsp.buf.format({ filter = function(client) return client.name ~= "ts_ls" end })
-        end
+          vim.lsp.buf.format({ filter = function(c) return c.name == "lua_ls" end, timeout_ms = 1000 })
+        end,
       })
     end,
   },

@@ -34,24 +34,6 @@ return {
       })
       vim.lsp.enable("lua_ls")
 
-      -- Oxc linter
-      vim.lsp.config("oxlint", {
-        capabilities = capabilities,
-        cmd = { "oxlint", "--lsp" },
-        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc" },
-        root_markers = { ".oxlintrc.json", ".oxlint.json", "package.json", ".git" },
-      })
-      vim.lsp.enable("oxlint")
-
-      -- Oxc formatter
-      vim.lsp.config("oxfmt", {
-        capabilities = capabilities,
-        cmd = { "oxfmt", "--lsp" },
-        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc" },
-        root_markers = { ".oxfmtrc.json", ".oxfmt.json", "package.json", ".git" },
-      })
-      vim.lsp.enable("oxfmt")
-
       -- Diagnostics
       vim.diagnostic.config({
         signs = {
@@ -97,9 +79,9 @@ return {
 
       -- Format on save: oxfmt for TS/JS/JSON, lua_ls for Lua
       vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.json", "*.jsonc", "*.md", ".yaml", "*.html", "*.css" },
+        pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.json", "*.jsonc", "*.css", "*.html" },
         callback = function()
-          vim.lsp.buf.format({ filter = function(c) return c.name == "oxfmt" end, timeout_ms = 1000 })
+          vim.lsp.buf.format({ filter = function(c) return c.name == "biome" end, timeout_ms = 1000 })
         end,
       })
 

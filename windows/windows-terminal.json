@@ -36,7 +36,7 @@
 			"closeOnExit": "always",
 			"colorScheme": "Kanagawa",
 			"scrollbarState": "hidden",
-			"font": { "face": "JetBrainsMono Nerd Font Mono", "colorGlyphs": false, "size": 14 },
+			"font": { "face": "JetBrainsMono Nerd Font Mono", "colorGlyphs": false, "size": 14 }
 		},
 		"list": [
 			{
@@ -87,7 +87,7 @@
 			"brightPurple": "#938AA9",
 			"brightWhite": "#DCD7BA",
 			"brightYellow": "#E6C384",
-			"selectionBackground": "#2D4F67",
+			"selectionBackground": "#2D4F67"
 		}
 	]
 }

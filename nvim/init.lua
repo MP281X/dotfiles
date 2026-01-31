@@ -15,18 +15,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Load core configuration
-require("core.options")
-require("core.keymaps")
+require("config.options")
+require("config.keymaps")
+require("config.autocmds")
 
--- Load plugins
+-- Load plugins (auto-import all files in lua/plugins/)
 require("lazy").setup({
-  { import = "plugins.ui" },
-  { import = "plugins.completion" },
-  { import = "plugins.lsp" },
-  { import = "plugins.files" },
-  { import = "plugins.terminal" },
-  { import = "plugins.sessions" },
-}, {
+  spec = { { import = "plugins" } },
   change_detection = { enabled = false },
   performance = {
     rtp = {

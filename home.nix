@@ -10,7 +10,7 @@
   home.file.".profile".force = true;
 
   imports = [
-    ./modules
+    ./nix
   ];
 
   # Allow unfree packages (for things like vscode, etc if needed)
@@ -31,5 +31,6 @@
     EDITOR = "nvim";
     COLORTERM = "truecolor";
     NODE_NO_WARNINGS = "1";
+    NIX_CONFIG = "extra-experimental-features = nix-command flakes";
   };
 }

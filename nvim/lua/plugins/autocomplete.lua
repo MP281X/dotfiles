@@ -1,17 +1,6 @@
 local winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None"
+
 return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function()
-      require("nvim-treesitter.install").compilers = { "gcc" }
-      require("nvim-treesitter").setup({
-        auto_install = true,
-        sync_install = false,
-        highlight = { enable = true, additional_vim_regex_highlighting = false },
-      })
-    end,
-  },
   {
     "saghen/blink.cmp",
     dependencies = { "rafamadriz/friendly-snippets" },
@@ -36,7 +25,7 @@ return {
         completion = { menu = { auto_show = false } },
       },
       completion = {
-        menu = { border = "rounded", winhighlight = winhighlight, auto_show = true, draw = { treesitter = { "lsp" } } },
+        menu = { border = "rounded", auto_show = true, winhighlight = winhighlight },
         documentation = { auto_show = true, auto_show_delay_ms = 0, window = { border = "rounded", winhighlight = winhighlight } },
         list = { selection = { preselect = true, auto_insert = true } },
       },
@@ -45,8 +34,4 @@ return {
       signature = { enabled = true, window = { border = "rounded", winhighlight = winhighlight } },
     },
   },
-
-  { "windwp/nvim-ts-autotag", opts = {} },
-  { "axelvc/template-string.nvim", opts = {} },
-  { "echasnovski/mini.pairs", opts = {} },
 }

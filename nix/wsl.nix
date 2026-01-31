@@ -1,9 +1,6 @@
 { lib, ... }:
 
 {
-  # WSL-specific configurations
-  # These activation scripts copy necessary files to Windows for integration
-
   # Copy win32yank to Windows for clipboard integration
   home.activation.wslClipboard = lib.hm.dag.entryAfter ["writeBoundary"] ''
     if [ -d "/mnt/c" ]; then
@@ -31,7 +28,7 @@
       if [ -n "$localappdata" ] && [ -d "$localappdata" ]; then
         for wt_dir in "$localappdata"/Packages/Microsoft.WindowsTerminal_*/LocalState "$localappdata"/Packages/Microsoft.WindowsTerminalPreview_*/LocalState; do
           if [ -d "$wt_dir" ]; then
-            $DRY_RUN_CMD cp ${../config/windows-terminal.json} "$wt_dir/settings.json" 2>/dev/null || true
+            $DRY_RUN_CMD cp ${../windows/windows-terminal.json} "$wt_dir/settings.json" 2>/dev/null || true
           fi
         done
       fi

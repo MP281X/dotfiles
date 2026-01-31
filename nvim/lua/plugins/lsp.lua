@@ -1,9 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      "saghen/blink.cmp",
-    },
+    dependencies = { "saghen/blink.cmp" },
     config = function()
       local capabilities = vim.tbl_deep_extend(
         "force",
@@ -13,28 +11,18 @@ return {
       capabilities.general = capabilities.general or {}
       capabilities.general.positionEncodings = { "utf-16" }
 
-      -- tsgo
-      vim.lsp.config("tsgo", {
-        capabilities = capabilities,
-      })
-      vim.lsp.enable("tsgo")
+      vim.lsp.config("*", { capabilities = capabilities })
 
-      -- Biome
-      vim.lsp.config("biome", { capabilities = capabilities })
-      vim.lsp.enable("biome")
-
-      -- Tailwind CSS
-      vim.lsp.config("tailwindcss", { capabilities = capabilities })
-      vim.lsp.enable("tailwindcss")
-
-      -- Lua
+      vim.lsp.config("tsgo", {})
+      vim.lsp.config("biome", {})
+      vim.lsp.config("tailwindcss", {})
       vim.lsp.config("lua_ls", {
-        capabilities = capabilities,
         settings = { Lua = { diagnostics = { globals = { "vim" } } } }
       })
-      vim.lsp.enable("lua_ls")
+      vim.lsp.config("nixd", {})
 
-      -- Diagnostics
+      vim.lsp.enable({ "tsgo", "biome", "tailwindcss", "lua_ls", "nixd" })
+
       vim.diagnostic.config({
         signs = {
           text = {
@@ -50,7 +38,6 @@ return {
         update_in_insert = false,
       })
 
-      -- Keybinds
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           local opts = { buffer = args.buf, silent = true }
@@ -67,12 +54,6 @@ return {
 
           if client and client.supports_method("textDocument/inlayHint") then
             vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-          end
-
-          -- Disable heavy features for snappiness
-          if client then
-            client.server_capabilities.semanticTokensProvider = nil
-            client.server_capabilities.documentHighlightProvider = false
           end
         end,
       })

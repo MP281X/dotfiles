@@ -1,6 +1,19 @@
 { ... }:
 
 {
+  # Fuzzy finder
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+    defaultOptions = [
+      "--no-hscroll"
+      "--no-mouse"
+      "--reverse"
+      "--no-info"
+      "--border=none"
+    ];
+  };
+
   programs.bash = {
     enable = true;
     enableCompletion = true;
@@ -11,29 +24,19 @@
     historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
 
     # Shell options
-    shellOptions = [
-      "histappend"
-    ];
+    shellOptions = [ "histappend" ];
 
-    # Shell initExtra for interactive shell features
+    # Shell initialization
     initExtra = ''
       # Enable vi mode
       set -o vi
 
-      # Functions (defined before interactive check so they're available)
-      # Custom cd with auto-ls
+      # Custom functions
       cd() {
           builtin cd "$@" && eza --icons --group-directories-first --width 120
       }
 
-      # Smart install based on lockfile
-      i() {
-        if [ -f "bun.lockb" ]; then bun install;
-        else echo "No bun.lockb file found"; fi
-      }
-
-      # Docker ps with formatted output
-      dps() {
+      ps() {
         docker ps --all --format '{{json .}}' | jq -s 'map({
           name: .Names,
           status: .Status,
@@ -48,21 +51,24 @@
         })'
       }
 
-      # List GitHub repos
       gl() {
         if [ $# -eq 0 ]; then gh repo list --json name,owner | jq -r '[.[] | "\(.owner.login)/\(.name)"]';
         else gh repo list "$1" --json name,owner | jq -r '[.[] | "\(.owner.login)/\(.name)"]'; fi
       }
 
-      # Clone GitHub repo
       gc() {
         if [[ $1 == *"/"* ]]; then git clone --quiet "https://github.com/$1.git";
         else git clone --quiet "https://github.com/$(git config --get user.name)/$1.git"; fi
       }
 
-      # Prune stale branches
       gr() {
         git fetch --prune && git branch -r | awk "{print \$1}" | grep -E -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -D
+      }
+
+      reset() {
+        find . -type d \( -name "node_modules" -o -name "dist" -o -name ".output" -o -name ".turbo" \) -exec rm -rf {} + 2>/dev/null
+        find . -type f \( -name "bun.lock" -o -name ".tsbuildinfo" \) -delete 2>/dev/null
+        echo "Cleaned build artifacts"
       }
 
       # Disable for non-interactive scripts
@@ -72,7 +78,7 @@
       bind 'TAB:menu-complete'
       bind "set completion-ignore-case on"
 
-      # Cursor shape based on vi mode (append to existing PROMPT_COMMAND)
+      # Cursor shape based on vi mode
       if [[ -n "$PROMPT_COMMAND" ]]; then
         PROMPT_COMMAND="$PROMPT_COMMAND; history -a; echo -ne '\033[5 q'"
       else
@@ -83,15 +89,16 @@
       bind 'set keyseq-timeout 10'
       bind 'set show-mode-in-prompt on'
 
-      # GitHub package registry token (set if gh is authenticated)
-      if command -v gh >/dev/null 2>&1; then
-        export REGISTRY_TOKEN=$(gh auth token 2>/dev/null || echo "")
-      fi
+      # GitHub package registry token
+      export REGISTRY_TOKEN=$(gh auth token 2>/dev/null || echo "")
+
+      # Show directories in home on shell start
+      ls
     '';
 
     # Aliases
     shellAliases = {
-      # ls replacements using eza
+      # File listing
       la = "eza --icons --group-directories-first --width 120 --all";
       ls = "eza --icons --group-directories-first --width 120 --git-ignore --ignore-glob='~/.cache|~/.npm|node_modules'";
       tree = "eza --icons --group-directories-first --width 120 --tree --git-ignore --ignore-glob='~/.cache|~/.npm|node_modules'";
@@ -102,41 +109,17 @@
 
       # Tools
       vi = "nvim";
-      "ssh-dev" = "ssh $USER@dev.mp281x.xyz";
-      cat = "bat";
       g = "gitui";
+
+      # Remote
+      "ssh-dev" = "ssh $USER@dev.mp281x.xyz";
 
       # WSL
       reboot = "wsl.exe --shutdown";
       restart = "wsl.exe --shutdown";
 
-      # Package manager
+      # Opencode
       o = "OPENCODE_EXPERIMENTAL=1 opencode";
-
-      # Nix helpers
-      nix-update = "NIX_CONFIG='extra-experimental-features = nix-command flakes' nix run home-manager/master -- switch --flake .#mp281x";
-      nix-clean = "nix-collect-garbage -d";
-
-      # Direnv
-      da = "direnv allow";
-      dr = "direnv reload";
     };
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableBashIntegration = true;
-    defaultOptions = [
-      "--no-hscroll"
-      "--no-mouse"
-      "--reverse"
-      "--no-info"
-      "--border=none"
-    ];
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
   };
 }

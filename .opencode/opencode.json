@@ -43,5 +43,8 @@
     }
   },
 
-  "lsp": { "eslint": { "disabled": true } }
+  "lsp": { 
+    "lua": { "disabled": true },
+    "eslint": { "disabled": true }
+  }
 }

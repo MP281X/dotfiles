@@ -9,10 +9,10 @@ local filters = {
   -- opencode
   ".opencode/skills", ".opencode/repos",
   -- cache
+  "_generated", ".expo",
   "*.tsbuildinfo", ".turbo",
-  "*env.d.ts", "app.d.ts", ".output", ".wrangler",
   ".tanstack", "routeTree.gen.ts",
-  "pnpm-workspace.yaml", "_generated", ".expo",
+  "*env.d.ts", "app.d.ts", ".output",
   -- java
   ".idea", ".mvn", "target", "mvnw", ".micronaut", ".editorconfig",
   "Jenkinsfile", "ktlint", "jooq",

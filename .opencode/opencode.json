@@ -43,12 +43,5 @@
     }
   },
 
-  "lsp": {
-    "eslint": { "disabled": true },
-    "biome": { "disabled": true },
-    "oxfmt": {
-      "command": ["oxfmt", "--lsp"],
-      "extensions": [".js", ".jsx", ".ts", ".tsx", ".json", ".jsonc", ".md", ".yaml"]
-    }
-  }
+  "lsp": { "eslint": { "disabled": true } }
 }

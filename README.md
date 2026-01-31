@@ -63,12 +63,6 @@ Restart WSL:
 wsl.exe --shutdown
 ```
 
-**Note:** The following tools are automatically installed during the Home Manager activation:
-- `opencode` - AI coding assistant (via nixpkgs)
-- `oxfmt` - Oxc code formatter (via Bun)
-- `oxlint` - Oxc linter (via Bun)
-- `tsgo` - TypeScript Go implementation (via Bun)
-
 ## Update Configuration
 
 After making changes to the flake:
@@ -128,7 +122,7 @@ nix-switch
   - `dev-tools.nix` - Bun and development tools
   - `wsl.nix` - WSL-specific settings and Windows integration
   - `opencode.nix` - Opencode tool configuration
-  - `bun-packages.nix` - Automatic installation of Bun global packages (oxfmt, oxlint, tsgo)
+  - `bun-packages.nix` - Automatic installation of Bun global packages (tsgo)
 - `config/` - Static configuration files (gitui, windows-terminal)
 - `nvim/` - Neovim Lua configuration (kept standalone)
 - `windows/` - WSL-Windows integration files (win32yank, AutoHotkey)

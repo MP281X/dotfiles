@@ -40,12 +40,10 @@ cd ~/dotfiles
 NIX_CONFIG='extra-experimental-features = nix-command flakes' nix run home-manager/master -- switch --flake .#mp281xbun i
 ```
 
-### 4. Setup Git Authentication
+### 4. Setup GitHub Authentication
 
 ```bash
 gh auth login --git-protocol https --hostname github.com --web --scopes read:packages
-git config --global user.name "$(gh api user | jq -r '.name')"
-git config --global user.email "$(gh api user | jq -r '.email')"
 ```
 
 ### 5. Setup Docker

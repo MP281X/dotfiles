@@ -11,7 +11,7 @@
     # Helper function to check and install packages
     install_bun_global() {
       local pkg="$1"
-      local cmd="${2:-$1}"
+      local cmd="''${2:-$1}"
 
       if ! command -v "$cmd" >/dev/null 2>&1; then
         echo "Installing $pkg via Bun..."

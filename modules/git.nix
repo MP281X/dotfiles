@@ -10,6 +10,10 @@
       pull.rebase = true;
       credential.helper = "store";
       core.editor = "nvim";
+
+      # User configuration
+      user.name = "MP281X";
+      user.email = "paludgnachmatteo.dev@gmail.com";
     };
   };
 

@@ -9,15 +9,62 @@
     historySize = 500;
     historyFileSize = 10000;
     historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
-    historyAppend = true;
 
     # Shell options
     shellOptions = [
-      "vi"
+      "histappend"
     ];
 
     # Shell initExtra for interactive shell features
     initExtra = ''
+      # Enable vi mode
+      set -o vi
+
+      # Functions (defined before interactive check so they're available)
+      # Custom cd with auto-ls
+      cd() {
+          builtin cd "$@" && eza --icons --group-directories-first --width 120
+      }
+
+      # Smart install based on lockfile
+      i() {
+        if [ -f "bun.lockb" ]; then bun install;
+        else echo "No bun.lockb file found"; fi
+      }
+
+      # Docker ps with formatted output
+      dps() {
+        docker ps --all --format '{{json .}}' | jq -s 'map({
+          name: .Names,
+          status: .Status,
+          image: .Image,
+          ports: (
+            .Ports
+            | split(", ")
+            | map(select(test("->")))
+            | map(capture("0.0.0.0:(?<hostPort>[0-9]+)->(?<containerPort>[0-9]+)"))
+            | map(.hostPort + ":" + .containerPort)
+          )
+        })'
+      }
+
+      # List GitHub repos
+      gl() {
+        if [ $# -eq 0 ]; then gh repo list --json name,owner | jq -r '[.[] | "\(.owner.login)/\(.name)"]';
+        else gh repo list "$1" --json name,owner | jq -r '[.[] | "\(.owner.login)/\(.name)"]'; fi
+      }
+
+      # Clone GitHub repo
+      gc() {
+        if [[ $1 == *"/"* ]]; then git clone --quiet "https://github.com/$1.git";
+        else git clone --quiet "https://github.com/$(git config --get user.name)/$1.git"; fi
+      }
+
+      # Prune stale branches
+      gr() {
+        git fetch --prune && git branch -r | awk "{print \$1}" | grep -E -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -D
+      }
+
       # Disable for non-interactive scripts
       [[ $- == *i* ]] || return
 
@@ -67,61 +114,13 @@
       o = "OPENCODE_EXPERIMENTAL=1 opencode";
 
       # Nix helpers
-      nix-switch = "home-manager switch --flake ~/.dotfiles#mp281x";
-      nix-update = "nix flake update ~/.dotfiles && home-manager switch --flake ~/.dotfiles#mp281x";
+      nix-update = "NIX_CONFIG='extra-experimental-features = nix-command flakes' nix run home-manager/master -- switch --flake .#mp281x";
       nix-clean = "nix-collect-garbage -d";
 
       # Direnv
       da = "direnv allow";
       dr = "direnv reload";
     };
-
-    # Functions (using initExtra since shellAliases only supports simple aliases)
-    initExtraFirst = ''
-      # Custom cd with auto-ls
-      cd() {
-          builtin cd "$@" && eza --icons --group-directories-first --width 120
-      }
-
-      # Smart install based on lockfile
-      i() {
-        if [ -f "bun.lockb" ]; then bun install;
-        else echo "No bun.lockb file found"; fi
-      }
-
-      # Docker ps with formatted output
-      dps() {
-        docker ps --all --format '{{json .}}' | jq -s 'map({
-          name: .Names,
-          status: .Status,
-          image: .Image,
-          ports: (
-            .Ports
-            | split(", ")
-            | map(select(test("->")))
-            | map(capture("0.0.0.0:(?<hostPort>[0-9]+)->(?<containerPort>[0-9]+)"))
-            | map(.hostPort + ":" + .containerPort)
-          )
-        })'
-      }
-
-      # List GitHub repos
-      gl() {
-        if [ $# -eq 0 ]; then gh repo list --json name,owner | jq -r '[.[] | "\(.owner.login)/\(.name)"]';
-        else gh repo list "$1" --json name,owner | jq -r '[.[] | "\(.owner.login)/\(.name)"]'; fi
-      }
-
-      # Clone GitHub repo
-      gc() {
-        if [[ $1 == *"/"* ]]; then git clone --quiet "https://github.com/$1.git";
-        else git clone --quiet "https://github.com/$(git config --get user.name)/$1.git"; fi
-      }
-
-      # Prune stale branches
-      gr() {
-        git fetch --prune && git branch -r | awk "{print \$1}" | grep -E -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -D
-      }
-    '';
   };
 
   programs.fzf = {

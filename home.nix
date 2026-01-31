@@ -5,6 +5,10 @@
   home.homeDirectory = "/home/${username}";
   home.stateVersion = "24.11";
 
+  # Force overwrite existing files
+  home.file.".bashrc".force = true;
+  home.file.".profile".force = true;
+
   imports = [
     ./modules
   ];

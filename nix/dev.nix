@@ -1,8 +1,11 @@
 { pkgs, lib, ... }:
 
 {
-  # Bun path
-  home.sessionPath = [ "$HOME/.bun/bin" ];
+  # Bun global bin path
+  home.sessionPath = [
+    "$HOME/.cache/.bun/bin"
+    "$HOME/.bun/bin"
+  ];
 
   # Neovim
   programs.neovim = {
@@ -20,7 +23,6 @@
 
   # Bun, Node and Nix-only LSP servers
   home.packages = with pkgs; [
-    opencode                     # Opencode CLI
     bun                           # Bun runtime
     nodejs                      # Node.js for LSP
     lua-language-server          # Lua (not available via Bun)
@@ -34,10 +36,19 @@
     recursive = true;
   };
 
-  # LSP servers installed via Bun for consistency
-  # Matches nvim/lua/plugins/lsp.lua: tsgo, biome, tailwindcss, lua_ls, nixd
-  home.activation.lspServers = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    echo "Installing/updating LSP servers"
-    $DRY_RUN_CMD ${pkgs.bun}/bin/bun add -g "@typescript/native-preview@latest" "@biomejs/biome@latest" "@tailwindcss/language-server@latest" || true
+  # Bun globals (kept out of Nix to get the latest version)
+  home.activation.bunGlobals = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    echo "Installing/updating Bun global tools"
+
+    install_bun_global() {
+      local pkg="$1"
+      echo " - ''${pkg}"
+      $DRY_RUN_CMD ${pkgs.bun}/bin/bun add -g "''${pkg}" || true
+    }
+
+    install_bun_global "opencode-ai@latest"
+    install_bun_global "@typescript/native-preview@latest"
+    install_bun_global "@biomejs/biome@latest"
+    install_bun_global "@tailwindcss/language-server@latest"
   '';
 }

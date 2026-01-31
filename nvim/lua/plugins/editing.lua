@@ -1,10 +1,11 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.install").compilers = { "gcc" }
-      require("nvim-treesitter").setup({
+      require("nvim-treesitter.configs").setup({
         auto_install = true,
         sync_install = false,
         highlight = { enable = true, additional_vim_regex_highlighting = false },

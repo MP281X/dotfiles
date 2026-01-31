@@ -55,6 +55,12 @@ return {
           if client and client.supports_method("textDocument/inlayHint") then
             vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
           end
+
+          -- Disable heavy features for snappiness
+          if client then
+            client.server_capabilities.semanticTokensProvider = nil
+            client.server_capabilities.documentHighlightProvider = false
+          end
         end,
       })
 

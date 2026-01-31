@@ -4,8 +4,8 @@ local filters = {
   ".git", ".gitignore", ".dockerignore",
   -- node
   "node_modules", "dist", "build",
-  -- package managers
-  "pnpm-lock.yaml", "bun.lock",
+  -- lockfiles
+  "pnpm-lock.yaml", "bun.lock", "flake.lock",
   -- opencode
   ".opencode/skills", ".opencode/repos",
   -- cache

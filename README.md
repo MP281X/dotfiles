@@ -18,10 +18,11 @@ wsl -d Debian -u root -- bash -c "apt-get update > /dev/null && apt-get install 
 ### 1. Install Nix Package Manager
 
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
 ```
 
 Restart your shell or run:
+
 ```bash
 . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 ```
@@ -29,14 +30,14 @@ Restart your shell or run:
 ### 2. Clone Dotfiles
 
 ```bash
-git clone https://github.com/MP281X/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
+git clone https://github.com/MP281X/dotfiles.git ~/dotfiles
+cd ~/dotfiles
 ```
 
 ### 3. Apply Configuration
 
 ```bash
-nix run home-manager/master -- switch --flake .#mp281x
+NIX_CONFIG='extra-experimental-features = nix-command flakes' nix run home-manager/master -- switch --flake .#mp281xbun i
 ```
 
 ### 4. Setup Git Authentication
@@ -59,6 +60,7 @@ sudo usermod -aG docker $USER
 ```
 
 Restart WSL:
+
 ```bash
 wsl.exe --shutdown
 ```
@@ -73,6 +75,7 @@ home-manager switch --flake .#mp281x
 ```
 
 Or use the alias:
+
 ```bash
 nix-switch
 ```
@@ -80,11 +83,13 @@ nix-switch
 ## Available Aliases
 
 ### Nix
+
 - `nix-switch` - Apply home-manager configuration
 - `nix-update` - Update flake inputs and apply
 - `nix-clean` - Collect garbage and free space
 
 ### Navigation
+
 - `la` - List all files with icons
 - `ls` - List files with git ignore
 - `tree` - Tree view with git ignore
@@ -92,6 +97,7 @@ nix-switch
 - `..` - Go up one directory
 
 ### Development
+
 - `i` - Smart install (detects bun.lockb)
 - `g` - Open gitui
 - `vi` - Open neovim
@@ -101,11 +107,13 @@ nix-switch
 - `dr` - Reload direnv
 
 ### Git
+
 - `gl [user]` - List GitHub repos
 - `gc <repo>` - Clone GitHub repo
 - `gr` - Prune stale branches
 
 ### WSL
+
 - `reboot` / `restart` - Shutdown WSL
 
 ## Structure

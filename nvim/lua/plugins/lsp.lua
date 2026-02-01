@@ -14,12 +14,10 @@ return {
       vim.lsp.config("*", { capabilities = capabilities })
 
       vim.lsp.config("tsgo", {})
+      vim.lsp.config("nixd", {})
       vim.lsp.config("biome", {})
       vim.lsp.config("tailwindcss", {})
-      vim.lsp.config("lua_ls", {
-        settings = { Lua = { diagnostics = { globals = { "vim" } } } }
-      })
-      vim.lsp.config("nixd", {})
+      vim.lsp.config("lua_ls", { settings = { Lua = { diagnostics = { globals = { "vim" } } } } })
 
       vim.lsp.enable({ "tsgo", "biome", "tailwindcss", "lua_ls", "nixd" })
 

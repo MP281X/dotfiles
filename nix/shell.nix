@@ -110,6 +110,7 @@
       # Tools
       vi = "nvim";
       g = "gitui";
+      d = "nix develop";
 
       # Remote
       "ssh-dev" = "ssh $USER@dev.mp281x.xyz";

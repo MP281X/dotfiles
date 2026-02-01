@@ -38,6 +38,12 @@ cd ~/dotfiles
 NIX_CONFIG='extra-experimental-features = nix-command flakes' nix run home-manager/master -- switch --flake .#mp281x
 ```
 
+# Install Docker
+```bash
+curl -fsSL https://get.docker.com | sh
+sudo usermod -aG docker $USER
+```
+
 ### 5. Setup GitHub Authentication
 
 ```bash

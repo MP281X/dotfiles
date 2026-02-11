@@ -7,12 +7,12 @@ local filters = {
   -- lockfiles
   "pnpm-lock.yaml", "bun.lock", "flake.lock",
   -- opencode
-  ".opencode/skills", ".opencode/repos",
+  ".opencode/skills", ".opencode/btca",
   -- cache
   "_generated", ".expo",
   "*.tsbuildinfo", ".turbo",
-  ".tanstack", "routeTree.gen.ts",
-  "*env.d.ts", "app.d.ts", ".output",
+  ".tanstack", "routeTree.gen.ts", ".next",
+  "*env.d.ts", "app.d.ts", ".output", "build", "dist",
   -- java
   ".idea", ".mvn", "target", "mvnw", ".micronaut", ".editorconfig",
   "Jenkinsfile", "ktlint", "jooq",

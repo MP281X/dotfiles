@@ -7,27 +7,23 @@
   "small_model": "opencode/gpt-5-nano",
 
   "mode": {
-    "plan": { "model": "github-copilot/gpt-5.2" },
+    "plan": { "model": "github-copilot/gpt-5.2", "disable": true },
     "build": { "model": "opencode/kimi-k2.5-free" }
   },
 
   "agent": {
     "compaction": { "model": "opencode/gpt-5-nano" },
-    "general": { "model": "github-copilot/gpt-5-mini" },
-    "explore": { "model": "github-copilot/grok-code-fast-1" }
+    "explore": { "model": "github-copilot/grok-code-fast-1" },
+    "general": { "model": "github-copilot/gpt-5-mini", "disable": true },
   },
 
-  "tools": { "question": true },
+  "tools": { "question": true, "codesearch": false },
 
   "mcp": {
-    "context7": {
-      "type": "local",
-      "command": ["bunx", "-y", "@upstash/context7-mcp"]
-    },
-    "grep_app": {
-      "type": "remote",
-      "url": "https://mcp.grep.app"
-    }
+    "btca": {
+			"type": "local",
+			"command": ["bunx", "btca", "mcp"]
+		}
   },
 
   "permission": {
@@ -45,7 +41,6 @@
   },
 
   "lsp": { 
-    "lua": { "disabled": true },
-    "eslint": { "disabled": true }
+    "lua": { "disabled": true }
   }
 }

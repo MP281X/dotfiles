@@ -24,7 +24,7 @@
   # Bun, Node and Nix-only LSP servers
   home.packages = with pkgs; [
     bun                           # Bun runtime
-    nodejs                      # Node.js for LSP
+    nodejs_22                   # Node.js v22 for LSP and convex
     lua-language-server          # Lua (not available via Bun)
     nixd                          # Nix (not available via Bun)
   ];
@@ -35,6 +35,8 @@
     source = ../.opencode/command;
     recursive = true;
   };
+
+  xdg.configFile."btca/btca.config.jsonc".source = ../.opencode/btca.json;
 
   # Bun globals (kept out of Nix to get the latest version)
   home.activation.bunGlobals = lib.hm.dag.entryAfter ["writeBoundary"] ''
@@ -47,8 +49,8 @@
     }
 
     install_bun_global "opencode-ai@latest"
-    install_bun_global "@typescript/native-preview@latest"
     install_bun_global "@biomejs/biome@latest"
+    install_bun_global "@typescript/native-preview@latest"
     install_bun_global "@tailwindcss/language-server@latest"
   '';
 }

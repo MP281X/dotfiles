@@ -1,0 +1,28 @@
+{
+	"$schema": "https://btca.dev/btca.schema.json",
+
+  "dataDirectory": ".btca",
+  "model": "grok-code-fast-1",
+  "provider": "github-copilot",
+
+  "resources": [
+    {
+			"type": "git",
+			"branch": "dev",
+			"name": "effect",
+			"url": "https://github.com/anomalyco/opencode.git"
+		},
+		{
+			"type": "git",
+			"branch": "main",
+			"name": "effect",
+			"url": "https://github.com/Effect-TS/effect"
+		},
+		{
+			"type": "git",
+			"branch": "main",
+			"name": "effect-atom",
+			"url": "https://github.com/tim-smart/effect-atom"
+		}
+	]
+}

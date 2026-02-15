@@ -48,6 +48,7 @@
       $DRY_RUN_CMD ${pkgs.bun}/bin/bun add -g "''${pkg}" || true
     }
 
+    install_bun_global "btca@latest"
     install_bun_global "opencode-ai@latest"
     install_bun_global "@biomejs/biome@latest"
     install_bun_global "@typescript/native-preview@latest"

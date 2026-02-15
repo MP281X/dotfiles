@@ -22,6 +22,7 @@
   "mcp": {
     "btca": {
 			"type": "local",
+      "timeout": 600000,
 			"command": ["bunx", "btca", "mcp"]
 		}
   },

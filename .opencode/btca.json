@@ -2,7 +2,7 @@
 	"$schema": "https://btca.dev/btca.schema.json",
 
   "dataDirectory": ".btca",
-  "model": "grok-code-fast-1",
+  "model": "gpt-5-mini",
   "provider": "github-copilot",
 
   "resources": [

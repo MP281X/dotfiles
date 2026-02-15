@@ -15,7 +15,7 @@ wsl --install -d Debian;
 
 ```bash
 sudo passwd -d $USER && sudo usermod -aG sudo $USER
-sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install curl xz-utils git
 ```
 
 ### 2. Install Nix Package Manager
@@ -39,6 +39,7 @@ NIX_CONFIG='extra-experimental-features = nix-command flakes' nix run home-manag
 ```
 
 # Install Docker
+
 ```bash
 curl -fsSL https://get.docker.com | sh
 sudo usermod -aG docker $USER

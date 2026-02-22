@@ -36,8 +36,6 @@
     recursive = true;
   };
 
-  xdg.configFile."btca/btca.config.jsonc".source = ../.opencode/btca.json;
-
   # Bun globals (kept out of Nix to get the latest version)
   home.activation.bunGlobals = lib.hm.dag.entryAfter ["writeBoundary"] ''
     echo "Installing/updating Bun global tools"
@@ -48,7 +46,6 @@
       $DRY_RUN_CMD ${pkgs.bun}/bin/bun add -g "''${pkg}" || true
     }
 
-    install_bun_global "btca@latest"
     install_bun_global "opencode-ai@latest"
     install_bun_global "@biomejs/biome@latest"
     install_bun_global "@typescript/native-preview@latest"

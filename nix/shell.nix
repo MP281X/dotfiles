@@ -51,25 +51,16 @@
         })'
       }
 
-      gl() {
-        if [ $# -eq 0 ]; then gh repo list --json name,owner | jq -r '[.[] | "\(.owner.login)/\(.name)"]';
-        else gh repo list "$1" --json name,owner | jq -r '[.[] | "\(.owner.login)/\(.name)"]'; fi
-      }
-
-      gc() {
-        if [[ $1 == *"/"* ]]; then git clone --quiet "https://github.com/$1.git";
-        else git clone --quiet "https://github.com/$(git config --get user.name)/$1.git"; fi
-      }
-
       gr() {
         git fetch --prune && git branch -r | awk "{print \$1}" | grep -E -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -D
       }
 
       reset() {
-        find . -type d \( -name "node_modules" -o -name "dist" -o -name ".output" -o -name ".turbo" -o -name ".tanstack" \) -exec rm -rf {} + 2>/dev/null
-        find . -type f \( -name "bun.lock" -o -name ".tsbuildinfo" \) -delete 2>/dev/null
-        echo "Cleaned build artifacts"
-      }
+         find . -type d \( -name "node_modules" -o -name "dist" -o -name ".output" -o -name ".turbo" -o -name ".tanstack" \) -exec rm -rf {} + 2>/dev/null
+         find . -path "*/.opencode/resources" -type d -exec rm -rf {} + 2>/dev/null
+         find . -type f \( -name "bun.lock" -o -name ".tsbuildinfo" \) -delete 2>/dev/null
+         echo "Cleaned build artifacts"
+       }
 
       # Disable for non-interactive scripts
       [[ $- == *i* ]] || return

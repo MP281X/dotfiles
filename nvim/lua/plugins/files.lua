@@ -7,7 +7,7 @@ local filters = {
   -- lockfiles
   "pnpm-lock.yaml", "bun.lock", "flake.lock",
   -- opencode
-  ".opencode/skills", ".opencode/btca",
+  ".opencode/resources",
   -- cache
   "_generated", ".expo",
   "*.tsbuildinfo", ".turbo",

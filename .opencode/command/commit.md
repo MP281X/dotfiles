@@ -1,6 +1,6 @@
 ---
 description: Commit staged changes, rebase, push.
-model: opencode/big-pickle
+model: github-copilot/gpt-5-mini
 ---
 
 commit and push
@@ -22,36 +22,35 @@ $ARGUMENTS
 !`git diff --staged`
 </staged_diff>
 
-## Prefixes (Conventional Commits)
+## Prefixes
 - `feat:` new feature
 - `fix:` bug fix
-- `docs:` documentation
 - `refactor:` restructuring
 - `perf:` performance
-- `test:` tests
 - `chore:` maintenance (deps/config)
+- `docs:` documentation
+- `test:` tests
 - `ci:` CI/CD
 - `style:` formatting only
 
-## Message style
-- Subject: `<prefix>: <what happened>` (<= 72 chars).
-- Body (optional): 1-3 lines, user impact / why. Avoid implementation detail.
-- Use `<request>` only if consistent with `<staged_diff>`.
+## Commit message
+- Subject: `<prefix>: <what was accomplished>` — imperative, concise, <= 72 chars
+- Body: optional — bullet list with extra detail only when needed
+- Use `<request>` only if it's consistent with `<staged_diff>`
 
-## Safety stops
-- If `<repo_status>` shows an in-progress rebase/merge/cherry-pick, STOP and report it.
-- If `<staged_diff>` is empty, STOP and ask the user to stage changes.
-- If `<branch_vv>` shows no upstream tracking branch, STOP and ask which remote/branch to push to.
-- Never force-push; never use destructive flags.
+## Safety
+- In-progress rebase/merge/cherry-pick → STOP and report
+- Empty `<staged_diff>` → STOP and ask user to stage changes
+- No upstream tracking branch → STOP and ask which remote/branch to push to
+- Never force-push or use destructive flags
 
-## Process (git commands you DO run)
-1. Draft commit message from `<staged_diff>`.
-2. `git commit` (one commit).
-3. `git pull --rebase` (if conflicts: STOP and tell user to resolve manually).
-4. `git push`.
+## Process
+1. Draft commit message from `<staged_diff>`
+2. `git commit`
+3. `git pull --rebase` — if conflicts: STOP and tell user to resolve manually
+4. `git push`
 
 ## Output
-Return:
 - Commit message used
 - Commands run + one-line result each
-- Final result (success or STOP reason)
+- Final status (success or STOP reason)

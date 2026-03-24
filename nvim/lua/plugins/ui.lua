@@ -52,7 +52,7 @@ return {
                 local path = context.bufpath or vim.api.nvim_buf_get_name(context.bufnr)
                 if not path:match("^/") then return name end
 
-                local index_files = { ["index.ts"] = 1, ["index.tsx"] = 1, ["handler.ts"] = 1, ["schema.ts"] = 1 }
+                local index_files = { ["index.ts"] = 1, ["index.tsx"] = 1 }
                 local display = index_files[name] and vim.fn.fnamemodify(path, ":h:t") .. "/" or name
 
                 local dir, prev = vim.fn.fnamemodify(path, ":h"), nil

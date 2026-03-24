@@ -56,11 +56,11 @@
       }
 
       reset() {
-         find . -type d \( -name "node_modules" -o -name "dist" -o -name ".output" -o -name ".turbo" -o -name ".tanstack" \) -exec rm -rf {} + 2>/dev/null
-         find . -path "*/.opencode/resources" -type d -exec rm -rf {} + 2>/dev/null
-         find . -type f \( -name "bun.lock" -o -name ".tsbuildinfo" \) -delete 2>/dev/null
-         echo "Cleaned build artifacts"
-       }
+        find . -type d \( -name "node_modules" -o -name "dist" -o -name ".output" -o -name ".turbo" -o -name ".tanstack" \) -exec rm -rf {} + 2>/dev/null
+        find . -path "*/.opencode/resources" -type d -exec rm -rf {} + 2>/dev/null
+        find . -type f \( -name "bun.lock" -o -name ".tsbuildinfo" \) -delete 2>/dev/null
+        echo "Cleaned build artifacts"
+      }
 
       # Disable for non-interactive scripts
       [[ $- == *i* ]] || return

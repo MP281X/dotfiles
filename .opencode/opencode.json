@@ -28,6 +28,10 @@
 		}
 	},
 
+  "lsp": {
+    "biome": { "disabled": true }
+  },
+
   "provider": {
 		"github-copilot": {
 			"models": {

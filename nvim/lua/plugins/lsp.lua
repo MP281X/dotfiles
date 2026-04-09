@@ -50,10 +50,6 @@ return {
           vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
           vim.keymap.set("n", "R", vim.lsp.buf.rename, opts)
 
-          if client and client.supports_method("textDocument/inlayHint") then
-            vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-          end
-
           -- Disable heavy features for snappiness
           if client then
             client.server_capabilities.semanticTokensProvider = nil

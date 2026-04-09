@@ -18,7 +18,7 @@ local filters = {
   "Jenkinsfile", "ktlint", "jooq",
 }
 
-local nvimTreeFilters = function()
+local function nvimTreeFilters()
   local regex_arr = {}
   for _, item in ipairs(filters) do
     if item:sub(1, 1) == "*" then item = item:sub(2) else item = "^" .. item end
@@ -30,7 +30,7 @@ local nvimTreeFilters = function()
   return regex_arr
 end
 
-local telescopeFilters = function(args)
+local function telescopeFilters(args)
   for _, pattern in ipairs(filters) do
     table.insert(args, '-g')
     table.insert(args, '!' .. pattern)
@@ -39,10 +39,10 @@ local telescopeFilters = function(args)
   return args
 end
 
-local sortFiles = function(nodes)
+local function sortFiles(nodes)
   table.sort(nodes, function(a, b)
-    local a_idx = a.name:match("^index%.") or a.name:match("^+%.")
-    local b_idx = b.name:match("^index%.") or b.name:match("^+%.")
+    local a_idx = a.name:match("^index%.") or a.name:match("^%+")
+    local b_idx = b.name:match("^index%.") or b.name:match("^%+")
 
     -- Index files always go last
     if a_idx and not b_idx then return false end

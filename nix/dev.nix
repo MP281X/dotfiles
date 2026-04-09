@@ -21,16 +21,14 @@
     recursive = true;
   };
 
-  # Bun, Node and Nix-only LSP servers
   home.packages = with pkgs; [
-    bun                           # Bun runtime
-    nodejs_22                   # Node.js v22 for LSP and convex
-    lua-language-server          # Lua (not available via Bun)
-    nixd                          # Nix (not available via Bun)
+    bun                  # Bun runtime
+    nodejs_25            # Node.js v25 for LSP
+    nixd                 # Nix (not available via Bun)
+    lua-language-server  # Lua (not available via Bun)
   ];
 
   xdg.configFile."opencode/opencode.json".source = ../.opencode/opencode.json;
-
   xdg.configFile."opencode/command" = {
     source = ../.opencode/command;
     recursive = true;

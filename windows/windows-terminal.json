@@ -27,7 +27,7 @@
 	"warning.confirmCloseAllTabs": false,
 	"rendering.graphicsAPI": "direct3d11",
 
-	"defaultProfile": "{1030c57f-503b-540e-a1de-fffb918766b9}",
+	"defaultProfile": "{3be00a09-538e-51c4-b94f-70c35c84e12f}",
 
 	"profiles": {
 		"defaults": {
@@ -48,7 +48,7 @@
 				"name": "Debian",
         "hidden": false,
 				"source": "Microsoft.WSL",
-				"guid": "{1030c57f-503b-540e-a1de-fffb918766b9}"
+				"guid": "{3be00a09-538e-51c4-b94f-70c35c84e12f}"
 			},
 			{
 				"hidden": true,

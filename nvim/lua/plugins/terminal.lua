@@ -115,8 +115,8 @@ vim.keymap.set("n", "<leader>ss", function()
       command = { "sh", "./scripts/" .. name .. ".sh" }
     elseif kind == "nix" then
       local nix_commands = {
-        switch = { "home-manager", "switch", "--flake", ".#mp281x" },
-        rebuild = { "nix", "run", "home-manager/master", "--", "switch", "--flake", ".#mp281x" },
+        switch = { "home-manager", "switch", "--option", "warn-dirty", "false", "--flake", ".#mp281x" },
+        rebuild = { "nix", "run", "--option", "warn-dirty", "false", "home-manager/master", "--", "switch", "--option", "warn-dirty", "false", "--flake", ".#mp281x" },
         clean = { "nix-collect-garbage", "-d" },
       }
       command = nix_commands[name]

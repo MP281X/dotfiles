@@ -13,6 +13,8 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+    withRuby = false;
+    withPython3 = false;
   };
 
   # Link Neovim configuration
@@ -37,6 +39,9 @@
   # Bun globals (kept out of Nix to get the latest version)
   home.activation.bunGlobals = lib.hm.dag.entryAfter ["writeBoundary"] ''
     echo "Installing/updating Bun global tools"
+
+    export BUN_INSTALL="$HOME/.cache/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"
 
     install_bun_global() {
       local pkg="$1"

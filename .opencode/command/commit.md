@@ -1,6 +1,6 @@
 ---
 description: Commit staged changes, rebase, push.
-model: github-copilot/gpt-5-mini
+model: opencode-go/minimax-m2.7
 ---
 
 commit and push

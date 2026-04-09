@@ -4,6 +4,7 @@
   home.username = username;
   home.homeDirectory = "/home/${username}";
   home.stateVersion = "24.11";
+  news.display = "silent";
 
   # Force overwrite existing files
   home.file.".bashrc".force = true;
@@ -25,6 +26,7 @@
   # Enable generic Linux support for better WSL integration
   # This provides better integration with non-NixOS systems
   targets.genericLinux.enable = true;
+  targets.genericLinux.gpu.enable = false;
 
   # Global session variables available to all applications
   home.sessionVariables = {

@@ -1,0 +1,27 @@
+{
+  "show_edit_predictions": false,
+  "agent": {
+    "thinking_display": "auto",
+    "use_modifier_to_send": false,
+    "play_sound_when_agent_done": "always",
+    "enable_feedback": false,
+  },
+  "agent_buffer_font_size": 17.0,
+  "terminal": {
+    "font_family": "JetBrainsMono Nerd Font Mono",
+    "font_size": 15.0,
+  },
+  "icon_theme": "Material Icon Theme",
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "vim_mode": true,
+  "agent_servers": { "claude-acp": { "type": "registry" } },
+  "ui_font_size": 20.0,
+  "buffer_font_size": 17.0,
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark",
+  },
+}

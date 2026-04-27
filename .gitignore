@@ -1,10 +1,1 @@
-.opencode/plans
-.opencode/repos
-
-# Nix
-flake.lock
-result
-result-*
-.direnv
-.envrc
-cache/
+.DS_Store

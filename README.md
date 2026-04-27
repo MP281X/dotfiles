@@ -1,52 +1,10 @@
-# Dotfiles
+# Dotfiles (macOS)
 
-Managed with Nix + Home Manager
+Configs for my macOS development setup. Assumes the system is already preconfigured (Homebrew installed, git/gh authenticated, apps configured).
 
-## Setup WSL (run as admin in PowerShell)
-
-```powershell
-wsl --unregister Debian;
-wsl --install -d Debian;
-```
-
-## Manual Setup (after WSL install)
-
-### 1. Configure User Permissions
+## Apply
 
 ```bash
-sudo passwd -d $USER && sudo usermod -aG sudo $USER
-sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install curl xz-utils git
-```
-
-### 2. Install Nix Package Manager
-
-```bash
-sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
-. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-```
-
-### 3. Clone Dotfiles
-
-```bash
-git clone https://github.com/MP281X/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-```
-
-### 4. Apply Configuration
-
-```bash
-NIX_CONFIG='extra-experimental-features = nix-command flakes' nix run home-manager/master -- switch --flake .#mp281x
-```
-
-# Install Docker
-
-```bash
-curl -fsSL https://get.docker.com | sh
-sudo usermod -aG docker $USER
-```
-
-### 5. Setup GitHub Authentication
-
-```bash
-gh auth login --git-protocol https --hostname github.com --web --scopes read:packages
+brew bundle --file=shell/Brewfile
+./scripts/dotfiles.sh
 ```

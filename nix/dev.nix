@@ -26,6 +26,7 @@
   home.packages = with pkgs; [
     bun                  # Bun runtime
     nodejs_25            # Node.js v25 for LSP
+    bubblewrap           # Sandbox utility used by Codex
     nixd                 # Nix (not available via Bun)
     lua-language-server  # Lua (not available via Bun)
   ];
@@ -50,6 +51,7 @@
     }
 
     install_bun_global "opencode-ai@latest"
+    install_bun_global "@openai/codex@latest"
     install_bun_global "@biomejs/biome@latest"
     install_bun_global "@typescript/native-preview@latest"
     install_bun_global "@tailwindcss/language-server@latest"

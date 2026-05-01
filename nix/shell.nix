@@ -112,6 +112,9 @@
 
       # Opencode
       o = "opencode";
+
+      # Codex
+      c = "codex --model gpt-5.5 -c model_reasoning_effort=low -c service_tier=fast --ask-for-approval never";
     };
   };
 }

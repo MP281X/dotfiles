@@ -1,18 +1,25 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "master",
+    lazy = false,
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.install").compilers = { "gcc" }
-      require("nvim-treesitter.configs").setup({
-        auto_install = true,
-        sync_install = false,
-        highlight = { enable = true, additional_vim_regex_highlighting = false },
+      require("nvim-treesitter").setup({
+        install_dir = vim.fn.stdpath("data") .. "/site",
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(args)
+          local bufnr = args.buf
+          if vim.bo[bufnr].buftype ~= "" then
+            return
+          end
+
+          pcall(vim.treesitter.start, bufnr)
+        end,
       })
     end,
   },
-  { "windwp/nvim-ts-autotag",      opts = {} },
   { "axelvc/template-string.nvim", opts = {} },
   { "echasnovski/mini.pairs",      opts = {} },
 }

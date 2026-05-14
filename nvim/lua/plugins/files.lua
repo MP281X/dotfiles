@@ -8,6 +8,8 @@ local filters = {
   "pnpm-lock.yaml", "bun.lock", "flake.lock",
   -- opencode
   ".opencode/resources",
+  -- motel
+  ".motel-data",
   -- cache
   "_generated", ".expo",
   "*.tsbuildinfo", ".turbo",

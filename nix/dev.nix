@@ -32,10 +32,6 @@
   ];
 
   xdg.configFile."opencode/opencode.json".source = ../.opencode/opencode.json;
-  xdg.configFile."opencode/command" = {
-    source = ../.opencode/command;
-    recursive = true;
-  };
 
   # Bun globals (kept out of Nix to get the latest version)
   home.activation.bunGlobals = lib.hm.dag.entryAfter ["writeBoundary"] ''
@@ -50,6 +46,7 @@
       $DRY_RUN_CMD ${pkgs.bun}/bin/bun add -g "''${pkg}" || true
     }
 
+    install_bun_global "@kitlangton/motel"
     install_bun_global "opencode-ai@latest"
     install_bun_global "@openai/codex@latest"
     install_bun_global "@biomejs/biome@latest"

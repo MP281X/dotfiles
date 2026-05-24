@@ -15,11 +15,12 @@ return {
 
       vim.lsp.config("tsgo", {})
       vim.lsp.config("nixd", {})
-      vim.lsp.config("biome", {})
+      vim.lsp.config("oxlint", {})
+      vim.lsp.config("oxfmt", {})
       vim.lsp.config("tailwindcss", {})
       vim.lsp.config("lua_ls", { settings = { Lua = { diagnostics = { globals = { "vim" } } } } })
 
-      vim.lsp.enable({ "tsgo", "biome", "tailwindcss", "lua_ls", "nixd" })
+      vim.lsp.enable({ "tsgo", "oxlint", "oxfmt", "tailwindcss", "lua_ls", "nixd" })
 
       vim.diagnostic.config({
         signs = {
@@ -61,7 +62,7 @@ return {
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.json", "*.jsonc", "*.html", "*.css" },
         callback = function()
-          vim.lsp.buf.format({ filter = function(c) return c.name == "biome" end, timeout_ms = 1000 })
+          vim.lsp.buf.format({ filter = function(c) return c.name == "oxfmt" end, timeout_ms = 1000 })
         end,
       })
 

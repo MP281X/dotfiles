@@ -14,7 +14,7 @@
   },
 
   "tools": { "codesearch": false },
-	"lsp": { "biome": { "disabled": true } },
+	"lsp": { "biome": { "disabled": true }, "oxlint": { "disabled": true } },
 
   "permission": {
 		"bash": {

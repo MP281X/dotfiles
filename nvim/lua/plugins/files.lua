@@ -2,7 +2,7 @@
 local filters = {
   --global
   ".git", ".gitignore", ".dockerignore",
-  -- node
+  -- package/build artifacts
   "node_modules", "dist", "build",
   -- lockfiles
   "pnpm-lock.yaml", "bun.lock", "flake.lock",

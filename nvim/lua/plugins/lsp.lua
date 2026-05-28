@@ -13,11 +13,23 @@ return {
 
       vim.lsp.config("*", { capabilities = capabilities })
 
-      vim.lsp.config("tsgo", {})
+      vim.lsp.config("tsgo", { cmd = { "tsgo", "--lsp", "--stdio" } })
       vim.lsp.config("nixd", {})
       vim.lsp.config("oxlint", {})
       vim.lsp.config("oxfmt", {})
-      vim.lsp.config("tailwindcss", {})
+      vim.lsp.config("tailwindcss", {
+        settings = {
+          tailwindCSS = {
+            files = {
+              exclude = {
+                "**/.git/**",
+                "**/.opencode/**",
+                "**/node_modules/**",
+              },
+            },
+          },
+        },
+      })
       vim.lsp.config("lua_ls", { settings = { Lua = { diagnostics = { globals = { "vim" } } } } })
 
       vim.lsp.enable({ "tsgo", "oxlint", "oxfmt", "tailwindcss", "lua_ls", "nixd" })

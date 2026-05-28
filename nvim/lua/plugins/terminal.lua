@@ -1,17 +1,6 @@
 -- Floating terminal implementation
 local terminal_buffer, terminal_window = nil, nil
 
--- Package manager configuration (detected once at startup)
-local PACKAGE_MANAGER_CONFIG = {
-  bun = { command = "bun", run = "run" },
-  node = { command = "node", run = "--no-warnings --run" },
-}
-
--- Detect package manager once at startup
-local PACKAGE_MANAGER = vim.fn.findfile("bun.lock") ~= "" and "bun"
-    or vim.fn.findfile("package.json") ~= "" and "node"
-    or nil
-
 -- Helper to create floating window config
 local function get_float_config()
   local width = math.floor(vim.o.columns * 0.8)
@@ -42,9 +31,8 @@ vim.keymap.set("n", "<leader>t", function()
   vim.wo[terminal_window].winhl = "Normal:Normal"
   vim.wo[terminal_window].winblend = 0
 
-  local config = PACKAGE_MANAGER and PACKAGE_MANAGER_CONFIG[PACKAGE_MANAGER]
-  local command = config
-      and { config.command, config.run, "dev" }
+  local command = vim.fn.findfile("package.json") ~= ""
+      and { "vp", "run", "dev" }
       or { vim.o.shell }
 
   vim.api.nvim_buf_call(terminal_buffer, function()
@@ -74,14 +62,14 @@ vim.keymap.set("n", "<leader>ss", function()
   local scripts = {}
   local package_scripts = {}
 
-  if PACKAGE_MANAGER and vim.fn.findfile("package.json") ~= "" then
+  if vim.fn.findfile("package.json") ~= "" then
     local success_read, content = pcall(vim.fn.readfile, "package.json")
     if success_read then
       local success_decode, package_data = pcall(vim.json.decode, table.concat(content))
       if success_decode and package_data.scripts then
         for name, _ in pairs(package_data.scripts) do
           if name ~= "dev" and name ~= "turbo" and name:sub(1, 1) ~= "_" and not name:match("^dev:") then
-            table.insert(scripts, PACKAGE_MANAGER .. ":" .. name)
+            table.insert(scripts, "vp:" .. name)
             package_scripts[name] = true
           end
         end
@@ -121,10 +109,7 @@ vim.keymap.set("n", "<leader>ss", function()
       }
       command = nix_commands[name]
     else
-      local config = PACKAGE_MANAGER_CONFIG[kind]
-      if config then
-        command = { config.command, config.run, name }
-      end
+      command = { "vp", "run", name }
     end
 
     if not command then return end

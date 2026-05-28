@@ -1,10 +1,9 @@
 { pkgs, lib, ... }:
 
 {
-  # Bun global bin path
+  # Vite+ global bin path
   home.sessionPath = [
-    "$HOME/.cache/.bun/bin"
-    "$HOME/.bun/bin"
+    "$HOME/.vite-plus/bin"
   ];
 
   # Neovim
@@ -24,34 +23,41 @@
   };
 
   home.packages = with pkgs; [
-    bun                  # Bun runtime
-    nodejs               # Latest supported Node.js for LSP
     bubblewrap           # Sandbox utility used by Codex
-    nixd                 # Nix (not available via Bun)
-    lua-language-server  # Lua (not available via Bun)
+    nixd                 # Nix language server
+    lua-language-server  # Lua language server
   ];
 
   xdg.configFile."opencode/opencode.json".source = ../.opencode/opencode.json;
 
-  # Bun globals (kept out of Nix to get the latest version)
-  home.activation.bunGlobals = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    echo "Installing/updating Bun global tools"
+  home.activation.installVitePlus = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    if [ ! -x "$HOME/.vite-plus/bin/vp" ]; then
+      echo "Installing Vite+"
+      if [ -z "$DRY_RUN_CMD" ]; then
+        export VP_NODE_MANAGER="yes"
+        ${pkgs.curl}/bin/curl -fsSL https://vite.plus | ${pkgs.bash}/bin/bash
+      fi
+    fi
+  '';
 
-    export BUN_INSTALL="$HOME/.cache/.bun"
-    export PATH="$BUN_INSTALL/bin:$PATH"
+  # Vite+ globals (kept out of Nix to get the latest version)
+  home.activation.vitePlusGlobals = lib.hm.dag.entryAfter ["installVitePlus"] ''
+    echo "Installing/updating Vite+ global tools"
 
-    install_bun_global() {
+    export PATH="$HOME/.vite-plus/bin:$PATH"
+
+    vp_global() {
       local pkg="$1"
       echo " - ''${pkg}"
-      $DRY_RUN_CMD ${pkgs.bun}/bin/bun add -g "''${pkg}" || true
+      $DRY_RUN_CMD "$HOME/.vite-plus/bin/vp" add -g "''${pkg}" || true
     }
 
-    install_bun_global "@kitlangton/motel"
-    install_bun_global "opencode-ai@latest"
-    install_bun_global "@openai/codex@latest"
-    install_bun_global "oxlint@latest"
-    install_bun_global "oxfmt@latest"
-    install_bun_global "@typescript/native-preview@latest"
-    install_bun_global "@tailwindcss/language-server@latest"
+    vp_global "@kitlangton/motel"
+    vp_global "opencode-ai@latest"
+    vp_global "@openai/codex@latest"
+    vp_global "oxlint@latest"
+    vp_global "oxfmt@latest"
+    vp_global "@typescript/native-preview@latest"
+    vp_global "@tailwindcss/language-server@latest"
   '';
 }

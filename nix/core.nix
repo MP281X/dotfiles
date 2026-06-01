@@ -7,6 +7,7 @@
     xz           # Compression utility
     unzip        # Archive extractor
     jq           # JSON processor
+    python3      # Python runtime required by node-gyp
     gcc          # C/C++ compiler
     gnumake      # Build tool
     ripgrep      # Fast grep alternative

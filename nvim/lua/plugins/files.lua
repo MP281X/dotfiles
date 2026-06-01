@@ -1,7 +1,7 @@
 -- filters (applied to telescope and nvim-tree)
 local filters = {
   --global
-  ".git", ".gitignore", ".dockerignore",
+  ".git", ".gitignore", ".dockerignore", ".agents", ".codex",
   -- package/build artifacts
   "node_modules", "dist", "build",
   -- lockfiles

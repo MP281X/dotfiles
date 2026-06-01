@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -22,7 +22,7 @@
       };
 
       devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [ home-manager git ];        
+        packages = with pkgs; [ pkgs.home-manager git ];
         shellHook = ''
           echo "Dotfiles development environment"
           echo "Run: home-manager switch --flake .#${username}"

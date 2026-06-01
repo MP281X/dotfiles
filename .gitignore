@@ -1,6 +1,8 @@
 .opencode/plans
 .opencode/repos
 
+node_modules/
+
 # Nix
 flake.lock
 result

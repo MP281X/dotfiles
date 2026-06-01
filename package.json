@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "switch": "home-manager switch --option warn-dirty false --flake .#mp281x",
+    "rebuild": "nix run --option warn-dirty false home-manager/master -- switch --option warn-dirty false --flake .#mp281x",
+    "clean": "nix-collect-garbage -d"
+  }
+}

@@ -87,12 +87,6 @@ vim.keymap.set("n", "<leader>ss", function()
     end
   end
 
-  if vim.fn.findfile("flake.nix") ~= "" then
-    table.insert(scripts, "nix:switch")
-    table.insert(scripts, "nix:rebuild")
-    table.insert(scripts, "nix:clean")
-  end
-
   vim.ui.select(scripts, { prompt = "Select script" }, function(selected)
     if not selected then return end
 
@@ -101,13 +95,6 @@ vim.keymap.set("n", "<leader>ss", function()
 
     if kind == "bash" then
       command = { "sh", "./scripts/" .. name .. ".sh" }
-    elseif kind == "nix" then
-      local nix_commands = {
-        switch = { "home-manager", "switch", "--option", "warn-dirty", "false", "--flake", ".#mp281x" },
-        rebuild = { "nix", "run", "--option", "warn-dirty", "false", "home-manager/master", "--", "switch", "--option", "warn-dirty", "false", "--flake", ".#mp281x" },
-        clean = { "nix-collect-garbage", "-d" },
-      }
-      command = nix_commands[name]
     else
       command = { "vp", "run", name }
     end

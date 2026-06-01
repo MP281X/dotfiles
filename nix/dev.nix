@@ -52,12 +52,17 @@
       $DRY_RUN_CMD "$HOME/.vite-plus/bin/vp" add -g "''${pkg}" || true
     }
 
-    vp_global "@kitlangton/motel"
-    vp_global "opencode-ai@latest"
-    vp_global "@openai/codex@latest"
     vp_global "oxlint@latest"
     vp_global "oxfmt@latest"
     vp_global "@typescript/native-preview@latest"
     vp_global "@tailwindcss/language-server@latest"
+
+    vp_global "ccusage"
+    vp_global "@deslop/workbench"
+
+    vp_global "@kitlangton/motel"
+    vp_global "opencode-ai@latest"
+    vp_global "@openai/codex@latest"
+    vp_global "@earendil-works/pi-coding-agent"
   '';
 }

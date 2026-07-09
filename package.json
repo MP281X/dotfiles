@@ -1,0 +1,11 @@
+{
+  "engines": { "node": ">=26" },
+  "packageManager": "pnpm@11.10.0",
+
+  "scripts": {
+    "starship": "mkdir -p ~/.config && cp shell/starship.toml ~/.config/starship.toml",
+    "homebrew": "brew update && brew upgrade --greedy --yes && brew autoremove && brew cleanup --prune=all --scrub",
+    "vite-plus": "vp upgrade --check",
+    "setup": "npm run starship && npm run homebrew && npm run vite-plus"
+  }
+}

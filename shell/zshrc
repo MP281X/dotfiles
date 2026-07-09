@@ -1,7 +1,3 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-export PATH="$HOME/.local/bin:$PATH"
-
 # Vi mode
 bindkey -v
 KEYTIMEOUT=1
@@ -13,7 +9,7 @@ SAVEHIST=10000
 setopt HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_REDUCE_BLANKS APPEND_HISTORY INC_APPEND_HISTORY
 
 # Tab completion
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -C
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 bindkey '^I' menu-complete
 
@@ -31,8 +27,8 @@ zle -N zle-line-init
 
 # fzf
 export FZF_DEFAULT_OPTS='--no-hscroll --no-mouse --reverse --no-info --border=none'
-[ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ] && source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
-[ -f /opt/homebrew/opt/fzf/shell/completion.zsh ] && source /opt/homebrew/opt/fzf/shell/completion.zsh
+[[ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]] && source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+[[ -f /opt/homebrew/opt/fzf/shell/completion.zsh ]] && source /opt/homebrew/opt/fzf/shell/completion.zsh
 
 # Custom functions
 cd() {
@@ -40,7 +36,12 @@ cd() {
 }
 
 gr() {
-	git fetch --prune && git branch -r | awk "{print \$1}" | grep -E -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -D
+	git fetch --prune || return
+	git branch -r \
+		| awk "{print \$1}" \
+		| grep -E -v -f /dev/fd/0 <(git branch -vv | grep origin) \
+		| awk "{print \$1}" \
+		| xargs git branch -D
 }
 
 reset() {
@@ -55,10 +56,8 @@ alias ls="eza --icons --group-directories-first --width 120 --git-ignore --ignor
 alias tree="eza --icons --group-directories-first --width 120 --tree --git-ignore --ignore-glob='~/.cache|~/.npm|node_modules'"
 alias ..="cd .."
 alias rm="rm -rf"
-alias c="claude"
 
 # Starship prompt
-eval "$(starship init zsh)"
-
-# Show directory listing on shell start
-ls
+if command -v starship >/dev/null 2>&1; then
+	eval "$(starship init zsh)"
+fi
